@@ -4,7 +4,11 @@ description: Summarize what changed in one or more GitHub repositories over a lo
 compatibility: claude
 license: MIT
 allowed_tools:
-  - github
+  # Tools from the official github/github-mcp-server:
+  - search_pull_requests
+  - list_commits
+  - get_commit
+  - pull_request_read
 metadata:
   author: joystream
   version: "1.0"
@@ -30,12 +34,21 @@ the agent that runs it chooses the destination. Reusable on its own or alongside
 
 # Reasoning Flow
 
-1. Compute the cutoff timestamp: `since = now - lookback_hours` (UTC).
-2. For each repository, gather via `github`:
-   - **Merged PRs** where `merged_at >= since` (state `closed`, `merged` true).
-   - **Opened PRs** where `created_at >= since` and still open.
-   - **Commits** on `branch` where `committed_date >= since` that are **not**
-     already represented by a merged PR above (avoid double-counting merge commits).
+1. Compute the cutoff timestamp: `since = now - lookback_hours` (UTC). Use the
+   `YYYY-MM-DDThh:mm:ssZ` form GitHub search accepts.
+2. For each repository, gather via the official `github` MCP tools:
+   - **Merged PRs** — `search_pull_requests` with
+     `repo:{owner}/{repo} is:pr is:merged merged:>={since}`. (Do **not** use
+     `list_pull_requests` for this — it has no date filter, only state/head/base/sort,
+     so it cannot honor the window.)
+   - **Opened PRs** — `search_pull_requests` with
+     `repo:{owner}/{repo} is:pr is:open created:>={since}`.
+   - **Commits** — `list_commits` with `sha={branch}` and `since={since}`, keeping
+     only commits **not** already represented by a merged PR above (avoid
+     double-counting merge commits). Use `get_commit` if you need a commit's full
+     message/diff to describe it.
+   - **PR outcome** — when a PR title is too thin to describe the effect, read its
+     body via `pull_request_read` (`method: get`) rather than restating the title.
 3. **Summarize, don't list.** Group related work into themes (e.g. "auth", "billing",
    "catalog resolver"). For each theme write one plain-language sentence describing
    the *outcome* — what a teammate needs to know — citing PR/commit numbers in

@@ -38,7 +38,7 @@ adding skills.
 | Skill (`name`) | What it does | Services |
 |----------------|--------------|----------|
 | [`github-repo-activity-summary`](./github/repo-activity-summary/SKILL.md) | Reads merged/open PRs + notable commits across one or more repos over a window and returns a **summarized** "repo changes" digest | GitHub |
-| [`github-project-ticket-summary`](./github/project-ticket-summary/SKILL.md) | Reads closed/moved/opened tickets on a GitHub Project over a window and returns a **summarized** "ticket changes" digest, with a gist of each closed ticket | GitHub |
+| [`github-project-ticket-summary`](./github/project-ticket-summary/SKILL.md) | Reads closed/opened tickets (time-windowed) plus current in-progress board state on a GitHub Project and returns a **summarized** "ticket changes" digest, with a gist of each closed ticket | GitHub |
 
 Both skills only **read and summarize** — they return a digest and post nowhere,
 so they compose with any delivery service (Discord, Slack, email) and can be
