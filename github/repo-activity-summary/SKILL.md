@@ -4,9 +4,11 @@ description: Summarize what changed in one or more GitHub repositories over a lo
 compatibility: claude
 license: MIT
 allowed_tools:
-  - github
-  # Backed by the official github/github-mcp-server tools:
-  #   search_pull_requests, list_commits, pull_request_read, get_commit
+  # Tools from the official github/github-mcp-server:
+  - search_pull_requests
+  - list_commits
+  - get_commit
+  - pull_request_read
 metadata:
   author: joystream
   version: "1.0"

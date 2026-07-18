@@ -4,11 +4,12 @@ description: Summarize ticket movement on a GitHub Project over a lookback windo
 compatibility: claude
 license: MIT
 allowed_tools:
-  - github
-  # Backed by the official github/github-mcp-server tools:
-  #   search_issues (time-windowed closures), issue_read (gist + linked PR),
-  #   pull_request_read (gist from the merged PR),
-  #   projects_list / projects_get (board scoping + current status)
+  # Tools from the official github/github-mcp-server:
+  - search_issues        # time-windowed closures / new issues
+  - issue_read           # gist + linked PR
+  - pull_request_read    # gist from the merged PR
+  - projects_list        # board scoping
+  - projects_get         # current status / field detail
 metadata:
   author: joystream
   version: "1.0"
