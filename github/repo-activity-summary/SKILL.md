@@ -4,14 +4,17 @@ description: Summarize what changed in one or more GitHub repositories over a lo
 compatibility: claude
 license: MIT
 allowed_tools:
-  # Tools from the official github/github-mcp-server:
-  - search_pull_requests
-  - list_commits
-  - get_commit
-  - pull_request_read
+  # Dispatched through the OpenConnector gateway's execute_action, not called
+  # directly — these are the connector's own action ids (github.* namespace),
+  # not github-mcp-server tool names. See the Reasoning Flow below for exactly
+  # which actionId + input fields each step uses.
+  - github.search_issues_and_pull_requests
+  - github.list_commits
+  - github.get_commit
+  - github.get_pull_request
 metadata:
   author: joystream
-  version: "1.0"
+  version: "1.1"
   category: developer-tools
 ---
 
@@ -34,21 +37,35 @@ the agent that runs it chooses the destination. Reusable on its own or alongside
 
 # Reasoning Flow
 
+**Tooling note — how dispatch actually works.** This skill runs through the
+OpenConnector gateway: every step below is one `execute_action` call with a
+specific `actionId` and `input` object (never call a tool literally named
+`search_pull_requests` or `list_commits` — those don't exist at this layer; the
+gateway only exposes `search_actions` / `get_action_guide` / `execute_action` /
+`list_apps` / `list_connections`, and this skill already tells you the exact
+`actionId` for every step so you never need `search_actions`/`get_action_guide`
+to find them). Field names below are the connector's own (camelCase), verified
+against the live catalog, not github-mcp-server's names.
+
 1. Compute the cutoff timestamp: `since = now - lookback_hours` (UTC). Use the
    `YYYY-MM-DDThh:mm:ssZ` form GitHub search accepts.
-2. For each repository, gather via the official `github` MCP tools:
-   - **Merged PRs** — `search_pull_requests` with
-     `repo:{owner}/{repo} is:pr is:merged merged:>={since}`. (Do **not** use
-     `list_pull_requests` for this — it has no date filter, only state/head/base/sort,
-     so it cannot honor the window.)
-   - **Opened PRs** — `search_pull_requests` with
-     `repo:{owner}/{repo} is:pr is:open created:>={since}`.
-   - **Commits** — `list_commits` with `sha={branch}` and `since={since}`, keeping
-     only commits **not** already represented by a merged PR above (avoid
-     double-counting merge commits). Use `get_commit` if you need a commit's full
-     message/diff to describe it.
+2. For each repository, gather via the connector's `github.*` actions:
+   - **Merged PRs** — `execute_action(actionId:
+     "github.search_issues_and_pull_requests", input: {query: "repo:{owner}/{repo}
+     is:pr is:merged merged:>={since}"})`. There is no structured `merged`-date
+     filter field on this action, so this always goes through the raw `query`
+     string, GitHub search syntax, not the structured `type`/`isMerged` fields.
+   - **Opened PRs** — same action, `query: "repo:{owner}/{repo} is:pr is:open
+     created:>={since}"`.
+   - **Commits** — `execute_action(actionId: "github.list_commits", input: {owner,
+     repo, sha: branch, since})` — `sha` is the branch/ref to list from, `since` is
+     the cutoff. Keep only commits **not** already represented by a merged PR above
+     (avoid double-counting merge commits). Use `execute_action(actionId:
+     "github.get_commit", input: {owner, repo, ref})` if you need a commit's full
+     message/diff to describe it (`ref` is the commit SHA).
    - **PR outcome** — when a PR title is too thin to describe the effect, read its
-     body via `pull_request_read` (`method: get`) rather than restating the title.
+     body via `execute_action(actionId: "github.get_pull_request", input: {owner,
+     repo, pullNumber})` rather than restating the title.
 3. **Summarize, don't list.** Group related work into themes (e.g. "auth", "billing",
    "catalog resolver"). For each theme write one plain-language sentence describing
    the *outcome* — what a teammate needs to know — citing PR/commit numbers in
