@@ -4,15 +4,18 @@ description: Summarize ticket movement on a GitHub Project over a lookback windo
 compatibility: claude
 license: MIT
 allowed_tools:
-  # Tools from the official github/github-mcp-server:
-  - search_issues        # time-windowed closures / new issues
-  - issue_read           # gist + linked PR
-  - pull_request_read    # gist from the merged PR
-  - projects_list        # board scoping
-  - projects_get         # current status / field detail
+  # Dispatched through the OpenConnector gateway's execute_action, not called
+  # directly — these are the connector's own action ids (github.* namespace),
+  # not github-mcp-server tool names. See the Reasoning Flow below for exactly
+  # which actionId + input fields each step uses.
+  - github.list_projects
+  - github.list_project_items
+  - github.search_issues_and_pull_requests
+  - github.get_issue
+  - github.get_pull_request
 metadata:
   author: joystream
-  version: "1.0"
+  version: "1.1"
   category: developer-tools
 ---
 
@@ -28,7 +31,8 @@ the agent that runs it chooses the destination. Reusable on its own or alongside
 # Inputs
 
 - **project** (string, required): the GitHub Project to read. For JoyStream this is
-  the org project named **"development project"** (resolve its project number/URL).
+  the org project named **"development project"** (resolve its project number via
+  `github.list_projects`, below).
 - **repositories** (list of `owner/repo`, optional): scope the project's items to
   these repos when the project spans several. Default for JoyStream:
   `joystream-ai/joystream`, `joystream-ai/llm-wiki`.
@@ -38,36 +42,53 @@ the agent that runs it chooses the destination. Reusable on its own or alongside
 
 # Reasoning Flow
 
-**Tooling note — where the window actually comes from.** GitHub Projects v2 (and the
-`projects_*` MCP tools) expose an item's **current** field values and an `updatedAt`,
-but **no per-field change history**: you cannot learn *when* a status flipped or
-*which* field changed. So do not try to time-window off the board. Derive the window
-from the **underlying issues** (which carry `closed_at` / `created_at`), and use the
-project only to **scope** (which issues are on the board) and to read **current**
-status.
+**Tooling note — how dispatch actually works.** This skill runs through the
+OpenConnector gateway: every step below is one `execute_action` call with a
+specific `actionId` and `input` object (never call a tool literally named
+`search_issues` or `projects_list` — those don't exist at this layer; the gateway
+only exposes `search_actions` / `get_action_guide` / `execute_action` /
+`list_apps` / `list_connections`, and this skill already tells you the exact
+`actionId` for every step so you never need `search_actions`/`get_action_guide`
+to find them). Field names below are the connector's own (camelCase — e.g.
+`issueNumber`, not `issue_number`), verified against the live catalog, not
+github-mcp-server's names.
+
+**Tooling note — where the window actually comes from.** GitHub Projects v2 (and
+`github.list_project_items`) expose an item's **current** field values, but **no
+per-field change history**: you cannot learn *when* a status flipped or *which*
+field changed. So do not try to time-window off the board. Derive the window
+from the **underlying issues** (which carry `closed_at` / `created_at`), and use
+the project only to **scope** (which issues are on the board) and to read
+**current** status.
 
 1. Compute the cutoff: `since = now - lookback_hours` (UTC), formatted as
    `YYYY-MM-DDThh:mm:ssZ`.
-2. Resolve the project and read its items with `projects_list` (and `projects_get`
-   for field/status detail) to build the **scope set**: the issues currently on the
+2. Resolve the project number: `execute_action(actionId: "github.list_projects",
+   input: {owner, ownerType: "org", query: project})`. Match by title. Then read
+   its items and current status with `execute_action(actionId:
+   "github.list_project_items", input: {owner, ownerType: "org", projectNumber,
+   fieldNames: ["Status"]})` — `fieldNames` is required to get status back; without
+   it you only get titles. This is the **scope set**: the issues currently on the
    board and their current status. Restrict to `repositories` when given.
 3. Build each bucket from issue timestamps, not board movement:
-   - **Closed / Done** — `search_issues` with
-     `repo:{owner}/{repo} is:issue is:closed closed:>={since}`, intersected with the
-     scope set. This is the accurately time-windowed set.
-   - **Opened / Added** — `search_issues` with
-     `repo:{owner}/{repo} is:issue is:open created:>={since}`, intersected with scope.
-   - **In progress** — issues in the scope set whose **current** board status is a
-     non-terminal in-progress state (from step 2). Report this as *current board
-     state*, **not** as "moved within the window" — the tools cannot prove a
-     transition time. Omit precise from→to movement claims.
-4. **For each closed ticket, write a one-line gist of the work**, not just the title.
-   Read the issue via `issue_read` (`method: get`) to find its linked/closing PR,
-   then `pull_request_read` (`method: get`) for the PR body — or the issue's final
-   comments — to describe what was actually done and why it mattered. Cite the ticket
-   number and any linked PR. Never fabricate.
-5. Lead with a headline count ("Closed 5 tickets, 3 in progress, opened 2") then the
-   details.
+   - **Closed / Done** — `execute_action(actionId:
+     "github.search_issues_and_pull_requests", input: {query: "repo:{owner}/{repo}
+     is:issue is:closed closed:>={since}"})`, intersected with the scope set. This
+     is the accurately time-windowed set.
+   - **Opened / Added** — same action, `query: "repo:{owner}/{repo} is:issue
+     is:open created:>={since}"`, intersected with scope.
+   - **In progress** — issues in the scope set whose **current** board status
+     (from step 2) is a non-terminal in-progress state. Report this as *current
+     board state*, **not** as "moved within the window" — the tools cannot prove
+     a transition time. Omit precise from→to movement claims.
+4. **For each closed ticket, write a one-line gist of the work**, not just the
+   title. Call `execute_action(actionId: "github.get_issue", input: {owner, repo,
+   issueNumber})` to find its linked/closing PR, then `execute_action(actionId:
+   "github.get_pull_request", input: {owner, repo, pullNumber})` for the PR body —
+   or the issue's final comments — to describe what was actually done and why it
+   mattered. Cite the ticket number and any linked PR. Never fabricate.
+5. Lead with a headline count ("Closed 5 tickets, 3 in progress, opened 2") then
+   the details.
 6. Return markdown plus a structured object.
 
 **Trigger-aware behavior:** on `trigger.type == "manual"`, return the draft for review;
@@ -109,9 +130,10 @@ Plus a structured object:
   pull in older done items.
 - If the project spans repos beyond the requested scope, exclude out-of-scope items
   and note that you scoped the view.
-- **Never claim status transitions the tools cannot prove.** The `projects_*` tools
-  give current status only, not change history — report "in progress" as current
-  board state, and do not assert from→to movement or a movement time.
+- **Never claim status transitions the tools cannot prove.** `github.
+  list_project_items` gives current status only, not change history — report "in
+  progress" as current board state, and do not assert from→to movement or a
+  movement time.
 
 # Edge Cases
 
@@ -124,8 +146,10 @@ per-item change timing.)
 Include it with the gist marked `closed (no linked PR)`; do not omit it and do not invent work.
 
 ## Project not found / not accessible
-Return an explicit failure line naming the project and the reason, so the composing
-digest can flag that the ticket half is missing rather than appear empty.
+`github.list_projects` returning no match, or `github.list_project_items` erroring,
+means the project isn't reachable with the current connection. Return an explicit
+failure line naming the project and the reason, so the composing digest can flag
+that the ticket half is missing rather than appear empty.
 
 # Examples
 
