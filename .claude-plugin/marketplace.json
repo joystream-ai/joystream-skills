@@ -1,0 +1,15 @@
+{
+  "name": "joystream-skills",
+  "owner": { "name": "JoyStream", "url": "https://joystream.ai" },
+  "plugins": [
+    {
+      "name": "github-reports",
+      "description": "Read-only GitHub digests: repo activity and project ticket movement, each usable on its own.",
+      "source": "./",
+      "skills": [
+        "./skills/github-repo-activity-summary",
+        "./skills/github-project-ticket-summary"
+      ]
+    }
+  ]
+}

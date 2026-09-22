@@ -5,40 +5,39 @@ A public, open collection of [Agent Skills](https://agentskills.io) for
 your JoyStream Skills Catalog and compose into agents.
 
 Each skill is a directory containing a `SKILL.md` (YAML frontmatter + a Markdown
-body). The JoyStream importer scans this repo's tree **recursively** and registers
-every directory that has a `SKILL.md` as one skill.
+body). Skills and plugins are registered in `.claude-plugin/marketplace.json`; the
+JoyStream importer follows that manifest.
 
 ## Repo layout & naming
 
-Skills are grouped into **category folders by service** (`github/`, and more as this
-grows) so the repo stays browsable:
-
 ```
 joystream-skills/
-└── github/
-    ├── repo-activity-summary/SKILL.md
-    └── project-ticket-summary/SKILL.md
+├── .claude-plugin/marketplace.json   # registers every plugin and standalone skill
+├── skills/                           # standalone skills, one directory each
+│   ├── github-repo-activity-summary/SKILL.md
+│   └── github-project-ticket-summary/SKILL.md
+└── plugins/                          # a plugin = one use case composing >1 skill
+    └── <name>/
+        ├── .claude-plugin/plugin.json
+        └── skills/<skill>/SKILL.md
 ```
 
-The folder is for humans — it does **not** affect the catalog identity. A skill's
-catalog identity is:
+- **Standalone skill**: one reusable capability or judgment. Goes in `skills/<name>/`
+  and is listed under a use-case entry in `marketplace.json` (today: `github-reports`).
+- **Plugin**: a use case that needs more than one skill. Goes in `plugins/<name>/` with
+  its own `plugin.json` and gets its own `marketplace.json` entry. See
+  [`plugins/README.md`](./plugins/README.md).
 
-```
-qualified_name = "{repo-owner}/{name-from-frontmatter}"
-               = "joystream-ai/github-repo-activity-summary"
-```
-
-So collisions are avoided two ways: the **owner prefix** keeps this repo's skills
-from clashing with any other org's, and each skill's `name:` is **service-prefixed**
-(`github-…`) so names stay unique and self-describing within the org. Keep both when
-adding skills.
+A skill's directory name must equal its frontmatter `name`. Names are
+service-prefixed (`github-…`) so they stay unique and self-describing. Catalog
+identity is `{repo-owner}/{name}`, e.g. `joystream-ai/github-repo-activity-summary`.
 
 ## Skills
 
 | Skill (`name`) | What it does | Services |
 |----------------|--------------|----------|
-| [`github-repo-activity-summary`](./github/repo-activity-summary/SKILL.md) | Reads merged/open PRs + notable commits across one or more repos over a window and returns a **summarized** "repo changes" digest | GitHub |
-| [`github-project-ticket-summary`](./github/project-ticket-summary/SKILL.md) | Reads closed/opened tickets (time-windowed) plus current in-progress board state on a GitHub Project and returns a **summarized** "ticket changes" digest, with a gist of each closed ticket | GitHub |
+| [`github-repo-activity-summary`](./skills/github-repo-activity-summary/SKILL.md) | Reads merged/open PRs + notable commits across one or more repos over a window and returns a **summarized** "repo changes" digest | GitHub |
+| [`github-project-ticket-summary`](./skills/github-project-ticket-summary/SKILL.md) | Reads closed/opened tickets (time-windowed) plus current in-progress board state on a GitHub Project and returns a **summarized** "ticket changes" digest, with a gist of each closed ticket | GitHub |
 
 Both skills only **read and summarize** — they return a digest and post nowhere,
 so they compose with any delivery service (Discord, Slack, email) and can be
@@ -80,8 +79,9 @@ Guidelines for contributing a skill here:
   be opinionated — keep it as its own task skill only if more than one agent reuses it.
 - **One-off logic belongs in the agent, not a skill** (target repos, `#channel`,
   cron time). Keep those out of `SKILL.md`; expose them as `Inputs`.
-- **Group by service** in a category folder (`github/`, `slack/`, …) and give each
-  skill a **service-prefixed `name`** so catalog identities stay unique.
+- **Standalone skills go in `skills/`, multi-skill use cases in `plugins/`.** Give each
+  skill a **service-prefixed `name`** matching its directory, and register it in
+  `marketplace.json`.
 - **One skill per directory**, `SKILL.md` with frontmatter: `name`, `description`,
   `compatibility`, `license`, `allowed_tools`, `metadata`. Body follows the
   Purpose / Inputs / Reasoning Flow / Output / Constraints / Edge Cases / Examples
