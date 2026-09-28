@@ -10,6 +10,14 @@
         "./skills/github-repo-activity-summary",
         "./skills/github-project-ticket-summary"
       ]
+    },
+    {
+      "name": "platform-ops",
+      "description": "JoyStream platform alert diagnosis for the ops agent: read-only Railway evidence, one reply in the alert's Slack thread.",
+      "source": "./",
+      "skills": [
+        "./skills/platform-alert-diagnosis"
+      ]
     }
   ]
 }
