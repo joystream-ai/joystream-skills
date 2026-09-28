@@ -1,70 +1,12 @@
 ---
 name: platform-alert-diagnosis
-description: Diagnose one JoyStream platform alert from js-monitor — read the alert event, make a small, bounded set of read-only Railway calls, and post ONE diagnosis (cause, redacted evidence, one safe recommendation, confidence) as a single reply in the alert's Slack thread.
-compatibility: claude
+description: Diagnose one JoyStream platform alert from js-monitor. Reads the alert event, makes a small, bounded set of read-only Railway calls, and posts ONE diagnosis (cause, redacted evidence, one safe recommendation, confidence) as a single reply in the alert's Slack thread. Use when the JoyStream ops agent receives a js-monitor alert.
 license: MIT
-allowed_tools:
-  # Dispatched through the connector gateway's execute_action; these are the
-  # connector's own action ids. Read-only Railway actions plus one Slack reply.
-  # The Railway write actions (deploy_service, rollback_deployment,
-  # upsert_variable) are deliberately absent.
-  - railway.get_service_instance
-  - railway.list_deployments
-  - railway.get_deployment
-  - railway.get_deployment_logs
-  - railway.get_environment_logs
-  - railway.get_service_metrics
-  - slack.reply_message
 metadata:
   author: joystream
   version: "1.0"
   category: platform-ops
-input_schema:
-  type: object
-  required: [event, railway_project_id, railway_environment_id, railway_services]
-  properties:
-    event:
-      type: object
-      description: The alert CloudEvent js-monitor posted to the agent's webhook trigger — the whole envelope (fields under `data`) or its `data` object alone. The only input that changes per run.
-    railway_project_id:
-      type: string
-      description: Configuration. Railway project id of this JoyStream environment. Not a secret.
-    railway_environment_id:
-      type: string
-      description: Configuration. Railway environment id (the environment the Railway project token is scoped to). Not a secret.
-    railway_services:
-      type: object
-      description: Configuration. Service name to Railway service id. Not secrets.
-      required: [js-backend, js-worker]
-      properties:
-        js-backend: { type: string }
-        js-worker: { type: string }
-        js-monitor: { type: string }
-        connector: { type: string }
-    expected_env:
-      type: string
-      description: Configuration, optional. The `env` this agent serves (local, staging or production). When set, an event from another env is not diagnosed.
-output_schema:
-  type: object
-  required: [rule, timing, cause, evidence, recommendation, confidence, posted]
-  properties:
-    rule: { type: string }
-    timing: { type: string, enum: [fresh, stale, unknown] }
-    cause: { type: string }
-    evidence: { type: array, maxItems: 5, items: { type: string, maxLength: 200 } }
-    recommendation:
-      type: object
-      required: [action, text]
-      properties:
-        action:
-          type: string
-          enum: [restart_service, scale_worker, scale_backend, rollback_recent_deploy, pause_binding, code_change, investigate]
-        service: { type: string }
-        text: { type: string }
-    confidence: { type: string, enum: [high, medium, low, unsure] }
-    unsure_reason: { type: string }
-    posted: { type: boolean, description: True only when slack.reply_message succeeded. }
-    not_posted_reason: { type: string }
+allowed-tools: railway.get_service_instance railway.list_deployments railway.get_deployment railway.get_deployment_logs railway.get_environment_logs railway.get_service_metrics slack.reply_message
 ---
 
 # Purpose
@@ -74,7 +16,10 @@ post it in the alert's Slack thread. The reader is the on-call engineer who just
 paged: they need the likely cause, the lines that show it, and one safe next step.
 
 This skill only reads and recommends. It never deploys, rolls back, restarts, scales or
-changes a variable, even though the Railway token in the connection could.
+changes a variable, even though the Railway token in the connection could. The
+`allowed-tools` above are the connector's own action ids: six read-only Railway
+actions and one Slack reply. The Railway write actions (`deploy_service`,
+`rollback_deployment`, `upsert_variable`) are deliberately absent.
 
 # Required configuration
 
@@ -96,7 +41,7 @@ At run time the only input is the alert **event**. Below, `data` means the Cloud
 `data` object: `event.data` when the event is the whole envelope (it has `specversion`
 and `data`), else `event` itself. Fields of `data`:
 
-- `rule`: the rule that fired (see `playbooks.md`).
+- `rule`: the rule that fired (see `references/playbooks.md`).
 - `severity`: `critical` (`backend_unhealthy`, `dispatch_stale`) or `warning`.
 - `observed.value`, `threshold.value`: the rule's value and the value it exceeded.
 - `firing_since`: ISO-8601 UTC time the rule fired.
@@ -108,7 +53,7 @@ and `data`), else `event` itself. Fields of `data`:
   - `probes`: `backend` and `worker`, each `{status, dispatch}` (`status` null means
     unreachable);
   - `deploys`: `js-backend` and `js-worker`, each `{id, status, finished_at}` or null;
-  - `resources`: `queue`, `relay`, `builds`, `failures` (see `playbooks.md`), or
+  - `resources`: `queue`, `relay`, `builds`, `failures` (see `references/playbooks.md`), or
     `{"database": "unavailable"}`, or `{"truncated": true}`.
 - `slack`: `{channel, ts}` of the alert's Slack message, or `null` when the alert never
   posted.
@@ -130,8 +75,8 @@ named here. Do not search for other actions.
      state may have moved on since the alert.
    - No reliable current time: `timing: unknown`; say the age is unknown.
 
-3. **Pick the playbook** for `data.rule` in `playbooks.md`. An unknown rule uses its
-   "Any other rule" section.
+3. **Pick the playbook.** Read `references/playbooks.md` now and take the section for
+   `data.rule`. An unknown rule uses its "Any other rule" section.
 
 4. **Make the playbook's Railway reads, within these bounds:**
    - **Log window:** `start = firing_since − 15 minutes`, `end = firing_since + 15
@@ -186,7 +131,8 @@ named here. Do not search for other actions.
 
 6. **Post exactly once.** If `data.slack` has both `channel` and `ts`, call
    `slack.reply_message` with `{channelId: data.slack.channel, threadTs: data.slack.ts,
-   text}`, where `text` is the diagnosis laid out by `reply-template.md`. Do not set
+   text}`. Read `references/reply-template.md` now and lay out `text` exactly as it
+   says. Do not set
    `replyBroadcast`. Set `posted: true` only if the call succeeds. If it fails, do not
    retry: set `posted: false` and `not_posted_reason` to the error kind.
 
@@ -196,8 +142,16 @@ named here. Do not search for other actions.
 
 # Output
 
-The diagnosis object in `output_schema` above, returned whether or not it was posted.
-The Slack reply is its rendering through `reply-template.md`, at most 1,500 characters.
+The main output is the one Slack reply in the alert's thread, laid out by
+`references/reply-template.md`, at most 1,500 characters.
+
+The run also ends with the diagnosis as its output, whether or not it was posted. It
+names the rule; the timing (fresh, stale or unknown); the cause; the 1–5 evidence lines;
+the recommendation (action, service when it applies, and one sentence); the confidence
+(high, medium, low or unsure) with the reason when low or unsure; and whether the reply
+was posted. When it was not posted (no Slack thread, or the reply failed), it also says
+why. This run output is the only other place the diagnosis goes: no other channel, no
+retry, no fallback.
 
 # Constraints
 
