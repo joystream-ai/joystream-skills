@@ -8,8 +8,6 @@ allowed_tools:
   # connector's own action ids. Read-only Railway actions plus one Slack reply.
   # The Railway write actions (deploy_service, rollback_deployment,
   # upsert_variable) are deliberately absent.
-  - railway.list_projects
-  - railway.get_project
   - railway.get_service_instance
   - railway.list_deployments
   - railway.get_deployment
@@ -91,12 +89,6 @@ production), so each agent gets that environment's ids.
 | `railway_environment_id` | The Railway environment (for example `production`). Must be the environment the Railway project token was created for. | Select the environment; the id is in the URL (`?environmentId=<id>`) and under Project Settings → Environments. |
 | `railway_services` | Map of service name to Railway service id. `js-backend` and `js-worker` are required; `js-monitor` and `connector` are optional (reads for a missing one are skipped). | Open each service; the id is in the URL (`/service/<serviceId>`) and under the service's Settings. |
 | `expected_env` (optional) | The `env` value js-monitor sends for this environment (`MONITOR_ENV`). | Not in Railway: it is js-monitor's `MONITOR_ENV` variable. |
-
-`railway_project_id` is required: `railway.list_projects` and `railway.get_project`
-need an account or workspace token or a known project id, and the connector exposes no
-action that returns a project token's own project. `railway.get_project` may be called
-once while the agent is built, to confirm the ids and show the service names; it is not
-part of a run.
 
 # Inputs
 
@@ -220,9 +212,13 @@ The Slack reply is its rendering through `reply-template.md`, at most 1,500 char
   (deploy, rollback, variable change), whatever the evidence suggests.
 - **Redact before posting and before returning.** Replace with `[redacted]`: tokens and
   keys (for example `xoxb-…`, `sk-…`, `ghp_…`, `whsec_…`, `Bearer …`, JWTs `eyJ…`, any
-  long random string), passwords, connection strings, email addresses, customer,
-  workspace, agent, run and user ids (any UUID), and URLs with a query string. Keep
-  service names, times, status codes, error class names and counts.
+  long random string), passwords, connection strings, email addresses, every UUID
+  that is not a Railway deployment or service id (customer, workspace, agent, run and
+  user ids, and the Railway project and environment ids), and URLs with a query string.
+  Keep Railway deployment ids and service ids (the ids in `railway_services`,
+  `data.recent_deploy.deployment_id`, `snapshot.deploys.*.id`, and deployment ids
+  Railway returns), service names, times, status codes, error class names and counts.
+  When unsure whether a UUID is a Railway deployment or service id, redact it.
 - **Stay in budget.** The limits in step 4 are hard limits, not targets.
 
 # Edge Cases

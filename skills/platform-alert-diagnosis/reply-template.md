@@ -38,6 +38,9 @@ _Read-only diagnosis by the ops agent. No action was taken._
   inserting them, so log text cannot change the formatting.
 - Replace `<`, `>` and `&` in inserted text with `&lt;`, `&gt;` and `&amp;`, so log text
   cannot form a Slack link or mention (`<!channel>`, `<@U…>`, `<http…|…>`).
+- Redaction follows SKILL.md Constraints: Railway deployment and service ids stay;
+  every other UUID, and tokens, keys, passwords, emails and URLs with a query string,
+  become `[redacted]`.
 - If the reply is over 1,500 characters, shorten evidence lines first (to 120
   characters, then drop the weakest), never the recommendation.
 
@@ -49,8 +52,8 @@ _Read-only diagnosis by the ops agent. No action was taken._
 *Confidence:* high
 *Evidence:*
 • 10:02:41Z js-worker: ImportError: cannot import name 'run_claim' from 'services'
-• 10:03:12Z js-worker: ImportError: cannot import name 'run_claim' from 'services'
-• get_service_instance: js-worker latest deployment CRASHED, 1 replica
-*Recommendation:* `rollback_recent_deploy` (js-worker) — Roll js-worker back to the deploy before 10:02Z, then fix the import.
+• 10:03:12Z js-worker: run [redacted] requeued after ImportError: cannot import name 'run_claim'
+• get_service_instance: js-worker latest deployment 7c1e9a52-3f4b-4d8e-9a61-2b5c0d7e8f14 CRASHED, 1 replica
+*Recommendation:* `rollback_recent_deploy` (js-worker) — Roll js-worker back from deployment 7c1e9a52-3f4b-4d8e-9a61-2b5c0d7e8f14 to the one before it, then fix the import.
 _Read-only diagnosis by the ops agent. No action was taken._
 ```

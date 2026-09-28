@@ -12,6 +12,10 @@ Every rule starts the same way:
   15 minutes before `firing_since`, read that deploy's logs first. A deploy just before
   the alert is the most likely cause.
 - The snapshot is the first sample. Quote it; do not re-derive it.
+- A `rollback_recent_deploy` recommendation names the service and the Railway
+  deployment id to roll back from. Railway deployment and service ids stay in the
+  reply; every other UUID, such as a customer agent id in `queue.top_agents`, is
+  redacted (SKILL.md Constraints).
 
 Snapshot resource fields referenced below (ages in seconds):
 
