@@ -48,6 +48,10 @@ and `data`), else `event` itself. Fields of `data`:
 - `env`: the JoyStream environment (js-monitor's `MONITOR_ENV`).
 - `recent_deploy`: `{service, deployment_id, finished_at}` for a js-backend or js-worker
   deploy that finished within 15 minutes before the alert, else `null`.
+- `service`: `{name, railway_service_id, railway_environment_id}` for the service a
+  health rule is about (`backend_unhealthy` → js-backend, `dispatch_stale` → js-worker),
+  else `null`. js-monitor fills the ids from its own Railway settings; they are `null`
+  when those are unset, and the whole field is absent from older js-monitor versions.
 - `snapshot`: js-monitor's reading at fire time, at most 4 KB:
   - `rules`: rule name to state (`ok`, `pending`, `firing`);
   - `probes`: `backend` and `worker`, each `{status, dispatch}` (`status` null means
@@ -68,6 +72,13 @@ named here. Do not search for other actions.
    `expected_env` is set and `data.env` differs, make no Railway call; the diagnosis is
    `cause: "Alert is from env <data.env>; this agent serves <expected_env>."`,
    `action: investigate`, `confidence: unsure`.
+   If `data.service` is set, check it against your configuration: a non-null
+   `railway_service_id` must equal `railway_services[data.service.name]`, and a non-null
+   `railway_environment_id` must equal `railway_environment_id`. On any mismatch, or a
+   `name` that is not in `railway_services`, make no Railway call; the diagnosis is
+   `cause: "Alert names <name> with Railway ids that don't match this agent's
+   configuration."`, `action: investigate`, `confidence: unsure`. Ids from the event are
+   never used directly; every call takes its ids from your configuration.
 
 2. **Check the alert's age.** Age = now (current UTC time) − `firing_since`.
    - Under 2 hours: `timing: fresh`.
@@ -76,7 +87,9 @@ named here. Do not search for other actions.
    - No reliable current time: `timing: unknown`; say the age is unknown.
 
 3. **Pick the playbook.** Read `references/playbooks.md` now and take the section for
-   `data.rule`. An unknown rule uses its "Any other rule" section.
+   `data.rule`. An unknown rule uses its "Any other rule" section. The playbook names the
+   services to read. When `data.service` is set and passed step 1, it names the service
+   the alert is about; read that service first.
 
 4. **Make the playbook's Railway reads, within these bounds:**
    - **Log window:** `start = firing_since − 15 minutes`, `end = firing_since + 15
@@ -188,6 +201,10 @@ else skip the log and metrics reads and diagnose from the snapshot (`confidence:
 ## Local environment
 js-monitor may run with `OPS_SLACK_SINK=stdout`, which invents `slack.ts`. The reply
 then fails; record `posted: false` and do not retry.
+
+## `data.service` is absent or `null`
+Absent means an older js-monitor; `null` means the rule is not about one service. Use the
+playbook's services. Neither is an error.
 
 ## Railway reads all fail
 Diagnose from the snapshot alone: `confidence: low`, `unsure_reason: "Railway reads
