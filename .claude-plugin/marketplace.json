@@ -18,6 +18,14 @@
       "skills": [
         "./skills/platform-alert-diagnosis"
       ]
+    },
+    {
+      "name": "release-announcements",
+      "description": "Customer-friendly GitHub release roundups for a date range, posted as one colored Slack message.",
+      "source": "./",
+      "skills": [
+        "./skills/github-release-digest"
+      ]
     }
   ]
 }
