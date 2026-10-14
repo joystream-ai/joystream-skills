@@ -23,7 +23,7 @@ jobs:
         run: |
           set -euo pipefail
           # Skills still listed in validate-baseline.json are known not to conform yet
-          # (D5 in docs/features/gtm-agent-skills/PLAN.md); every other skill must pass.
+          # (CONTRIBUTING.md § 9 "Known exceptions"); every other skill must pass.
           baselined=$(python3 -c 'import json;print(" ".join(json.load(open("validate-baseline.json"))))')
           status=0
           for dir in skills/*/ templates/*/; do
