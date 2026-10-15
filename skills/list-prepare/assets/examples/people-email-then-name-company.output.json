@@ -1,0 +1,66 @@
+{
+  "slots": [
+    {
+      "i": 0,
+      "item_key": "email:jo@orbit.example",
+      "label": "Jo Rivera (Orbit Ledger)",
+      "query": "Jo Rivera Orbit Ledger Head of Finance public role, recent talks or posts"
+    },
+    {
+      "i": 1,
+      "item_key": "name_company:sam-sample|orbit-ledger",
+      "label": "Sam Sample (Orbit Ledger)",
+      "query": "Sam Sample Orbit Ledger Controller public role, recent talks or posts"
+    },
+    null
+  ],
+  "accepted_count": 2,
+  "accepted": [
+    {
+      "index": 0,
+      "item": {
+        "name": "Jo Rivera",
+        "company": "Orbit Ledger",
+        "role": "Head of Finance",
+        "email": "Jo@Orbit.example"
+      },
+      "item_key": "email:jo@orbit.example",
+      "query": "Jo Rivera Orbit Ledger Head of Finance public role, recent talks or posts"
+    },
+    {
+      "index": 1,
+      "item": {
+        "name": "Sam Sample",
+        "company": "Orbit Ledger",
+        "role": "Controller"
+      },
+      "item_key": "name_company:sam-sample|orbit-ledger",
+      "query": "Sam Sample Orbit Ledger Controller public role, recent talks or posts"
+    }
+  ],
+  "dropped": [
+    {
+      "item": {
+        "name": "SAM SAMPLE",
+        "company": "orbit ledger",
+        "role": "Senior Controller"
+      },
+      "reason": "duplicate"
+    },
+    {
+      "item": {
+        "company": "Kestrel Freight",
+        "role": "VP Finance"
+      },
+      "reason": "unidentifiable"
+    },
+    {
+      "item": {
+        "name": "Priya Demo",
+        "company": "Example Analytics",
+        "email": "priya@example.org"
+      },
+      "reason": "over_limit"
+    }
+  ]
+}

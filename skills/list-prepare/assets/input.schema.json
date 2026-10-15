@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "items",
+    "item_kind",
+    "identity_keys",
+    "max_items",
+    "slot_count"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "items": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "items": {
+        "type": "object"
+      },
+      "description": "The list to prepare, as the agent's user gave it. Items may have any fields, e.g. {name, domain} or {name, company, role, email}."
+    },
+    "item_kind": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "A word for the reader: company, person, meeting, ..."
+    },
+    "identity_keys": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "pattern": "^[A-Za-z0-9_]+(\\+[A-Za-z0-9_]+)*$"
+      },
+      "description": "Fields that identify an item, most trusted first, e.g. [domain, name] or [email, name+company]. A key joined with + is composite: every part must be present."
+    },
+    "exclude": {
+      "type": "array",
+      "maxItems": 200,
+      "items": {
+        "type": "object"
+      },
+      "description": "Items to drop, matched on the same identity keys."
+    },
+    "max_items": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 25,
+      "description": "How many items to accept at most."
+    },
+    "slot_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 25,
+      "description": "The number of branches the agent runs; slots has exactly this many entries."
+    },
+    "query_hint": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "What each branch's search should look for, e.g. 'fit against this ICP: ...'. Appended to the item's own fields and shortened to fit."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional and not needed for the work; never guessed."
+    }
+  }
+}

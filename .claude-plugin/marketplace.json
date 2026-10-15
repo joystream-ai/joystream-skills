@@ -26,6 +26,14 @@
       "skills": [
         "./skills/github-release-digest"
       ]
+    },
+    {
+      "name": "batch-processing",
+      "description": "Generic fan-out helpers for list agents: prepare a list into bound slots, then rank the per-item results into one list.",
+      "source": "./",
+      "skills": [
+        "./skills/list-prepare"
+      ]
     }
   ]
 }
