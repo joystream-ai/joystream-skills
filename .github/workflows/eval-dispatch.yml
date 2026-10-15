@@ -27,6 +27,10 @@ permissions:
   contents: read
   pull-requests: read
 
+# One run per PR at a time; a newer event cancels an older run still in flight. Cancelling
+# the gate or the dispatch job loses nothing durable: the label removal is the LAST step,
+# so a cancelled fork run leaves run-evals in place and the maintainer's label still
+# dispatches on the next run; a cancelled same-repo run is superseded by the newer head.
 concurrency:
   group: eval-dispatch-${{ github.event.pull_request.number }}
   cancel-in-progress: true
@@ -96,18 +100,37 @@ jobs:
           echo "skills=$changed" >> "$GITHUB_OUTPUT"
           echo "changed_skills=$changed"
 
-      - name: Mint the GitHub App token (the private key is used here only)
-        id: app
+      # Two least-privilege App tokens, each scoped to ONE repository and ONE permission
+      # (actions/create-github-app-token `permission-*` inputs). The dispatch token needs
+      # contents: write on joystream — the REST reference for "Create a repository
+      # dispatch event" lists Contents (write) as the required fine-grained permission —
+      # and nothing else; the label token needs pull-requests: write on this repository
+      # only, and is minted only for fork PRs. The private key is used by these two
+      # minting steps alone; both token outputs are masked by the action.
+      - name: "Mint the App token for the private evals repo (joystream, contents: write)"
+        id: app-evals
         uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
         with:
           app-id: ${{ secrets.EVALS_APP_ID }}
           private-key: ${{ secrets.EVALS_APP_PRIVATE_KEY }}
           owner: joystream-ai
-          repositories: joystream,joystream-skills
+          repositories: joystream
+          permission-contents: write
+
+      - name: "Mint the App token for this repo (joystream-skills, pull-requests: write)"
+        id: app-labels
+        if: needs.gate.outputs.fork == 'true'
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+        with:
+          app-id: ${{ secrets.EVALS_APP_ID }}
+          private-key: ${{ secrets.EVALS_APP_PRIVATE_KEY }}
+          owner: joystream-ai
+          repositories: joystream-skills
+          permission-pull-requests: write
 
       - name: Dispatch {pr, sha, head_repo, base_sha, changed_skills[]}
         env:
-          GH_TOKEN: ${{ steps.app.outputs.token }}
+          GH_TOKEN: ${{ steps.app-evals.outputs.token }}
           CHANGED_SKILLS: ${{ steps.changed.outputs.skills }}
           # The dispatch API's payload field name, kept out of the run block so a grep for
           # PR-controlled payload expressions inside run: blocks stays unambiguous.
@@ -132,7 +155,7 @@ jobs:
       - name: Remove the run-evals label (fork PRs re-label per head)
         if: needs.gate.outputs.fork == 'true'
         env:
-          GH_TOKEN: ${{ steps.app.outputs.token }}
+          GH_TOKEN: ${{ steps.app-labels.outputs.token }}
         run: |
           set -euo pipefail
           gh api --method DELETE "repos/$BASE_REPO/issues/$PR_NUMBER/labels/$RUN_EVALS_LABEL"
