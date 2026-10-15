@@ -112,35 +112,35 @@
     "sources": [
       {
         "id": "S1",
-        "url": "https://github.com/example-org/example-app/pull/104",
+        "url": "https://github.example.com/example-org/example-app/pull/104",
         "title": "refactor!: remove v1 API",
         "published_at": "2026-10-08T09:00:00Z",
         "provider": "github"
       },
       {
         "id": "S2",
-        "url": "https://github.com/example-org/example-app/pull/101",
+        "url": "https://github.example.com/example-org/example-app/pull/101",
         "title": "feat: CSV export for reports",
         "published_at": "2026-10-06T10:00:00Z",
         "provider": "github"
       },
       {
         "id": "S3",
-        "url": "https://github.com/example-org/example-app/pull/106",
+        "url": "https://github.example.com/example-org/example-app/pull/106",
         "title": "perf: faster search",
         "published_at": "2026-10-09T09:00:00Z",
         "provider": "github"
       },
       {
         "id": "S4",
-        "url": "https://github.com/example-org/example-app/pull/103",
+        "url": "https://github.example.com/example-org/example-app/pull/103",
         "title": "fix: dashboard timezone",
         "published_at": "2026-10-07T09:00:00Z",
         "provider": "github"
       },
       {
         "id": "S5",
-        "url": "https://github.com/example-org/example-app/pull/107",
+        "url": "https://github.example.com/example-org/example-app/pull/107",
         "title": "fix: harden session cookies",
         "published_at": "2026-10-09T15:00:00Z",
         "provider": "github"

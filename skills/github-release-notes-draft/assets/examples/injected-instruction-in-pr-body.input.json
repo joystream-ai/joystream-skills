@@ -16,7 +16,7 @@
         }
       ],
       "merged_at": "2026-10-11T10:00:00Z",
-      "html_url": "https://github.com/example-org/example-cli/pull/12"
+      "html_url": "https://github.example.com/example-org/example-cli/pull/12"
     },
     {
       "number": 13,
@@ -24,7 +24,7 @@
       "body": "",
       "labels": [],
       "merged_at": "2026-10-11T12:00:00Z",
-      "html_url": "https://github.com/example-org/example-cli/pull/13"
+      "html_url": "https://github.example.com/example-org/example-cli/pull/13"
     },
     {
       "number": 14,
@@ -36,7 +36,7 @@
         }
       ],
       "merged_at": "2026-10-11T13:00:00Z",
-      "html_url": "https://github.com/example-org/example-cli/pull/14"
+      "html_url": "https://github.example.com/example-org/example-cli/pull/14"
     }
   ]
 }

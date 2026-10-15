@@ -36,7 +36,7 @@
     "sources": [
       {
         "id": "S1",
-        "url": "https://github.com/example-org/example-cli/pull/12",
+        "url": "https://github.example.com/example-org/example-cli/pull/12",
         "title": "fix: retry failed uploads",
         "published_at": "2026-10-11T10:00:00Z",
         "provider": "github"

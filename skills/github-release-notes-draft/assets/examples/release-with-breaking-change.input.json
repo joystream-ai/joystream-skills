@@ -3,7 +3,7 @@
     "tag": "v2.4.0",
     "name": "v2.4.0",
     "published_at": "2026-10-10T15:00:00Z",
-    "html_url": "https://github.com/example-org/example-app/releases/tag/v2.4.0"
+    "html_url": "https://github.example.com/example-org/example-app/releases/tag/v2.4.0"
   },
   "previous_tag": "v2.3.0",
   "repo": "example-org/example-app",
@@ -19,7 +19,7 @@
         }
       ],
       "merged_at": "2026-10-06T10:00:00Z",
-      "html_url": "https://github.com/example-org/example-app/pull/101"
+      "html_url": "https://github.example.com/example-org/example-app/pull/101"
     },
     {
       "number": 102,
@@ -31,7 +31,7 @@
         }
       ],
       "merged_at": "2026-10-06T11:00:00Z",
-      "html_url": "https://github.com/example-org/example-app/pull/102"
+      "html_url": "https://github.example.com/example-org/example-app/pull/102"
     },
     {
       "number": 103,
@@ -43,7 +43,7 @@
         }
       ],
       "merged_at": "2026-10-07T09:00:00Z",
-      "html_url": "https://github.com/example-org/example-app/pull/103"
+      "html_url": "https://github.example.com/example-org/example-app/pull/103"
     },
     {
       "number": 104,
@@ -55,7 +55,7 @@
         }
       ],
       "merged_at": "2026-10-08T09:00:00Z",
-      "html_url": "https://github.com/example-org/example-app/pull/104"
+      "html_url": "https://github.example.com/example-org/example-app/pull/104"
     },
     {
       "number": 105,
@@ -67,7 +67,7 @@
         }
       ],
       "merged_at": "2026-10-08T12:00:00Z",
-      "html_url": "https://github.com/example-org/example-app/pull/105"
+      "html_url": "https://github.example.com/example-org/example-app/pull/105"
     },
     {
       "number": 106,
@@ -75,7 +75,7 @@
       "body": "Search results load about twice as fast on large workspaces by using the new index.",
       "labels": [],
       "merged_at": "2026-10-09T09:00:00Z",
-      "html_url": "https://github.com/example-org/example-app/pull/106"
+      "html_url": "https://github.example.com/example-org/example-app/pull/106"
     },
     {
       "number": 107,
@@ -87,7 +87,7 @@
         }
       ],
       "merged_at": "2026-10-09T15:00:00Z",
-      "html_url": "https://github.com/example-org/example-app/pull/107"
+      "html_url": "https://github.example.com/example-org/example-app/pull/107"
     }
   ]
 }
