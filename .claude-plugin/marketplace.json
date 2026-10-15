@@ -26,6 +26,14 @@
       "skills": [
         "./skills/github-release-digest"
       ]
+    },
+    {
+      "name": "website-audits",
+      "description": "Website audits that judge pages and search results the agent already fetched, such as AI answer-engine (AEO/GEO) readiness.",
+      "source": "./",
+      "skills": [
+        "./skills/website-aeo-geo-audit"
+      ]
     }
   ]
 }
