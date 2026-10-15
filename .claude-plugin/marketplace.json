@@ -82,6 +82,14 @@
       "skills": [
         "./skills/channel-message-render"
       ]
+    },
+    {
+      "name": "skill-doctor",
+      "description": "Help authors make their own skills conformant: draft the judgment fixes (a vague description, a body that fetches, a missing output schema) as a diff to review. Drafts only; nothing is edited or pushed.",
+      "source": "./",
+      "skills": [
+        "./skills/skill-conformance-fix"
+      ]
     }
   ]
 }

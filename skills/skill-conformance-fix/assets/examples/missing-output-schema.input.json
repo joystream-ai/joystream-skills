@@ -1,0 +1,32 @@
+{
+  "skill_name": "job-post-screener",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "content": "---\nname: job-post-screener\ndescription: >-\n  Judge how well one job post fits a candidate's stated preferences and say why. Use\n  when an agent must \"screen job posts\" or \"is this role a fit for me\".\nlicense: MIT\nmetadata:\n  author: example\n  version: \"1.0.0\"\n  joystream-skill-kind: instruction\n  joystream-input-schema: assets/input.schema.json\n  joystream-output-schema: assets/output.schema.json\n---\n\n# Purpose\n\nSave a job seeker time by sorting new posts into strong, possible and weak fits.\n\nThis skill performs no external operations; an earlier step supplies the job post text.\n\n# Reasoning Flow\n\n1. Compare the post with the preferences: role, location, seniority, salary.\n2. A post that misses two or more preferences is a weak fit.\n\n# Output\n\n- `fit` (string, required): `strong`, `possible` or `weak`.\n- `reasons` (array of strings, required): at most three, one per preference checked.\n- `salary_listed` (boolean, required): true when the post states a salary range.\n"
+    },
+    {
+      "path": "assets/input.schema.json",
+      "content": "{\n  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n  \"type\": \"object\",\n  \"required\": [\"preferences\"],\n  \"properties\": {\n    \"preferences\": {\"type\": \"string\"}\n  }\n}\n"
+    }
+  ],
+  "findings": [
+    {
+      "rule_id": "SCHEMA_SKILL_SCHEMA_FILE_INVALID",
+      "severity": "error",
+      "impact": "blocks",
+      "detail": "metadata.joystream-output-schema 'assets/output.schema.json' does not exist",
+      "fix": "Point metadata.joystream-*-schema at a JSON Schema 2020-12 file inside the skill, normally assets/*.schema.json.",
+      "autofix": false
+    },
+    {
+      "rule_id": "CATALOG_EXAMPLES_MISSING",
+      "severity": "error",
+      "impact": "catalog",
+      "detail": "a skill with a schema needs at least one assets/examples/<case>.input.json/.output.json pair",
+      "fix": "Add at least one assets/examples/<case>.input.json and .output.json pair.",
+      "autofix": false
+    }
+  ],
+  "now": "2026-10-15T09:00:00Z"
+}

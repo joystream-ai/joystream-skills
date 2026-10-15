@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "skill_name",
+    "files",
+    "findings"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "skill_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 128,
+      "description": "The skill's folder name."
+    },
+    "files": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 50,
+      "description": "Every text file of the skill, exactly as stored. Paths are relative to the skill folder (SKILL.md, assets/input.schema.json, ...).",
+      "items": {
+        "type": "object",
+        "required": [
+          "path",
+          "content"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 512
+          },
+          "content": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "maxItems": 100,
+      "description": "Validator findings in the platform's shape. A finding is referred to by its 0-based position (finding_index).",
+      "items": {
+        "type": "object",
+        "required": [
+          "rule_id",
+          "impact",
+          "fix",
+          "autofix"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1,
+            "description": "SCHEMA_SKILL_* (shared with the platform importer) or CATALOG_* (this repo's rules)."
+          },
+          "detail": {
+            "type": "string",
+            "description": "What the validator saw."
+          },
+          "path": {
+            "type": "string",
+            "description": "Where the finding was raised, when the validator names it."
+          },
+          "impact": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "enum": [
+              "blocks",
+              "degrades",
+              "portability",
+              "catalog",
+              null
+            ],
+            "description": "From the rule registry; null for an id the registry does not know."
+          },
+          "fix": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "description": "The registry's one-sentence fix."
+          },
+          "autofix": {
+            "type": "boolean",
+            "description": "True when a mechanical fixer (joystream skills fix) exists for the rule."
+          },
+          "severity": {
+            "type": "string",
+            "enum": [
+              "error",
+              "warning"
+            ]
+          }
+        }
+      }
+    },
+    "fixer_skipped": {
+      "type": "array",
+      "maxItems": 100,
+      "description": "What joystream skills fix --dry-run left alone, and why. A finding whose rule_id is named here needs judgment even when autofix is true.",
+      "items": {
+        "type": "object",
+        "required": [
+          "rule_id",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "request": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "The author's own words about what is wrong."
+    },
+    "now": {
+      "type": "string",
+      "description": "The run's time, ISO 8601, for report.meta. Never guessed."
+    }
+  }
+}
