@@ -60,21 +60,21 @@
     "sources": [
       {
         "id": "S1",
-        "url": "https://github.com/example-org/example-app/releases/tag/v3.0.0",
+        "url": "https://github.example.com/example-org/example-app/releases/tag/v3.0.0",
         "title": "v3.0.0",
         "published_at": "2026-10-12T16:00:00Z",
         "provider": "github"
       },
       {
         "id": "S2",
-        "url": "https://github.com/example-org/example-app/pull/412",
+        "url": "https://github.example.com/example-org/example-app/pull/412",
         "title": "feat: workspace webhooks",
         "published_at": "2026-10-12T14:30:00Z",
         "provider": "github"
       },
       {
         "id": "S3",
-        "url": "https://github.com/example-org/example-app/pull/415",
+        "url": "https://github.example.com/example-org/example-app/pull/415",
         "title": "chore(deps): bump the npm group",
         "published_at": "2026-10-12T18:00:00Z",
         "provider": "github"
