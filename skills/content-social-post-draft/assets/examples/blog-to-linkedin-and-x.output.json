@@ -1,0 +1,124 @@
+{
+  "drafts": [
+    {
+      "platform": "linkedin",
+      "angle": "The customer outcome: close in two days instead of six",
+      "hook": "Month-end close used to take our customers six working days. In our beta, the median was two.",
+      "text": "Month-end close used to take our customers six working days. In our beta, the median was two.\n\nMost of those days went into one job: matching bank lines to invoices by hand.\n\nToday we're releasing Auto-Match. It pairs bank transactions with open invoices as soon as they arrive.\n\n40 finance teams used it in beta. Their median close went from six days to two.\n\nIt's on every plan from today, with no setup.\n\nWhat would your team do with four days back every month?\n\n#fintech",
+      "char_count": 474,
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "platform": "x",
+      "angle": "The manual matching problem Auto-Match removes",
+      "hook": "Matching bank lines to invoices by hand eats most of month-end close.",
+      "text": "Matching bank lines to invoices by hand eats most of month-end close. Auto-Match now does it as transactions arrive.\n\nBeta: 40 finance teams, median close down from 6 days to 2. On every plan today, no setup.",
+      "char_count": 208,
+      "source_ids": [
+        "S1"
+      ]
+    }
+  ],
+  "reasoning": "LinkedIn leads with the outcome the angle hint asks for; X takes a different way in, the manual matching work. The samples write as 'we', open with a short plain line, use short paragraphs, no emoji and at most one hashtag, so the drafts do the same. No fact comes from the samples.",
+  "report": {
+    "title": "Social drafts: Auto-Match launch",
+    "summary": "Two drafts from the Auto-Match launch post: LinkedIn on the customer outcome, X on the manual matching it removes.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "LinkedIn — the customer outcome",
+        "body_md": "Month-end close used to take our customers six working days. In our beta, the median was two.\n\nMost of those days went into one job: matching bank lines to invoices by hand.\n\nToday we're releasing Auto-Match. It pairs bank transactions with open invoices as soon as they arrive.\n\n40 finance teams used it in beta. Their median close went from six days to two.\n\nIt's on every plan from today, with no setup.\n\nWhat would your team do with four days back every month?\n\n#fintech",
+        "items": [
+          {
+            "text": "Before Auto-Match, customers spent an average of six working days on month-end close.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "Most of that time went into matching bank lines to invoices by hand.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "Auto-Match pairs bank transactions with open invoices as soon as they arrive.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "In a beta with 40 finance teams, the median close dropped from six days to two.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "Available on every plan from today, with no setup.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          }
+        ]
+      },
+      {
+        "heading": "X — the manual matching problem",
+        "body_md": "Matching bank lines to invoices by hand eats most of month-end close. Auto-Match now does it as transactions arrive.\n\nBeta: 40 finance teams, median close down from 6 days to 2. On every plan today, no setup.",
+        "items": [
+          {
+            "text": "Most of that time went into matching bank lines to invoices by hand.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "Auto-Match pairs bank transactions with open invoices as soon as they arrive.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "In a beta with 40 finance teams, the median close dropped from six days to two.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "Available on every plan from today, with no setup.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:source_text",
+        "title": "source_text",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "The source does not say whether Auto-Match costs extra beyond 'every plan'; the drafts do not mention price."
+    ],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "content-social-post-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

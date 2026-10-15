@@ -1,0 +1,9 @@
+{
+  "item": {
+    "i": 0,
+    "item_key": "email:jo@acme.example",
+    "label": "Jo Example (acme.example)",
+    "query": "Jo Example acme.example role"
+  },
+  "now": "2026-10-12T09:00:00Z"
+}

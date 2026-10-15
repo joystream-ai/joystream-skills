@@ -1,0 +1,123 @@
+{
+  "channelId": "C0123ABCD",
+  "text": ":tada: example-app release roundup, 2026-09-28 to 2026-10-02: 2 new releases",
+  "blocks": [
+    {
+      "type": "header",
+      "text": {
+        "type": "plain_text",
+        "text": ":tada: What's new in example-app",
+        "emoji": true
+      }
+    },
+    {
+      "type": "context",
+      "elements": [
+        {
+          "type": "mrkdwn",
+          "text": "Sep 28 to Oct 2, 2026  ·  2 releases"
+        }
+      ]
+    },
+    {
+      "type": "section",
+      "text": {
+        "type": "mrkdwn",
+        "text": "Plans and billing, workspace API keys and safer shared workspaces arrived this week."
+      }
+    }
+  ],
+  "attachments": [
+    {
+      "color": "#2EB67D",
+      "blocks": [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "*:rocket: <https://example.com/example-org/example-app/releases/v2.4.0|v2.4.0>*  ·  Oct 2, 2026"
+          }
+        },
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "*:sparkles: New*\n• Plans and billing are now available.\n\n*:bug: Fixed*\n• Runs now show the exact input they started with."
+          }
+        },
+        {
+          "type": "context",
+          "elements": [
+            {
+              "type": "mrkdwn",
+              "text": "View full release notes: <https://example.com/example-org/example-app/releases/v2.4.0|on GitHub>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "color": "#2EB67D",
+      "blocks": [
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "*:rocket: <https://example.com/example-org/example-app/releases/v2.3.0|v2.3.0>*  ·  Oct 1, 2026"
+          }
+        },
+        {
+          "type": "section",
+          "text": {
+            "type": "mrkdwn",
+            "text": "*:sparkles: New*\n• Each workspace can now create its own API keys.\n\n*:lock: Security*\n• Security hardening for shared workspaces."
+          }
+        },
+        {
+          "type": "context",
+          "elements": [
+            {
+              "type": "mrkdwn",
+              "text": "View full release notes: <https://example.com/example-org/example-app/releases/v2.3.0|on GitHub>"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "release_count": 2,
+  "releases": [
+    {
+      "name": "v2.4.0",
+      "tag_name": "v2.4.0",
+      "html_url": "https://example.com/example-org/example-app/releases/v2.4.0",
+      "published_at": "2026-10-02T15:10:00Z",
+      "prerelease": false,
+      "has_breaking": false,
+      "groups": {
+        ":sparkles: New": [
+          "Plans and billing are now available."
+        ],
+        ":bug: Fixed": [
+          "Runs now show the exact input they started with."
+        ]
+      }
+    },
+    {
+      "name": "v2.3.0",
+      "tag_name": "v2.3.0",
+      "html_url": "https://example.com/example-org/example-app/releases/v2.3.0",
+      "published_at": "2026-10-01T09:30:00Z",
+      "prerelease": false,
+      "has_breaking": false,
+      "groups": {
+        ":sparkles: New": [
+          "Each workspace can now create its own API keys."
+        ],
+        ":lock: Security": [
+          "Security hardening for shared workspaces."
+        ]
+      }
+    }
+  ]
+}

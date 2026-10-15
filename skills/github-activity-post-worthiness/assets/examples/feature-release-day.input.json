@@ -1,0 +1,9 @@
+{
+  "window": {
+    "start": "2026-10-12T09:00:00Z",
+    "end": "2026-10-13T09:00:00Z"
+  },
+  "now": "2026-10-13T09:00:00Z",
+  "repo": "example-org/example-app",
+  "audience": "developers"
+}

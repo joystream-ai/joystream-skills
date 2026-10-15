@@ -1,0 +1,39 @@
+{
+  "target": "discord",
+  "discord": {
+    "content": "**Orbit Ledger — account brief**\nA finance-operations SaaS for mid-market teams that raised a Series A in September and is hiring finance engineers.",
+    "embeds": [
+      {
+        "title": "What they do",
+        "description": "• Sells month-end close automation to mid-market finance teams. ([S1](https://orbit.example/))\n• Plans start at $300 per month. ([S2](https://orbit.example/pricing))",
+        "color": 1940433
+      },
+      {
+        "title": "Recent events",
+        "description": "• Raised a $12M Series A on 2026-09-22. ([S3](https://news.example.org/orbit-ledger-series-a))\n• Head of Finance is Jo Rivera, per the enrichment record. (S4)",
+        "color": 1940433
+      },
+      {
+        "title": "Suggested next step",
+        "description": "• Open with the month-end close timeline they describe on their blog.",
+        "color": 1940433
+      },
+      {
+        "title": "Unknowns",
+        "description": "• Customer count: no public figure found.",
+        "color": 1940433
+      },
+      {
+        "title": "Sources",
+        "description": "[S1: Orbit Ledger — close the books faster](https://orbit.example/)\n[S2: Pricing](https://orbit.example/pricing)\n[S3: Orbit Ledger raises $12M](https://news.example.org/orbit-ledger-series-a)\nS4: Jo Rivera (Apollo record)",
+        "color": 1940433,
+        "footer": {
+          "text": "Draft — not sent"
+        }
+      }
+    ]
+  },
+  "text": "Orbit Ledger — account brief — A finance-operations SaaS for mid-market teams that raised a Series A in September and is hiring finance engineers.",
+  "items_total": 6,
+  "items_shown": 6
+}

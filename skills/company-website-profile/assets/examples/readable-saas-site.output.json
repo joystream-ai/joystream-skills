@@ -1,0 +1,168 @@
+{
+  "positioning": {
+    "value": "Payroll and contractor payments for small creative agencies.",
+    "source_id": "S1"
+  },
+  "target_customer": {
+    "value": "Creative and marketing agencies with 5 to 50 people.",
+    "source_id": "S1"
+  },
+  "products": [
+    {
+      "value": "Payroll: monthly payroll with tax filings.",
+      "source_id": "S1"
+    },
+    {
+      "value": "Contractor Pay: pays freelancers in 30 currencies.",
+      "source_id": "S1"
+    }
+  ],
+  "pricing": {
+    "value": "Starter 6 USD per person per month; Agency 9 USD per person per month; annual billing saves 15%.",
+    "source_id": "S2"
+  },
+  "proof_points": [
+    {
+      "value": "Case study: Placeholder Studio cut payroll time from two days to two hours.",
+      "source_id": "S3"
+    },
+    {
+      "value": "States SOC 2 Type II certification.",
+      "source_id": "S3"
+    }
+  ],
+  "competitors": [
+    {
+      "value": "Demo Payroll",
+      "source_id": "S5",
+      "basis": "compared in a \"vs\" article"
+    },
+    {
+      "value": "Example Wages",
+      "source_id": "S4",
+      "basis": "listed as an alternative"
+    }
+  ],
+  "report": {
+    "title": "Sample Payroll: website profile",
+    "summary": "Sample Payroll sells payroll and contractor payments to creative and marketing agencies with 5 to 50 people.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Positioning",
+        "items": [
+          {
+            "text": "Payroll and contractor payments for small creative agencies.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "For creative and marketing agencies with 5 to 50 people.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Products and pricing",
+        "items": [
+          {
+            "text": "Payroll and Contractor Pay (30 currencies).",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Starter 6 USD and Agency 9 USD per person per month.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Proof points",
+        "items": [
+          {
+            "text": "Placeholder Studio case study: payroll time from two days to two hours (company claim).",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "medium"
+          },
+          {
+            "text": "States SOC 2 Type II certification.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Competitors",
+        "items": [
+          {
+            "text": "Demo Payroll, in a head-to-head comparison.",
+            "citations": [
+              "S5"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Example Wages, listed as an alternative for agencies.",
+            "citations": [
+              "S4"
+            ],
+            "confidence": "medium"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Sample Payroll — Payroll for small agencies",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/pricing",
+        "title": "Pricing — Sample Payroll",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://example.com/customers",
+        "title": "Customers — Sample Payroll",
+        "provider": "tavily"
+      },
+      {
+        "id": "S4",
+        "url": "https://reviews.example.net/best-payroll-for-agencies",
+        "title": "Best payroll software for small agencies",
+        "published_at": "2026-08-20",
+        "provider": "tavily"
+      },
+      {
+        "id": "S5",
+        "url": "https://blog.example.net/sample-payroll-vs-demo-payroll",
+        "title": "Sample Payroll vs Demo Payroll",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "company-website-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

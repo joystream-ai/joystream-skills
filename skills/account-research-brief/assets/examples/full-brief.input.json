@@ -1,0 +1,8 @@
+{
+  "company": "Example Analytics",
+  "domain": "example.com",
+  "person": "Jo Example, Head of Operations",
+  "context": "We automate usage-to-billing reconciliation for SaaS operations teams.",
+  "lookback_days": 90,
+  "now": "2026-10-12T09:00:00Z"
+}

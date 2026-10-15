@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "name": "Orbit Ledger",
+      "domain": "orbit.example"
+    },
+    {
+      "name": "Orbit Ledger Inc",
+      "domain": "https://www.Orbit.example/"
+    },
+    {
+      "name": "Kestrel Freight",
+      "domain": "kestrel.example"
+    },
+    {
+      "name": "Example Analytics",
+      "domain": "example.com"
+    },
+    {
+      "name": "Lumen Payroll",
+      "domain": "lumen.example/"
+    }
+  ],
+  "item_kind": "company",
+  "identity_keys": [
+    "domain",
+    "name"
+  ],
+  "exclude": [
+    {
+      "name": "example analytics"
+    }
+  ],
+  "max_items": 5,
+  "slot_count": 5,
+  "query_hint": "fit against this ICP: B2B SaaS for finance teams, 50-500 employees",
+  "now": "2026-10-12T09:00:00Z"
+}

@@ -1,0 +1,122 @@
+{
+  "ranked": [
+    {
+      "rank": 1,
+      "item_label": "Jo Rivera (Orbit Ledger)",
+      "status": "ok",
+      "verdict": "Hot",
+      "score": 4,
+      "score_scale": "0-5",
+      "headline": "Head of Finance; spoke about month-end close automation in September.",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "rank": 2,
+      "item_label": "Priya Demo (Example Analytics)",
+      "status": "ok",
+      "verdict": "Hot",
+      "score": 5,
+      "score_scale": "0-5",
+      "headline": "VP Finance; owns the reconciliation budget.",
+      "source_ids": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "rank": 3,
+      "item_label": "Sam Sample (Lumen Payroll)",
+      "status": "ok",
+      "verdict": "Warm",
+      "score": 3,
+      "score_scale": "0-5",
+      "headline": "Controller; role in tooling decisions unclear.",
+      "source_ids": [
+        "S4"
+      ]
+    },
+    {
+      "rank": 4,
+      "item_label": "Ada Placeholder (Quill Books)",
+      "status": "no_evidence",
+      "headline": "No public profile found for this person at Quill Books.",
+      "source_ids": []
+    }
+  ],
+  "shown": 4,
+  "skipped_count": 1,
+  "failed": [],
+  "report": {
+    "title": "Person ranking",
+    "summary": "Ranked 4 people by verdict; showing all 4. 0 failed, 1 skipped.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Top 4 of 4 people",
+        "items": [
+          {
+            "text": "1. Jo Rivera (Orbit Ledger) — Hot, 4 (0-5): Head of Finance; spoke about month-end close automation in September.",
+            "citations": [
+              "S1"
+            ],
+            "label": "Hot"
+          },
+          {
+            "text": "2. Priya Demo (Example Analytics) — Hot, 5 (0-5): VP Finance; owns the reconciliation budget.",
+            "citations": [
+              "S2",
+              "S3"
+            ],
+            "label": "Hot"
+          },
+          {
+            "text": "3. Sam Sample (Lumen Payroll) — Warm, 3 (0-5): Controller; role in tooling decisions unclear.",
+            "citations": [
+              "S4"
+            ],
+            "label": "Warm"
+          },
+          {
+            "text": "4. Ada Placeholder (Quill Books): No public profile found for this person at Quill Books.",
+            "citations": [],
+            "label": "no evidence"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://orbit.example/blog/month-end-close-talk",
+        "title": "Month-end close, automated",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.org/team",
+        "title": "Example Analytics — Team",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "record_ref": "apollo:person/7c1e",
+        "title": "Priya Demo",
+        "provider": "apollo"
+      },
+      {
+        "id": "S4",
+        "url": "https://lumen.example/about",
+        "title": "About Lumen Payroll",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "results-rank",
+      "skill_version": "1.2.1",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

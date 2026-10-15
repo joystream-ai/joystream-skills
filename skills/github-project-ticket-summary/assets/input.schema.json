@@ -1,0 +1,158 @@
+{
+  "type": "object",
+  "required": [
+    "lookback_hours"
+  ],
+  "properties": {
+    "lookback_hours": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The window the earlier GitHub searches already applied when selecting closed and opened issues. Used for the headline label only — this skill does no time filtering of its own."
+    },
+    "project_title": {
+      "type": "string",
+      "description": "Display name of the board, for the digest headline. Defaults to \"Development Project\"."
+    },
+    "repositories": {
+      "type": "array",
+      "description": "The owner/repo scope the caller applied. When the board spans repos beyond this list, the digest says so.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "project_items": {
+      "type": "array",
+      "description": "Optional fallback for callers that pass the board inline. On JoyStream leave it unbound: the board arrives as the full output of the earlier board-read step. Current board contents — the SCOPE SET. Every reported ticket must appear here.",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current board status column, verbatim. Current value only — never a history."
+          },
+          "html_url": {
+            "type": "string",
+            "description": "The item's web address, exactly as GitHub returned it (html_url)."
+          }
+        }
+      }
+    },
+    "closed_issues": {
+      "type": "array",
+      "description": "Optional fallback for callers that pass the issues inline. On JoyStream leave it unbound: closed issues arrive as the full output of the earlier closed-issue search. Issues whose closed_at falls inside the window, already filtered by the caller.",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          },
+          "closed_at": {
+            "type": "string"
+          },
+          "linked_pr": {
+            "type": "object",
+            "description": "The PR that closed the issue, when the caller resolved one.",
+            "properties": {
+              "number": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "html_url": {
+                "type": "string",
+                "description": "The item's web address, exactly as GitHub returned it (html_url)."
+              }
+            }
+          },
+          "comments": {
+            "type": "array",
+            "description": "Trailing issue comments — the gist fallback when there is no linked PR.",
+            "items": {
+              "type": "string"
+            }
+          },
+          "html_url": {
+            "type": "string",
+            "description": "The item's web address, exactly as GitHub returned it (html_url)."
+          }
+        }
+      }
+    },
+    "opened_issues": {
+      "type": "array",
+      "description": "Optional fallback for callers that pass the issues inline. On JoyStream leave it unbound: opened issues arrive as the full output of the earlier opened-issue search. Issues whose created_at falls inside the window, already filtered by the caller.",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          },
+          "html_url": {
+            "type": "string",
+            "description": "The item's web address, exactly as GitHub returned it (html_url)."
+          }
+        }
+      }
+    },
+    "in_progress_statuses": {
+      "type": "array",
+      "description": "Board status values to treat as in-progress. Absent, treat any status that is neither a done nor a backlog column as in-progress.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "trigger_type": {
+      "type": "string",
+      "description": "How the run started — manual, cron, or agent_call. Selects draft vs finished tone.",
+      "enum": [
+        "manual",
+        "cron",
+        "agent_call"
+      ]
+    },
+    "now": {
+      "type": "string",
+      "description": "The run's current time, ISO 8601, for report.meta.generated_at. Optional: absent, the run start time stated in the instructions is used. Never guessed."
+    }
+  }
+}

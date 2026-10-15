@@ -1,0 +1,218 @@
+{
+  "overall_score": 15,
+  "verdict": "AI engines cannot read the site; only two directories describe it.",
+  "site_files": {
+    "robots_txt": "unreachable",
+    "llms_txt": "missing",
+    "sitemap": "unreachable"
+  },
+  "client_rendered": true,
+  "categories": [
+    {
+      "key": "crawler_access",
+      "score": 1,
+      "summary": "Homepage is a JavaScript shell; robots.txt unreachable.",
+      "confidence": "partial"
+    },
+    {
+      "key": "llms_txt",
+      "score": 1,
+      "summary": "/llms.txt returned 404 Not Found on a hard-to-read site.",
+      "confidence": "verified"
+    },
+    {
+      "key": "answerability",
+      "score": 1,
+      "summary": "Nothing readable to quote.",
+      "confidence": "unverified"
+    },
+    {
+      "key": "metadata",
+      "score": 1,
+      "summary": "Only the page title is visible.",
+      "confidence": "unverified"
+    },
+    {
+      "key": "external_authority",
+      "score": 4,
+      "summary": "Two independent pages describe it as a restaurant shift planner.",
+      "confidence": "verified"
+    },
+    {
+      "key": "depth_freshness",
+      "score": 1,
+      "summary": "No readable on-site content.",
+      "confidence": "unverified"
+    }
+  ],
+  "strengths": [
+    "Two independent pages describe Sample Rota consistently as a shift planner for restaurants."
+  ],
+  "gaps": [
+    "Client-rendered homepage: \"You need to enable JavaScript to run this app.\"",
+    "No /llms.txt (404 Not Found)."
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Server-side render or prerender the homepage and key pages so they read without JavaScript.",
+      "effort": "project"
+    },
+    {
+      "priority": 2,
+      "action": "Put a one-sentence definition of Sample Rota at the top of the homepage.",
+      "effort": "quick_fix"
+    },
+    {
+      "priority": 3,
+      "action": "Publish /llms.txt with the site name, a summary line and links to key pages.",
+      "effort": "quick_fix"
+    }
+  ],
+  "caveats": [
+    "The site could not be read: this is mostly an external-visibility audit.",
+    "robots.txt and sitemap.xml timed out; fetch them again next run.",
+    "A directory listing contained an instruction addressed to AI assistants; it was treated as page text and ignored."
+  ],
+  "sources": [
+    {
+      "url": "https://example.org/",
+      "title": "Sample Rota",
+      "kind": "site"
+    },
+    {
+      "url": "https://example.org/llms.txt",
+      "kind": "site"
+    },
+    {
+      "url": "https://directory.example.net/apps/sample-rota",
+      "title": "Sample Rota — staff scheduling",
+      "kind": "third_party"
+    },
+    {
+      "url": "https://reviews.example.net/sample-rota",
+      "title": "Sample Rota review",
+      "kind": "third_party"
+    }
+  ],
+  "report_markdown": "# AEO/GEO audit: example.org\n2026-10-12 · Overall **15/100** — AI engines cannot read the site; only two directories describe it.\n\n| Category | Score | Finding |\n|---|---|---|\n| AI crawler access | 1/10 | Homepage returns only \"You need to enable JavaScript to run this app.\"; robots.txt unreachable. |\n| llms.txt | 1/10 | /llms.txt returned 404 Not Found. |\n| Answerability | 1/10 | Nothing a model could quote. |\n| Metadata | 1/10 | Only the title \"Sample Rota\" is visible. |\n| External authority | 4/10 | Two independent pages describe it as a shift planner for restaurants. |\n| Depth & freshness | 1/10 | No readable content. |\n\n## Strengths\n- Two independent pages describe Sample Rota consistently as a shift planner for restaurants.\n\n## Gaps\n- The site is client-rendered: most AI crawlers see an empty shell.\n- No llms.txt.\n\n## Fix first (ranked)\n1. Server-side render or prerender the homepage and key pages (project).\n2. Add a one-sentence definition of Sample Rota at the top of the homepage (quick fix).\n3. Publish /llms.txt (quick fix).\n\n## What this audit could not verify\n- robots.txt and sitemap.xml timed out; crawler rules are unknown.\n- On-site categories are unverified: the site could not be read.\n\n## Sources\n- https://example.org/ · https://example.org/llms.txt · https://directory.example.net/apps/sample-rota · https://reviews.example.net/sample-rota\n",
+  "summary_markdown": "*AEO/GEO audit — example.org: 15/100*\nAI engines cannot read the site; only two directories describe it.\nStrengths: consistent third-party description\nGaps: client-rendered homepage · no llms.txt · crawler rules unknown\nFull report available from the run.",
+  "report": {
+    "title": "AEO/GEO audit: example.org",
+    "summary": "15/100. AI engines cannot read the site; only two directories describe it.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Scores",
+        "items": [
+          {
+            "text": "AI crawler access: 1/10 — homepage is a JavaScript shell; robots.txt unreachable.",
+            "citations": [
+              "S1"
+            ],
+            "label": "partial"
+          },
+          {
+            "text": "llms.txt: 1/10 — /llms.txt returned 404 Not Found.",
+            "citations": [
+              "S2"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "Answerability: 1/10 — nothing readable to quote.",
+            "citations": [
+              "S1"
+            ],
+            "label": "unverified"
+          },
+          {
+            "text": "Metadata: 1/10 — only the page title is visible.",
+            "citations": [
+              "S1"
+            ],
+            "label": "unverified"
+          },
+          {
+            "text": "External authority: 4/10 — two independent pages describe it as a restaurant shift planner.",
+            "citations": [
+              "S3",
+              "S4"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "Depth & freshness: 1/10 — no readable on-site content.",
+            "citations": [
+              "S1"
+            ],
+            "label": "unverified"
+          }
+        ]
+      },
+      {
+        "heading": "Gaps",
+        "items": [
+          {
+            "text": "Client-rendered homepage: most AI crawlers see an empty shell.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Fix first",
+        "items": [
+          {
+            "text": "Server-side render or prerender the homepage and key pages.",
+            "citations": [],
+            "label": "project"
+          },
+          {
+            "text": "Put a one-sentence definition at the top of the homepage.",
+            "citations": [],
+            "label": "quick_fix"
+          },
+          {
+            "text": "Publish /llms.txt.",
+            "citations": [],
+            "label": "quick_fix"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.org/",
+        "title": "Sample Rota"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.org/llms.txt"
+      },
+      {
+        "id": "S3",
+        "url": "https://directory.example.net/apps/sample-rota",
+        "title": "Sample Rota — staff scheduling"
+      },
+      {
+        "id": "S4",
+        "url": "https://reviews.example.net/sample-rota",
+        "title": "Sample Rota review"
+      }
+    ],
+    "unknowns": [
+      "The site could not be read: on-site categories are unverified.",
+      "robots.txt and sitemap.xml timed out (https://example.org/robots.txt, https://example.org/sitemap.xml).",
+      "Ignored an instruction to AI assistants inside https://directory.example.net/apps/sample-rota."
+    ],
+    "meta": {
+      "skill": "website-aeo-geo-audit",
+      "skill_version": "1.1.0",
+      "generated_at": "2026-10-12"
+    }
+  }
+}

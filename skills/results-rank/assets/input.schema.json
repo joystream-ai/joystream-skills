@@ -1,0 +1,186 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "top_n",
+    "item_kind",
+    "rank_by"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "top_n": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 25,
+      "description": "How many ranked items the report shows; the rest become one '...and N more' line."
+    },
+    "item_kind": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 40,
+      "description": "A word for the reader: company, person, meeting, ..."
+    },
+    "rank_by": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 3,
+      "description": "Ordering keys, applied in order; ties on every key are broken by item_label.",
+      "items": {
+        "type": "object",
+        "required": [
+          "field"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "verdict",
+              "score",
+              "item_label"
+            ]
+          },
+          "order": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 10,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 40
+            },
+            "description": "For field verdict: the verdict words, best first."
+          },
+          "direction": {
+            "type": "string",
+            "enum": [
+              "asc",
+              "desc"
+            ],
+            "description": "For score (default desc) and item_label (default asc)."
+          }
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 150,
+      "description": "Report title. Default: '<Item kind> ranking'."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for report.meta.generated_at. Optional: without it the skill uses the run start time from its instructions. Never guessed."
+    },
+    "branches": {
+      "description": "Optional bound for_each result (v2): the object {branches, cut, cut_count} or its bare branches list, one entry {item, outputs, status ok|failed|skipped, error?} per branch in input order. When present it is the evidence; absent or null, the skill reads the judge steps' outputs (v1).",
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "required": [
+              "status"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "item": {
+                "description": "The item this branch ran on, e.g. a list-prepare accepted entry {index, item, item_key, query}. Names a failed branch; never copied into the output."
+              },
+              "outputs": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "description": "The branch step's output, or {<step id>: <output>} when the branch ran several steps. The one holding item_result is the judge."
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "failed",
+                  "skipped"
+                ]
+              },
+              "error": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Why the branch failed."
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "branches"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "branches": {
+              "type": "array",
+              "maxItems": 100,
+              "items": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                  "item": {
+                    "description": "The item this branch ran on, e.g. a list-prepare accepted entry {index, item, item_key, query}. Names a failed branch; never copied into the output."
+                  },
+                  "outputs": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "description": "The branch step's output, or {<step id>: <output>} when the branch ran several steps. The one holding item_result is the judge."
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "failed",
+                      "skipped"
+                    ]
+                  },
+                  "error": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Why the branch failed."
+                  }
+                }
+              }
+            },
+            "cut": {
+              "type": "array",
+              "description": "The items past the loop's limit, which got no branch."
+            },
+            "cut_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "How many items were cut at the loop's limit; reported as not evaluated."
+            }
+          }
+        }
+      ]
+    },
+    "cut_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Items past the for_each loop's limit that got no branch (bind steps.<loop>.output.cut_count). Overrides a cut_count inside branches; 0, null or absent: none."
+    }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "slots": [
+    {
+      "i": 0,
+      "item_key": "domain:orbit.example",
+      "label": "Orbit Ledger (orbit.example)",
+      "query": "Orbit Ledger orbit.example fit against this ICP: B2B SaaS for finance teams, 50-500 employees"
+    },
+    {
+      "i": 1,
+      "item_key": "domain:kestrel.example",
+      "label": "Kestrel Freight (kestrel.example)",
+      "query": "Kestrel Freight kestrel.example fit against this ICP: B2B SaaS for finance teams, 50-500 employees"
+    },
+    {
+      "i": 2,
+      "item_key": "domain:lumen.example",
+      "label": "Lumen Payroll (lumen.example)",
+      "query": "Lumen Payroll lumen.example fit against this ICP: B2B SaaS for finance teams, 50-500 employees"
+    },
+    null,
+    null
+  ],
+  "accepted_count": 3,
+  "accepted": [
+    {
+      "index": 0,
+      "item": {
+        "name": "Orbit Ledger",
+        "domain": "orbit.example"
+      },
+      "item_key": "domain:orbit.example",
+      "query": "Orbit Ledger orbit.example fit against this ICP: B2B SaaS for finance teams, 50-500 employees"
+    },
+    {
+      "index": 1,
+      "item": {
+        "name": "Kestrel Freight",
+        "domain": "kestrel.example"
+      },
+      "item_key": "domain:kestrel.example",
+      "query": "Kestrel Freight kestrel.example fit against this ICP: B2B SaaS for finance teams, 50-500 employees"
+    },
+    {
+      "index": 2,
+      "item": {
+        "name": "Lumen Payroll",
+        "domain": "lumen.example/"
+      },
+      "item_key": "domain:lumen.example",
+      "query": "Lumen Payroll lumen.example fit against this ICP: B2B SaaS for finance teams, 50-500 employees"
+    }
+  ],
+  "dropped": [
+    {
+      "item": {
+        "name": "Orbit Ledger Inc",
+        "domain": "https://www.Orbit.example/"
+      },
+      "reason": "duplicate"
+    },
+    {
+      "item": {
+        "name": "Example Analytics",
+        "domain": "example.com"
+      },
+      "reason": "excluded"
+    }
+  ]
+}

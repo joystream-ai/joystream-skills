@@ -1,0 +1,15 @@
+{
+  "top_n": 4,
+  "item_kind": "person",
+  "rank_by": [
+    {
+      "field": "verdict",
+      "order": [
+        "Hot",
+        "Warm",
+        "Cold"
+      ]
+    }
+  ],
+  "now": "2026-10-12T09:00:00Z"
+}

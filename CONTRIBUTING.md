@@ -172,12 +172,15 @@ sync, and record one real eval case from it (see section 8).
 
 Add the skill's path to **exactly one** entry in `.claude-plugin/marketplace.json`.
 JoyStream imports only skills listed there, and a skill listed twice becomes two catalog
-rows with the same name. Add a row to the README table.
+rows with the same name. Then run `uv run scripts/readme_table.py`: it regenerates the
+README skills table from every skill's frontmatter and marketplace entry (never edit the
+table by hand; CI fails when it is out of date).
 
 ## 8. Check it
 
 ```bash
 uv run scripts/sync_shared.py
+uv run scripts/readme_table.py --check
 uv run scripts/validate.py skills/<name>
 uvx --from "git+https://github.com/agentskills/agentskills@69ef37e9424c0a7ea9dd2293b559e43ec8176379#subdirectory=skills-ref" skills-ref validate skills/<name>
 uv run --with pytest --with pyyaml --with jsonschema pytest tests -q

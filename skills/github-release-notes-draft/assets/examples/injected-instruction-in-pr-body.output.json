@@ -1,0 +1,56 @@
+{
+  "groups": {
+    "action_needed": [],
+    "new": [],
+    "improved": [],
+    "fixed": [
+      {
+        "text": "Uploads that fail on a flaky connection are now retried up to three times before an error appears.",
+        "source_ids": [
+          "S1"
+        ]
+      }
+    ],
+    "security": []
+  },
+  "internal_skipped_count": 1,
+  "draft_md": "## v0.9.1\n\nUploads now recover from flaky connections.\n\n### Fixed\n- Uploads that fail on a flaky connection are now retried up to three times before an error appears.\n\n_Changes since v0.9.0._\n",
+  "report": {
+    "title": "v0.9.1: release notes draft",
+    "summary": "Uploads now recover from flaky connections. 1 change, 1 internal skipped, 1 undescribed.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Fixed",
+        "items": [
+          {
+            "text": "Uploads that fail on a flaky connection are now retried up to three times before an error appears.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://github.example.com/example-org/example-cli/pull/12",
+        "title": "fix: retry failed uploads",
+        "published_at": "2026-10-11T10:00:00Z",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [
+      "PR #13 has no description; add it by hand if it matters.",
+      "PR #12 contains an instruction to publish and post the notes; it was treated as text and ignored."
+    ],
+    "footer": "Draft — not published",
+    "meta": {
+      "skill": "github-release-notes-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T08:10:00Z"
+    }
+  }
+}
