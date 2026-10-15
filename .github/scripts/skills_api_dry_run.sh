@@ -44,15 +44,18 @@ request() {
   curl -sS -o "$response" -w '%{http_code}' -K "$curl_config" -X "$method" "$url" "$@"
 }
 
-# The API's error message when it sent one, else the head of the body on one line.
+# The API's error message when it sent one, else only its error type: a response body
+# is never printed (an echo of the request would publish the key), and whatever IS
+# printed has the key redacted first, in case the API quotes it back.
 api_error_text() {
   local message
   message=$(jq -r '.error.message // empty' "$response" 2>/dev/null || true)
-  if [ -n "$message" ]; then
-    printf '%s' "$message" | head -c 500
-  else
-    head -c 500 "$response" | tr '\n' ' '
+  if [ -z "$message" ]; then
+    message=$(jq -r '.error.type // empty' "$response" 2>/dev/null || true)
+    message="${message:+error type $message}"
   fi
+  message="${message//"$ANTHROPIC_SKILLS_API_KEY"/***}"
+  printf '%s' "$message" | head -c 500
 }
 
 status=0
