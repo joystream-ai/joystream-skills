@@ -1,0 +1,20 @@
+{
+  "skill_name": "blog-post-tagger",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "content": "---\nname: blog-post-tagger\ndescription: >-\n  Suggest three to five topic tags for one blog post from its text. Use when an agent\n  must \"tag this post\" or \"pick categories for the blog\".\nlicense: MIT\nmetadata:\n  author: example\n  version: \"1.1.0\"\n  joystream-skill-kind: instruction\n---\n\n# Purpose\n\nGive the editor a short list of tags so each post lands in the right blog category.\n\n# Inputs\n\n- **post_url** (string, required): the post, for example https://example.com/blog/launch-week.\n- **known_tags** (array, optional): tags the blog already uses.\n\n# Reasoning Flow\n\n1. Download the post from `post_url` and read its title and body.\n2. Pick three to five tags from the main topics of the post.\n3. Prefer tags from `known_tags` when one fits.\n\n# Output\n\n- `tags`: three to five lowercase tags.\n"
+    }
+  ],
+  "findings": [
+    {
+      "rule_id": "SCHEMA_SKILL_EXTERNAL_OPS_UNSTATED",
+      "severity": "error",
+      "impact": "degrades",
+      "detail": "an instruction skill's body must say it 'performs no external operations' and name the prior steps that supply its evidence",
+      "fix": "Say in the body that the skill 'performs no external operations;' and name the earlier steps that supply its evidence.",
+      "autofix": false
+    }
+  ],
+  "now": "2026-10-15T09:00:00Z"
+}
