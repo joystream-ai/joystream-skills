@@ -41,6 +41,7 @@ identity is `{repo-owner}/{name}`, e.g. `joystream-ai/github-repo-activity-summa
 | [`platform-alert-diagnosis`](./skills/platform-alert-diagnosis/SKILL.md) | Diagnoses one JoyStream platform alert from js-monitor with read-only Railway reads and posts **one** diagnosis in the alert's Slack thread | Railway, Slack |
 | [`github-release-digest`](./skills/github-release-digest/SKILL.md) | Summarizes a repo's releases published between a start and end date as a customer-friendly announcement and returns **one** colored Slack message; the agent's action steps read releases and post it | GitHub, Slack |
 | [`list-prepare`](./skills/list-prepare/SKILL.md) | Turns a list of companies, people or any items into de-duplicated, capped **slots** (one search query each) for a fan-out agent; accounts for every dropped item | — |
+| [`results-rank`](./skills/results-rank/SKILL.md) | Combines the per-item results of a fan-out agent into **one ranked list** by the agent's rule, keeps the top N, renumbers sources and names every failed branch | — |
 
 The `github-repo-activity-summary` and `github-project-ticket-summary` skills only **read and summarize** — they return a digest and post nowhere,
 so they compose with any delivery service (Discord, Slack, email) and can be
