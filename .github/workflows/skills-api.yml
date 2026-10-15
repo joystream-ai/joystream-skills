@@ -1,0 +1,51 @@
+# Portability proof (joystream-q80lo.4.3; PLAN § D3 step 9): claude.ai's Skills API must
+# accept every skill in this repository that is not listed in validate-baseline.json.
+#
+# On every push to main, each such skill directory is uploaded to a SCRATCH organization
+# (POST /v1/skills, multipart `files[]` with the path carried in `filename`) and deleted
+# again (DELETE /v1/skills/{id}, which removes its versions too). Any non-2xx on either
+# call fails the job. Nothing is left behind in the scratch org, and nothing in this
+# workflow prints the key or a response body beyond the API's error message.
+#
+# The key is the repository secret ANTHROPIC_SKILLS_API_KEY, scoped to a scratch org that
+# holds nothing else (a human adds it). GitHub Actions has no "neutral" conclusion, so a
+# MISSING secret FAILS the job instead of skipping it: a silent skip would read as the
+# proof having passed.
+
+name: skills-api
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: skills-api
+  cancel-in-progress: false
+
+env:
+  SKILLS_API_BASE_URL: https://api.anthropic.com
+  ANTHROPIC_VERSION: "2023-06-01"
+
+jobs:
+  upload-dry-run:
+    name: Skills API upload dry-run (scratch org)
+    runs-on: ubuntu-latest
+    env:
+      ANTHROPIC_SKILLS_API_KEY: ${{ secrets.ANTHROPIC_SKILLS_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Require the scratch-org API key
+        run: |
+          set -euo pipefail
+          if [ -z "${ANTHROPIC_SKILLS_API_KEY:-}" ]; then
+            echo "::error::ANTHROPIC_SKILLS_API_KEY is not configured, so the Skills API upload proof cannot run. Add the scratch-org key as a repository secret."
+            exit 1
+          fi
+
+      - name: Upload and delete every non-baselined skill
+        run: bash .github/scripts/skills_api_dry_run.sh
