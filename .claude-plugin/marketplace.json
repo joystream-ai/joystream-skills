@@ -41,7 +41,8 @@
       "description": "Outreach and follow-up drafts for founders and sellers: a first-touch email or LinkedIn DM from a brief, and a sales-call debrief with a follow-up email. Drafts only; nothing is sent.",
       "source": "./",
       "skills": [
-        "./skills/outreach-message-draft"
+        "./skills/outreach-message-draft",
+        "./skills/sales-call-debrief"
       ]
     }
   ]

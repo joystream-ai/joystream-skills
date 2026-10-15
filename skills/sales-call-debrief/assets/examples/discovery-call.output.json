@@ -1,0 +1,184 @@
+{
+  "summary": "Casey Demo met Morgan Placeholder and Dana Sample of Harbor Clinics. Matching insurance remittances from four portals takes about two days per clinic across eleven clinics, and format changes break the spreadsheet. Objections were the HIPAA BAA requirement and per-clinic pricing. If legal approves the BAA, they will test two clinics in November, with a planning call on 2026-10-28.",
+  "pains": [
+    {
+      "text": "Insurance remittances are downloaded from four portals and matched to invoices by hand, about two days per clinic across eleven clinics.",
+      "quote_ids": [
+        "Q1",
+        "Q2"
+      ]
+    },
+    {
+      "text": "Spreadsheet macros break when a remittance file changes format, pulling in IT.",
+      "quote_ids": [
+        "Q3"
+      ]
+    }
+  ],
+  "objections": [
+    {
+      "text": "A HIPAA business associate agreement is required before anything touches patient billing.",
+      "response": "Casey offered the standard BAA today.",
+      "quote_ids": [
+        "Q4"
+      ]
+    },
+    {
+      "text": "Wary of per-clinic pricing after a past vendor's bill doubled.",
+      "response": "Pricing is per remittance source, not per clinic.",
+      "quote_ids": [
+        "Q5"
+      ]
+    }
+  ],
+  "quotes": [
+    {
+      "id": "Q1",
+      "speaker": "Morgan Placeholder",
+      "text": "Each clinic downloads them from four portals and someone matches them to invoices in a spreadsheet."
+    },
+    {
+      "id": "Q2",
+      "speaker": "Morgan Placeholder",
+      "text": "About two days per clinic, and we have eleven clinics."
+    },
+    {
+      "id": "Q3",
+      "speaker": "Dana Sample",
+      "text": "when a remittance file changes format, the spreadsheet macros break and I get pulled in."
+    },
+    {
+      "id": "Q4",
+      "speaker": "Dana Sample",
+      "text": "Anything that touches patient billing needs a HIPAA business associate agreement first."
+    },
+    {
+      "id": "Q5",
+      "speaker": "Morgan Placeholder",
+      "text": "Our last vendor charged per location and the bill doubled when we opened four sites."
+    }
+  ],
+  "next_steps": [
+    {
+      "action": "Share the standard HIPAA business associate agreement (BAA).",
+      "owner": "Casey Demo",
+      "due": "today"
+    },
+    {
+      "action": "Review the BAA with legal.",
+      "owner": "Dana Sample",
+      "due": "next week"
+    },
+    {
+      "action": "Pick the two clinics for a November test, if legal approves.",
+      "owner": "Morgan Placeholder"
+    },
+    {
+      "action": "Set up a call to plan the test.",
+      "owner": "Casey Demo",
+      "due": "2026-10-28"
+    }
+  ],
+  "follow_up_email": {
+    "subject": "Next steps after today's call",
+    "body": "Hi Morgan and Dana,\n\nThanks for the time today. You described two days per clinic, across eleven clinics, matching insurance remittances from four portals by hand, and spreadsheet macros that break when a file format changes.\n\nWhat we agreed:\n- I'll share our standard BAA today.\n- Dana reviews it with legal next week.\n- If legal is fine, Morgan picks two clinics for a test in November.\n- I'll set up a call for 2026-10-28 to plan the test.\n\nOn pricing: we price per remittance source, not per clinic.\n\nCasey"
+  },
+  "report": {
+    "title": "Call debrief — Harbor Clinics",
+    "summary": "Casey Demo met Morgan Placeholder and Dana Sample of Harbor Clinics. Matching insurance remittances from four portals takes about two days per clinic across eleven clinics, and format changes break the spreadsheet. Objections were the HIPAA BAA requirement and per-clinic pricing. If legal approves the BAA, they will test two clinics in November, with a planning call on 2026-10-28.",
+    "severity": "action_needed",
+    "sections": [
+      {
+        "heading": "Pains",
+        "items": [
+          {
+            "text": "Remittances from four portals matched by hand: about two days per clinic, eleven clinics.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Spreadsheet macros break when a remittance file changes format.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Objections",
+        "items": [
+          {
+            "text": "HIPAA BAA required first; Casey offered the standard BAA.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Wary of per-clinic pricing; we price per remittance source.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Next steps",
+        "items": [
+          {
+            "text": "Share the standard HIPAA business associate agreement (BAA). (due: today)",
+            "citations": [
+              "S1"
+            ],
+            "label": "Casey Demo"
+          },
+          {
+            "text": "Review the BAA with legal. (due: next week)",
+            "citations": [
+              "S1"
+            ],
+            "label": "Dana Sample"
+          },
+          {
+            "text": "Pick the two clinics for a November test, if legal approves.",
+            "citations": [
+              "S1"
+            ],
+            "label": "Morgan Placeholder"
+          },
+          {
+            "text": "Set up a call to plan the test. (due: 2026-10-28)",
+            "citations": [
+              "S1"
+            ],
+            "label": "Casey Demo"
+          }
+        ]
+      },
+      {
+        "heading": "Follow-up email",
+        "body_md": "**Subject:** Next steps after today's call\n\nHi Morgan and Dana,\n\nThanks for the time today. You described two days per clinic, across eleven clinics, matching insurance remittances from four portals by hand, and spreadsheet macros that break when a file format changes.\n\nWhat we agreed:\n- I'll share our standard BAA today.\n- Dana reviews it with legal next week.\n- If legal is fine, Morgan picks two clinics for a test in November.\n- I'll set up a call for 2026-10-28 to plan the test.\n\nOn pricing: we price per remittance source, not per clinic.\n\nCasey",
+        "items": []
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "title": "transcript",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "sales-call-debrief",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-14T16:00:00Z"
+    }
+  }
+}

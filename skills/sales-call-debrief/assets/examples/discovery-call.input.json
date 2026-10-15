@@ -1,0 +1,13 @@
+{
+  "transcript": "Casey Demo: Thanks both. Where does the time go at month-end today?\nMorgan Placeholder: Insurance remittances. Each clinic downloads them from four portals and someone matches them to invoices in a spreadsheet.\nCasey Demo: How long does that take?\nMorgan Placeholder: About two days per clinic, and we have eleven clinics.\nDana Sample: And when a remittance file changes format, the spreadsheet macros break and I get pulled in.\nCasey Demo: What would you need to see to try something new?\nDana Sample: Anything that touches patient billing needs a HIPAA business associate agreement first. No exceptions.\nMorgan Placeholder: And I am wary of per-clinic pricing. Our last vendor charged per location and the bill doubled when we opened four sites.\nCasey Demo: We price per remittance source, not per clinic, so new sites do not change the bill. I can send our standard BAA today.\nDana Sample: Then I will review the BAA with legal next week.\nMorgan Placeholder: If legal is fine, let's run two clinics as a test in November. I will pick which two.\nCasey Demo: I will set up a call for 2026-10-28 to plan the test.",
+  "attendees": [
+    "Morgan Placeholder (Harbor Clinics, COO)",
+    "Dana Sample (Harbor Clinics, IT Manager)",
+    "Casey Demo (our side, Founder)"
+  ],
+  "company": "Harbor Clinics",
+  "our_side": [
+    "Casey Demo"
+  ],
+  "now": "2026-10-14T16:00:00Z"
+}
