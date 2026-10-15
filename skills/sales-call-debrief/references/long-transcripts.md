@@ -61,5 +61,7 @@ memory of an earlier section.
 - Find each quote's exact text in the transcript (one space wherever the transcript has
   a line break or several spaces). Not found: remove the quote and every `quote_ids`
   reference to it.
-- Every next-step owner is an attendee's name exactly as given, or `unassigned`.
+- Every next-step owner is an attendee's name (the part before ` (`), or `unassigned`.
+- The ledger is your working only: the result is ONE object with exactly the fields
+  of SKILL.md's output contract and within its limits.
 - Add `Long transcript: read in N ordered sections.` to `report.unknowns`.

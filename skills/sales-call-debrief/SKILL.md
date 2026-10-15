@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -149,24 +149,30 @@ Every report item about the call cites it.
    leave `speaker` out.
 6. **Next steps.** One per commitment: the `action` in plain words, the `owner`, and `due`
    only when the transcript states it (see Output). The owner is the attendee who said
-   they would do it, or who was asked and agreed. Asked but did not agree, nobody named,
+   they would do it, or who was asked and agreed, written as that attendee's **name**
+   (the part before ` (`: `Jo Example`, not `Jo Example (Acme Metrics, Head of
+   Operations)`). Asked but did not agree, nobody named,
    or a person who is not an attendee: `unassigned`. A step that was only floated and not
    agreed ("should I check back in January?" "maybe") is left out or listed once with
    `tentative: true` and no `due`.
 7. **Summary** of at most five sentences: who met, the main pains, the main objections,
    what was agreed. If nothing was agreed, say `No next step was agreed.`
 8. **Follow-up email** from our side to the customer attendees (see Output).
+9. **Check the output contract** (below) before returning: one JSON object, every
+   limit met. However many sections you read, there is exactly one output; the sections
+   and their notes are your working, never fields of the result.
 
 # Output
 
 Return the fields of `assets/output.schema.json` as your result:
 
-- `summary`: plain text, at most five sentences, no fact absent from the transcript.
+- `summary`: plain text, at most five sentences and **600 characters**, no fact absent
+  from the transcript.
 - `pains[]` and `objections[]`: `{text, quote_ids}` in the order discussed; objections
   may add `response` (what our side answered, as said). `quote_ids` point into `quotes`.
 - `quotes[]`: `{id, speaker?, text}`, ids `Q1`, `Q2`, … in transcript order.
 - `next_steps[]`: `{action, owner, due?, tentative?}`. `owner` is an attendee's name
-  exactly as in `attendees`, or `unassigned`. `due` is `YYYY-MM-DD` when the transcript
+  (the part of the `attendees` entry before ` (`), or `unassigned`. `due` is `YYYY-MM-DD` when the transcript
   states that date, else the time words as said (`today`, `this week`, `before March`);
   leave it out when none was said. Never compute a date.
 - `follow_up_email`: `{subject, body}`. Subject at most 10 words. Body at most 150 words:
@@ -176,9 +182,46 @@ Return the fields of `assets/output.schema.json` as your result:
 - `report`: title `Call debrief — <company>` (or `Call debrief`); `summary` = the summary;
   sections `Pains`, `Objections`, `Next steps` (each item cites the transcript source;
   next steps carry `label` = the owner), `Follow-up email` (`body_md` = subject and body,
-  no items); `sources`; `unknowns`; **`footer: "Draft — not sent"`**; `meta`
-  `{skill: "sales-call-debrief", skill_version: "1.0.0", generated_at: <now>}`.
+  and `items: []`); `sources`; `unknowns`; **`footer: "Draft — not sent"`**; `meta`
+  `{skill: "sales-call-debrief", skill_version: "1.0.1", generated_at: <now>}`.
   `severity: info`, or `action_needed` when next steps are owned by our side.
+
+## Output contract
+
+The result must validate against `assets/output.schema.json`; a result that does not is
+discarded, however good its content. Check each line before returning:
+
+- **Exactly these top-level fields:** `summary`, `pains`, `objections`, `quotes`,
+  `next_steps`, `follow_up_email`, `report`. No other field anywhere: no section numbers,
+  topics, ledger, confidence or speaker fields beyond the ones listed below.
+- **Objects and their fields:** pains and objections `{text, quote_ids}` (objections may
+  add `response`); quotes `{id, text}` plus `speaker` only for a named attendee; next
+  steps `{action, owner}` plus `due` and `tentative` only when they apply;
+  `follow_up_email` `{subject, body}`; each report section `{heading, items}` plus
+  `body_md`, where **`items` is always present** (`[]` when a section has none, as in
+  `Follow-up email`); each section item `{text, citations}` plus `label` and
+  `confidence`; each source `{id, url or record_ref, title?, published_at?, provider?}`;
+  `meta` `{skill, skill_version, generated_at}`, or no `meta` at all.
+- **Ids:** quote ids `Q1`, `Q2` …; every `quote_ids` entry names a quote that is in
+  `quotes`; source ids `S1`, `S2` …; every citation names a source in `report.sources`.
+
+| Field | Limit |
+|---|---|
+| `summary`, `report.summary` | 600 characters (the same text) |
+| `pains`, `objections` | 10 entries each; `text` and `response` 300 characters |
+| `quotes` | 20 entries; `text` 400 characters (about 30 words is the aim) |
+| `next_steps` | 15 entries; `action` 300 characters; `owner` 200; `due` 60 |
+| `follow_up_email` | `subject` 120 characters (10 words); `body` 150 words and 1,500 characters |
+| `report.title` | 150 characters |
+| `report.sections` | 12 sections; `heading` 80 characters; 25 items each; `body_md` 2,500 characters |
+| section item | `text` 400 characters; `label` **40 characters** (an owner's name; if a name is longer, its first 40 characters) |
+| `report.unknowns` | 20 entries, 300 characters each |
+| `report.footer` | exactly `Draft — not sent` |
+| `report.severity` | `info`, `attention` or `action_needed` |
+
+A long or many-section transcript changes none of this: merge until the counts fit
+(keep the first mention of each topic, the plainest quote), and say in `unknowns` what
+was left out to fit, e.g. `3 further quotes about pricing were left out (limit 20).`
 
 # Constraints
 

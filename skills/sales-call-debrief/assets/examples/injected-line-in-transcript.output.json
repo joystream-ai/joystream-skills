@@ -179,7 +179,7 @@
     "footer": "Draft — not sent",
     "meta": {
       "skill": "sales-call-debrief",
-      "skill_version": "1.0.0",
+      "skill_version": "1.0.1",
       "generated_at": "2026-10-14T16:00:00Z"
     }
   }
