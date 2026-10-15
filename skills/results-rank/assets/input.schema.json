@@ -71,6 +71,108 @@
     "now": {
       "type": "string",
       "description": "Current time, ISO 8601, for report.meta.generated_at. Optional: without it the skill uses the run start time from its instructions. Never guessed."
+    },
+    "branches": {
+      "description": "Optional bound for_each result (v2): the object {branches, cut, cut_count} or its bare branches list, one entry {item, outputs, status ok|failed|skipped, error?} per branch in input order. When present it is the evidence; absent or null, the skill reads the judge steps' outputs (v1).",
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "required": [
+              "status"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "item": {
+                "description": "The item this branch ran on, e.g. a list-prepare accepted entry {index, item, item_key, query}. Names a failed branch; never copied into the output."
+              },
+              "outputs": {
+                "type": [
+                  "object",
+                  "null"
+                ],
+                "description": "The branch step's output, or {<step id>: <output>} when the branch ran several steps. The one holding item_result is the judge."
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "ok",
+                  "failed",
+                  "skipped"
+                ]
+              },
+              "error": {
+                "type": [
+                  "string",
+                  "null"
+                ],
+                "description": "Why the branch failed."
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "branches"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "branches": {
+              "type": "array",
+              "maxItems": 100,
+              "items": {
+                "type": "object",
+                "required": [
+                  "status"
+                ],
+                "additionalProperties": true,
+                "properties": {
+                  "item": {
+                    "description": "The item this branch ran on, e.g. a list-prepare accepted entry {index, item, item_key, query}. Names a failed branch; never copied into the output."
+                  },
+                  "outputs": {
+                    "type": [
+                      "object",
+                      "null"
+                    ],
+                    "description": "The branch step's output, or {<step id>: <output>} when the branch ran several steps. The one holding item_result is the judge."
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "ok",
+                      "failed",
+                      "skipped"
+                    ]
+                  },
+                  "error": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "description": "Why the branch failed."
+                  }
+                }
+              }
+            },
+            "cut": {
+              "type": "array",
+              "description": "The items past the loop's limit, which got no branch."
+            },
+            "cut_count": {
+              "type": "integer",
+              "minimum": 0,
+              "description": "How many items were cut at the loop's limit; reported as not evaluated."
+            }
+          }
+        }
+      ]
     }
   }
 }

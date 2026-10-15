@@ -1,0 +1,255 @@
+{
+  "top_n": 2,
+  "item_kind": "company",
+  "rank_by": [
+    {
+      "field": "verdict",
+      "order": [
+        "Pursue",
+        "Research",
+        "Reject"
+      ]
+    },
+    {
+      "field": "score",
+      "direction": "desc"
+    }
+  ],
+  "title": "Qualified companies",
+  "now": "2026-10-12T09:00:00Z",
+  "branches": {
+    "branches": [
+      {
+        "item": {
+          "index": 0,
+          "item": {
+            "name": "Orbit Ledger",
+            "domain": "orbit.example"
+          },
+          "item_key": "domain:orbit.example",
+          "query": "Orbit Ledger orbit.example company overview, products, customers, size"
+        },
+        "outputs": {
+          "search": {
+            "query": "Orbit Ledger orbit.example company overview, products, customers, size",
+            "results": [
+              {
+                "url": "https://orbit.example/",
+                "title": "Orbit Ledger — finance operations",
+                "content": "Finance-ops SaaS for mid-market teams."
+              }
+            ]
+          },
+          "judge": {
+            "verdict": "Pursue",
+            "fit_score": 5,
+            "item_result": {
+              "item": {
+                "index": 0,
+                "item": {
+                  "name": "Orbit Ledger",
+                  "domain": "orbit.example"
+                },
+                "item_key": "domain:orbit.example",
+                "query": "Orbit Ledger orbit.example company overview, products, customers, size"
+              },
+              "item_key": "domain:orbit.example",
+              "item_label": "Orbit Ledger (orbit.example)",
+              "status": "ok",
+              "verdict": "Pursue",
+              "headline": "Finance-ops SaaS for mid-market operations teams.",
+              "source_ids": [
+                "S1"
+              ],
+              "score": 5,
+              "score_scale": "0-5"
+            },
+            "report": {
+              "title": "Orbit Ledger — ICP fit",
+              "summary": "Finance-ops SaaS for mid-market operations teams.",
+              "severity": "info",
+              "sections": [],
+              "sources": [
+                {
+                  "id": "S1",
+                  "url": "https://orbit.example/",
+                  "title": "Orbit Ledger — finance operations",
+                  "provider": "tavily"
+                }
+              ],
+              "unknowns": []
+            }
+          }
+        },
+        "status": "ok"
+      },
+      {
+        "item": {
+          "index": 1,
+          "item": {
+            "name": "Kestrel Freight",
+            "domain": "kestrel.example"
+          },
+          "item_key": "domain:kestrel.example",
+          "query": "Kestrel Freight kestrel.example company overview, products, customers, size"
+        },
+        "outputs": {
+          "search": {
+            "query": "Kestrel Freight kestrel.example company overview, products, customers, size",
+            "results": [
+              {
+                "url": "https://kestrel.example/",
+                "title": "Kestrel Freight",
+                "content": "Freight brokerage."
+              }
+            ]
+          },
+          "judge": null
+        },
+        "status": "failed",
+        "error": "judge: the model call timed out"
+      },
+      {
+        "item": {
+          "index": 2,
+          "item": {
+            "name": "Lumen Payroll",
+            "domain": "lumen.example"
+          },
+          "item_key": "domain:lumen.example",
+          "query": "Lumen Payroll lumen.example company overview, products, customers, size"
+        },
+        "outputs": {
+          "search": {
+            "query": "Lumen Payroll lumen.example company overview, products, customers, size",
+            "results": [
+              {
+                "url": "https://lumen.example/",
+                "title": "Lumen Payroll",
+                "content": "Payroll platform."
+              },
+              {
+                "url": "https://news.example.org/payroll-roundup",
+                "title": "Payroll software roundup",
+                "content": "Lumen Payroll is hiring."
+              }
+            ]
+          },
+          "judge": {
+            "verdict": "Research",
+            "fit_score": 3,
+            "item_result": {
+              "item": {
+                "index": 2,
+                "item": {
+                  "name": "Lumen Payroll",
+                  "domain": "lumen.example"
+                },
+                "item_key": "domain:lumen.example",
+                "query": "Lumen Payroll lumen.example company overview, products, customers, size"
+              },
+              "item_key": "domain:lumen.example",
+              "item_label": "Lumen Payroll (lumen.example)",
+              "status": "ok",
+              "verdict": "Research",
+              "headline": "Payroll platform; buyer is HR rather than operations.",
+              "source_ids": [
+                "S1"
+              ],
+              "score": 3,
+              "score_scale": "0-5"
+            },
+            "report": {
+              "title": "Lumen Payroll — ICP fit",
+              "summary": "Payroll platform; buyer is HR rather than operations.",
+              "severity": "info",
+              "sections": [],
+              "sources": [
+                {
+                  "id": "S1",
+                  "url": "https://lumen.example/",
+                  "title": "Lumen Payroll",
+                  "provider": "tavily"
+                },
+                {
+                  "id": "S2",
+                  "url": "https://news.example.org/payroll-roundup",
+                  "title": "Payroll software roundup",
+                  "provider": "tavily"
+                }
+              ],
+              "unknowns": []
+            }
+          }
+        },
+        "status": "ok"
+      },
+      {
+        "item": {
+          "index": 3,
+          "item": {
+            "name": "Quill Books",
+            "domain": "quill.example"
+          },
+          "item_key": "domain:quill.example",
+          "query": "Quill Books quill.example company overview, products, customers, size"
+        },
+        "outputs": {
+          "search": null,
+          "judge": {
+            "verdict": "Research",
+            "item_result": {
+              "item": {
+                "index": 3,
+                "item": {
+                  "name": "Quill Books",
+                  "domain": "quill.example"
+                },
+                "item_key": "domain:quill.example",
+                "query": "Quill Books quill.example company overview, products, customers, size"
+              },
+              "item_key": "domain:quill.example",
+              "item_label": "Quill Books (quill.example)",
+              "status": "no_evidence",
+              "verdict": "Research",
+              "headline": "No usable public evidence about Quill Books.",
+              "source_ids": []
+            },
+            "report": {
+              "title": "Quill Books — ICP fit",
+              "summary": "No usable public evidence about Quill Books.",
+              "severity": "info",
+              "sections": [],
+              "sources": [],
+              "unknowns": []
+            },
+            "confidence": "low"
+          }
+        },
+        "status": "failed",
+        "error": "search: the search provider returned an error"
+      }
+    ],
+    "cut": [
+      {
+        "index": 4,
+        "item": {
+          "name": "Sable Robotics",
+          "domain": "sable.example"
+        },
+        "item_key": "domain:sable.example",
+        "query": "Sable Robotics sable.example company overview, products, customers, size"
+      },
+      {
+        "index": 5,
+        "item": {
+          "name": "Tern Clinics",
+          "domain": "tern.example"
+        },
+        "item_key": "domain:tern.example",
+        "query": "Tern Clinics tern.example company overview, products, customers, size"
+      }
+    ],
+    "cut_count": 2
+  }
+}
