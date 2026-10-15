@@ -32,7 +32,8 @@
       "description": "Account research for founders and sellers: qualify companies against an ICP and brief before a call, each cited from the agent's search and extract steps.",
       "source": "./",
       "skills": [
-        "./skills/account-icp-qualification"
+        "./skills/account-icp-qualification",
+        "./skills/account-research-brief"
       ]
     }
   ]
