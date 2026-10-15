@@ -24,7 +24,8 @@
       "description": "Customer-friendly GitHub release roundups for a date range, posted as one colored Slack message.",
       "source": "./",
       "skills": [
-        "./skills/github-release-digest"
+        "./skills/github-release-digest",
+        "./skills/github-release-notes-draft"
       ]
     },
     {

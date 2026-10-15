@@ -1,0 +1,157 @@
+{
+  "groups": {
+    "action_needed": [
+      {
+        "text": "The v1 REST API is removed. Move your integrations to the v2 endpoints; the docs have a migration guide.",
+        "source_ids": [
+          "S1"
+        ]
+      }
+    ],
+    "new": [
+      {
+        "text": "Export any report as a CSV file to open it in a spreadsheet.",
+        "source_ids": [
+          "S2"
+        ]
+      }
+    ],
+    "improved": [
+      {
+        "text": "Search loads about twice as fast on large workspaces.",
+        "source_ids": [
+          "S3"
+        ]
+      }
+    ],
+    "fixed": [
+      {
+        "text": "Dashboard dates now use your workspace time zone instead of UTC.",
+        "source_ids": [
+          "S4"
+        ]
+      }
+    ],
+    "security": [
+      {
+        "text": "Security hardening for sign-in sessions.",
+        "source_ids": [
+          "S5"
+        ]
+      }
+    ]
+  },
+  "internal_skipped_count": 2,
+  "draft_md": "## v2.4.0\n\nCSV export for reports and faster search, plus one breaking change: the v1 API is removed.\n\n### Action needed\n- The v1 REST API is removed. Move your integrations to the v2 endpoints; the docs have a migration guide.\n\n### New\n- Export any report as a CSV file to open it in a spreadsheet.\n\n### Improved\n- Search loads about twice as fast on large workspaces.\n\n### Fixed\n- Dashboard dates now use your workspace time zone instead of UTC.\n\n### Security\n- Security hardening for sign-in sessions.\n\n_Changes since v2.3.0._\n",
+  "report": {
+    "title": "example-org/example-app v2.4.0: release notes draft",
+    "summary": "CSV export for reports and faster search, plus one breaking change: the v1 API is removed. 5 changes, 2 internal skipped.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Action needed",
+        "items": [
+          {
+            "text": "The v1 REST API is removed. Move your integrations to the v2 endpoints; the docs have a migration guide.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "New",
+        "items": [
+          {
+            "text": "Export any report as a CSV file to open it in a spreadsheet.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Improved",
+        "items": [
+          {
+            "text": "Search loads about twice as fast on large workspaces.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Fixed",
+        "items": [
+          {
+            "text": "Dashboard dates now use your workspace time zone instead of UTC.",
+            "citations": [
+              "S4"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Security",
+        "items": [
+          {
+            "text": "Security hardening for sign-in sessions.",
+            "citations": [
+              "S5"
+            ],
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://github.com/example-org/example-app/pull/104",
+        "title": "refactor!: remove v1 API",
+        "published_at": "2026-10-08T09:00:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S2",
+        "url": "https://github.com/example-org/example-app/pull/101",
+        "title": "feat: CSV export for reports",
+        "published_at": "2026-10-06T10:00:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S3",
+        "url": "https://github.com/example-org/example-app/pull/106",
+        "title": "perf: faster search",
+        "published_at": "2026-10-09T09:00:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S4",
+        "url": "https://github.com/example-org/example-app/pull/103",
+        "title": "fix: dashboard timezone",
+        "published_at": "2026-10-07T09:00:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S5",
+        "url": "https://github.com/example-org/example-app/pull/107",
+        "title": "fix: harden session cookies",
+        "published_at": "2026-10-09T15:00:00Z",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Draft — not published",
+    "meta": {
+      "skill": "github-release-notes-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-10T15:05:00Z"
+    }
+  }
+}
