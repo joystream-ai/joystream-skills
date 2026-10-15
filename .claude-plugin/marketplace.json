@@ -35,6 +35,14 @@
         "./skills/list-prepare",
         "./skills/results-rank"
       ]
+    },
+    {
+      "name": "channel-delivery",
+      "description": "Render any skill's channel-neutral report as Slack, Teams, Discord, email-draft or markdown content, inside each channel's limits; the agent's delivery step posts it.",
+      "source": "./",
+      "skills": [
+        "./skills/channel-message-render"
+      ]
     }
   ]
 }
