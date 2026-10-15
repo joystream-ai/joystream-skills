@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: operations
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -114,11 +114,30 @@ choose them.
      Never put an email address, phone number or free-text field in a label.
    - `query`: the item's own identifying fields (name, domain, company, role, title,
      whichever exist), then `query_hint`. Never copy an email address, phone number,
-     `notes` or any free-text field into a query. At most 200 characters, and short
-     enough that `item_key` + `label` + `query` together stay under 190 characters (so
-     the serialized slot stays ≤ 250 bytes). When too long, shorten `query_hint`: cut it
-     at a word boundary, never cut the item's own name or domain. The query always
-     starts with the item's name (or its domain when it has no name).
+     `notes` or any free-text field into a query. The query always starts with the
+     item's name (or its domain when it has no name).
+   - **The whole slot is at most 250 bytes** as compact JSON (UTF-8), e.g.
+     `{"i":0,"item_key":"domain:example.com","label":"Example Analytics (example.com)","query":"..."}`.
+     The frame around the three values (`{"i":0,"item_key":"","label":"","query":""}`)
+     takes about 45 bytes, so the three values together get at most 190 bytes, and the
+     query gets what the key and label leave:
+
+     `query budget = min(200, 190 - bytes(item_key) - bytes(label))`
+
+     Count BYTES, not characters: an ASCII character is 1 byte, an accented or
+     non-Latin letter 2-3, an emoji 4, and a `"` or `\` inside a value costs 2 (it is
+     escaped). Worked example: `domain:example.com` (18) and
+     `Example Analytics (example.com)` (31) leave a query budget of 190 - 18 - 31 = 141
+     bytes, not 200.
+   - **Truncation rule**, in this order, until the query fits its budget: (1) cut
+     `query_hint` at the last word boundary that fits, and drop a trailing comma,
+     `and` or `with`; (2) drop `query_hint` entirely; (3) shorten the `label` to the
+     item's name alone (drop the parenthesized qualifier) and recompute the budget;
+     (4) only then cut the item's own fields after its name. Never cut the item's name
+     or domain, never cut inside a word, and never pad a query to fill its budget.
+   - **Check before returning:** for each non-null slot, add up
+     bytes(item_key) + bytes(label) + bytes(query). Over 190 means the slot is over 250
+     bytes: apply the truncation rule again to that slot.
 
 7. **Lay out the slots.** `slots` has exactly `slot_count` entries. Entry *i* (from 0) is
    accepted item *i* as `{i, item_key, label, query}`; every remaining entry is `null`.
@@ -158,6 +177,9 @@ the cut.
   `query`, even when `email` is the identity key (the key itself may hold it).
 - **One query per item**, ≤ 200 characters, about that item only. Never name another
   item in a query.
+- **Each slot ≤ 250 bytes** serialized (compact JSON, UTF-8): the query is cut to
+  `min(200, 190 - bytes(item_key) - bytes(label))` bytes by the truncation rule in
+  step 6. A slot over 250 bytes may be cut by the platform before a branch reads it.
 - **Order is input order** everywhere. Do not sort, rank or judge.
 - **No side-effect language.** Never write that anything was searched, sent or posted.
 
