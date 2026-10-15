@@ -35,6 +35,14 @@
       "skills": [
         "./skills/website-aeo-geo-audit"
       ]
+    },
+    {
+      "name": "content-studio",
+      "description": "Content judgment and drafting: decide what is worth posting and draft platform-specific social posts for review.",
+      "source": "./",
+      "skills": [
+        "./skills/github-activity-post-worthiness"
+      ]
     }
   ]
 }

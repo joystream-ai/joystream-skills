@@ -1,0 +1,21 @@
+{
+  "worth_posting": false,
+  "reason": "Only dependency bumps and a CI change merged in the last 24 hours; nothing a reader outside the team would notice.",
+  "story_angles": [],
+  "source_text": "",
+  "report": {
+    "title": "example-org/example-app: post-worthiness, 2026-10-13 to 2026-10-14",
+    "summary": "Only dependency bumps and a CI change merged in the last 24 hours; nothing a reader outside the team would notice.",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "Left out 2 items outside the window."
+    ],
+    "meta": {
+      "skill": "github-activity-post-worthiness",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-14T09:00:00Z"
+    }
+  }
+}
