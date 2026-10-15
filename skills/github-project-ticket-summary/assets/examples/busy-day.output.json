@@ -1,0 +1,42 @@
+{
+  "markdown": "**Example App Roadmap — last 24h**\nClosed 2 · In progress 2 · Opened 1\n\nClosed\n- #101 Export reports as CSV — every report now has a Download CSV button, and large reports stream in chunks so the browser stays responsive. (#103)\n- #102 Login page times out on slow networks — raised the sign-in request timeout and added a retry, confirmed on a throttled connection.\n\nIn progress (current board state)\n- #104 Team invitations by email — currently In Review.\n- #106 Dark mode for the dashboard — currently In Progress.\n\nNewly opened\n- #108 Show billing history.",
+  "empty_result": false,
+  "counts": {
+    "closed": 2,
+    "in_progress": 2,
+    "opened": 1
+  },
+  "closed": [
+    {
+      "number": 101,
+      "title": "Export reports as CSV",
+      "gist": "Every report now has a Download CSV button; large reports stream in chunks so the browser stays responsive.",
+      "refs": [
+        "#103"
+      ]
+    },
+    {
+      "number": 102,
+      "title": "Login page times out on slow networks",
+      "gist": "Raised the sign-in request timeout and added a retry, confirmed on a throttled connection."
+    }
+  ],
+  "in_progress": [
+    {
+      "number": 104,
+      "title": "Team invitations by email",
+      "current_status": "In Review"
+    },
+    {
+      "number": 106,
+      "title": "Dark mode for the dashboard",
+      "current_status": "In Progress"
+    }
+  ],
+  "opened": [
+    {
+      "number": 108,
+      "title": "Show billing history"
+    }
+  ]
+}

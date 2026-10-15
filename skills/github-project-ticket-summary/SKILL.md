@@ -1,121 +1,14 @@
 ---
 name: github-project-ticket-summary
 description: Summarize ticket movement on a GitHub Project over a lookback window — what closed, what is in progress, what got opened — with a one-line gist of the actual work behind each closed ticket instead of just its title.
-compatibility: claude
 license: MIT
-skill_kind: instruction
 metadata:
   author: joystream
-  version: "2.0"
+  version: "2.1.0"
   category: developer-tools
-input_schema:
-  type: object
-  required: [lookback_hours, project_items, closed_issues, opened_issues]
-  properties:
-    lookback_hours:
-      type: integer
-      minimum: 1
-      description: The window the CALLER already applied when selecting closed_issues and opened_issues. Used for the headline label only — this skill does no time filtering of its own.
-    project_title:
-      type: string
-      description: Display name of the board, for the digest headline. Defaults to "Development Project".
-    repositories:
-      type: array
-      description: The owner/repo scope the caller applied. When the board spans repos beyond this list, the digest says so.
-      items: { type: string }
-    project_items:
-      type: array
-      description: Current board contents — the SCOPE SET. Every reported ticket must appear here.
-      items:
-        type: object
-        required: [number, title]
-        properties:
-          number: { type: integer }
-          title: { type: string }
-          repo: { type: string }
-          status: { type: string, description: Current board status column, verbatim. Current value only — never a history. }
-    closed_issues:
-      type: array
-      description: Issues whose closed_at falls inside the window, already filtered by the caller.
-      items:
-        type: object
-        required: [number, title]
-        properties:
-          number: { type: integer }
-          title: { type: string }
-          repo: { type: string }
-          closed_at: { type: string }
-          linked_pr:
-            type: object
-            description: The PR that closed the issue, when the caller resolved one.
-            properties:
-              number: { type: integer }
-              title: { type: string }
-              body: { type: string }
-          comments:
-            type: array
-            description: Trailing issue comments — the gist fallback when there is no linked PR.
-            items: { type: string }
-    opened_issues:
-      type: array
-      description: Issues whose created_at falls inside the window, already filtered by the caller.
-      items:
-        type: object
-        required: [number, title]
-        properties:
-          number: { type: integer }
-          title: { type: string }
-          repo: { type: string }
-          created_at: { type: string }
-    in_progress_statuses:
-      type: array
-      description: Board status values to treat as in-progress. Absent, treat any status that is neither a done nor a backlog column as in-progress.
-      items: { type: string }
-    trigger_type:
-      type: string
-      description: How the run started — manual, cron, or agent_call. Selects draft vs finished tone.
-      enum: [manual, cron, agent_call]
-output_schema:
-  type: object
-  required: [markdown, counts, closed, in_progress, opened]
-  properties:
-    markdown: { type: string, description: The rendered digest, ready to post verbatim. }
-    empty_result: { type: boolean, description: True when nothing closed and nothing opened in the window. }
-    scope_note: { type: string, description: Present only when board items were excluded as out-of-scope. }
-    counts:
-      type: object
-      required: [closed, in_progress, opened]
-      properties:
-        closed: { type: integer }
-        in_progress: { type: integer }
-        opened: { type: integer }
-    closed:
-      type: array
-      items:
-        type: object
-        required: [number, title, gist]
-        properties:
-          number: { type: integer }
-          title: { type: string }
-          gist: { type: string }
-          refs: { type: array, items: { type: string } }
-    in_progress:
-      type: array
-      items:
-        type: object
-        required: [number, title, current_status]
-        properties:
-          number: { type: integer }
-          title: { type: string }
-          current_status: { type: string }
-    opened:
-      type: array
-      items:
-        type: object
-        required: [number, title]
-        properties:
-          number: { type: integer }
-          title: { type: string }
+  joystream-skill-kind: instruction
+  joystream-input-schema: assets/input.schema.json
+  joystream-output-schema: assets/output.schema.json
 ---
 
 # Purpose
@@ -125,7 +18,10 @@ Produce a concise summary of ticket activity on a GitHub Project. This is the
 what's newly on the board?"* — e.g. "closed 5 tickets yesterday, here's the gist of
 each."
 
-It summarizes only. It fetches nothing and posts nowhere, so the agent that runs it
+This skill performs no external operations; the agent's earlier steps read the board,
+the issues closed and opened in the window and their linked PRs (see *Where the data
+comes from*), and a later step posts the digest. It summarizes only. It fetches nothing
+and posts nowhere, so the agent that runs it
 chooses both the source scope and the destination. Reusable on its own or alongside
 `github-repo-activity-summary`.
 
@@ -144,7 +40,7 @@ API access; never ask to be given one. A missing input is reported, not retried.
 
 # Inputs
 
-Declared in full in `input_schema` above. In prose:
+Declared in full in `assets/input.schema.json`. In prose:
 
 - **project_items** — the board's current contents. This is the **scope set**: a
   ticket is reportable only if it appears here.
@@ -222,7 +118,7 @@ Newly opened
 - #531 Digest agent for team news.
 ```
 
-Plus the structured object declared in `output_schema`: `counts`, `closed[]`,
+Plus the structured object declared in `assets/output.schema.json`: `counts`, `closed[]`,
 `in_progress[]`, `opened[]`, and `markdown`.
 
 # Constraints
@@ -264,6 +160,9 @@ It was opened and closed inside the same window. List it under Closed only, and 
 `opened and closed in window` in its gist.
 
 # Examples
+
+A worked pair is in `assets/examples/` (`busy-day.input.json` and
+`busy-day.output.json`).
 
 ## Busy sprint day
 **Input:** `lookback_hours: 24`, 12 `project_items`, 5 `closed_issues` (4 with

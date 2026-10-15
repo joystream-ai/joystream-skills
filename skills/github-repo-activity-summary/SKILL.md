@@ -1,21 +1,13 @@
 ---
 name: github-repo-activity-summary
 description: Summarize what changed in one or more GitHub repositories over a lookback window — merged PRs, opened PRs, and notable commits — as a short, human-readable digest rather than a raw dump of titles.
-compatibility: claude
 license: MIT
-allowed_tools:
-  # Dispatched through the OpenConnector gateway's execute_action, not called
-  # directly — these are the connector's own action ids (github.* namespace),
-  # not github-mcp-server tool names. See the Reasoning Flow below for exactly
-  # which actionId + input fields each step uses.
-  - github.search_issues_and_pull_requests
-  - github.list_commits
-  - github.get_commit
-  - github.get_pull_request
+allowed-tools: github.search_issues_and_pull_requests github.list_commits github.get_commit github.get_pull_request
 metadata:
   author: joystream
-  version: "1.1"
+  version: "1.2.0"
   category: developer-tools
+  joystream-skill-kind: task
 ---
 
 # Purpose
