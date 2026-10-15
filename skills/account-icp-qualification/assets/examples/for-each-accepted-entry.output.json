@@ -1,0 +1,107 @@
+{
+  "verdict": "Research",
+  "fit_score": 3,
+  "fit_reasons": [
+    "B2B SaaS that sells shipment tracking to operations teams.",
+    "Offices in Toronto, inside the target regions."
+  ],
+  "why_now": [],
+  "evidence": [
+    {
+      "claim": "Sample Logistics sells a shipment-tracking subscription to operations teams at mid-size retailers.",
+      "source_id": "S1"
+    },
+    {
+      "claim": "The about page names a Toronto headquarters.",
+      "source_id": "S2"
+    }
+  ],
+  "confidence": "medium",
+  "item_result": {
+    "item": {
+      "index": 2,
+      "item": {
+        "name": "Sample Logistics",
+        "domain": "example.org"
+      },
+      "item_key": "domain:example.org",
+      "query": "Sample Logistics example.org company overview, products, customers, size, funding, hiring, recent news"
+    },
+    "item_key": "domain:example.org",
+    "item_label": "Sample Logistics (example.org)",
+    "status": "ok",
+    "verdict": "Research",
+    "score": 3,
+    "score_scale": "0-5",
+    "headline": "B2B SaaS that sells shipment tracking to operations teams.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Sample Logistics — ICP fit",
+    "summary": "Research, 3 of 5: a B2B SaaS selling shipment tracking to operations teams from Toronto, but no source states its headcount or who buys it.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Fit",
+        "items": [
+          {
+            "text": "B2B SaaS that sells shipment tracking to operations teams.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high",
+            "label": "met"
+          },
+          {
+            "text": "Offices in Toronto, inside the target regions.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "met"
+          }
+        ]
+      },
+      {
+        "heading": "Unknown criteria",
+        "items": [
+          {
+            "text": "Size: no source states a headcount.",
+            "citations": [],
+            "label": "unknown"
+          },
+          {
+            "text": "Buyer: no source says whether a VP or Head of Operations buys it.",
+            "citations": [],
+            "label": "unknown"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.org/",
+        "title": "Sample Logistics — shipment tracking for operations teams",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.org/about",
+        "title": "About Sample Logistics",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Size: no source states a headcount.",
+      "Buyer: no source names the buying role."
+    ],
+    "meta": {
+      "skill": "account-icp-qualification",
+      "skill_version": "1.1.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}
