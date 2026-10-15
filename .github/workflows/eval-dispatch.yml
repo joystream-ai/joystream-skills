@@ -29,8 +29,10 @@ permissions:
 
 # One run per PR at a time; a newer event cancels an older run still in flight. Cancelling
 # the gate or the dispatch job loses nothing durable: the label removal is the LAST step,
-# so a cancelled fork run leaves run-evals in place and the maintainer's label still
-# dispatches on the next run; a cancelled same-repo run is superseded by the newer head.
+# so a cancelled fork run leaves run-evals in place; it does not dispatch again on its own
+# (a fork dispatches only on the labeled event, never on a later push) — the maintainer
+# removes and re-adds run-evals to dispatch the current head. A cancelled same-repo run is
+# superseded by the newer head's own run.
 concurrency:
   group: eval-dispatch-${{ github.event.pull_request.number }}
   cancel-in-progress: true
