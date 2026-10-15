@@ -4,8 +4,9 @@ description: Diagnose one JoyStream platform alert from js-monitor. Reads the al
 license: MIT
 metadata:
   author: joystream
-  version: "1.0"
+  version: "1.0.1"
   category: platform-ops
+  joystream-skill-kind: task
 allowed-tools: railway.get_service_instance railway.list_deployments railway.get_deployment railway.get_deployment_logs railway.get_environment_logs railway.get_service_metrics slack.reply_message
 ---
 

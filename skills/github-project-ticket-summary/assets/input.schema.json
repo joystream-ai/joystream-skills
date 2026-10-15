@@ -1,0 +1,141 @@
+{
+  "type": "object",
+  "required": [
+    "lookback_hours",
+    "project_items",
+    "closed_issues",
+    "opened_issues"
+  ],
+  "properties": {
+    "lookback_hours": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The window the CALLER already applied when selecting closed_issues and opened_issues. Used for the headline label only — this skill does no time filtering of its own."
+    },
+    "project_title": {
+      "type": "string",
+      "description": "Display name of the board, for the digest headline. Defaults to \"Development Project\"."
+    },
+    "repositories": {
+      "type": "array",
+      "description": "The owner/repo scope the caller applied. When the board spans repos beyond this list, the digest says so.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "project_items": {
+      "type": "array",
+      "description": "Current board contents — the SCOPE SET. Every reported ticket must appear here.",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "description": "Current board status column, verbatim. Current value only — never a history."
+          }
+        }
+      }
+    },
+    "closed_issues": {
+      "type": "array",
+      "description": "Issues whose closed_at falls inside the window, already filtered by the caller.",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          },
+          "closed_at": {
+            "type": "string"
+          },
+          "linked_pr": {
+            "type": "object",
+            "description": "The PR that closed the issue, when the caller resolved one.",
+            "properties": {
+              "number": {
+                "type": "integer"
+              },
+              "title": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              }
+            }
+          },
+          "comments": {
+            "type": "array",
+            "description": "Trailing issue comments — the gist fallback when there is no linked PR.",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "opened_issues": {
+      "type": "array",
+      "description": "Issues whose created_at falls inside the window, already filtered by the caller.",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "repo": {
+            "type": "string"
+          },
+          "created_at": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "in_progress_statuses": {
+      "type": "array",
+      "description": "Board status values to treat as in-progress. Absent, treat any status that is neither a done nor a backlog column as in-progress.",
+      "items": {
+        "type": "string"
+      }
+    },
+    "trigger_type": {
+      "type": "string",
+      "description": "How the run started — manual, cron, or agent_call. Selects draft vs finished tone.",
+      "enum": [
+        "manual",
+        "cron",
+        "agent_call"
+      ]
+    }
+  }
+}

@@ -4,18 +4,10 @@ description: Summarize a GitHub repository's releases published between a start 
 license: MIT
 metadata:
   author: joystream
-  version: "1.1"
+  version: "1.2.0"
   category: developer-tools
-skill_kind: instruction
-output_schema:
-  type: object
-  required: [channelId, text, release_count]
-  properties:
-    channelId: {type: string}
-    text: {type: string}
-    blocks: {type: array, items: {type: object}}
-    attachments: {type: array, items: {type: object}}
-    release_count: {type: integer}
+  joystream-skill-kind: instruction
+  joystream-output-schema: assets/output.schema.json
 ---
 
 # Purpose
@@ -25,7 +17,9 @@ that customers can read, and post it to one Slack channel. The reader is a custo
 customer-facing teammate: they want to know what they get, what they must do, and where
 to read more. They do not want commit prefixes, PR numbers or internal chores.
 
-This skill is the writing step between two tool calls: the agent reads the releases
+This skill performs no external operations; the agent's read-releases step before it
+supplies the `releases`, and its post step after it sends the message. This skill is the
+writing step between two tool calls: the agent reads the releases
 before it and posts the message after it. The skill itself calls no tool. It turns the
 releases it is given into the message and returns it. It never creates, edits or deletes
 a release. **What this skill needs** lists the two calls the agent must make around it.
@@ -139,7 +133,7 @@ skill → post, with GitHub and Slack credentials.
 
 # Output
 
-One JSON object, matching `output_schema` above:
+One JSON object, matching `assets/output.schema.json`:
 - `channelId`, `text`, `blocks`, `attachments`: the message from step 5. Leave out
   `attachments` when there are none.
 - `release_count` (integer): the number of releases kept.
@@ -180,6 +174,9 @@ Use the single bullet `See the release notes on GitHub for details.` under
 `:rocket: Improved`.
 
 # Examples
+
+A worked pair is in `assets/examples/` (`two-releases.input.json` and
+`two-releases.output.json`).
 
 ## Two stable releases in five days
 **Input:** `owner: joystream-ai`, `repo: joystream`, `start_date: 2026-09-28`,

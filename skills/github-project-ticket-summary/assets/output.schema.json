@@ -1,0 +1,111 @@
+{
+  "type": "object",
+  "required": [
+    "markdown",
+    "counts",
+    "closed",
+    "in_progress",
+    "opened"
+  ],
+  "properties": {
+    "markdown": {
+      "type": "string",
+      "description": "The rendered digest, ready to post verbatim."
+    },
+    "empty_result": {
+      "type": "boolean",
+      "description": "True when nothing closed and nothing opened in the window."
+    },
+    "scope_note": {
+      "type": "string",
+      "description": "Present only when board items were excluded as out-of-scope."
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "closed",
+        "in_progress",
+        "opened"
+      ],
+      "properties": {
+        "closed": {
+          "type": "integer"
+        },
+        "in_progress": {
+          "type": "integer"
+        },
+        "opened": {
+          "type": "integer"
+        }
+      }
+    },
+    "closed": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title",
+          "gist"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "gist": {
+            "type": "string"
+          },
+          "refs": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "in_progress": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title",
+          "current_status"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          },
+          "current_status": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "opened": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "number",
+          "title"
+        ],
+        "properties": {
+          "number": {
+            "type": "integer"
+          },
+          "title": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
