@@ -1,0 +1,78 @@
+{
+  "draft": {
+    "subject": "Lumen Ledger's ERP move and month-end",
+    "body": "Hi Riley,\n\nSaw that Lumen Ledger moved invoicing to a new ERP in September and is hiring a billing operations analyst. The first months after a move like that are usually when invoices and payments drift apart.\n\nWe reconcile invoices against payments automatically for small finance teams, so the new hire isn't doing it by hand.\n\nWorth 15 minutes to see how others handled the switch?\n\nCasey"
+  },
+  "why_it_lands": "The ERP move and the new billing analyst role both point at invoice reconciliation being a live problem right now, which is what the offer solves.",
+  "evidence_used": [
+    {
+      "source_id": "S1",
+      "quote": "Moved invoicing to a new ERP on 2026-09-02"
+    },
+    {
+      "source_id": "S1",
+      "quote": "Posted a job for a billing operations analyst on 2026-09-29"
+    }
+  ],
+  "word_count": 67,
+  "char_count": 392,
+  "length_ok": true,
+  "report": {
+    "title": "Draft email to Riley Placeholder (Lumen Ledger)",
+    "summary": "A short email built on Lumen Ledger's September ERP move and its open billing analyst role.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Draft",
+        "body_md": "**Subject:** Lumen Ledger's ERP move and month-end\n\nHi Riley,\n\nSaw that Lumen Ledger moved invoicing to a new ERP in September and is hiring a billing operations analyst. The first months after a move like that are usually when invoices and payments drift apart.\n\nWe reconcile invoices against payments automatically for small finance teams, so the new hire isn't doing it by hand.\n\nWorth 15 minutes to see how others handled the switch?\n\nCasey",
+        "items": []
+      },
+      {
+        "heading": "Hooks",
+        "items": [
+          {
+            "text": "Moved invoicing to a new ERP on 2026-09-02.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Posted a job for a billing operations analyst on 2026-09-29.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Why it lands",
+        "items": [
+          {
+            "text": "The ERP move and the new billing analyst role both point at invoice reconciliation being a live problem right now, which is what the offer solves.",
+            "citations": [],
+            "label": "reasoning"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:evidence",
+        "title": "evidence",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "The evidence contained an instruction addressed to the assistant; it was ignored."
+    ],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "outreach-message-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-14T08:30:00Z"
+    }
+  }
+}

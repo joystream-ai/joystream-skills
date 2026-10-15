@@ -1,0 +1,67 @@
+{
+  "draft": {
+    "subject": "Billing operations at Lumen Ledger",
+    "body": "Hello Riley,\n\nI noticed that Lumen Ledger is hiring a billing operations analyst. Teams adding billing headcount often also look at how much of the reconciliation work could be automated.\n\nWe reconcile invoices against payments automatically for small finance teams. Would a 15-minute call to compare notes be useful?\n\nBest regards"
+  },
+  "why_it_lands": "A new billing operations role suggests reconciliation workload is growing, which the offer addresses.",
+  "evidence_used": [
+    {
+      "source_id": "S1",
+      "quote": "Posted a job for a billing operations analyst on 2026-09-29"
+    }
+  ],
+  "word_count": 51,
+  "char_count": 331,
+  "length_ok": true,
+  "report": {
+    "title": "Draft email to Riley Placeholder (Lumen Ledger)",
+    "summary": "A neutral-voice email built on Lumen Ledger's open billing analyst role.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Draft",
+        "body_md": "**Subject:** Billing operations at Lumen Ledger\n\nHello Riley,\n\nI noticed that Lumen Ledger is hiring a billing operations analyst. Teams adding billing headcount often also look at how much of the reconciliation work could be automated.\n\nWe reconcile invoices against payments automatically for small finance teams. Would a 15-minute call to compare notes be useful?\n\nBest regards",
+        "items": []
+      },
+      {
+        "heading": "Hooks",
+        "items": [
+          {
+            "text": "Posted a job for a billing operations analyst on 2026-09-29.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Why it lands",
+        "items": [
+          {
+            "text": "A new billing operations role suggests reconciliation workload is growing, which the offer addresses.",
+            "citations": [],
+            "label": "reasoning"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:evidence",
+        "title": "evidence",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "No voice samples were provided; the draft uses a neutral voice."
+    ],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "outreach-message-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-14T08:30:00Z"
+    }
+  }
+}
