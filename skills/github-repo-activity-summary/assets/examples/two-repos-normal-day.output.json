@@ -8,31 +8,31 @@
         {
           "number": 212,
           "title": "Refresh expired sessions silently",
-          "url": "https://github.com/example-org/example-app/pull/212",
+          "url": "https://github.example.com/example-org/example-app/pull/212",
           "author": "dev-ana"
         },
         {
           "number": 215,
           "title": "Show IdP outage error on login",
-          "url": "https://github.com/example-org/example-app/pull/215",
+          "url": "https://github.example.com/example-org/example-app/pull/215",
           "author": "dev-ben"
         },
         {
           "number": 218,
           "title": "Stream CSV exports",
-          "url": "https://github.com/example-org/example-app/pull/218",
+          "url": "https://github.example.com/example-org/example-app/pull/218",
           "author": "dev-ana"
         },
         {
           "number": 216,
           "title": "chore(deps): bump the npm group",
-          "url": "https://github.com/example-org/example-app/pull/216",
+          "url": "https://github.example.com/example-org/example-app/pull/216",
           "author": "dependabot[bot]"
         },
         {
           "number": 217,
           "title": "chore(deps): bump actions/checkout",
-          "url": "https://github.com/example-org/example-app/pull/217",
+          "url": "https://github.example.com/example-org/example-app/pull/217",
           "author": "dependabot[bot]"
         }
       ],
@@ -40,7 +40,7 @@
         {
           "number": 220,
           "title": "Audit log per workspace",
-          "url": "https://github.com/example-org/example-app/pull/220",
+          "url": "https://github.example.com/example-org/example-app/pull/220",
           "author": "dev-cy"
         }
       ],
@@ -127,42 +127,42 @@
     "sources": [
       {
         "id": "S1",
-        "url": "https://github.com/example-org/example-app/pull/212",
+        "url": "https://github.example.com/example-org/example-app/pull/212",
         "title": "Refresh expired sessions silently",
         "published_at": "2026-10-14T13:10:00Z",
         "provider": "github"
       },
       {
         "id": "S2",
-        "url": "https://github.com/example-org/example-app/pull/215",
+        "url": "https://github.example.com/example-org/example-app/pull/215",
         "title": "Show IdP outage error on login",
         "published_at": "2026-10-14T15:45:00Z",
         "provider": "github"
       },
       {
         "id": "S3",
-        "url": "https://github.com/example-org/example-app/pull/218",
+        "url": "https://github.example.com/example-org/example-app/pull/218",
         "title": "Stream CSV exports",
         "published_at": "2026-10-14T18:20:00Z",
         "provider": "github"
       },
       {
         "id": "S4",
-        "url": "https://github.com/example-org/example-app/pull/220",
+        "url": "https://github.example.com/example-org/example-app/pull/220",
         "title": "Audit log per workspace",
         "published_at": "2026-10-14T20:05:00Z",
         "provider": "github"
       },
       {
         "id": "S5",
-        "url": "https://github.com/example-org/example-app/pull/216",
+        "url": "https://github.example.com/example-org/example-app/pull/216",
         "title": "chore(deps): bump the npm group",
         "published_at": "2026-10-14T16:00:00Z",
         "provider": "github"
       },
       {
         "id": "S6",
-        "url": "https://github.com/example-org/example-app/pull/217",
+        "url": "https://github.example.com/example-org/example-app/pull/217",
         "title": "chore(deps): bump actions/checkout",
         "published_at": "2026-10-14T16:02:00Z",
         "provider": "github"

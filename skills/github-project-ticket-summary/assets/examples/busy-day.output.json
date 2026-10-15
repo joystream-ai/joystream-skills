@@ -99,39 +99,39 @@
     "sources": [
       {
         "id": "S1",
-        "url": "https://github.com/example-org/example-app/issues/101",
+        "url": "https://github.example.com/example-org/example-app/issues/101",
         "title": "Export reports as CSV",
         "published_at": "2026-10-14T16:20:00Z",
         "provider": "github"
       },
       {
         "id": "S2",
-        "url": "https://github.com/example-org/example-app/pull/103",
+        "url": "https://github.example.com/example-org/example-app/pull/103",
         "title": "Add CSV export to the reports page",
         "provider": "github"
       },
       {
         "id": "S3",
-        "url": "https://github.com/example-org/example-app/issues/102",
+        "url": "https://github.example.com/example-org/example-app/issues/102",
         "title": "Login page times out on slow networks",
         "published_at": "2026-10-14T19:05:00Z",
         "provider": "github"
       },
       {
         "id": "S4",
-        "url": "https://github.com/example-org/example-app/issues/104",
+        "url": "https://github.example.com/example-org/example-app/issues/104",
         "title": "Team invitations by email",
         "provider": "github"
       },
       {
         "id": "S5",
-        "url": "https://github.com/example-org/example-app/issues/106",
+        "url": "https://github.example.com/example-org/example-app/issues/106",
         "title": "Dark mode for the dashboard",
         "provider": "github"
       },
       {
         "id": "S6",
-        "url": "https://github.com/example-org/example-app/issues/108",
+        "url": "https://github.example.com/example-org/example-app/issues/108",
         "title": "Show billing history",
         "published_at": "2026-10-14T21:40:00Z",
         "provider": "github"

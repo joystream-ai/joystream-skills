@@ -8,7 +8,7 @@
         {
           "number": 224,
           "title": "Use the billing currency on invoices",
-          "url": "https://github.com/example-org/example-app/pull/224",
+          "url": "https://github.example.com/example-org/example-app/pull/224",
           "author": "dev-ben"
         }
       ],
@@ -16,7 +16,7 @@
         {
           "number": 226,
           "title": "Incremental search indexing",
-          "url": "https://github.com/example-org/example-app/pull/226",
+          "url": "https://github.example.com/example-org/example-app/pull/226",
           "author": "dev-cy"
         }
       ],
@@ -61,14 +61,14 @@
     "sources": [
       {
         "id": "S1",
-        "url": "https://github.com/example-org/example-app/pull/224",
+        "url": "https://github.example.com/example-org/example-app/pull/224",
         "title": "Use the billing currency on invoices",
         "published_at": "2026-10-15T11:30:00Z",
         "provider": "github"
       },
       {
         "id": "S2",
-        "url": "https://github.com/example-org/example-app/pull/226",
+        "url": "https://github.example.com/example-org/example-app/pull/226",
         "title": "Incremental search indexing",
         "published_at": "2026-10-15T17:40:00Z",
         "provider": "github"
