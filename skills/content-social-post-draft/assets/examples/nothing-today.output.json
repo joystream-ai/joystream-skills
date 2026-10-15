@@ -1,0 +1,18 @@
+{
+  "drafts": [],
+  "reasoning": "Only dependency updates and CI changes merged this week; nothing a customer would notice.",
+  "report": {
+    "title": "Social drafts: nothing today",
+    "summary": "Nothing to post today: only dependency updates and CI changes merged this week; nothing a customer would notice.",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "content-social-post-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

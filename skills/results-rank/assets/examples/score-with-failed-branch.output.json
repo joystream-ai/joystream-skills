@@ -1,0 +1,124 @@
+{
+  "ranked": [
+    {
+      "rank": 1,
+      "item_label": "Orbit Ledger (orbit.example)",
+      "status": "ok",
+      "verdict": "Pursue",
+      "score": 5,
+      "score_scale": "0-5",
+      "headline": "Finance-ops SaaS for mid-market teams; raised a Series A this quarter.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "rank": 2,
+      "item_label": "Lumen Payroll (lumen.example)",
+      "status": "ok",
+      "verdict": "Pursue",
+      "score": 4,
+      "score_scale": "0-5",
+      "headline": "Payroll platform for 50-500 employee companies; hiring finance engineers.",
+      "source_ids": [
+        "S3"
+      ]
+    },
+    {
+      "rank": 3,
+      "item_label": "Quill Books (quill.example)",
+      "status": "ok",
+      "verdict": "Research",
+      "score": 2,
+      "score_scale": "0-5",
+      "headline": "Bookkeeping tool; customer size unclear.",
+      "source_ids": [
+        "S4"
+      ]
+    }
+  ],
+  "shown": 2,
+  "skipped_count": 0,
+  "failed": [
+    {
+      "item_label": "Kestrel Freight (kestrel.example)",
+      "branch": "judge-2",
+      "reason": "search returned no results and the step could not proceed"
+    }
+  ],
+  "report": {
+    "title": "Qualified accounts",
+    "summary": "Ranked 3 companies by score; showing the top 2. 1 failed, 0 skipped.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Top 2 of 3 companies",
+        "items": [
+          {
+            "text": "1. Orbit Ledger (orbit.example) — Pursue, 5 (0-5): Finance-ops SaaS for mid-market teams; raised a Series A this quarter.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "Pursue"
+          },
+          {
+            "text": "2. Lumen Payroll (lumen.example) — Pursue, 4 (0-5): Payroll platform for 50-500 employee companies; hiring finance engineers.",
+            "citations": [
+              "S3"
+            ],
+            "label": "Pursue"
+          },
+          {
+            "text": "…and 1 more: Quill Books (quill.example)",
+            "citations": [],
+            "label": "more"
+          }
+        ]
+      },
+      {
+        "heading": "Not judged",
+        "items": [
+          {
+            "text": "Kestrel Freight (kestrel.example): search returned no results and the step could not proceed",
+            "citations": [],
+            "label": "failed"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://orbit.example/",
+        "title": "Orbit Ledger — finance operations",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://news.example.org/finance-saas-roundup",
+        "title": "Finance SaaS funding roundup",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://lumen.example/",
+        "title": "Lumen Payroll",
+        "provider": "tavily"
+      },
+      {
+        "id": "S4",
+        "url": "https://quill.example/",
+        "title": "Quill Books",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "results-rank",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

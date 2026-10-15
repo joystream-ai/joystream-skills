@@ -1,0 +1,12 @@
+{
+  "top_n": 2,
+  "item_kind": "company",
+  "rank_by": [
+    {
+      "field": "score",
+      "direction": "desc"
+    }
+  ],
+  "title": "Qualified accounts",
+  "now": "2026-10-12T09:00:00Z"
+}

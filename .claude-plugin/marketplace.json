@@ -38,9 +38,10 @@
     },
     {
       "name": "content-studio",
-      "description": "Content judgment and drafting: decide what is worth posting and draft platform-specific social posts for review.",
+      "description": "Social content from real work: decide whether recent GitHub activity is worth a post, then draft LinkedIn and X posts in the author's voice. Drafts only; nothing is posted.",
       "source": "./",
       "skills": [
+        "./skills/content-social-post-draft",
         "./skills/github-activity-post-worthiness"
       ]
     },
@@ -63,6 +64,23 @@
       "skills": [
         "./skills/outreach-message-draft",
         "./skills/sales-call-debrief"
+      ]
+    },
+    {
+      "name": "batch-processing",
+      "description": "Generic fan-out helpers for list agents: prepare a list into bound slots, then rank the per-item results into one list.",
+      "source": "./",
+      "skills": [
+        "./skills/list-prepare",
+        "./skills/results-rank"
+      ]
+    },
+    {
+      "name": "channel-delivery",
+      "description": "Render any skill's channel-neutral report as Slack, Teams, Discord, email-draft or markdown content, inside each channel's limits; the agent's delivery step posts it.",
+      "source": "./",
+      "skills": [
+        "./skills/channel-message-render"
       ]
     }
   ]

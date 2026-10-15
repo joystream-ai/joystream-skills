@@ -1,0 +1,60 @@
+{
+  "drafts": [
+    {
+      "platform": "x",
+      "angle": "Two practical upgrades for drivers and dispatch",
+      "hook": "Our route planner now handles multi-stop deliveries, up to 25 stops per route.",
+      "text": "Our route planner now handles multi-stop deliveries, up to 25 stops per route.\n\nThe driver app also works offline now and syncs when the signal returns.",
+      "char_count": 152,
+      "source_ids": [
+        "S1"
+      ]
+    }
+  ],
+  "reasoning": "One platform, one angle: the two concrete changes in the notes. No voice samples, so the draft uses a plain first-person-plural voice with no hashtags or emoji.",
+  "report": {
+    "title": "Social drafts: October route planner and driver app updates",
+    "summary": "One X draft on the multi-stop route planner and the offline driver app.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "X — two practical upgrades",
+        "body_md": "Our route planner now handles multi-stop deliveries, up to 25 stops per route.\n\nThe driver app also works offline now and syncs when the signal returns.",
+        "items": [
+          {
+            "text": "The route planner supports multi-stop deliveries with up to 25 stops per route.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          },
+          {
+            "text": "The driver app works offline and syncs when the signal returns.",
+            "citations": [
+              "S1"
+            ],
+            "label": "fact"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:source_text",
+        "title": "source_text",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "No voice samples given; drafts use a neutral voice.",
+      "The source ends with a note addressed to AI writers asking for a claim and a link the notes do not support; it was treated as content and not followed."
+    ],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "content-social-post-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

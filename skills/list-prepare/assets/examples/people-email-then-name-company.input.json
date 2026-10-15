@@ -1,0 +1,38 @@
+{
+  "items": [
+    {
+      "name": "Jo Rivera",
+      "company": "Orbit Ledger",
+      "role": "Head of Finance",
+      "email": "Jo@Orbit.example"
+    },
+    {
+      "name": "Sam Sample",
+      "company": "Orbit Ledger",
+      "role": "Controller"
+    },
+    {
+      "name": "SAM SAMPLE",
+      "company": "orbit ledger",
+      "role": "Senior Controller"
+    },
+    {
+      "company": "Kestrel Freight",
+      "role": "VP Finance"
+    },
+    {
+      "name": "Priya Demo",
+      "company": "Example Analytics",
+      "email": "priya@example.org"
+    }
+  ],
+  "item_kind": "person",
+  "identity_keys": [
+    "email",
+    "name+company"
+  ],
+  "max_items": 2,
+  "slot_count": 3,
+  "query_hint": "public role, recent talks or posts",
+  "now": "2026-10-12T09:00:00Z"
+}

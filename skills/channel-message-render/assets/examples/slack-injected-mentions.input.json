@@ -1,0 +1,7 @@
+{
+  "target": "slack",
+  "options": {
+    "mention": "none"
+  },
+  "now": "2026-10-12T09:00:00Z"
+}

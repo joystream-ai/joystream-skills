@@ -1,0 +1,19 @@
+{
+  "ranked": [],
+  "shown": 0,
+  "skipped_count": 3,
+  "failed": [],
+  "report": {
+    "title": "Company ranking",
+    "summary": "Nothing to rank: all 3 slots were empty.",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [],
+    "meta": {
+      "skill": "results-rank",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

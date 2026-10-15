@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "slots",
+    "accepted_count",
+    "accepted",
+    "dropped"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "slots": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 25,
+      "description": "Exactly slot_count entries: accepted item i at index i, then null. Branch i is bound to slots[i].",
+      "items": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "required": [
+              "i",
+              "item_key",
+              "label",
+              "query"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "i": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 24
+              },
+              "item_key": {
+                "type": "string",
+                "maxLength": 200,
+                "pattern": "^[a-z_]+:\\S+$",
+                "description": "<key name>:<normalized value>, e.g. domain:example.com. Copied unchanged into item_result.item_key by the judge."
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60,
+                "description": "How a reader names the item, e.g. 'Orbit Ledger (orbit.example)'. No contact details."
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200,
+                "description": "One search query for this item: its own identifying fields plus the query hint."
+              }
+            }
+          }
+        ]
+      }
+    },
+    "accepted_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 25
+    },
+    "accepted": {
+      "type": "array",
+      "maxItems": 25,
+      "description": "The clean list in input order; the full item echo lives here, not in slots.",
+      "items": {
+        "type": "object",
+        "required": [
+          "index",
+          "item",
+          "item_key",
+          "query"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 24,
+            "description": "The slot index of this item."
+          },
+          "item": {
+            "type": "object",
+            "description": "The input item, copied exactly as given."
+          },
+          "item_key": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^[a-z_]+:\\S+$"
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "dropped": {
+      "type": "array",
+      "maxItems": 50,
+      "description": "Every input item that was not accepted, with the reason.",
+      "items": {
+        "type": "object",
+        "required": [
+          "item",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "item": {
+            "type": "object",
+            "description": "The input item, copied exactly as given."
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "duplicate",
+              "excluded",
+              "over_limit",
+              "unidentifiable"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "top_n": 5,
+  "item_kind": "company",
+  "rank_by": [
+    {
+      "field": "score",
+      "direction": "desc"
+    }
+  ],
+  "now": "2026-10-12T09:00:00Z"
+}
