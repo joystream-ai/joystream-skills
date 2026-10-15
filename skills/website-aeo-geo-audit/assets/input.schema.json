@@ -40,8 +40,7 @@
           },
           "content": {
             "type": "string",
-            "description": "Extracted page text (markdown or plain). Rendered text",
-            "not raw HTML.": null
+            "description": "Extracted page text (markdown or plain). Rendered text, not raw HTML."
           },
           "failed": {
             "type": "boolean",
@@ -49,8 +48,7 @@
           },
           "error": {
             "type": "string",
-            "description": "The extraction step's failure reason",
-            "verbatim.": null
+            "description": "The extraction step's failure reason, verbatim."
           }
         }
       }
@@ -69,8 +67,7 @@
           },
           "answer": {
             "type": "string",
-            "description": "The search provider's generated answer",
-            "when it returned one.": null
+            "description": "The search provider's generated answer, when it returned one."
           },
           "results": {
             "type": "array",

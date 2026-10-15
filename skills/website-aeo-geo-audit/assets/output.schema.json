@@ -176,10 +176,7 @@
     },
     "summary_markdown": {
       "type": "string",
-      "description": "Headline score",
-      "top three strengths": null,
-      "top three gaps — under summary_max_chars": null,
-      "ready to post verbatim.": null
+      "description": "Headline score, top three strengths, top three gaps — under summary_max_chars, ready to post verbatim."
     },
     "report": {
       "title": "Channel-neutral report",
