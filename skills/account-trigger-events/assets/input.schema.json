@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The company's name. Required unless item is given."
+    },
+    "domain": {
+      "type": "string",
+      "maxLength": 253,
+      "description": "Its website domain, e.g. example.com."
+    },
+    "item": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "In a fan-out agent: this branch's list-prepare slot {i, item_key, label, query}. null = empty slot.",
+      "properties": {
+        "i": {
+          "type": "integer"
+        },
+        "item_key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "lookback_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 730,
+      "default": 90,
+      "description": "Window length in days, ending at now."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    },
+    "context": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "What the reader sells or cares about; used only for why_it_matters."
+    }
+  }
+}
