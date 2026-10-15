@@ -173,6 +173,14 @@
           }
         }
       ]
+    },
+    "cut_count": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "description": "Items past the for_each loop's limit that got no branch (bind steps.<loop>.output.cut_count). Overrides a cut_count inside branches; 0, null or absent: none."
     }
   }
 }

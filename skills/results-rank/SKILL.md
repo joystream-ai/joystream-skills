@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.2.0"
   category: operations
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -90,7 +90,7 @@ ignore it (it may be a shortened copy). `null` or absent means v1.
 | `status: "skipped"` and no `item_result` | a skipped branch |
 | `status: "failed"`, or `ok` with no `item_result` | a failed branch; its `error` (else `no item_result`) is the reason |
 | `item` | names a failed branch (see below) |
-| `cut_count` (object shape only; 0 or absent: none) | items past the loop's limit that got no branch |
+| `cut_count` (the `cut_count` input, else the object shape's own; 0 or absent: none) | items past the loop's limit that got no branch |
 
 A judge `item_result` decides the group, even when another step of the branch failed
 (e.g. a best-effort search failed and the judge returned `no_evidence`). The branch name
@@ -186,7 +186,7 @@ Return the fields of `assets/output.schema.json`:
   - `sources`: the renumbered sources of step 4.
   - `unknowns`: only what the ranking could not settle (an ignored `rank_by` key, sources
     dropped at the cap). Empty otherwise.
-  - `meta`: `{skill: "results-rank", skill_version: "1.1.0", generated_at: <now>}`.
+  - `meta`: `{skill: "results-rank", skill_version: "1.2.0", generated_at: <now>}`.
 
 # Constraints
 
