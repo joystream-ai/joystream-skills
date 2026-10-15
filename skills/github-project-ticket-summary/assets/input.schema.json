@@ -1,16 +1,13 @@
 {
   "type": "object",
   "required": [
-    "lookback_hours",
-    "project_items",
-    "closed_issues",
-    "opened_issues"
+    "lookback_hours"
   ],
   "properties": {
     "lookback_hours": {
       "type": "integer",
       "minimum": 1,
-      "description": "The window the CALLER already applied when selecting closed_issues and opened_issues. Used for the headline label only — this skill does no time filtering of its own."
+      "description": "The window the earlier GitHub searches already applied when selecting closed and opened issues. Used for the headline label only — this skill does no time filtering of its own."
     },
     "project_title": {
       "type": "string",
@@ -25,7 +22,7 @@
     },
     "project_items": {
       "type": "array",
-      "description": "Current board contents — the SCOPE SET. Every reported ticket must appear here.",
+      "description": "Optional fallback for callers that pass the board inline. On JoyStream leave it unbound: the board arrives as the full output of the earlier board-read step. Current board contents — the SCOPE SET. Every reported ticket must appear here.",
       "items": {
         "type": "object",
         "required": [
@@ -45,13 +42,17 @@
           "status": {
             "type": "string",
             "description": "Current board status column, verbatim. Current value only — never a history."
+          },
+          "html_url": {
+            "type": "string",
+            "description": "The item's web address, exactly as GitHub returned it (html_url)."
           }
         }
       }
     },
     "closed_issues": {
       "type": "array",
-      "description": "Issues whose closed_at falls inside the window, already filtered by the caller.",
+      "description": "Optional fallback for callers that pass the issues inline. On JoyStream leave it unbound: closed issues arrive as the full output of the earlier closed-issue search. Issues whose closed_at falls inside the window, already filtered by the caller.",
       "items": {
         "type": "object",
         "required": [
@@ -83,6 +84,10 @@
               },
               "body": {
                 "type": "string"
+              },
+              "html_url": {
+                "type": "string",
+                "description": "The item's web address, exactly as GitHub returned it (html_url)."
               }
             }
           },
@@ -92,13 +97,17 @@
             "items": {
               "type": "string"
             }
+          },
+          "html_url": {
+            "type": "string",
+            "description": "The item's web address, exactly as GitHub returned it (html_url)."
           }
         }
       }
     },
     "opened_issues": {
       "type": "array",
-      "description": "Issues whose created_at falls inside the window, already filtered by the caller.",
+      "description": "Optional fallback for callers that pass the issues inline. On JoyStream leave it unbound: opened issues arrive as the full output of the earlier opened-issue search. Issues whose created_at falls inside the window, already filtered by the caller.",
       "items": {
         "type": "object",
         "required": [
@@ -117,6 +126,10 @@
           },
           "created_at": {
             "type": "string"
+          },
+          "html_url": {
+            "type": "string",
+            "description": "The item's web address, exactly as GitHub returned it (html_url)."
           }
         }
       }
@@ -136,6 +149,10 @@
         "cron",
         "agent_call"
       ]
+    },
+    "now": {
+      "type": "string",
+      "description": "The run's current time, ISO 8601, for report.meta.generated_at. Optional: absent, the run start time stated in the instructions is used. Never guessed."
     }
   }
 }
