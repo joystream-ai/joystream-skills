@@ -84,10 +84,11 @@ Guidelines for contributing a skill here:
 - **Standalone skills go in `skills/`, multi-skill use cases in `plugins/`.** Give each
   skill a **service-prefixed `name`** matching its directory, and register it in
   `marketplace.json`.
-- **One skill per directory**, `SKILL.md` with frontmatter: `name`, `description`,
-  `compatibility`, `license`, `allowed_tools`, `metadata`. Body follows the
-  Purpose / Inputs / Reasoning Flow / Output / Constraints / Edge Cases / Examples
-  shape used by the skills here.
+- **One skill per directory**, following the [Agent Skills spec](https://agentskills.io/specification)
+  exactly: frontmatter uses only `name`, `description`, `license`, `compatibility`,
+  `metadata` and `allowed-tools`. Input/output contracts go in `assets/*.schema.json`.
+  The full authoring standard, the template and the checks are in
+  [`CONTRIBUTING.md`](./CONTRIBUTING.md); CI enforces them.
 
 ## License
 

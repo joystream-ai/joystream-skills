@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Per-item result",
+  "description": "What a per-item judge skill returns next to its own fields, so results-rank can combine the branches of any fan-out agent. Copied into properties.item_result of each output schema that has an item_result property.",
+  "type": "object",
+  "required": [
+    "item",
+    "item_key",
+    "item_label",
+    "status",
+    "headline",
+    "source_ids"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "item": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "The item judged, echoed from the slot it came from. Null for a skipped (empty) slot."
+    },
+    "item_key": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^$|^[a-z_]+:\\S+$",
+      "description": "The stable identity key list-prepare gave this item (e.g. domain:acme.example, email:jo@acme.example). Copied unchanged. Memory, de-duplication across runs and later agents join on it. Empty only for a skipped slot."
+    },
+    "item_label": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "How to name the item in a list, e.g. 'Acme (acme.example)'. Empty for a skipped slot."
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "skipped",
+        "no_evidence"
+      ],
+      "description": "skipped = the slot was empty; no_evidence = judged, but nothing usable was found. A failed branch is detected by the platform, not reported here."
+    },
+    "verdict": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "The skill's own verdict word, e.g. Pursue, Research, Reject."
+    },
+    "score": {
+      "type": "number",
+      "description": "The skill's own score; score_scale gives its range."
+    },
+    "score_scale": {
+      "type": "string",
+      "maxLength": 20,
+      "description": "E.g. '0-5'."
+    },
+    "headline": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "One-line reason in plain text."
+    },
+    "source_ids": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^S[0-9]+$"
+      },
+      "description": "Ids in this skill's report.sources that back the headline."
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "subject"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "subject": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "The company or topic to judge."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for date windows. Optional: on JoyStream the template binds it to the run start time, and without it the skill uses the run start time from its instructions. Never guessed."
+    }
+  }
+}

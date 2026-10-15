@@ -1,0 +1,36 @@
+{
+  "findings": [
+    {
+      "claim": "Example Analytics sells a product-analytics platform to mid-market SaaS teams.",
+      "source_ids": ["S1"]
+    }
+  ],
+  "report": {
+    "title": "Example Analytics Inc.",
+    "summary": "A product-analytics vendor for mid-market SaaS teams. One finding is sourced; pricing could not be established.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "What they do",
+        "items": [
+          {
+            "text": "Sells a product-analytics platform to mid-market SaaS teams.",
+            "citations": ["S1"],
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Analytics — Product analytics for SaaS",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Pricing: the pricing page returned no text (https://example.com/pricing)."
+    ]
+  }
+}
