@@ -1,0 +1,20 @@
+{
+  "skill_name": "standup-digest",
+  "files": [
+    {
+      "path": "SKILL.md",
+      "content": "---\nname: standup-digest\ndescription: >-\n  Turn a day's standup updates into a short digest of done, doing and blocked items,\n  one line per person. Use when an agent must \"summarize standup\" or \"post the daily\n  digest\". It does not read chat or post anything.\nlicense: MIT\nmetadata:\n  author: example\n  version: 1.0\n  joystream-skill-kind: instruction\n---\n\n# Purpose\n\nLet the team lead read the standup in one minute.\n\nThis skill performs no external operations; an earlier step collects the updates.\n\n# Output\n\n- `digest`: one line per person.\n"
+    }
+  ],
+  "findings": [
+    {
+      "rule_id": "SCHEMA_SKILL_METADATA_NOT_FLAT",
+      "severity": "error",
+      "impact": "portability",
+      "detail": "metadata must map strings to strings (quote numbers like \"1.0.0\")",
+      "fix": "Make metadata map strings to strings; quote numbers such as \"1.0.0\".",
+      "autofix": true
+    }
+  ],
+  "now": "2026-10-15T09:00:00Z"
+}

@@ -1,0 +1,178 @@
+{
+  "markdown": "**example-org/example-app**\n- Sign-in is sturdier: expired sessions now refresh silently instead of logging people out, and the login form shows a clear error when the identity provider is down (#212, #215).\n- Exports finish faster: large CSV exports stream in chunks, cutting a 50k-row export from minutes to seconds (#218).\n- In flight: per-workspace audit log (#220, open).\n- Housekeeping: 2 dependency bumps.\n\n**example-org/example-docs** — no notable activity in the last 24h.",
+  "repos": [
+    {
+      "repo": "example-org/example-app",
+      "status": "ok",
+      "merged_prs": [
+        {
+          "number": 212,
+          "title": "Refresh expired sessions silently",
+          "url": "https://github.example.com/example-org/example-app/pull/212",
+          "author": "dev-ana"
+        },
+        {
+          "number": 215,
+          "title": "Show IdP outage error on login",
+          "url": "https://github.example.com/example-org/example-app/pull/215",
+          "author": "dev-ben"
+        },
+        {
+          "number": 218,
+          "title": "Stream CSV exports",
+          "url": "https://github.example.com/example-org/example-app/pull/218",
+          "author": "dev-ana"
+        },
+        {
+          "number": 216,
+          "title": "chore(deps): bump the npm group",
+          "url": "https://github.example.com/example-org/example-app/pull/216",
+          "author": "dependabot[bot]"
+        },
+        {
+          "number": 217,
+          "title": "chore(deps): bump actions/checkout",
+          "url": "https://github.example.com/example-org/example-app/pull/217",
+          "author": "dependabot[bot]"
+        }
+      ],
+      "opened_prs": [
+        {
+          "number": 220,
+          "title": "Audit log per workspace",
+          "url": "https://github.example.com/example-org/example-app/pull/220",
+          "author": "dev-cy"
+        }
+      ],
+      "themes": [
+        {
+          "label": "auth",
+          "summary": "Expired sessions now refresh silently instead of logging people out, and the login form shows a clear error when the identity provider is down (#212, #215).",
+          "refs": [
+            "#212",
+            "#215"
+          ]
+        },
+        {
+          "label": "exports",
+          "summary": "Large CSV exports stream in chunks, cutting a 50k-row export from minutes to seconds (#218).",
+          "refs": [
+            "#218"
+          ]
+        }
+      ],
+      "housekeeping_count": 2
+    },
+    {
+      "repo": "example-org/example-docs",
+      "status": "no_activity",
+      "merged_prs": [],
+      "opened_prs": [],
+      "themes": [],
+      "housekeeping_count": 0
+    }
+  ],
+  "empty_result": false,
+  "report": {
+    "title": "Repository activity — last 24h",
+    "summary": "5 PRs merged and 1 opened across 2 repositories. Sign-in no longer logs people out when a session expires.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "example-org/example-app",
+        "items": [
+          {
+            "text": "Sign-in is sturdier: expired sessions now refresh silently instead of logging people out, and the login form shows a clear error when the identity provider is down (#212, #215).",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "auth"
+          },
+          {
+            "text": "Exports finish faster: large CSV exports stream in chunks, cutting a 50k-row export from minutes to seconds (#218).",
+            "citations": [
+              "S3"
+            ],
+            "label": "exports"
+          },
+          {
+            "text": "In flight: per-workspace audit log (#220, open).",
+            "citations": [
+              "S4"
+            ],
+            "label": "in flight"
+          },
+          {
+            "text": "Housekeeping: 2 dependency bumps.",
+            "citations": [
+              "S5",
+              "S6"
+            ],
+            "label": "housekeeping"
+          }
+        ]
+      },
+      {
+        "heading": "example-org/example-docs",
+        "items": [
+          {
+            "text": "No notable activity in the last 24h.",
+            "citations": [],
+            "label": "no activity"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://github.example.com/example-org/example-app/pull/212",
+        "title": "Refresh expired sessions silently",
+        "published_at": "2026-10-14T13:10:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S2",
+        "url": "https://github.example.com/example-org/example-app/pull/215",
+        "title": "Show IdP outage error on login",
+        "published_at": "2026-10-14T15:45:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S3",
+        "url": "https://github.example.com/example-org/example-app/pull/218",
+        "title": "Stream CSV exports",
+        "published_at": "2026-10-14T18:20:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S4",
+        "url": "https://github.example.com/example-org/example-app/pull/220",
+        "title": "Audit log per workspace",
+        "published_at": "2026-10-14T20:05:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S5",
+        "url": "https://github.example.com/example-org/example-app/pull/216",
+        "title": "chore(deps): bump the npm group",
+        "published_at": "2026-10-14T16:00:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S6",
+        "url": "https://github.example.com/example-org/example-app/pull/217",
+        "title": "chore(deps): bump actions/checkout",
+        "published_at": "2026-10-14T16:02:00Z",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "github-repo-activity-summary",
+      "skill_version": "2.0.0",
+      "generated_at": "2026-10-15T09:00:00Z"
+    }
+  }
+}

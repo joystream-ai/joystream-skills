@@ -48,5 +48,7 @@ jobs:
         run: uv run scripts/validate.py --root . templates/skill-template
       - name: shared copies in sync
         run: uv run scripts/sync_shared.py --check
+      - name: README skills table in sync
+        run: uv run scripts/readme_table.py --check
       - name: tests
         run: uv run --with pytest --with pyyaml --with jsonschema pytest tests -q -rs

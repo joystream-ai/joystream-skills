@@ -1,0 +1,7 @@
+{
+  "company": "Beta Dashboards",
+  "domain": "beta.example",
+  "context": "We automate usage-to-billing reconciliation for SaaS operations teams.",
+  "lookback_days": 30,
+  "now": "2026-10-12T09:00:00Z"
+}

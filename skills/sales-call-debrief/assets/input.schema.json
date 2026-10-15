@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "transcript"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "transcript": {
+      "type": "string",
+      "minLength": 1,
+      "description": "The call transcript, usually one turn per line as 'Speaker Name: text'. Pasted, or a shortened copy of a recorder step's output (the skill then reads that output). Cited as input:transcript."
+    },
+    "attendees": {
+      "type": "array",
+      "maxItems": 50,
+      "description": "Who was on the call. A string's name is the part before ' ('; e.g. 'Jo Example (Acme Metrics, Head of Operations)'. Next-step owners come only from these names.",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              },
+              "company": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "role": {
+                "type": "string",
+                "maxLength": 200
+              }
+            }
+          }
+        ]
+      }
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The customer's company."
+    },
+    "our_side": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "Names of the attendees on the seller's side; the follow-up email is written from them."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for report.meta. Optional: on JoyStream the template binds it to the run start time, and without it the skill uses the run start time from its instructions. Never guessed, never used to compute a due date."
+    }
+  }
+}

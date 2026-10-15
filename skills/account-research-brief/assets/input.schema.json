@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "company"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "company": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "The company to brief on."
+    },
+    "domain": {
+      "type": "string",
+      "maxLength": 253,
+      "description": "Its website domain, for the identity check. Never guessed when absent."
+    },
+    "person": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Who you will contact or meet (name and/or role). Shapes the angles; not researched."
+    },
+    "context": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "What you sell or why you are reaching out."
+    },
+    "icp": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Your ideal customer profile, when the brief should note fit."
+    },
+    "lookback_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 365,
+      "default": 90,
+      "description": "How far back a recent event may be, in days."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time, and without it the skill uses the run start time from its instructions. Never guessed."
+    }
+  }
+}

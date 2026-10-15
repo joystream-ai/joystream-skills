@@ -1,0 +1,87 @@
+{
+  "summary": "Casey Demo spoke with Morgan Placeholder of Harbor Clinics. Harbor Clinics is in an EHR migration until February and is not taking on anything new before then. No next step was agreed.",
+  "pains": [],
+  "objections": [
+    {
+      "text": "No capacity for anything new until the EHR migration ends in February.",
+      "quote_ids": [
+        "Q1",
+        "Q2"
+      ]
+    }
+  ],
+  "quotes": [
+    {
+      "id": "Q1",
+      "speaker": "Morgan Placeholder",
+      "text": "We are in the middle of an EHR migration until February, so nothing new gets on the list before then."
+    },
+    {
+      "id": "Q2",
+      "speaker": "Morgan Placeholder",
+      "text": "I really cannot commit to anything right now."
+    }
+  ],
+  "next_steps": [
+    {
+      "action": "Check in after the EHR migration ends.",
+      "owner": "Casey Demo",
+      "tentative": true
+    }
+  ],
+  "follow_up_email": {
+    "subject": "Thanks for today",
+    "body": "Hi Morgan,\n\nThanks for taking the time, and for being direct about the EHR migration. Good luck with it.\n\nCasey"
+  },
+  "report": {
+    "title": "Call debrief — Harbor Clinics",
+    "summary": "Casey Demo spoke with Morgan Placeholder of Harbor Clinics. Harbor Clinics is in an EHR migration until February and is not taking on anything new before then. No next step was agreed.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Objections",
+        "items": [
+          {
+            "text": "No capacity for anything new until the EHR migration ends in February.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Next steps",
+        "items": [
+          {
+            "text": "Tentative: check in after the EHR migration ends (not agreed).",
+            "citations": [
+              "S1"
+            ],
+            "label": "Casey Demo"
+          }
+        ]
+      },
+      {
+        "heading": "Follow-up email",
+        "body_md": "**Subject:** Thanks for today\n\nHi Morgan,\n\nThanks for taking the time, and for being direct about the EHR migration. Good luck with it.\n\nCasey",
+        "items": []
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "title": "transcript",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "sales-call-debrief",
+      "skill_version": "1.0.1",
+      "generated_at": "2026-10-14T16:00:00Z"
+    }
+  }
+}

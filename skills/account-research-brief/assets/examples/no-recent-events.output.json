@@ -1,0 +1,73 @@
+{
+  "what_they_do": {
+    "text": "Runs freight logistics for retailers in the Nordics.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "recent_events": [],
+  "likely_problem_owner": {
+    "guess": "unknown",
+    "basis": "No source describes how the team is organised.",
+    "is_guess": true,
+    "source_ids": []
+  },
+  "angles": [],
+  "open_questions": [
+    "Do they bill customers on usage?",
+    "Who owns billing operations?"
+  ],
+  "brief_text": "Account brief — Gamma Logistics (gamma.example), 2026-10-12.\n- What they do: runs freight logistics for retailers in the Nordics (gamma.example/).\n- No dated events in the last 90 days.\n- Likely problem owner: unknown (no source describes how the team is organised).\nOpen questions: whether they bill on usage; who owns billing operations.",
+  "report": {
+    "title": "Gamma Logistics — account brief",
+    "summary": "A Nordic freight logistics company. No dated events in the last 90 days, and nothing in the evidence ties it to usage billing.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "What they do",
+        "items": [
+          {
+            "text": "Runs freight logistics for retailers in the Nordics.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Open questions",
+        "items": [
+          {
+            "text": "Do they bill customers on usage?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "Who owns billing operations?",
+            "citations": [],
+            "label": "question"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://gamma.example/",
+        "title": "Gamma Logistics — freight for Nordic retail",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "No dated events in the last 90 days.",
+      "Dropped 1 undated or older events (a 2024 warehouse opening).",
+      "https://gamma.example/about: the extract failed (HTTP 403)."
+    ],
+    "meta": {
+      "skill": "account-research-brief",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,364 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "description": "Message content for one channel. There is no destination field anywhere: channel, team and recipient are bound by the agent to the delivery step.",
+  "required": [
+    "target",
+    "text",
+    "items_total",
+    "items_shown"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "target": {
+      "type": "string",
+      "enum": [
+        "slack",
+        "teams",
+        "discord",
+        "email",
+        "markdown"
+      ]
+    },
+    "slack": {
+      "type": "object",
+      "required": [
+        "text",
+        "blocks"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000,
+          "description": "Notification fallback, Slack mrkdwn (escaped)."
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "description": "One Block Kit block of the kinds this skill uses.",
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "header",
+                  "section",
+                  "context",
+                  "divider"
+                ]
+              },
+              "text": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "text"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "plain_text",
+                      "mrkdwn"
+                    ]
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 3000
+                  },
+                  "emoji": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "elements": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "text"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "plain_text",
+                        "mrkdwn"
+                      ]
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 3000
+                    },
+                    "emoji": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "teams": {
+      "type": "object",
+      "required": [
+        "subject",
+        "content",
+        "contentType"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 25000,
+          "description": "Well-formed HTML: h2 h3 p ul li a strong em code br."
+        },
+        "contentType": {
+          "const": "html"
+        }
+      }
+    },
+    "discord": {
+      "type": "object",
+      "required": [
+        "content"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "content": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "embeds": {
+          "type": "array",
+          "maxItems": 10,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "maxLength": 256
+              },
+              "description": {
+                "type": "string",
+                "maxLength": 4096
+              },
+              "color": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 16777215
+              },
+              "fields": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "value"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 256
+                    },
+                    "value": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 1024
+                    },
+                    "inline": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              },
+              "footer": {
+                "type": "object",
+                "required": [
+                  "text"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2048
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "email": {
+      "type": "object",
+      "required": [
+        "subject",
+        "body",
+        "isHtml"
+      ],
+      "additionalProperties": false,
+      "description": "Content for an email draft; recipients are bound by the agent, never produced here.",
+      "properties": {
+        "subject": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "body": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 50000
+        },
+        "isHtml": {
+          "const": true
+        }
+      }
+    },
+    "markdown": {
+      "type": "object",
+      "required": [
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40000
+        }
+      }
+    },
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 3000,
+      "description": "Plain-text fallback for screen readers, notifications and plain-text-only tools. Always present."
+    },
+    "items_total": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Section items plus unknowns lines in the report."
+    },
+    "items_shown": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "How many of them the payload shows; the rest are counted in one '…and N more' line."
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "target": {
+            "const": "slack"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      },
+      "then": {
+        "required": [
+          "slack"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target": {
+            "const": "teams"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      },
+      "then": {
+        "required": [
+          "teams"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target": {
+            "const": "discord"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      },
+      "then": {
+        "required": [
+          "discord"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target": {
+            "const": "email"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      },
+      "then": {
+        "required": [
+          "email"
+        ]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "target": {
+            "const": "markdown"
+          }
+        },
+        "required": [
+          "target"
+        ]
+      },
+      "then": {
+        "required": [
+          "markdown"
+        ]
+      }
+    }
+  ]
+}

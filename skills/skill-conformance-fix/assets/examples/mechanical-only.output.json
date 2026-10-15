@@ -1,0 +1,55 @@
+{
+  "skill_name": "standup-digest",
+  "status": "nothing_to_fix",
+  "diffs": [],
+  "fixes": [
+    {
+      "finding_index": 0,
+      "rule_id": "SCHEMA_SKILL_METADATA_NOT_FLAT",
+      "action": "left_to_fixer",
+      "files": [],
+      "explanation": "version: 1.0 is a number, not a quoted string; joystream skills fix quotes it mechanically."
+    }
+  ],
+  "could_not_fix": [],
+  "report": {
+    "title": "Draft fixes for standup-digest",
+    "summary": "0 findings drafted, 1 left to joystream skills fix, 0 need the author. Run joystream skills fix.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Left to joystream skills fix",
+        "items": [
+          {
+            "text": "metadata.version is the number 1.0; the mechanical fixer quotes it.",
+            "citations": [
+              "S2"
+            ],
+            "label": "Mechanical"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:files",
+        "title": "standup-digest files",
+        "provider": "input"
+      },
+      {
+        "id": "S2",
+        "url": "input:findings",
+        "title": "Validator findings",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Draft diff — not applied",
+    "meta": {
+      "skill": "skill-conformance-fix",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-15T09:00:00Z"
+    }
+  }
+}

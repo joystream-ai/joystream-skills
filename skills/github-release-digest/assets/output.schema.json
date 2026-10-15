@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "required": [
+    "channelId",
+    "text",
+    "release_count"
+  ],
+  "properties": {
+    "channelId": {
+      "type": "string"
+    },
+    "text": {
+      "type": "string"
+    },
+    "blocks": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "attachments": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "release_count": {
+      "type": "integer"
+    }
+  }
+}

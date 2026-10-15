@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "platforms"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "platforms": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "linkedin",
+          "x"
+        ]
+      },
+      "description": "One draft per platform, each with a different angle."
+    },
+    "source_text": {
+      "type": "string",
+      "maxLength": 50000,
+      "description": "Pasted source content (blog post, notes). Cited as input:source_text. Without it, the source is the output of the steps this one depends on."
+    },
+    "voice_samples": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 3000
+      },
+      "description": "Earlier posts by the author, 3-10 recommended. Style only, never facts. Empty: a neutral voice, noted in report.unknowns."
+    },
+    "angle_hint": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "A steer for the first platform's angle, e.g. 'the customer story'."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for report.meta. Optional: without it the skill uses the run start time from its instructions. Never guessed."
+    }
+  }
+}

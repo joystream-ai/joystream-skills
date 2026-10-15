@@ -1,0 +1,10 @@
+{
+  "item": {
+    "i": 1,
+    "item_key": "domain:beta.example",
+    "label": "Beta Dashboards (beta.example)",
+    "query": "Beta Dashboards beta.example news funding hiring launch"
+  },
+  "lookback_days": 60,
+  "now": "2026-10-12T09:00:00Z"
+}

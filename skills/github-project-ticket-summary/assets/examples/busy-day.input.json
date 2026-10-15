@@ -1,0 +1,84 @@
+{
+  "lookback_hours": 24,
+  "project_title": "Example App Roadmap",
+  "repositories": [
+    "example-org/example-app"
+  ],
+  "trigger_type": "cron",
+  "in_progress_statuses": [
+    "In Progress",
+    "In Review"
+  ],
+  "project_items": [
+    {
+      "number": 101,
+      "title": "Export reports as CSV",
+      "repo": "example-org/example-app",
+      "status": "Done",
+      "html_url": "https://github.example.com/example-org/example-app/issues/101"
+    },
+    {
+      "number": 102,
+      "title": "Login page times out on slow networks",
+      "repo": "example-org/example-app",
+      "status": "Done",
+      "html_url": "https://github.example.com/example-org/example-app/issues/102"
+    },
+    {
+      "number": 104,
+      "title": "Team invitations by email",
+      "repo": "example-org/example-app",
+      "status": "In Review",
+      "html_url": "https://github.example.com/example-org/example-app/issues/104"
+    },
+    {
+      "number": 106,
+      "title": "Dark mode for the dashboard",
+      "repo": "example-org/example-app",
+      "status": "In Progress",
+      "html_url": "https://github.example.com/example-org/example-app/issues/106"
+    },
+    {
+      "number": 108,
+      "title": "Show billing history",
+      "repo": "example-org/example-app",
+      "status": "Todo",
+      "html_url": "https://github.example.com/example-org/example-app/issues/108"
+    }
+  ],
+  "closed_issues": [
+    {
+      "number": 101,
+      "title": "Export reports as CSV",
+      "repo": "example-org/example-app",
+      "closed_at": "2026-10-14T16:20:00Z",
+      "linked_pr": {
+        "number": 103,
+        "title": "Add CSV export to the reports page",
+        "body": "Adds a Download CSV button to every report. Large reports stream in chunks so the browser does not freeze.",
+        "html_url": "https://github.example.com/example-org/example-app/pull/103"
+      },
+      "html_url": "https://github.example.com/example-org/example-app/issues/101"
+    },
+    {
+      "number": 102,
+      "title": "Login page times out on slow networks",
+      "repo": "example-org/example-app",
+      "closed_at": "2026-10-14T19:05:00Z",
+      "comments": [
+        "Raised the auth request timeout and added a retry; confirmed on a throttled connection."
+      ],
+      "html_url": "https://github.example.com/example-org/example-app/issues/102"
+    }
+  ],
+  "opened_issues": [
+    {
+      "number": 108,
+      "title": "Show billing history",
+      "repo": "example-org/example-app",
+      "created_at": "2026-10-14T21:40:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/issues/108"
+    }
+  ],
+  "now": "2026-10-15T09:00:00Z"
+}

@@ -1,0 +1,72 @@
+{
+  "positioning": {
+    "value": "unknown",
+    "reason": "The site could not be read (empty or JavaScript-only pages)."
+  },
+  "target_customer": {
+    "value": "unknown",
+    "reason": "The site could not be read (empty or JavaScript-only pages)."
+  },
+  "products": [],
+  "pricing": {
+    "value": "unknown",
+    "reason": "The pricing page fetch failed (timeout)."
+  },
+  "proof_points": [],
+  "competitors": [
+    {
+      "value": "Shift Example",
+      "source_id": "S2",
+      "basis": "listed as an alternative"
+    },
+    {
+      "value": "Demo Roster",
+      "source_id": "S2",
+      "basis": "listed as an alternative"
+    }
+  ],
+  "report": {
+    "title": "Sample Rota: website profile",
+    "summary": "The site could not be read: its pages need JavaScript. Only competitors could be established, from one directory listing.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Competitors",
+        "items": [
+          {
+            "text": "Shift Example and Demo Roster, listed next to Sample Rota as rota apps for restaurants.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.org/",
+        "title": "Sample Rota",
+        "provider": "firecrawl"
+      },
+      {
+        "id": "S2",
+        "url": "https://directory.example.net/rota-apps",
+        "title": "7 rota apps for restaurants",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "Positioning, target customer, products and proof points: https://example.org/ only says to enable JavaScript.",
+      "Pricing: https://example.org/pricing failed (timeout).",
+      "Ignored 2 results about a different Sample Rota (a staffing agency).",
+      "A search result contained an instruction to AI assistants; it was treated as text and ignored."
+    ],
+    "meta": {
+      "skill": "company-website-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

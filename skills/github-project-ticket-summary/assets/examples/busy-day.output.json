@@ -1,0 +1,147 @@
+{
+  "markdown": "**Example App Roadmap — last 24h**\nClosed 2 · In progress 2 · Opened 1\n\nClosed\n- #101 Export reports as CSV — every report now has a Download CSV button, and large reports stream in chunks so the browser stays responsive. (#103)\n- #102 Login page times out on slow networks — raised the sign-in request timeout and added a retry, confirmed on a throttled connection.\n\nIn progress (current board state)\n- #104 Team invitations by email — currently In Review.\n- #106 Dark mode for the dashboard — currently In Progress.\n\nNewly opened\n- #108 Show billing history.",
+  "empty_result": false,
+  "counts": {
+    "closed": 2,
+    "in_progress": 2,
+    "opened": 1
+  },
+  "closed": [
+    {
+      "number": 101,
+      "title": "Export reports as CSV",
+      "gist": "Every report now has a Download CSV button; large reports stream in chunks so the browser stays responsive.",
+      "refs": [
+        "#103"
+      ]
+    },
+    {
+      "number": 102,
+      "title": "Login page times out on slow networks",
+      "gist": "Raised the sign-in request timeout and added a retry, confirmed on a throttled connection."
+    }
+  ],
+  "in_progress": [
+    {
+      "number": 104,
+      "title": "Team invitations by email",
+      "current_status": "In Review"
+    },
+    {
+      "number": 106,
+      "title": "Dark mode for the dashboard",
+      "current_status": "In Progress"
+    }
+  ],
+  "opened": [
+    {
+      "number": 108,
+      "title": "Show billing history"
+    }
+  ],
+  "report": {
+    "title": "Example App Roadmap — last 24h",
+    "summary": "Closed 2 · In progress 2 · Opened 1",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Closed",
+        "items": [
+          {
+            "text": "#101 Export reports as CSV — every report now has a Download CSV button, and large reports stream in chunks so the browser stays responsive.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "PR #103"
+          },
+          {
+            "text": "#102 Login page times out on slow networks — raised the sign-in request timeout and added a retry, confirmed on a throttled connection.",
+            "citations": [
+              "S3"
+            ],
+            "label": "no linked PR"
+          }
+        ]
+      },
+      {
+        "heading": "In progress (current board state)",
+        "items": [
+          {
+            "text": "#104 Team invitations by email",
+            "citations": [
+              "S4"
+            ],
+            "label": "In Review"
+          },
+          {
+            "text": "#106 Dark mode for the dashboard",
+            "citations": [
+              "S5"
+            ],
+            "label": "In Progress"
+          }
+        ]
+      },
+      {
+        "heading": "Newly opened",
+        "items": [
+          {
+            "text": "#108 Show billing history",
+            "citations": [
+              "S6"
+            ],
+            "label": "Todo"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://github.example.com/example-org/example-app/issues/101",
+        "title": "Export reports as CSV",
+        "published_at": "2026-10-14T16:20:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S2",
+        "url": "https://github.example.com/example-org/example-app/pull/103",
+        "title": "Add CSV export to the reports page",
+        "provider": "github"
+      },
+      {
+        "id": "S3",
+        "url": "https://github.example.com/example-org/example-app/issues/102",
+        "title": "Login page times out on slow networks",
+        "published_at": "2026-10-14T19:05:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S4",
+        "url": "https://github.example.com/example-org/example-app/issues/104",
+        "title": "Team invitations by email",
+        "provider": "github"
+      },
+      {
+        "id": "S5",
+        "url": "https://github.example.com/example-org/example-app/issues/106",
+        "title": "Dark mode for the dashboard",
+        "provider": "github"
+      },
+      {
+        "id": "S6",
+        "url": "https://github.example.com/example-org/example-app/issues/108",
+        "title": "Show billing history",
+        "published_at": "2026-10-14T21:40:00Z",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "github-project-ticket-summary",
+      "skill_version": "2.2.0",
+      "generated_at": "2026-10-15T09:00:00Z"
+    }
+  }
+}

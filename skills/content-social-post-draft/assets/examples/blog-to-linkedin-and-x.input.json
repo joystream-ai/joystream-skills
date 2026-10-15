@@ -1,0 +1,14 @@
+{
+  "platforms": [
+    "linkedin",
+    "x"
+  ],
+  "source_text": "# Closing the books in two days\n\nPublished 2026-10-06 by the Orbit Ledger team.\n\nUntil this month, our customers spent an average of six working days on month-end close. Most of that time went into matching bank lines to invoices by hand.\n\nToday we are releasing Auto-Match, which pairs bank transactions with open invoices as soon as they arrive. In our beta with 40 finance teams, the median close dropped from six days to two.\n\nAuto-Match is available on every plan from today, with no setup.",
+  "voice_samples": [
+    "We shipped something small this week that saves a lot of clicks.\n\nInvoices now remember the last tax rate you used. That's it. That's the post.\n\n#fintech",
+    "Month-end shouldn't feel like a fire drill.\n\nWe talked to 25 controllers this quarter. Every one of them had a spreadsheet they were afraid to close.\n\nWe're working on that.",
+    "Short version: exports are 3x faster now.\n\nLonger version: we rewrote the export pipeline so it streams instead of batching. If you export big ledgers, you'll feel it."
+  ],
+  "angle_hint": "the customer outcome",
+  "now": "2026-10-12T09:00:00Z"
+}

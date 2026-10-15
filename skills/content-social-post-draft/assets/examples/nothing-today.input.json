@@ -1,0 +1,12 @@
+{
+  "platforms": [
+    "linkedin",
+    "x"
+  ],
+  "voice_samples": [
+    "We shipped something small this week that saves a lot of clicks.\n\nInvoices now remember the last tax rate you used. That's it. That's the post.\n\n#fintech",
+    "Month-end shouldn't feel like a fire drill.\n\nWe talked to 25 controllers this quarter. Every one of them had a spreadsheet they were afraid to close.\n\nWe're working on that.",
+    "Short version: exports are 3x faster now.\n\nLonger version: we rewrote the export pipeline so it streams instead of batching. If you export big ledgers, you'll feel it."
+  ],
+  "now": "2026-10-12T09:00:00Z"
+}

@@ -1,0 +1,63 @@
+{
+  "website_url": "https://example.com",
+  "brand_name": "Example Ledger",
+  "brand_description": "Example Ledger is bookkeeping software for independent cafes and bakeries.",
+  "audit_date": "2026-10-12",
+  "pages": [
+    {
+      "url": "https://example.com/",
+      "title": "Example Ledger — Bookkeeping for independent cafes",
+      "content": "# Example Ledger\n\nExample Ledger is bookkeeping software for independent cafes and bakeries.\n\n## How does Example Ledger work?\nConnect your till and bank feed; we categorise every sale and supplier invoice.\n\n## Who is it for?\nOwner-run cafes and bakeries with one to five sites."
+    },
+    {
+      "url": "https://example.com/robots.txt",
+      "content": "User-agent: *\nAllow: /\n\nSitemap: https://example.com/sitemap.xml"
+    },
+    {
+      "url": "https://example.com/llms.txt",
+      "content": "# Example Ledger\n\n> Bookkeeping software for independent cafes and bakeries.\n\n## Docs\n- [FAQ](https://example.com/faq): answers to common setup and pricing questions\n- [About](https://example.com/about): who we are and who we serve"
+    },
+    {
+      "url": "https://example.com/sitemap.xml",
+      "content": "<urlset><url><loc>https://example.com/</loc></url><url><loc>https://example.com/faq</loc></url><url><loc>https://example.com/about</loc></url><url><loc>https://example.com/blog/launch</loc></url></urlset>"
+    },
+    {
+      "url": "https://example.com/faq",
+      "title": "FAQ — Example Ledger",
+      "content": "## Does it work with my till?\nYes, with the five most common cafe tills.\n## How much does it cost?\nFrom 29 a month per site.\n## Can my accountant log in?\nYes.\n## Is my data backed up?\nDaily.\n## Can I import last year's books?\nYes, from a spreadsheet.\n## Do you support VAT returns?\nYes.\n## Is there a contract?\nNo, monthly.\n## Can I add a second site?\nYes.\n## Where is support?\nEmail, weekdays."
+    },
+    {
+      "url": "https://example.com/about",
+      "title": "About — Example Ledger",
+      "content": "Founded in 2024 by two former cafe owners. Posted 2026-03-02 by Dana Example: We now serve 400 cafes."
+    }
+  ],
+  "search_results": [
+    {
+      "query": "Example Ledger cafe bookkeeping software",
+      "answer": "Example Ledger is bookkeeping software for independent cafes and bakeries.",
+      "results": [
+        {
+          "url": "https://example.com/",
+          "title": "Example Ledger — Bookkeeping for independent cafes",
+          "content": "Example Ledger is bookkeeping software for independent cafes and bakeries."
+        },
+        {
+          "url": "https://example.com/faq",
+          "title": "FAQ — Example Ledger",
+          "content": "Does it work with my till? Yes, with the five most common cafe tills."
+        }
+      ]
+    },
+    {
+      "query": "what is the best bookkeeping software for a small cafe",
+      "results": [
+        {
+          "url": "https://example.com/blog/launch",
+          "title": "Introducing Example Ledger",
+          "content": "Today we launch Example Ledger."
+        }
+      ]
+    }
+  ]
+}

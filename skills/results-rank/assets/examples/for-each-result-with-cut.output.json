@@ -1,0 +1,122 @@
+{
+  "ranked": [
+    {
+      "rank": 1,
+      "item_label": "Orbit Ledger (orbit.example)",
+      "status": "ok",
+      "verdict": "Pursue",
+      "score": 5,
+      "score_scale": "0-5",
+      "headline": "Finance-ops SaaS for mid-market operations teams.",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "rank": 2,
+      "item_label": "Lumen Payroll (lumen.example)",
+      "status": "ok",
+      "verdict": "Research",
+      "score": 3,
+      "score_scale": "0-5",
+      "headline": "Payroll platform; buyer is HR rather than operations.",
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "rank": 3,
+      "item_label": "Quill Books (quill.example)",
+      "status": "no_evidence",
+      "verdict": "Research",
+      "headline": "No usable public evidence about Quill Books.",
+      "source_ids": []
+    }
+  ],
+  "shown": 2,
+  "skipped_count": 0,
+  "failed": [
+    {
+      "item_label": "Kestrel Freight (kestrel.example)",
+      "branch": "branches[1]",
+      "reason": "judge: the model call timed out"
+    }
+  ],
+  "report": {
+    "title": "Qualified companies",
+    "summary": "Ranked 3 companies by verdict, then score; showing the top 2. 1 failed, 0 skipped. 2 not evaluated (over the limit).",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Top 2 of 3 companies",
+        "items": [
+          {
+            "text": "1. Orbit Ledger (orbit.example) — Pursue, 5 (0-5): Finance-ops SaaS for mid-market operations teams.",
+            "citations": [
+              "S1"
+            ],
+            "label": "Pursue"
+          },
+          {
+            "text": "2. Lumen Payroll (lumen.example) — Research, 3 (0-5): Payroll platform; buyer is HR rather than operations.",
+            "citations": [
+              "S2"
+            ],
+            "label": "Research"
+          },
+          {
+            "text": "…and 1 more: Quill Books (quill.example)",
+            "citations": [],
+            "label": "more"
+          }
+        ]
+      },
+      {
+        "heading": "Not judged",
+        "items": [
+          {
+            "text": "Kestrel Freight (kestrel.example): judge: the model call timed out",
+            "citations": [],
+            "label": "failed"
+          }
+        ]
+      },
+      {
+        "heading": "Not evaluated",
+        "items": [
+          {
+            "text": "…and 2 more companies not evaluated (over the limit).",
+            "citations": [],
+            "label": "not evaluated"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://orbit.example/",
+        "title": "Orbit Ledger — finance operations",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://lumen.example/",
+        "title": "Lumen Payroll",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://news.example.org/payroll-roundup",
+        "title": "Payroll software roundup",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "results-rank",
+      "skill_version": "1.2.1",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

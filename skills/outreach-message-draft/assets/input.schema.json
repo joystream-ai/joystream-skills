@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "person",
+    "company",
+    "evidence",
+    "channel"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "person": {
+      "description": "Who the message is to: {name, role?} or a plain string.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "role": {
+              "type": "string",
+              "maxLength": 200
+            }
+          }
+        }
+      ]
+    },
+    "company": {
+      "description": "Where they work: {name, domain?} or a plain string.",
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        {
+          "type": "object",
+          "required": [
+            "name"
+          ],
+          "additionalProperties": true,
+          "properties": {
+            "name": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            },
+            "domain": {
+              "type": "string",
+              "maxLength": 253
+            }
+          }
+        }
+      ]
+    },
+    "evidence": {
+      "type": "string",
+      "maxLength": 20000,
+      "description": "The facts to build on, pasted as text (an account brief, trigger events, notes). Cited as input:evidence."
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "email",
+        "linkedin_dm"
+      ],
+      "description": "email: subject + body of at most 120 words. linkedin_dm: body of at most 300 characters, no subject."
+    },
+    "voice_samples": {
+      "type": "array",
+      "maxItems": 10,
+      "default": [],
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 2000
+      },
+      "description": "Messages the sender wrote before; the draft matches their voice. Empty: neutral voice."
+    },
+    "offer": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "What the sender sells, in a sentence or two."
+    },
+    "sender_name": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "How to sign the message. Absent: no name in the sign-off."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for report.meta. Optional: on JoyStream the template binds it to the run start time, and without it the skill uses the run start time from its instructions. Never guessed."
+    }
+  }
+}

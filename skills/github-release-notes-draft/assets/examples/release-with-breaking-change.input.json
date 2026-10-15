@@ -1,0 +1,93 @@
+{
+  "release": {
+    "tag": "v2.4.0",
+    "name": "v2.4.0",
+    "published_at": "2026-10-10T15:00:00Z",
+    "html_url": "https://github.example.com/example-org/example-app/releases/tag/v2.4.0"
+  },
+  "previous_tag": "v2.3.0",
+  "repo": "example-org/example-app",
+  "now": "2026-10-10T15:05:00Z",
+  "merged_prs": [
+    {
+      "number": 101,
+      "title": "feat: CSV export for reports",
+      "body": "Adds a CSV export button to every report so you can open it in a spreadsheet.",
+      "labels": [
+        {
+          "name": "enhancement"
+        }
+      ],
+      "merged_at": "2026-10-06T10:00:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/pull/101"
+    },
+    {
+      "number": 102,
+      "title": "chore(deps): bump lodash",
+      "body": "Bumps lodash from 4.17.20 to 4.17.21.",
+      "labels": [
+        {
+          "name": "dependencies"
+        }
+      ],
+      "merged_at": "2026-10-06T11:00:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/pull/102"
+    },
+    {
+      "number": 103,
+      "title": "fix: dashboard timezone",
+      "body": "Dates on the dashboard now use the workspace time zone instead of UTC.",
+      "labels": [
+        {
+          "name": "bug"
+        }
+      ],
+      "merged_at": "2026-10-07T09:00:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/pull/103"
+    },
+    {
+      "number": 104,
+      "title": "refactor!: remove v1 API",
+      "body": "BREAKING: The v1 REST API is removed. Clients must switch to the /v2 endpoints; the docs have a migration guide.",
+      "labels": [
+        {
+          "name": "breaking"
+        }
+      ],
+      "merged_at": "2026-10-08T09:00:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/pull/104"
+    },
+    {
+      "number": 105,
+      "title": "ci: speed up tests",
+      "body": "Caches node_modules in CI.",
+      "labels": [
+        {
+          "name": "ci"
+        }
+      ],
+      "merged_at": "2026-10-08T12:00:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/pull/105"
+    },
+    {
+      "number": 106,
+      "title": "perf: faster search",
+      "body": "Search results load about twice as fast on large workspaces by using the new index.",
+      "labels": [],
+      "merged_at": "2026-10-09T09:00:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/pull/106"
+    },
+    {
+      "number": 107,
+      "title": "fix: harden session cookies",
+      "body": "Session cookies are now marked Secure and SameSite=Lax.",
+      "labels": [
+        {
+          "name": "security"
+        }
+      ],
+      "merged_at": "2026-10-09T15:00:00Z",
+      "html_url": "https://github.example.com/example-org/example-app/pull/107"
+    }
+  ]
+}

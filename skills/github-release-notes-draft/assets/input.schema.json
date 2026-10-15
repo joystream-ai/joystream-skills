@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "release"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "release": {
+      "type": "object",
+      "required": [
+        "tag"
+      ],
+      "additionalProperties": true,
+      "description": "The release being described, usually from the release event.",
+      "properties": {
+        "tag": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "body": {
+          "type": "string",
+          "description": "The release notes GitHub generated or the author wrote."
+        },
+        "published_at": {
+          "type": "string",
+          "description": "ISO 8601."
+        },
+        "html_url": {
+          "type": "string"
+        }
+      }
+    },
+    "previous_tag": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "The tag the changes are counted from."
+    },
+    "repo": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "owner/name, used only in the title."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

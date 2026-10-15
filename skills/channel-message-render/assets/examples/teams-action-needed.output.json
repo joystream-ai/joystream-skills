@@ -1,0 +1,11 @@
+{
+  "target": "teams",
+  "teams": {
+    "subject": "Action needed: Orbit Ledger — account brief",
+    "content": "<h2>🚨 Action needed: Orbit Ledger — account brief</h2><p>The renewal is due in 10 days and the champion has left; someone must reach the new Head of Finance this week.</p><h3>What they do</h3><ul><li>Sells month-end close automation to mid-market finance teams. (<a href=\"https://orbit.example/\">S1</a>)</li><li>Plans start at $300 per month. (<a href=\"https://orbit.example/pricing\">S2</a>)</li></ul><h3>Recent events</h3><ul><li>Raised a $12M Series A on 2026-09-22. (<a href=\"https://news.example.org/orbit-ledger-series-a\">S3</a>)</li><li>Head of Finance is Jo Rivera, per the enrichment record. (S4)</li></ul><h3>Suggested next step</h3><ul><li>Open with the month-end close timeline they describe on their blog.</li></ul><h3>Unknowns</h3><ul><li>Customer count: no public figure found.</li></ul><h3>Sources</h3><ul><li><a href=\"https://orbit.example/\">S1: Orbit Ledger — close the books faster</a></li><li><a href=\"https://orbit.example/pricing\">S2: Pricing</a></li><li><a href=\"https://news.example.org/orbit-ledger-series-a\">S3: Orbit Ledger raises $12M</a></li><li>S4: Jo Rivera (Apollo record)</li></ul><p><em>Draft — not sent</em></p>",
+    "contentType": "html"
+  },
+  "text": "🚨 Action needed: Orbit Ledger — account brief — The renewal is due in 10 days and the champion has left; someone must reach the new Head of Finance this week.",
+  "items_total": 6,
+  "items_shown": 6
+}

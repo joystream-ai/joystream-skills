@@ -1,0 +1,90 @@
+{
+  "worth_posting": true,
+  "reason": "v3.0 shipped a user-visible change developers can try now: webhooks for every workspace event.",
+  "story_angles": [
+    {
+      "angle": "Example App 3.0: every workspace event can now trigger your own webhook.",
+      "kind": "user_visible_change",
+      "evidence_refs": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "angle": "Why the team rebuilt the event queue before shipping webhooks, from the PR write-up.",
+      "kind": "story",
+      "evidence_refs": [
+        "S2"
+      ]
+    }
+  ],
+  "source_text": "Example App v3.0.0 was released on 2026-10-12. It adds webhooks: every workspace event can call a URL you configure, with retries and signed payloads. The pull request explains the event queue was rebuilt first so webhooks are delivered in order.",
+  "report": {
+    "title": "example-org/example-app: post-worthiness, 2026-10-12 to 2026-10-13",
+    "summary": "v3.0 shipped a user-visible change developers can try now: webhooks for every workspace event.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Story angles",
+        "items": [
+          {
+            "text": "Example App 3.0: every workspace event can now trigger your own webhook.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "user_visible_change"
+          },
+          {
+            "text": "Why the team rebuilt the event queue before shipping webhooks, from the PR write-up.",
+            "citations": [
+              "S2"
+            ],
+            "label": "story"
+          }
+        ]
+      },
+      {
+        "heading": "Left out",
+        "items": [
+          {
+            "text": "3 dependency bumps and a CI change: not a story.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://github.example.com/example-org/example-app/releases/tag/v3.0.0",
+        "title": "v3.0.0",
+        "published_at": "2026-10-12T16:00:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S2",
+        "url": "https://github.example.com/example-org/example-app/pull/412",
+        "title": "feat: workspace webhooks",
+        "published_at": "2026-10-12T14:30:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S3",
+        "url": "https://github.example.com/example-org/example-app/pull/415",
+        "title": "chore(deps): bump the npm group",
+        "published_at": "2026-10-12T18:00:00Z",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "github-activity-post-worthiness",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-13T09:00:00Z"
+    }
+  }
+}

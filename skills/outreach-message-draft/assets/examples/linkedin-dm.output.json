@@ -1,0 +1,64 @@
+{
+  "draft": {
+    "body": "Hi Riley, saw Lumen Ledger moved invoicing to a new ERP in September. The first months after a switch are usually when invoices and payments drift. We automate that reconciliation for small finance teams. Open to a 15-minute look?"
+  },
+  "why_it_lands": "A recent ERP move is a concrete, dated reason to talk about reconciliation now.",
+  "evidence_used": [
+    {
+      "source_id": "S1",
+      "quote": "Moved invoicing to a new ERP on 2026-09-02"
+    }
+  ],
+  "word_count": 39,
+  "char_count": 230,
+  "length_ok": true,
+  "report": {
+    "title": "Draft LinkedIn DM to Riley Placeholder (Lumen Ledger)",
+    "summary": "A LinkedIn DM built on Lumen Ledger's September ERP move.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Draft",
+        "body_md": "Hi Riley, saw Lumen Ledger moved invoicing to a new ERP in September. The first months after a switch are usually when invoices and payments drift. We automate that reconciliation for small finance teams. Open to a 15-minute look?",
+        "items": []
+      },
+      {
+        "heading": "Hooks",
+        "items": [
+          {
+            "text": "Moved invoicing to a new ERP on 2026-09-02.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Why it lands",
+        "items": [
+          {
+            "text": "A recent ERP move is a concrete, dated reason to talk about reconciliation now.",
+            "citations": [],
+            "label": "reasoning"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:evidence",
+        "title": "evidence",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "outreach-message-draft",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-14T08:30:00Z"
+    }
+  }
+}

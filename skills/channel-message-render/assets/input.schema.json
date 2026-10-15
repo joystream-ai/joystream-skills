@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "target"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "target": {
+      "type": "string",
+      "enum": [
+        "slack",
+        "teams",
+        "discord",
+        "email",
+        "markdown"
+      ],
+      "description": "The channel whose delivery action receives this payload."
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mention": {
+          "type": "string",
+          "enum": [
+            "here",
+            "none"
+          ],
+          "default": "none",
+          "description": "here adds one channel-wide @here where the target supports it; user and group mentions are never produced."
+        }
+      }
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional and not needed for rendering; never guessed."
+    }
+  }
+}

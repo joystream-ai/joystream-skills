@@ -1,0 +1,90 @@
+{
+  "skill_name": "job-post-screener",
+  "status": "draft",
+  "diffs": [
+    {
+      "path": "assets/output.schema.json",
+      "change": "add",
+      "diff": "--- /dev/null\n+++ b/assets/output.schema.json\n@@ -0,0 +1,32 @@\n+{\n+  \"$schema\": \"https://json-schema.org/draft/2020-12/schema\",\n+  \"type\": \"object\",\n+  \"required\": [\n+    \"fit\",\n+    \"reasons\",\n+    \"salary_listed\"\n+  ],\n+  \"additionalProperties\": false,\n+  \"properties\": {\n+    \"fit\": {\n+      \"type\": \"string\",\n+      \"enum\": [\n+        \"strong\",\n+        \"possible\",\n+        \"weak\"\n+      ]\n+    },\n+    \"reasons\": {\n+      \"type\": \"array\",\n+      \"maxItems\": 3,\n+      \"items\": {\n+        \"type\": \"string\"\n+      },\n+      \"description\": \"One per preference checked.\"\n+    },\n+    \"salary_listed\": {\n+      \"type\": \"boolean\",\n+      \"description\": \"True when the post states a salary range.\"\n+    }\n+  }\n+}\n"
+    }
+  ],
+  "fixes": [
+    {
+      "finding_index": 0,
+      "rule_id": "SCHEMA_SKILL_SCHEMA_FILE_INVALID",
+      "action": "fixed",
+      "files": [
+        "assets/output.schema.json"
+      ],
+      "explanation": "metadata points at assets/output.schema.json, which did not exist. The draft writes it from the body's Output section: fit, reasons and salary_listed, all required, and nothing else."
+    },
+    {
+      "finding_index": 1,
+      "rule_id": "CATALOG_EXAMPLES_MISSING",
+      "action": "could_not_fix",
+      "files": [],
+      "explanation": "An example pair needs a realistic job post and preferences, which only the author can supply."
+    }
+  ],
+  "could_not_fix": [
+    {
+      "finding_index": 1,
+      "rule_id": "CATALOG_EXAMPLES_MISSING",
+      "reason": "The files hold no sample job post or preferences to build an example from.",
+      "author_action": "Add assets/examples/<case>.input.json and <case>.output.json with a made-up job post."
+    }
+  ],
+  "report": {
+    "title": "Draft fixes for job-post-screener",
+    "summary": "1 finding drafted, 0 left to joystream skills fix, 1 needs the author.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Drafted",
+        "items": [
+          {
+            "text": "New assets/output.schema.json with fit (strong, possible or weak), reasons (at most three) and salary_listed, taken from the Output section.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "Fixed"
+          }
+        ]
+      },
+      {
+        "heading": "Needs the author",
+        "items": [
+          {
+            "text": "Add one example pair with a made-up job post and preferences.",
+            "citations": [
+              "S2"
+            ],
+            "label": "Author"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:files",
+        "title": "job-post-screener files",
+        "provider": "input"
+      },
+      {
+        "id": "S2",
+        "url": "input:findings",
+        "title": "Validator findings",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Draft diff — not applied",
+    "meta": {
+      "skill": "skill-conformance-fix",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-15T09:00:00Z"
+    }
+  }
+}
