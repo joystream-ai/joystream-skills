@@ -1,0 +1,13 @@
+{
+  "lookback_hours": 168,
+  "project_title": "Example App Roadmap",
+  "repositories": [
+    "example-org/example-app"
+  ],
+  "in_progress_statuses": [
+    "In Progress",
+    "In Review"
+  ],
+  "trigger_type": "cron",
+  "now": "2026-10-19T09:00:00Z"
+}

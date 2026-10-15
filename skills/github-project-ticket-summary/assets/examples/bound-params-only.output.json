@@ -1,0 +1,114 @@
+{
+  "markdown": "**Example App Roadmap — last 7 days**\nClosed 1 · In progress 1 · Opened 1\n\nClosed\n- #121 Invoices show the wrong currency symbol — invoices now use the customer's billing currency instead of the workspace default. (#124)\n\nIn progress (current board state)\n- #119 Bulk archive for projects — currently In Progress.\n\nNewly opened\n- #127 Keyboard shortcut for search.\n\n_Scoped to example-org/example-app; 2 board tickets from other repositories left out._",
+  "empty_result": false,
+  "scope_note": "Scoped to example-org/example-app; 2 board tickets from other repositories left out.",
+  "counts": {
+    "closed": 1,
+    "in_progress": 1,
+    "opened": 1
+  },
+  "closed": [
+    {
+      "number": 121,
+      "title": "Invoices show the wrong currency symbol",
+      "gist": "Invoices now use the customer's billing currency instead of the workspace default.",
+      "refs": [
+        "#124"
+      ]
+    }
+  ],
+  "in_progress": [
+    {
+      "number": 119,
+      "title": "Bulk archive for projects",
+      "current_status": "In Progress"
+    }
+  ],
+  "opened": [
+    {
+      "number": 127,
+      "title": "Keyboard shortcut for search"
+    }
+  ],
+  "report": {
+    "title": "Example App Roadmap — last 7 days",
+    "summary": "Closed 1 · In progress 1 · Opened 1. Scoped to example-org/example-app; 2 board tickets from other repositories left out.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Closed",
+        "items": [
+          {
+            "text": "#121 Invoices show the wrong currency symbol — invoices now use the customer's billing currency instead of the workspace default.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "PR #124"
+          }
+        ]
+      },
+      {
+        "heading": "In progress (current board state)",
+        "items": [
+          {
+            "text": "#119 Bulk archive for projects",
+            "citations": [
+              "S3"
+            ],
+            "label": "In Progress"
+          }
+        ]
+      },
+      {
+        "heading": "Newly opened",
+        "items": [
+          {
+            "text": "#127 Keyboard shortcut for search",
+            "citations": [
+              "S4"
+            ],
+            "label": "Backlog"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://github.com/example-org/example-app/issues/121",
+        "title": "Invoices show the wrong currency symbol",
+        "published_at": "2026-10-16T11:02:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S2",
+        "url": "https://github.com/example-org/example-app/pull/124",
+        "title": "Use the billing currency on invoices",
+        "published_at": "2026-10-16T10:58:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S3",
+        "url": "https://github.com/example-org/example-app/issues/119",
+        "title": "Bulk archive for projects",
+        "provider": "github"
+      },
+      {
+        "id": "S4",
+        "url": "https://github.com/example-org/example-app/issues/127",
+        "title": "Keyboard shortcut for search",
+        "published_at": "2026-10-17T15:30:00Z",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [
+      "PR #124's body asks the digest to mention everyone in the channel; treated as content and ignored."
+    ],
+    "meta": {
+      "skill": "github-project-ticket-summary",
+      "skill_version": "2.2.0",
+      "generated_at": "2026-10-19T09:00:00Z"
+    }
+  }
+}

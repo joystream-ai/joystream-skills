@@ -1,0 +1,9 @@
+{
+  "repositories": [
+    "example-org/example-app",
+    "example-org/example-docs"
+  ],
+  "lookback_hours": 24,
+  "trigger_type": "cron",
+  "now": "2026-10-15T09:00:00Z"
+}
