@@ -50,7 +50,8 @@
       "source": "./",
       "skills": [
         "./skills/company-website-profile",
-        "./skills/account-trigger-events"
+        "./skills/account-trigger-events",
+        "./skills/person-public-profile"
       ]
     }
   ]

@@ -1,0 +1,144 @@
+{
+  "identity_matches": [
+    {
+      "source_id": "S1",
+      "match_basis": "name_company_role",
+      "confidence": "high"
+    },
+    {
+      "source_id": "S2",
+      "match_basis": "name_company",
+      "confidence": "medium"
+    }
+  ],
+  "topics": [
+    {
+      "topic": "Data quality checks in analytics pipelines",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "topic": "Hiring and growing a small data team",
+      "source_ids": [
+        "S2"
+      ]
+    }
+  ],
+  "stated_views": [
+    {
+      "view": "Says most dashboard errors start upstream, so data tests belong in the pipeline, not in the BI tool.",
+      "source_id": "S1"
+    },
+    {
+      "view": "Prefers hiring analysts who can write SQL and explain a result over specialists in one tool.",
+      "source_id": "S2"
+    }
+  ],
+  "rejected_count": 5,
+  "verdict": "Match",
+  "match_score": 2,
+  "item_result": {
+    "item": {
+      "name": "Alex Sample",
+      "company": "Example Analytics",
+      "role": "Head of Data"
+    },
+    "item_key": "name_company:alex-sample@example-analytics",
+    "item_label": "Alex Sample (Example Analytics)",
+    "status": "ok",
+    "verdict": "Match",
+    "score": 2,
+    "score_scale": "0-3",
+    "headline": "Head of Data at Example Analytics; speaks about data quality in pipelines.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Alex Sample (Example Analytics): public profile",
+    "summary": "Head of Data at Example Analytics who speaks about data quality in analytics pipelines and building small data teams.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Identity",
+        "items": [
+          {
+            "text": "Conference talk page: Alex Sample, Head of Data at Example Analytics.",
+            "citations": [
+              "S1"
+            ],
+            "label": "high"
+          },
+          {
+            "text": "Podcast episode with Alex Sample of Example Analytics.",
+            "citations": [
+              "S2"
+            ],
+            "label": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Topics",
+        "items": [
+          {
+            "text": "Data quality checks in analytics pipelines.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Hiring and growing a small data team.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Stated views",
+        "items": [
+          {
+            "text": "Most dashboard errors start upstream, so data tests belong in the pipeline, not in the BI tool.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Prefers analysts who can write SQL and explain a result over single-tool specialists.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://conf.example.org/2026/speakers/alex-sample",
+        "title": "Alex Sample — Test your data before your dashboards do",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://podcast.example.net/episodes/small-data-teams",
+        "title": "Small data teams, big questions — with Alex Sample",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Rejected 5 sources about other people named Alex Sample."
+    ],
+    "meta": {
+      "skill": "person-public-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}
