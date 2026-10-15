@@ -1,0 +1,260 @@
+{
+  "overall_score": 70,
+  "verdict": "Ready to be cited, but nothing outside the site corroborates it.",
+  "site_files": {
+    "robots_txt": "present",
+    "llms_txt": "present",
+    "sitemap": "present"
+  },
+  "client_rendered": false,
+  "categories": [
+    {
+      "key": "crawler_access",
+      "score": 9,
+      "summary": "robots.txt allows all agents and declares the sitemap; pages read without JavaScript.",
+      "confidence": "verified"
+    },
+    {
+      "key": "llms_txt",
+      "score": 8,
+      "summary": "Present and well-formed; the blog is not linked.",
+      "confidence": "verified"
+    },
+    {
+      "key": "answerability",
+      "score": 9,
+      "summary": "Quotable definition, question headings, nine FAQ pairs.",
+      "confidence": "verified"
+    },
+    {
+      "key": "metadata",
+      "score": 7,
+      "summary": "Specific titles; descriptions and structured data not visible in rendered text.",
+      "confidence": "partial"
+    },
+    {
+      "key": "external_authority",
+      "score": 3,
+      "summary": "Search returned only the brand's own pages.",
+      "confidence": "verified"
+    },
+    {
+      "key": "depth_freshness",
+      "score": 6,
+      "summary": "Solid core pages; one dated update and a launch post.",
+      "confidence": "verified"
+    }
+  ],
+  "strengths": [
+    "Quotable definition on the homepage: \"Example Ledger is bookkeeping software for independent cafes and bakeries.\"",
+    "robots.txt allows every crawler (User-agent: * / Allow: /) and declares the sitemap.",
+    "llms.txt present with a summary line and described links.",
+    "Nine question-and-answer pairs on the FAQ."
+  ],
+  "gaps": [
+    "No independent coverage: both searches returned only example.com pages.",
+    "Absent from the buyer-question results except through its own launch post.",
+    "Meta descriptions and structured data could not be checked from rendered text."
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Earn independent coverage: reviews, directory listings and a guest post on a cafe-trade site that describe Example Ledger in the homepage's own words.",
+      "effort": "project"
+    },
+    {
+      "priority": 2,
+      "action": "Publish a page that answers 'best bookkeeping software for a small cafe', with a comparison table and a dated byline.",
+      "effort": "project"
+    },
+    {
+      "priority": 3,
+      "action": "Add the blog index to /llms.txt with a one-line description.",
+      "effort": "quick_fix"
+    }
+  ],
+  "caveats": [
+    "Meta descriptions, canonical tags and JSON-LD are not exposed in the extracted text; metadata is scored on titles only."
+  ],
+  "sources": [
+    {
+      "url": "https://example.com/",
+      "title": "Example Ledger — Bookkeeping for independent cafes",
+      "kind": "site"
+    },
+    {
+      "url": "https://example.com/robots.txt",
+      "kind": "site"
+    },
+    {
+      "url": "https://example.com/llms.txt",
+      "kind": "site"
+    },
+    {
+      "url": "https://example.com/faq",
+      "title": "FAQ — Example Ledger",
+      "kind": "site"
+    },
+    {
+      "url": "https://example.com/about",
+      "title": "About — Example Ledger",
+      "kind": "site"
+    },
+    {
+      "url": "https://example.com/blog/launch",
+      "title": "Introducing Example Ledger",
+      "kind": "site"
+    }
+  ],
+  "report_markdown": "# AEO/GEO audit: example.com\n2026-10-12 · Overall **70/100** — Ready to be cited, but nothing outside the site corroborates it.\n\n| Category | Score | Finding |\n|---|---|---|\n| AI crawler access | 9/10 | robots.txt allows all agents (`User-agent: *` / `Allow: /`) and declares the sitemap. |\n| llms.txt | 8/10 | Present and well-formed; links the FAQ and About pages, but not the blog. |\n| Answerability | 9/10 | Quotable definition up top; question headings; nine FAQ pairs. |\n| Metadata | 7/10 | Titles are specific on every page audited; descriptions and structured data not visible in the extracted text. |\n| External authority | 3/10 | Search returned only the brand's own pages. |\n| Depth & freshness | 6/10 | Solid core pages; one dated post (2026-03-02) and a launch post. |\n\n## Strengths\n- Quotable definition: \"Example Ledger is bookkeeping software for independent cafes and bakeries.\"\n- robots.txt allows every crawler and declares https://example.com/sitemap.xml.\n- llms.txt present, with a summary line and described links.\n- Nine real question-and-answer pairs on the FAQ.\n\n## Gaps\n- No independent coverage: both searches returned only example.com pages.\n- The site does not appear for the buyer question except through its own launch post.\n- Meta descriptions and structured data could not be checked from rendered text.\n\n## Fix first (ranked)\n1. Earn independent coverage: reviews, directory listings, a guest post on a cafe-trade site (project).\n2. Publish a comparison page answering \"best bookkeeping software for a small cafe\" (project).\n3. Add the blog to llms.txt (quick fix).\n\n## What this audit could not verify\n- Meta descriptions, canonical tags and JSON-LD: not exposed in the extracted text.\n\n## Sources\n- https://example.com/ · https://example.com/robots.txt · https://example.com/llms.txt · https://example.com/faq · https://example.com/about · https://example.com/blog/launch\n",
+  "summary_markdown": "*AEO/GEO audit — example.com: 70/100*\nReady to be cited, but nothing outside the site corroborates it.\nStrengths: AI crawlers allowed · llms.txt present · clear product definition\nGaps: no independent coverage · absent from buyer-question results · metadata unverified\nFull report available from the run.",
+  "report": {
+    "title": "AEO/GEO audit: example.com",
+    "summary": "70/100. Ready to be cited, but nothing outside the site corroborates it.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Scores",
+        "items": [
+          {
+            "text": "AI crawler access: 9/10 — robots.txt allows all agents and declares the sitemap.",
+            "citations": [
+              "S2"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "llms.txt: 8/10 — present and well-formed; the blog is not linked.",
+            "citations": [
+              "S3"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "Answerability: 9/10 — quotable definition, question headings, nine FAQ pairs.",
+            "citations": [
+              "S1",
+              "S4"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "Metadata: 7/10 — specific titles; descriptions and structured data not visible.",
+            "citations": [
+              "S1",
+              "S4",
+              "S5"
+            ],
+            "label": "partial"
+          },
+          {
+            "text": "External authority: 3/10 — search returned only the brand's own pages.",
+            "citations": [
+              "S1",
+              "S6"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "Depth & freshness: 6/10 — solid core pages; one dated update and a launch post.",
+            "citations": [
+              "S5",
+              "S6"
+            ],
+            "label": "verified"
+          }
+        ]
+      },
+      {
+        "heading": "Strengths",
+        "items": [
+          {
+            "text": "Quotable definition: \"Example Ledger is bookkeeping software for independent cafes and bakeries.\"",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Nine question-and-answer pairs on the FAQ.",
+            "citations": [
+              "S4"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Gaps",
+        "items": [
+          {
+            "text": "No independent coverage: both searches returned only example.com pages.",
+            "citations": [
+              "S1",
+              "S6"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Fix first",
+        "items": [
+          {
+            "text": "Earn independent coverage that describes Example Ledger in the homepage's own words.",
+            "citations": [],
+            "label": "project"
+          },
+          {
+            "text": "Publish a page that answers 'best bookkeeping software for a small cafe'.",
+            "citations": [],
+            "label": "project"
+          },
+          {
+            "text": "Add the blog index to /llms.txt.",
+            "citations": [],
+            "label": "quick_fix"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Ledger — Bookkeeping for independent cafes"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/robots.txt"
+      },
+      {
+        "id": "S3",
+        "url": "https://example.com/llms.txt"
+      },
+      {
+        "id": "S4",
+        "url": "https://example.com/faq",
+        "title": "FAQ — Example Ledger"
+      },
+      {
+        "id": "S5",
+        "url": "https://example.com/about",
+        "title": "About — Example Ledger"
+      },
+      {
+        "id": "S6",
+        "url": "https://example.com/blog/launch",
+        "title": "Introducing Example Ledger"
+      }
+    ],
+    "unknowns": [
+      "Meta descriptions, canonical tags and JSON-LD are not exposed in the extracted text."
+    ],
+    "meta": {
+      "skill": "website-aeo-geo-audit",
+      "skill_version": "1.1.0",
+      "generated_at": "2026-10-12"
+    }
+  }
+}

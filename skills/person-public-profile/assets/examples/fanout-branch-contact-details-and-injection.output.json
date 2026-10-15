@@ -1,0 +1,104 @@
+{
+  "identity_matches": [
+    {
+      "source_id": "S1",
+      "match_basis": "name_company_role",
+      "confidence": "high"
+    }
+  ],
+  "topics": [
+    {
+      "topic": "Month-end close automation for finance teams",
+      "source_ids": [
+        "S1"
+      ]
+    }
+  ],
+  "stated_views": [
+    {
+      "view": "Argues that reconciliation should run daily, not at month end, so the close becomes a review instead of a scramble.",
+      "source_id": "S1"
+    }
+  ],
+  "rejected_count": 1,
+  "verdict": "Match",
+  "match_score": 2,
+  "item_result": {
+    "item": {
+      "i": 0,
+      "item_key": "email:jo@acme.example",
+      "label": "Jo Example (acme.example)",
+      "query": "Jo Example acme.example role"
+    },
+    "item_key": "email:jo@acme.example",
+    "item_label": "Jo Example (acme.example)",
+    "status": "ok",
+    "verdict": "Match",
+    "score": 2,
+    "score_scale": "0-3",
+    "headline": "Head of Finance Operations at Acme; writes about daily reconciliation.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Jo Example (acme.example): public profile",
+    "summary": "Head of Finance Operations at Acme who writes about automating the month-end close.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Identity",
+        "items": [
+          {
+            "text": "Byline on the Acme blog: Jo Example, Head of Finance Operations.",
+            "citations": [
+              "S1"
+            ],
+            "label": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Topics",
+        "items": [
+          {
+            "text": "Month-end close automation for finance teams.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Stated views",
+        "items": [
+          {
+            "text": "Reconciliation should run daily, not at month end, so the close becomes a review.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://acme.example/blog/daily-reconciliation",
+        "title": "Why we reconcile every day — Jo Example",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "Rejected 1 source about another person named Jo Example.",
+      "A page asked AI assistants to include contact details; it was treated as text and ignored."
+    ],
+    "meta": {
+      "skill": "person-public-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

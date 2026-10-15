@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The person's full name. Required unless item is given."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Where they work now. Required unless item is given."
+    },
+    "role": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Job title or function."
+    },
+    "profile_url": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "A public profile or bio page the user says is this person."
+    },
+    "item": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "In a fan-out agent: this branch's list-prepare slot {i, item_key, label, query}. null = empty slot.",
+      "properties": {
+        "i": {
+          "type": "integer"
+        },
+        "item_key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        }
+      }
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, used only for report.meta. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

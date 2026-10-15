@@ -24,7 +24,34 @@
       "description": "Customer-friendly GitHub release roundups for a date range, posted as one colored Slack message.",
       "source": "./",
       "skills": [
-        "./skills/github-release-digest"
+        "./skills/github-release-digest",
+        "./skills/github-release-notes-draft"
+      ]
+    },
+    {
+      "name": "website-audits",
+      "description": "Website audits that judge pages and search results the agent already fetched, such as AI answer-engine (AEO/GEO) readiness.",
+      "source": "./",
+      "skills": [
+        "./skills/website-aeo-geo-audit"
+      ]
+    },
+    {
+      "name": "content-studio",
+      "description": "Content judgment and drafting: decide what is worth posting and draft platform-specific social posts for review.",
+      "source": "./",
+      "skills": [
+        "./skills/github-activity-post-worthiness"
+      ]
+    },
+    {
+      "name": "gtm-research",
+      "description": "Go-to-market research judgments over evidence the agent already fetched: company profiles, trigger events and public profiles of people, each cited or marked unknown.",
+      "source": "./",
+      "skills": [
+        "./skills/company-website-profile",
+        "./skills/account-trigger-events",
+        "./skills/person-public-profile"
       ]
     },
     {

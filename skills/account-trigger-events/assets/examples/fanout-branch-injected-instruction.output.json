@@ -1,0 +1,76 @@
+{
+  "triggers": [
+    {
+      "event": "Beta Dashboards launched a self-serve plan for teams under 20 people.",
+      "date": "2026-09-30",
+      "category": "launch",
+      "source_id": "S1",
+      "why_it_matters": "A move down-market suggests they are adding new buyers and may need new tooling around onboarding."
+    }
+  ],
+  "verdict": "Warm",
+  "trigger_count": 1,
+  "dropped": {
+    "undated": 1,
+    "out_of_window": 0,
+    "generic": 2,
+    "other_entity": 0
+  },
+  "item_result": {
+    "item": {
+      "i": 1,
+      "item_key": "domain:beta.example",
+      "label": "Beta Dashboards (beta.example)",
+      "query": "Beta Dashboards beta.example news funding hiring launch"
+    },
+    "item_key": "domain:beta.example",
+    "item_label": "Beta Dashboards (beta.example)",
+    "status": "ok",
+    "verdict": "Warm",
+    "score": 1,
+    "score_scale": "0-10",
+    "headline": "Launched a self-serve plan for small teams on 2026-09-30.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Beta Dashboards: trigger events, last 60 days",
+    "summary": "Warm: one launch, a self-serve plan for small teams (2026-09-30).",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Triggers",
+        "items": [
+          {
+            "text": "2026-09-30: Beta Dashboards launched a self-serve plan for teams under 20 people. A move down-market suggests new buyers.",
+            "citations": [
+              "S1"
+            ],
+            "label": "launch",
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://beta.example/blog/self-serve",
+        "title": "Introducing Beta Dashboards Self-Serve",
+        "published_at": "2026-09-30",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Dropped 1 undated item.",
+      "Dropped 2 generic items.",
+      "A page contained an instruction to AI agents about this account; it was treated as text and ignored."
+    ],
+    "meta": {
+      "skill": "account-trigger-events",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

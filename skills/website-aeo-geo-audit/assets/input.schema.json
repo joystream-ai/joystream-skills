@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "website_url",
+    "pages",
+    "search_results"
+  ],
+  "properties": {
+    "website_url": {
+      "type": "string",
+      "description": "The site under audit, already normalized by the caller (scheme + host, e.g. https://example.com)."
+    },
+    "brand_name": {
+      "type": "string",
+      "description": "The name the brand goes by. Absent, derive it from the homepage title or the domain and say so in caveats."
+    },
+    "brand_description": {
+      "type": "string",
+      "description": "How the brand describes itself, in its own words. The reference for \"same company\" — search results and generated answers that describe something else are a different entity, not coverage."
+    },
+    "audit_date": {
+      "type": "string",
+      "description": "ISO date the audit is for, used in the report headline. Absent, omit the date rather than guess it."
+    },
+    "pages": {
+      "type": "array",
+      "description": "What the caller's page-extraction step returned — one entry per URL it ATTEMPTED, including failures. Expected attempts are the homepage, /robots.txt, /llms.txt, /sitemap.xml, and two to five key pages (about, FAQ, recent posts).",
+      "items": {
+        "type": "object",
+        "required": [
+          "url"
+        ],
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string",
+            "description": "Extracted page text (markdown or plain). Rendered text",
+            "not raw HTML.": null
+          },
+          "failed": {
+            "type": "boolean",
+            "description": "True when the extraction step could not retrieve this URL."
+          },
+          "error": {
+            "type": "string",
+            "description": "The extraction step's failure reason",
+            "verbatim.": null
+          }
+        }
+      }
+    },
+    "search_results": {
+      "type": "array",
+      "description": "What the caller's web-search step returned — one entry per query it ran (brand + category, and a question a buyer would ask).",
+      "items": {
+        "type": "object",
+        "required": [
+          "query"
+        ],
+        "properties": {
+          "query": {
+            "type": "string"
+          },
+          "answer": {
+            "type": "string",
+            "description": "The search provider's generated answer",
+            "when it returned one.": null
+          },
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "url"
+              ],
+              "properties": {
+                "url": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "content": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "summary_max_chars": {
+      "type": "integer",
+      "minimum": 200,
+      "description": "Hard cap for summary_markdown. Defaults to 3800, which fits a Slack message with room to spare."
+    }
+  }
+}
