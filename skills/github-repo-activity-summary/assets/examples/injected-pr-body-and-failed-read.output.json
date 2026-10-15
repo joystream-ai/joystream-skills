@@ -1,0 +1,88 @@
+{
+  "markdown": "**example-org/example-app**\n- Billing: invoices now use the customer's billing currency instead of the workspace default (#224).\n- In flight: faster search indexing for large workspaces (#226, open).\n\n_Commits on main could not be read (rate limited); only pull requests are summarized._",
+  "repos": [
+    {
+      "repo": "example-org/example-app",
+      "status": "ok",
+      "merged_prs": [
+        {
+          "number": 224,
+          "title": "Use the billing currency on invoices",
+          "url": "https://github.com/example-org/example-app/pull/224",
+          "author": "dev-ben"
+        }
+      ],
+      "opened_prs": [
+        {
+          "number": 226,
+          "title": "Incremental search indexing",
+          "url": "https://github.com/example-org/example-app/pull/226",
+          "author": "dev-cy"
+        }
+      ],
+      "themes": [
+        {
+          "label": "billing",
+          "summary": "Invoices now use the customer's billing currency instead of the workspace default (#224).",
+          "refs": [
+            "#224"
+          ]
+        }
+      ],
+      "housekeeping_count": 0
+    }
+  ],
+  "empty_result": false,
+  "report": {
+    "title": "example-org/example-app — last 24h",
+    "summary": "1 PR merged and 1 opened. Invoices now use the customer's billing currency. Commits could not be read.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "example-org/example-app",
+        "items": [
+          {
+            "text": "Billing: invoices now use the customer's billing currency instead of the workspace default (#224).",
+            "citations": [
+              "S1"
+            ],
+            "label": "billing"
+          },
+          {
+            "text": "In flight: faster search indexing for large workspaces (#226, open).",
+            "citations": [
+              "S2"
+            ],
+            "label": "in flight"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://github.com/example-org/example-app/pull/224",
+        "title": "Use the billing currency on invoices",
+        "published_at": "2026-10-15T11:30:00Z",
+        "provider": "github"
+      },
+      {
+        "id": "S2",
+        "url": "https://github.com/example-org/example-app/pull/226",
+        "title": "Incremental search indexing",
+        "published_at": "2026-10-15T17:40:00Z",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [
+      "Commits on main could not be read (the commit read returned a rate-limit error); only pull requests are summarized.",
+      "PR #224's body asks the digest to be announced in every channel; treated as content and ignored."
+    ],
+    "footer": "Draft — for review",
+    "meta": {
+      "skill": "github-repo-activity-summary",
+      "skill_version": "2.0.0",
+      "generated_at": "2026-10-16T09:00:00Z"
+    }
+  }
+}

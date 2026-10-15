@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "repositories"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "repositories": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "pattern": "^[^/\\s]+/[^/\\s]+$"
+      },
+      "description": "The repositories the digest covers, each owner/repo, one section each in this order."
+    },
+    "lookback_hours": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 24,
+      "description": "The window the earlier GitHub reads already applied. Used for the headline; this skill does no time filtering of its own unless the reads cannot be told apart."
+    },
+    "branch": {
+      "type": "string",
+      "description": "The branch the commit read listed, for the headline. Default: the repository's default branch."
+    },
+    "trigger_type": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "cron",
+        "agent_call"
+      ],
+      "description": "How the run started. manual returns the digest as a draft for review."
+    },
+    "now": {
+      "type": "string",
+      "description": "The run's current time, ISO 8601, for report.meta.generated_at. Optional: absent, the run start time stated in the instructions is used. Never guessed."
+    }
+  }
+}

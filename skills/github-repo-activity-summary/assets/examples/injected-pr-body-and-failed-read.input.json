@@ -1,0 +1,9 @@
+{
+  "repositories": [
+    "example-org/example-app"
+  ],
+  "lookback_hours": 24,
+  "branch": "main",
+  "trigger_type": "manual",
+  "now": "2026-10-16T09:00:00Z"
+}
