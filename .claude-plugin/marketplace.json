@@ -46,21 +46,14 @@
     },
     {
       "name": "gtm-research",
-      "description": "Go-to-market research judgments over evidence the agent already fetched: company profiles, trigger events and public profiles of people, each cited or marked unknown.",
-      "source": "./",
-      "skills": [
-        "./skills/company-website-profile",
-        "./skills/account-trigger-events",
-        "./skills/person-public-profile"
-      ]
-    },
-    {
-      "name": "gtm-research",
-      "description": "Account research for founders and sellers: qualify companies against an ICP and brief before a call, each cited from the agent's search and extract steps.",
+      "description": "Go-to-market research judgments over evidence the agent already fetched: ICP qualification, pre-call briefs, company profiles, trigger events and public profiles of people, each cited or marked unknown.",
       "source": "./",
       "skills": [
         "./skills/account-icp-qualification",
-        "./skills/account-research-brief"
+        "./skills/account-research-brief",
+        "./skills/account-trigger-events",
+        "./skills/company-website-profile",
+        "./skills/person-public-profile"
       ]
     },
     {
