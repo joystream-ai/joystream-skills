@@ -43,6 +43,7 @@ identity is `{repo-owner}/{name}`, e.g. `joystream-ai/github-repo-activity-summa
 | [`list-prepare`](./skills/list-prepare/SKILL.md) | Turns a list of companies, people or any items into de-duplicated, capped **slots** (one search query each) for a fan-out agent; accounts for every dropped item | — |
 | [`results-rank`](./skills/results-rank/SKILL.md) | Combines the per-item results of a fan-out agent into **one ranked list** by the agent's rule, keeps the top N, renumbers sources and names every failed branch | — |
 | [`channel-message-render`](./skills/channel-message-render/SKILL.md) | Renders any skill's channel-neutral `report` as **message content** for Slack, Teams, Discord, an email draft or markdown, inside each channel's limits; never holds a destination | Slack, Teams, Discord, Gmail |
+| [`content-social-post-draft`](./skills/content-social-post-draft/SKILL.md) | Turns one source (blog post, changelog, shipped work) into **LinkedIn and X drafts**, one angle per platform, in the author's voice; returns no drafts on a "nothing today" verdict | — |
 
 The `github-repo-activity-summary` and `github-project-ticket-summary` skills only **read and summarize** — they return a digest and post nowhere,
 so they compose with any delivery service (Discord, Slack, email) and can be

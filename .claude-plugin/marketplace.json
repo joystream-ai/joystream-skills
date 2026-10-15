@@ -43,6 +43,14 @@
       "skills": [
         "./skills/channel-message-render"
       ]
+    },
+    {
+      "name": "content-studio",
+      "description": "Content repurposing: turn a blog post, changelog or week of shipped work into LinkedIn and X drafts in the author's voice, for a person to review and post.",
+      "source": "./",
+      "skills": [
+        "./skills/content-social-post-draft"
+      ]
     }
   ]
 }
