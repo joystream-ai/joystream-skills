@@ -1,0 +1,10 @@
+{
+  "icp": "Mid-market B2B SaaS, 50-500 employees, selling to operations teams, in Europe or North America. Exclude agencies and consultancies.",
+  "item": {
+    "i": 0,
+    "item_key": "domain:example.com",
+    "label": "Example Analytics (example.com)",
+    "query": "Example Analytics example.com product analytics customers"
+  },
+  "now": "2026-10-12T09:00:00Z"
+}

@@ -1,0 +1,32 @@
+{
+  "fit_reasons": [],
+  "why_now": [],
+  "evidence": [],
+  "item_result": {
+    "item": {
+      "name": "Acme Metrics",
+      "domain": "acme.example"
+    },
+    "item_key": "domain:acme.example",
+    "item_label": "Acme Metrics (acme.example)",
+    "status": "no_evidence",
+    "headline": "Evidence is about Acme Metrics Ltd (acme-metrics.example.org), not Acme Metrics.",
+    "source_ids": []
+  },
+  "report": {
+    "title": "Acme Metrics — ICP fit",
+    "summary": "Not judged: every search result is about a different company with the same name.",
+    "severity": "attention",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "evidence is about Acme Metrics Ltd (acme-metrics.example.org), not Acme Metrics (acme.example)",
+      "Ignored 6 results about a different Acme Metrics."
+    ],
+    "meta": {
+      "skill": "account-icp-qualification",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}
