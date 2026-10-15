@@ -1,0 +1,13 @@
+{
+  "icp": "B2B SaaS companies with 50-500 employees selling to operations or finance teams in Europe or North America; the buyer is a VP or Head of Operations; exclude agencies and consultancies.",
+  "item": {
+    "index": 2,
+    "item": {
+      "name": "Sample Logistics",
+      "domain": "example.org"
+    },
+    "item_key": "domain:example.org",
+    "query": "Sample Logistics example.org company overview, products, customers, size, funding, hiring, recent news"
+  },
+  "now": "2026-10-12T09:00:00Z"
+}

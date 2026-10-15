@@ -18,7 +18,7 @@
         "object",
         "null"
       ],
-      "description": "The one company to judge, bound to this branch's slot: a list-prepare slot {i, item_key, label, query} or a plain {name, domain?}. null means the slot is empty and the skill returns item_result.status skipped.",
+      "description": "The one company to judge, bound to this branch: a list-prepare slot {i, item_key, label, query} (fixed branches), a list-prepare accepted entry {index, item: {name, domain, ...}, item_key, query} (a for_each branch; the company is item.item), or a plain {name, domain?}. item_key is always top-level and copied unchanged into item_result.item_key. null means the slot is empty and the skill returns item_result.status skipped.",
       "additionalProperties": true,
       "properties": {
         "name": {
@@ -45,6 +45,26 @@
         "query": {
           "type": "string",
           "maxLength": 300
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The accepted entry's slot index (for_each item)."
+        },
+        "item": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "In a list-prepare accepted entry: the company record as given, e.g. {name, domain}.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "domain": {
+              "type": "string",
+              "maxLength": 253
+            }
+          }
         }
       }
     },
