@@ -43,6 +43,14 @@
       "skills": [
         "./skills/github-activity-post-worthiness"
       ]
+    },
+    {
+      "name": "gtm-research",
+      "description": "Go-to-market research judgments over evidence the agent already fetched: company profiles, trigger events and public profiles of people, each cited or marked unknown.",
+      "source": "./",
+      "skills": [
+        "./skills/company-website-profile"
+      ]
     }
   ]
 }
