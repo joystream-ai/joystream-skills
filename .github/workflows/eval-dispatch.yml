@@ -1,0 +1,138 @@
+# Dispatch the private catalog evals for a pull request (joystream-q80lo.5.8).
+#
+# A skill is "verified" only when its evals pass (KD-8), but the evals and the recorded
+# cases are private. This workflow therefore sends the private joystream repo ONLY the PR
+# number, the head and base SHAs, the head repository and the changed skill directories —
+# as a repository_dispatch event minted with a GitHub App token. It never checks out or
+# runs pull-request code: pull_request_target runs with this repository's secrets, so no
+# step may execute anything the PR controls, and every PR-controlled value reaches a step
+# through `env:` (never interpolated into a `run:` block).
+#
+# Fork pull requests dispatch ONLY when a maintainer adds the `run-evals` label, and the
+# label is removed again after dispatching, so every new head needs a fresh decision.
+# Same-repository pull requests dispatch on open and on every push.
+#
+# The private side (joystream .github/workflows/catalog-evals.yml, joystream-q80lo.5.9)
+# listens for `event_type: catalog-evals` with
+# `client_payload: {pr, sha, head_repo, base_sha, changed_skills[]}` and posts the
+# `evals/joystream` commit status for `sha` on this repository.
+
+name: eval-dispatch
+
+on:
+  pull_request_target:
+    types: [opened, synchronize, labeled]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+concurrency:
+  group: eval-dispatch-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+env:
+  # PR-controlled values, bound once here and read by steps as $VARIABLES.
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+  HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+  HEAD_REPO: ${{ github.event.pull_request.head.repo.full_name }}
+  BASE_SHA: ${{ github.event.pull_request.base.sha }}
+  BASE_REPO: ${{ github.repository }}
+  IS_FORK: ${{ github.event.pull_request.head.repo.full_name != github.repository }}
+  EVENT_ACTION: ${{ github.event.action }}
+  LABEL_NAME: ${{ github.event.label.name }}
+  RUN_EVALS_LABEL: run-evals
+  EVALS_REPO: joystream-ai/joystream
+  EVALS_EVENT_TYPE: catalog-evals
+
+jobs:
+  gate:
+    name: Decide whether this event dispatches
+    runs-on: ubuntu-latest
+    outputs:
+      dispatch: ${{ steps.decide.outputs.dispatch }}
+      fork: ${{ steps.decide.outputs.fork }}
+    steps:
+      - name: Apply the fork and label rules
+        id: decide
+        run: |
+          set -euo pipefail
+          dispatch=false
+          if [ "$IS_FORK" = "true" ]; then
+            # A fork dispatches only on the labeled event for run-evals; a push to a
+            # previously labeled fork PR does not.
+            if [ "$EVENT_ACTION" = "labeled" ] && [ "$LABEL_NAME" = "$RUN_EVALS_LABEL" ]; then
+              dispatch=true
+            fi
+          else
+            case "$EVENT_ACTION" in
+              opened|synchronize) dispatch=true ;;
+            esac
+          fi
+          echo "fork=$IS_FORK" >> "$GITHUB_OUTPUT"
+          echo "dispatch=$dispatch" >> "$GITHUB_OUTPUT"
+          echo "event=$EVENT_ACTION fork=$IS_FORK dispatch=$dispatch"
+
+  dispatch:
+    name: Send repository_dispatch to the private evals
+    needs: gate
+    if: needs.gate.outputs.dispatch == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: List the changed skill directories (no checkout of PR code)
+        id: changed
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          # GET /repos/{base}/pulls/{n}/files, paginated; keep paths under skills/<name>/
+          # or plugins/<plugin>/skills/<name>/, carried as de-duplicated skill directories.
+          changed=$(gh api "repos/$BASE_REPO/pulls/$PR_NUMBER/files" --paginate --jq '.[].filename' \
+            | jq -R -s -c '
+                split("\n")
+                | map(select(length > 0))
+                | map(capture("^(?<dir>(skills|plugins/[^/]+/skills)/[^/]+)/") | .dir)
+                | unique')
+          echo "skills=$changed" >> "$GITHUB_OUTPUT"
+          echo "changed_skills=$changed"
+
+      - name: Mint the GitHub App token (the private key is used here only)
+        id: app
+        uses: actions/create-github-app-token@d72941d797fd3113feb6b93fd0dec494b13a2547 # v1
+        with:
+          app-id: ${{ secrets.EVALS_APP_ID }}
+          private-key: ${{ secrets.EVALS_APP_PRIVATE_KEY }}
+          owner: joystream-ai
+          repositories: joystream,joystream-skills
+
+      - name: Dispatch {pr, sha, head_repo, base_sha, changed_skills[]}
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+          CHANGED_SKILLS: ${{ steps.changed.outputs.skills }}
+          # The dispatch API's payload field name, kept out of the run block so a grep for
+          # PR-controlled payload expressions inside run: blocks stays unambiguous.
+          PAYLOAD_KEY: client_payload
+        run: |
+          set -euo pipefail
+          jq -n \
+            --arg event_type "$EVALS_EVENT_TYPE" \
+            --arg key "$PAYLOAD_KEY" \
+            --argjson pr "$PR_NUMBER" \
+            --arg sha "$HEAD_SHA" \
+            --arg head_repo "$HEAD_REPO" \
+            --arg base_sha "$BASE_SHA" \
+            --argjson changed_skills "$CHANGED_SKILLS" \
+            '{event_type: $event_type,
+              ($key): {pr: $pr, sha: $sha, head_repo: $head_repo,
+                       base_sha: $base_sha, changed_skills: $changed_skills}}' \
+            > payload.json
+          gh api --method POST "repos/$EVALS_REPO/dispatches" --input payload.json
+          echo "dispatched $EVALS_EVENT_TYPE for PR #$PR_NUMBER at $HEAD_SHA"
+
+      - name: Remove the run-evals label (fork PRs re-label per head)
+        if: needs.gate.outputs.fork == 'true'
+        env:
+          GH_TOKEN: ${{ steps.app.outputs.token }}
+        run: |
+          set -euo pipefail
+          gh api --method DELETE "repos/$BASE_REPO/issues/$PR_NUMBER/labels/$RUN_EVALS_LABEL"
