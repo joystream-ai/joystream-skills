@@ -1,0 +1,410 @@
+{
+  "meeting": {
+    "title": "Orbit Ledger <> OurCo intro",
+    "start": "2026-10-20T14:15:00Z",
+    "start_local": "16:15 Europe/Berlin",
+    "company_name": "Orbit Ledger",
+    "company_domain": "orbitledger.example"
+  },
+  "tldr": [
+    {
+      "text": "Riley Sample (Controller) and Sam Example (Head of Finance Operations) from Orbit Ledger; Sam has not answered the invite.",
+      "source_ids": [
+        "S3"
+      ]
+    },
+    {
+      "text": "Orbit Ledger sells subscription billing and invoicing software to mid-size wholesalers.",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "text": "Raised a $12M Series A on 2026-09-15.",
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "text": "History: Riley asked for pilot pricing for 40 users on 2026-10-08; the CRM deal is at Proposal sent since 2026-10-12.",
+      "source_ids": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "text": "Goal: agree the pilot scope and price for 40 users and confirm the ERP integration they need.",
+      "source_ids": [
+        "S5",
+        "S6"
+      ]
+    }
+  ],
+  "attendees": [
+    {
+      "name": "Riley Sample",
+      "domain": "orbitledger.example",
+      "identity": "confirmed",
+      "role": "Controller",
+      "role_source_ids": [
+        "S3",
+        "S4"
+      ],
+      "notes": [
+        {
+          "text": "Wrote in August that the team cut its month-end close to five days and wants to cut manual reconciliation next.",
+          "source_ids": [
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sam Example",
+      "domain": "orbitledger.example",
+      "identity": "confirmed",
+      "role": "Head of Finance Operations",
+      "role_source_ids": [
+        "S3"
+      ],
+      "notes": []
+    }
+  ],
+  "attendees_not_described": 0,
+  "company": {
+    "what_they_do": {
+      "text": "Subscription billing and invoicing software for mid-size wholesalers.",
+      "source_ids": [
+        "S1"
+      ]
+    }
+  },
+  "recent_events": [
+    {
+      "event": "Raised a $12M Series A.",
+      "date": "2026-09-15",
+      "category": "funding",
+      "source_id": "S2"
+    }
+  ],
+  "history": {
+    "status": "found",
+    "items": [
+      {
+        "date": "2026-10-12",
+        "text": "CRM deal Orbit Ledger pilot moved to Proposal sent.",
+        "source_id": "S6"
+      },
+      {
+        "date": "2026-10-08",
+        "text": "Riley asked for pilot pricing for 40 users and whether we integrate with their ERP.",
+        "source_id": "S5"
+      }
+    ]
+  },
+  "goals": [
+    {
+      "text": "Agree the pilot scope and price for 40 users, the open item from Riley's last email.",
+      "source_ids": [
+        "S5",
+        "S6"
+      ]
+    },
+    {
+      "text": "Confirm which ERP the pilot must integrate with and who owns that integration.",
+      "source_ids": [
+        "S5"
+      ]
+    },
+    {
+      "text": "Learn whether the Series A changes their timeline for finance tooling.",
+      "source_ids": [
+        "S2"
+      ]
+    }
+  ],
+  "questions": [
+    "Which ERP do you run today, and who owns its integrations?",
+    "Who signs off on the pilot, and is Sam part of that decision?",
+    "What would make the pilot a success by the end of the first close?",
+    "What do you use for reconciliation today?"
+  ],
+  "risks": [
+    {
+      "text": "Sam Example has not answered the invite; the decision maker may not attend.",
+      "source_ids": []
+    }
+  ],
+  "rejected_count": 2,
+  "verdict": "Ready",
+  "item_result": {
+    "item": {
+      "index": 0,
+      "item": {
+        "event_id": "7kq2orbit01",
+        "title": "Orbit Ledger <> OurCo intro",
+        "start": "2026-10-20T14:15:00Z",
+        "end": "2026-10-20T14:45:00Z",
+        "start_local": "16:15 Europe/Berlin",
+        "label": "16:15 Orbit Ledger",
+        "company_domain": "orbitledger.example",
+        "company_name_guess": "Orbit Ledger",
+        "company_is_guess": true,
+        "other_external_domains": [],
+        "external_attendees": [
+          {
+            "name": "Riley Sample",
+            "name_source": "calendar",
+            "domain": "orbitledger.example",
+            "optional": false,
+            "response": "accepted"
+          },
+          {
+            "name": "Sam Example",
+            "name_source": "email",
+            "domain": "orbitledger.example",
+            "optional": false,
+            "response": "none"
+          }
+        ],
+        "external_attendee_count": 2,
+        "internal_attendee_count": 1,
+        "organizer_is_external": false,
+        "agenda": "Agenda: walk through their month-end close process and our pilot proposal.",
+        "people_query": "\"Riley Sample\" OR \"Sam Example\" Orbit Ledger",
+        "calendar": "google"
+      },
+      "item_key": "event:7kq2orbit01",
+      "query": "Orbit Ledger orbitledger.example company overview, recent news, funding, leadership"
+    },
+    "item_key": "event:7kq2orbit01",
+    "item_label": "16:15 Orbit Ledger",
+    "status": "ok",
+    "verdict": "Ready",
+    "headline": "Riley Sample (Controller) and Sam Example (Head of Finance Operations) from Orbit Ledger; Sam has not answered the invite.",
+    "source_ids": [
+      "S3"
+    ]
+  },
+  "report": {
+    "title": "Meeting prep: Orbit Ledger <> OurCo intro (16:15 Europe/Berlin)",
+    "summary": "Riley Sample (Controller) and Sam Example (Head of Finance Operations) from Orbit Ledger, a billing software company that raised a $12M Series A on 2026-09-15. Riley asked for pilot pricing for 40 users on 2026-10-08 and the deal is at Proposal sent. Aim to agree the pilot scope and price and confirm the ERP integration.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "TL;DR",
+        "items": [
+          {
+            "text": "Riley Sample (Controller) and Sam Example (Head of Finance Operations) from Orbit Ledger; Sam has not answered the invite.",
+            "citations": [
+              "S3"
+            ]
+          },
+          {
+            "text": "Orbit Ledger sells subscription billing and invoicing software to mid-size wholesalers.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "Raised a $12M Series A on 2026-09-15.",
+            "citations": [
+              "S2"
+            ]
+          },
+          {
+            "text": "History: Riley asked for pilot pricing for 40 users on 2026-10-08; the CRM deal is at Proposal sent since 2026-10-12.",
+            "citations": [
+              "S5",
+              "S6"
+            ]
+          },
+          {
+            "text": "Goal: agree the pilot scope and price for 40 users and confirm the ERP integration they need.",
+            "citations": [
+              "S5",
+              "S6"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Who is coming",
+        "items": [
+          {
+            "text": "Riley Sample, Controller (orbitledger.example). Wrote in August that the team cut its month-end close to five days and wants to cut manual reconciliation next.",
+            "citations": [
+              "S3",
+              "S4"
+            ],
+            "confidence": "high",
+            "label": "confirmed"
+          },
+          {
+            "text": "Sam Example, Head of Finance Operations (orbitledger.example). Has not answered the invite.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high",
+            "label": "confirmed"
+          }
+        ]
+      },
+      {
+        "heading": "The company",
+        "items": [
+          {
+            "text": "Orbit Ledger sells subscription billing and invoicing software to mid-size wholesalers.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Recent events",
+        "items": [
+          {
+            "text": "2026-09-15: raised a $12M Series A.",
+            "citations": [
+              "S2"
+            ],
+            "label": "funding"
+          }
+        ]
+      },
+      {
+        "heading": "History with us",
+        "items": [
+          {
+            "text": "2026-10-12: CRM deal Orbit Ledger pilot moved to Proposal sent.",
+            "citations": [
+              "S6"
+            ],
+            "confidence": "medium"
+          },
+          {
+            "text": "2026-10-08: Riley asked for pilot pricing for 40 users and whether we integrate with their ERP.",
+            "citations": [
+              "S5"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Goals",
+        "items": [
+          {
+            "text": "Agree the pilot scope and price for 40 users, the open item from Riley's last email.",
+            "citations": [
+              "S5",
+              "S6"
+            ],
+            "label": "goal"
+          },
+          {
+            "text": "Confirm which ERP the pilot must integrate with and who owns that integration.",
+            "citations": [
+              "S5"
+            ],
+            "label": "goal"
+          },
+          {
+            "text": "Learn whether the Series A changes their timeline for finance tooling.",
+            "citations": [
+              "S2"
+            ],
+            "label": "goal"
+          }
+        ]
+      },
+      {
+        "heading": "Questions to ask",
+        "items": [
+          {
+            "text": "Which ERP do you run today, and who owns its integrations?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "Who signs off on the pilot, and is Sam part of that decision?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "What would make the pilot a success by the end of the first close?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "What do you use for reconciliation today?",
+            "citations": [],
+            "label": "question"
+          }
+        ]
+      },
+      {
+        "heading": "Risks",
+        "items": [
+          {
+            "text": "Sam Example has not answered the invite; the decision maker may not attend.",
+            "citations": [],
+            "label": "risk"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://orbitledger.example/",
+        "title": "Orbit Ledger: billing and invoicing for wholesalers",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://news.example.com/2026/09/15/orbit-ledger-raises-series-a",
+        "title": "Orbit Ledger raises $12M Series A",
+        "published_at": "2026-09-15",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://orbitledger.example/about/team",
+        "title": "Our team | Orbit Ledger",
+        "provider": "tavily"
+      },
+      {
+        "id": "S4",
+        "url": "https://blog.example.org/riley-sample-close-in-five-days",
+        "title": "How we closed the books in five days",
+        "published_at": "2026-08-30",
+        "provider": "tavily"
+      },
+      {
+        "id": "S5",
+        "record_ref": "gmail:message/18f2a9c0d1",
+        "title": "Re: OurCo pilot",
+        "published_at": "2026-10-08",
+        "provider": "gmail"
+      },
+      {
+        "id": "S6",
+        "record_ref": "attio:record/0b7e5c2a",
+        "title": "Orbit Ledger pilot",
+        "published_at": "2026-10-12",
+        "provider": "attio"
+      }
+    ],
+    "unknowns": [
+      "Rejected 2 results about other people or companies: a chef named Sam Example and a different Orbit Ledger on orbitledger-astro.example.",
+      "Dropped 1 undated event (a careers page with no posting date)."
+    ],
+    "meta": {
+      "skill": "meeting-prep-brief",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T13:05:00Z"
+    }
+  }
+}

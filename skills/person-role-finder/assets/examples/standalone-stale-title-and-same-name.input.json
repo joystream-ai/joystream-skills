@@ -1,0 +1,11 @@
+{
+  "company": "Northwind Ledger",
+  "company_domain": "northwind-ledger.example",
+  "target_roles": [
+    "VP Marketing",
+    "Head of Demand Generation",
+    "CFO",
+    "Head of Revenue Operations"
+  ],
+  "now": "2026-10-20T09:00:00Z"
+}

@@ -1,0 +1,309 @@
+{
+  "seed": {
+    "name": "Harbor Labs",
+    "domain": "harborlabs.example",
+    "item_key": "domain:harborlabs.example"
+  },
+  "status": "seller_only",
+  "traits": [
+    {
+      "dimension": "fit",
+      "trait": "B2B data annotation company of about 60 people, per the seller.",
+      "look_for": "Sells data annotation or labeling services to other businesses.",
+      "source_ids": [
+        "S1"
+      ],
+      "confidence": "medium",
+      "seller_named": true
+    },
+    {
+      "dimension": "behavior",
+      "trait": "Runs more than 40 concurrent client projects with dedicated project managers, per the seller.",
+      "look_for": "Runs many concurrent client projects with dedicated project managers.",
+      "source_ids": [
+        "S1"
+      ],
+      "confidence": "medium",
+      "seller_named": true
+    },
+    {
+      "dimension": "pain",
+      "trait": "Project managers tracked client projects in spreadsheets, per the seller.",
+      "look_for": "Tracks client projects or delivery status in spreadsheets.",
+      "source_ids": [
+        "S1"
+      ],
+      "confidence": "medium",
+      "seller_named": true
+    },
+    {
+      "dimension": "timing",
+      "trait": "Had just opened a second office in Austin, per the seller.",
+      "look_for": "Opened a new office or location in the last 12 months.",
+      "source_ids": [
+        "S1"
+      ],
+      "confidence": "medium",
+      "seller_named": true
+    }
+  ],
+  "search_queries": [
+    {
+      "query": "\"project manager\" data annotation client projects hiring",
+      "dimension": "behavior",
+      "target": "jobs",
+      "why": "Dedicated project managers across many client projects."
+    },
+    {
+      "query": "tracking client projects in spreadsheets services company too many projects",
+      "dimension": "pain",
+      "target": "community",
+      "why": "Spreadsheet project tracking, the pain the seller names."
+    },
+    {
+      "query": "data labeling company opens new office 2026",
+      "dimension": "timing",
+      "target": "news",
+      "why": "A new office, when the seed bought."
+    },
+    {
+      "query": "\"delivery manager\" data labeling \"multiple clients\"",
+      "dimension": "behavior",
+      "target": "jobs",
+      "why": "Multi-client delivery roles show the same operating model."
+    },
+    {
+      "query": "data annotation services company 20-200 employees",
+      "dimension": "firmographic",
+      "target": "directory",
+      "why": "Same business and size; firmographic only."
+    }
+  ],
+  "rubric": [
+    {
+      "criterion": "Pain: Tracks client projects or delivery status in spreadsheets",
+      "kind": "nice_to_have",
+      "weight": 3
+    },
+    {
+      "criterion": "Behavior: Runs many concurrent client projects with dedicated project managers",
+      "kind": "nice_to_have",
+      "weight": 3
+    },
+    {
+      "criterion": "Timing: Opened a new office or location in the last 12 months",
+      "kind": "nice_to_have",
+      "weight": 2
+    },
+    {
+      "criterion": "Fit: Sells data annotation or labeling services to other businesses",
+      "kind": "nice_to_have",
+      "weight": 1
+    },
+    {
+      "criterion": "Fit: 20-200 employees",
+      "kind": "nice_to_have",
+      "weight": 1
+    }
+  ],
+  "rubric_notes": [
+    {
+      "criterion": "Pain: Tracks client projects or delivery status in spreadsheets",
+      "dimension": "pain",
+      "signals": [
+        "project tracker spreadsheet",
+        "tracking projects in Google Sheets"
+      ],
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "criterion": "Behavior: Runs many concurrent client projects with dedicated project managers",
+      "dimension": "behavior",
+      "signals": [
+        "project manager, client delivery",
+        "manage multiple client projects"
+      ],
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "criterion": "Timing: Opened a new office or location in the last 12 months",
+      "dimension": "timing",
+      "signals": [
+        "opens new office",
+        "second location"
+      ],
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "criterion": "Fit: Sells data annotation or labeling services to other businesses",
+      "dimension": "fit",
+      "signals": [
+        "data annotation services",
+        "data labeling for AI teams"
+      ],
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "criterion": "Fit: 20-200 employees",
+      "dimension": "fit",
+      "signals": [
+        "employees"
+      ],
+      "source_ids": [
+        "S1"
+      ]
+    }
+  ],
+  "icp_text": "Fit: B2B data annotation or labeling services companies with 20-200 employees.\nBehavior: runs many concurrent client projects with dedicated project managers.\nPain: tracks client projects or delivery status in spreadsheets.\nTiming: opened a new office or location in the last 12 months.\nSame industry alone is not a fit.",
+  "report": {
+    "title": "Lookalike profile: Harbor Labs",
+    "summary": "Every public result was about a different Harbor Labs, so this profile rests on the seller's description: many client projects tracked in spreadsheets, and a new office.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Fit",
+        "items": [
+          {
+            "text": "B2B data annotation company of about 60 people, per the seller.",
+            "citations": [
+              "S1"
+            ],
+            "label": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Behavior",
+        "items": [
+          {
+            "text": "Runs more than 40 concurrent client projects with dedicated project managers, per the seller.",
+            "citations": [
+              "S1"
+            ],
+            "label": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Pain",
+        "items": [
+          {
+            "text": "Project managers tracked client projects in spreadsheets, per the seller.",
+            "citations": [
+              "S1"
+            ],
+            "label": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Timing",
+        "items": [
+          {
+            "text": "Had just opened a second office in Austin, per the seller.",
+            "citations": [
+              "S1"
+            ],
+            "label": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Scoring rubric",
+        "items": [
+          {
+            "text": "Pain: Tracks client projects or delivery status in spreadsheets (weight 3)",
+            "citations": [
+              "S1"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Behavior: Runs many concurrent client projects with dedicated project managers (weight 3)",
+            "citations": [
+              "S1"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Timing: Opened a new office or location in the last 12 months (weight 2)",
+            "citations": [
+              "S1"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Fit: Sells data annotation or labeling services to other businesses (weight 1)",
+            "citations": [
+              "S1"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Fit: 20-200 employees (weight 1)",
+            "citations": [
+              "S1"
+            ],
+            "label": "nice_to_have"
+          }
+        ]
+      },
+      {
+        "heading": "Searches",
+        "items": [
+          {
+            "text": "\"project manager\" data annotation client projects hiring",
+            "citations": [],
+            "label": "behavior"
+          },
+          {
+            "text": "tracking client projects in spreadsheets services company too many projects",
+            "citations": [],
+            "label": "pain"
+          },
+          {
+            "text": "data labeling company opens new office 2026",
+            "citations": [],
+            "label": "timing"
+          },
+          {
+            "text": "\"delivery manager\" data labeling \"multiple clients\"",
+            "citations": [],
+            "label": "behavior"
+          },
+          {
+            "text": "data annotation services company 20-200 employees",
+            "citations": [],
+            "label": "firmographic"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:why_good_customer",
+        "title": "why_good_customer",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "Ignored 4 results about a different Harbor Labs (harborlabs-bio.example, a biotech company).",
+      "All public results were about a different Harbor Labs; the profile rests on the seller's description.",
+      "Employee count and office opening are not confirmed by a public source."
+    ],
+    "meta": {
+      "skill": "account-lookalike-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

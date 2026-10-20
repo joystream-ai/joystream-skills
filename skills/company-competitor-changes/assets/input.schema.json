@@ -1,0 +1,136 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The competitor's name. Required unless item is given."
+    },
+    "domain": {
+      "type": "string",
+      "maxLength": 253,
+      "description": "Its website domain, e.g. example.com."
+    },
+    "item": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "In a fan-out agent: this branch's item. A list-prepare slot {i, item_key, label, query}, a list-prepare accepted entry {index, item: {name, domain, pricing_url?, changelog_url?, blog_url?}, item_key, query} (a for_each branch), or a plain {name, domain}. item_key is copied unchanged. null = empty slot.",
+      "properties": {
+        "i": {
+          "type": "integer"
+        },
+        "index": {
+          "type": "integer"
+        },
+        "item_key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "domain": {
+          "type": "string",
+          "maxLength": 253
+        },
+        "item": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "In an accepted entry: the competitor record as given.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "domain": {
+              "type": "string",
+              "maxLength": 253
+            },
+            "pricing_url": {
+              "type": "string"
+            },
+            "changelog_url": {
+              "type": "string"
+            },
+            "blog_url": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "lookback_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 365,
+      "default": 7,
+      "description": "Window length in days, ending at now."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    },
+    "our_positioning": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Who we are, who we sell to and how we win. Used for relevance and the so-what lines. If absent or cut short, the skill reads a prior step that read our positioning document."
+    },
+    "watch": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      },
+      "description": "Topics that always matter to us, e.g. 'per-seat pricing', 'AI agent features'."
+    },
+    "categories": {
+      "type": "array",
+      "uniqueItems": true,
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "enum": [
+          "pricing",
+          "launch",
+          "positioning",
+          "funding",
+          "leadership",
+          "partnership",
+          "hiring",
+          "customer",
+          "other"
+        ]
+      },
+      "description": "Categories to report. Default: all."
+    },
+    "max_changes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 15,
+      "default": 8,
+      "description": "Most changes to report, high importance first."
+    },
+    "previous_state": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "Optional: the previous run's state when bound directly, one entry {item_key, fingerprint, observed_at, data} or {entries: [...]}. Usually a prior state read step supplies it instead."
+    }
+  }
+}

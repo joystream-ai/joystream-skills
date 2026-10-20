@@ -1,0 +1,10 @@
+{
+  "seed": {
+    "name": "Harbor Labs",
+    "domain": "harborlabs.example"
+  },
+  "why_good_customer": "Harbor Labs is a 60-person B2B data annotation company. They bought because their project managers were tracking more than 40 client projects in spreadsheets, and they had just opened a second office in Austin.",
+  "max_queries": 5,
+  "firmographic_queries": 1,
+  "now": "2026-10-20T09:00:00Z"
+}

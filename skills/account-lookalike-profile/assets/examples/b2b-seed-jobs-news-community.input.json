@@ -1,0 +1,11 @@
+{
+  "seed": {
+    "name": "Northwind Freight",
+    "domain": "northwind.example"
+  },
+  "why_good_customer": "Signed in six weeks, right after they hired their first RevOps lead. They were reconciling carrier invoices in spreadsheets, and their finance team had just doubled after a Series B. They now use us across three regional offices.",
+  "constraints": "North America only. No agencies or consultancies.",
+  "max_queries": 6,
+  "firmographic_queries": 2,
+  "now": "2026-10-20T09:00:00Z"
+}

@@ -1,0 +1,13 @@
+{
+  "now": "2026-10-20T13:00:00Z",
+  "window_start_minutes": 60,
+  "window_end_minutes": 120,
+  "own_domains": [
+    "ourco.example"
+  ],
+  "max_meetings": 5,
+  "skip_title_terms": [
+    "interview"
+  ],
+  "timezone": "Europe/Berlin"
+}

@@ -1,0 +1,44 @@
+{
+  "item": {
+    "index": 0,
+    "item": {
+      "event_id": "7kq2orbit01",
+      "title": "Orbit Ledger <> OurCo intro",
+      "start": "2026-10-20T14:15:00Z",
+      "end": "2026-10-20T14:45:00Z",
+      "start_local": "16:15 Europe/Berlin",
+      "label": "16:15 Orbit Ledger",
+      "company_domain": "orbitledger.example",
+      "company_name_guess": "Orbit Ledger",
+      "company_is_guess": true,
+      "other_external_domains": [],
+      "external_attendees": [
+        {
+          "name": "Riley Sample",
+          "name_source": "calendar",
+          "domain": "orbitledger.example",
+          "optional": false,
+          "response": "accepted"
+        },
+        {
+          "name": "Sam Example",
+          "name_source": "email",
+          "domain": "orbitledger.example",
+          "optional": false,
+          "response": "none"
+        }
+      ],
+      "external_attendee_count": 2,
+      "internal_attendee_count": 1,
+      "organizer_is_external": false,
+      "agenda": "Agenda: walk through their month-end close process and our pilot proposal.",
+      "people_query": "\"Riley Sample\" OR \"Sam Example\" Orbit Ledger",
+      "calendar": "google"
+    },
+    "item_key": "event:7kq2orbit01",
+    "query": "Orbit Ledger orbitledger.example company overview, recent news, funding, leadership"
+  },
+  "context": "OurCo automates month-end close for finance teams at mid-size companies.",
+  "focus": "attendee roles, finance tooling, latest funding, where our pilot stands",
+  "now": "2026-10-20T13:05:00Z"
+}

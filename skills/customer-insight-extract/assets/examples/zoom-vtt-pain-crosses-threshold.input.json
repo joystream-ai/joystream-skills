@@ -1,0 +1,12 @@
+{
+  "transcript": "WEBVTT\n\n1\n00:00:01.000 --> 00:00:02.800\nAlex Vendor: Thanks for making time, Jordan. How does invoice matching work today?\n\n2\n00:00:03.100 --> 00:00:06.000\nJordan Placeholder: I lead the freight audit team, so this is my world.\n\n3\n00:00:07.200 --> 00:00:14.500\nJordan Placeholder: Honestly it's all by hand. Every Friday two of us match carrier invoices against\n\n4\n00:00:14.500 --> 00:00:19.800\nJordan Placeholder: purchase orders in Excel, and at Brightwater that eats most of the day.\n\n5\n00:00:20.100 --> 00:00:23.000\nAlex Vendor: And once it's matched, who picks it up?\n\n6\n00:00:23.400 --> 00:00:31.200\nJordan Placeholder: We email the sheet to accounts payable, they re-key it into NetSuite, and things get lost between the two teams.\n\n7\n00:00:31.500 --> 00:00:38.000\nJordan Placeholder: And some carriers send invoices six weeks late, so we're closing the month with gaps. Last quarter that was about $240,000 we couldn't accrue.\n\n8\n00:00:38.400 --> 00:00:40.000\nAlex Vendor: That's helpful, thank you.\n",
+  "segment": "Mid-market logistics",
+  "company": "Brightwater Haulage",
+  "our_side": [
+    "Alex Vendor",
+    "Ledgerly"
+  ],
+  "call_key": "zoom:recording/8812",
+  "call_date": "2026-10-14",
+  "now": "2026-10-20T09:00:00Z"
+}

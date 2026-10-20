@@ -1,0 +1,52 @@
+{
+  "slots": [
+    null,
+    null,
+    null
+  ],
+  "accepted_count": 0,
+  "accepted": [],
+  "drop_counts": {
+    "unreadable": 0,
+    "all_day": 1,
+    "outside_window": 0,
+    "cancelled": 0,
+    "declined": 1,
+    "not_a_meeting": 0,
+    "skip_title": 0,
+    "no_other_attendees": 1,
+    "internal_only": 2,
+    "personal_only": 0,
+    "too_large": 0,
+    "duplicate": 0,
+    "over_limit": 0
+  },
+  "dropped": [
+    {
+      "event_id": "a1one2one",
+      "reason": "internal_only"
+    },
+    {
+      "event_id": "b2gym",
+      "reason": "no_other_attendees"
+    },
+    {
+      "event_id": "c3review",
+      "reason": "internal_only"
+    },
+    {
+      "event_id": "d4vendor",
+      "reason": "declined"
+    }
+  ],
+  "window": {
+    "open": "2026-10-20T05:00:00Z",
+    "close": "2026-10-21T05:00:00Z"
+  },
+  "own_domains_used": [
+    "ourco.example"
+  ],
+  "warnings": [
+    "own_domains not given; used ourco.example, the domain of the attendee the calendar marks as you."
+  ]
+}

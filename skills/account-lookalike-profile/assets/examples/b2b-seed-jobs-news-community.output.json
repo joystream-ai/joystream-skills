@@ -1,0 +1,487 @@
+{
+  "seed": {
+    "name": "Northwind Freight",
+    "domain": "northwind.example",
+    "item_key": "domain:northwind.example"
+  },
+  "status": "ok",
+  "traits": [
+    {
+      "dimension": "fit",
+      "trait": "B2B freight logistics platform for regional carriers.",
+      "look_for": "Sells logistics or freight software or services to other businesses.",
+      "source_ids": [
+        "S2"
+      ],
+      "confidence": "high",
+      "seller_named": false
+    },
+    {
+      "dimension": "fit",
+      "trait": "About 180 employees with offices in Chicago, Dallas and Toronto.",
+      "look_for": "100-500 employees, headquartered in North America.",
+      "source_ids": [
+        "S2"
+      ],
+      "confidence": "high",
+      "seller_named": false
+    },
+    {
+      "dimension": "behavior",
+      "trait": "Posted its first Revenue Operations Manager role in March 2026.",
+      "look_for": "Hires its first revenue operations or billing operations person.",
+      "source_ids": [
+        "S3",
+        "S1"
+      ],
+      "confidence": "high",
+      "seller_named": true
+    },
+    {
+      "dimension": "behavior",
+      "trait": "Runs operations from three regional offices.",
+      "look_for": "Operates from three or more regional offices.",
+      "source_ids": [
+        "S2",
+        "S1"
+      ],
+      "confidence": "high",
+      "seller_named": true
+    },
+    {
+      "dimension": "pain",
+      "trait": "Reconciled carrier invoices in spreadsheets; the RevOps role was hired to move billing reconciliation off spreadsheets.",
+      "look_for": "Reconciles invoices or billing across many counterparties by hand or in spreadsheets.",
+      "source_ids": [
+        "S1",
+        "S3"
+      ],
+      "confidence": "high",
+      "seller_named": true
+    },
+    {
+      "dimension": "pain",
+      "trait": "A finance operations employee says carrier invoice disputes take about three days a month.",
+      "look_for": "Staff post about invoice disputes or billing errors consuming finance time.",
+      "source_ids": [
+        "S5"
+      ],
+      "confidence": "low",
+      "seller_named": false
+    },
+    {
+      "dimension": "timing",
+      "trait": "Raised a Series B in February 2026; the seller says the finance team doubled afterwards.",
+      "look_for": "Raised a Series A or later round in the last 12 months.",
+      "source_ids": [
+        "S4",
+        "S1"
+      ],
+      "confidence": "high",
+      "seller_named": true
+    }
+  ],
+  "search_queries": [
+    {
+      "query": "\"first revenue operations\" hire logistics OR freight software",
+      "dimension": "behavior",
+      "target": "jobs",
+      "why": "First RevOps hire, the seller's top reason."
+    },
+    {
+      "query": "carrier invoice reconciliation spreadsheets finance team",
+      "dimension": "pain",
+      "target": "community",
+      "why": "Manual invoice reconciliation, the pain the seed bought to fix."
+    },
+    {
+      "query": "\"billing operations\" manager freight \"spreadsheets\"",
+      "dimension": "pain",
+      "target": "jobs",
+      "why": "Job posts that describe moving billing off spreadsheets."
+    },
+    {
+      "query": "freight OR logistics software \"series b\" OR \"series a\" 2026",
+      "dimension": "timing",
+      "target": "news",
+      "why": "A recent round, when the seed's finance team grew."
+    },
+    {
+      "query": "freight logistics platform for regional carriers North America",
+      "dimension": "firmographic",
+      "target": "web",
+      "why": "Same business model; firmographic only."
+    },
+    {
+      "query": "logistics software company 100-500 employees Chicago OR Dallas OR Toronto",
+      "dimension": "firmographic",
+      "target": "directory",
+      "why": "Same size and region; firmographic only."
+    }
+  ],
+  "rubric": [
+    {
+      "criterion": "Behavior: Hired or is hiring its first revenue operations or billing operations role in the last 12 months",
+      "kind": "nice_to_have",
+      "weight": 3
+    },
+    {
+      "criterion": "Pain: Reconciles invoices or billing across many counterparties by hand or in spreadsheets",
+      "kind": "nice_to_have",
+      "weight": 3
+    },
+    {
+      "criterion": "Timing: Raised a Series A or later round in the last 12 months",
+      "kind": "nice_to_have",
+      "weight": 2
+    },
+    {
+      "criterion": "Behavior: Operates from three or more regional offices",
+      "kind": "nice_to_have",
+      "weight": 2
+    },
+    {
+      "criterion": "Pain: Staff post publicly about invoice disputes or billing errors consuming finance time",
+      "kind": "nice_to_have",
+      "weight": 2
+    },
+    {
+      "criterion": "Fit: Sells logistics or freight software or services to other businesses",
+      "kind": "nice_to_have",
+      "weight": 1
+    },
+    {
+      "criterion": "Fit: 100-500 employees",
+      "kind": "nice_to_have",
+      "weight": 1
+    },
+    {
+      "criterion": "Constraint: Headquartered in North America",
+      "kind": "must_have",
+      "weight": 1
+    },
+    {
+      "criterion": "Constraint: Agency or consultancy",
+      "kind": "exclusion",
+      "weight": 1
+    }
+  ],
+  "rubric_notes": [
+    {
+      "criterion": "Behavior: Hired or is hiring its first revenue operations or billing operations role in the last 12 months",
+      "dimension": "behavior",
+      "signals": [
+        "first revenue operations hire",
+        "RevOps manager",
+        "billing operations lead"
+      ],
+      "source_ids": [
+        "S3",
+        "S1"
+      ]
+    },
+    {
+      "criterion": "Pain: Reconciles invoices or billing across many counterparties by hand or in spreadsheets",
+      "dimension": "pain",
+      "signals": [
+        "reconcile invoices in spreadsheets",
+        "manual billing reconciliation",
+        "move billing off spreadsheets"
+      ],
+      "source_ids": [
+        "S1",
+        "S3"
+      ]
+    },
+    {
+      "criterion": "Timing: Raised a Series A or later round in the last 12 months",
+      "dimension": "timing",
+      "signals": [
+        "raises Series B",
+        "announces Series A"
+      ],
+      "source_ids": [
+        "S4"
+      ]
+    },
+    {
+      "criterion": "Behavior: Operates from three or more regional offices",
+      "dimension": "behavior",
+      "signals": [
+        "offices in",
+        "regional office opens"
+      ],
+      "source_ids": [
+        "S2",
+        "S1"
+      ]
+    },
+    {
+      "criterion": "Pain: Staff post publicly about invoice disputes or billing errors consuming finance time",
+      "dimension": "pain",
+      "signals": [
+        "invoice disputes",
+        "billing errors take days"
+      ],
+      "source_ids": [
+        "S5"
+      ]
+    },
+    {
+      "criterion": "Fit: Sells logistics or freight software or services to other businesses",
+      "dimension": "fit",
+      "signals": [
+        "freight platform",
+        "logistics software for carriers"
+      ],
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "criterion": "Fit: 100-500 employees",
+      "dimension": "fit",
+      "signals": [
+        "employees"
+      ],
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "criterion": "Constraint: Headquartered in North America",
+      "dimension": "constraint",
+      "source_ids": []
+    },
+    {
+      "criterion": "Constraint: Agency or consultancy",
+      "dimension": "constraint",
+      "source_ids": []
+    }
+  ],
+  "icp_text": "Fit: B2B logistics or freight software or services companies with 100-500 employees, headquartered in North America.\nBehavior: hired or is hiring its first revenue operations or billing operations person in the last 12 months; runs three or more regional offices.\nPain: reconciles invoices or billing across many counterparties by hand or in spreadsheets; staff complain about invoice disputes eating finance time.\nTiming: raised a Series A or later round in the last 12 months.\nConstraints: North America only; no agencies or consultancies.\nSame industry alone is not a fit.",
+  "report": {
+    "title": "Lookalike profile: Northwind Freight",
+    "summary": "Northwind Freight bought right after its first RevOps hire, while reconciling carrier invoices in spreadsheets and growing finance after a Series B. Lookalikes are weighted on those behavior, pain and timing signals; logistics industry and size count for little.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Fit",
+        "items": [
+          {
+            "text": "B2B freight logistics platform for regional carriers.",
+            "citations": [
+              "S2"
+            ],
+            "label": "high"
+          },
+          {
+            "text": "About 180 employees with offices in Chicago, Dallas and Toronto.",
+            "citations": [
+              "S2"
+            ],
+            "label": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Behavior",
+        "items": [
+          {
+            "text": "Posted its first Revenue Operations Manager role in March 2026.",
+            "citations": [
+              "S3",
+              "S1"
+            ],
+            "label": "high"
+          },
+          {
+            "text": "Runs operations from three regional offices.",
+            "citations": [
+              "S2",
+              "S1"
+            ],
+            "label": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Pain",
+        "items": [
+          {
+            "text": "Reconciled carrier invoices in spreadsheets; the RevOps role was hired to move billing reconciliation off spreadsheets.",
+            "citations": [
+              "S1",
+              "S3"
+            ],
+            "label": "high"
+          },
+          {
+            "text": "A finance operations employee says carrier invoice disputes take about three days a month.",
+            "citations": [
+              "S5"
+            ],
+            "label": "low"
+          }
+        ]
+      },
+      {
+        "heading": "Timing",
+        "items": [
+          {
+            "text": "Raised a Series B in February 2026; the seller says the finance team doubled afterwards.",
+            "citations": [
+              "S4",
+              "S1"
+            ],
+            "label": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Scoring rubric",
+        "items": [
+          {
+            "text": "Behavior: Hired or is hiring its first revenue operations or billing operations role in the last 12 months (weight 3)",
+            "citations": [
+              "S3",
+              "S1"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Pain: Reconciles invoices or billing across many counterparties by hand or in spreadsheets (weight 3)",
+            "citations": [
+              "S1",
+              "S3"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Timing: Raised a Series A or later round in the last 12 months (weight 2)",
+            "citations": [
+              "S4"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Behavior: Operates from three or more regional offices (weight 2)",
+            "citations": [
+              "S2",
+              "S1"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Pain: Staff post publicly about invoice disputes or billing errors consuming finance time (weight 2)",
+            "citations": [
+              "S5"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Fit: Sells logistics or freight software or services to other businesses (weight 1)",
+            "citations": [
+              "S2"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Fit: 100-500 employees (weight 1)",
+            "citations": [
+              "S2"
+            ],
+            "label": "nice_to_have"
+          },
+          {
+            "text": "Constraint: Headquartered in North America (weight 1)",
+            "citations": [],
+            "label": "must_have"
+          },
+          {
+            "text": "Constraint: Agency or consultancy (weight 1)",
+            "citations": [],
+            "label": "exclusion"
+          }
+        ]
+      },
+      {
+        "heading": "Searches",
+        "items": [
+          {
+            "text": "\"first revenue operations\" hire logistics OR freight software",
+            "citations": [],
+            "label": "behavior"
+          },
+          {
+            "text": "carrier invoice reconciliation spreadsheets finance team",
+            "citations": [],
+            "label": "pain"
+          },
+          {
+            "text": "\"billing operations\" manager freight \"spreadsheets\"",
+            "citations": [],
+            "label": "pain"
+          },
+          {
+            "text": "freight OR logistics software \"series b\" OR \"series a\" 2026",
+            "citations": [],
+            "label": "timing"
+          },
+          {
+            "text": "freight logistics platform for regional carriers North America",
+            "citations": [],
+            "label": "firmographic"
+          },
+          {
+            "text": "logistics software company 100-500 employees Chicago OR Dallas OR Toronto",
+            "citations": [],
+            "label": "firmographic"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:why_good_customer",
+        "title": "why_good_customer",
+        "provider": "input"
+      },
+      {
+        "id": "S2",
+        "url": "https://northwind.example/about",
+        "title": "About Northwind Freight",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://jobs.example.net/listing/7781",
+        "title": "Revenue Operations Manager (first hire) - Northwind Freight",
+        "published_at": "2026-03-04",
+        "provider": "tavily"
+      },
+      {
+        "id": "S4",
+        "url": "https://news.example.org/2026/02/10/northwind-freight-series-b",
+        "title": "Northwind Freight raises Series B",
+        "published_at": "2026-02-10",
+        "provider": "brave"
+      },
+      {
+        "id": "S5",
+        "url": "https://forum.example.com/r/logistics/comments/abc123",
+        "title": "How do you handle carrier invoice disputes?",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "The community post is one person's account; its pain trait is low confidence."
+    ],
+    "meta": {
+      "skill": "account-lookalike-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

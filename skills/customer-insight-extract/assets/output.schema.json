@@ -1,0 +1,439 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "insights",
+    "rows_to_append",
+    "repeated_pains",
+    "already_stored",
+    "anonymization",
+    "report",
+    "sheet_values"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "insights": {
+      "type": "array",
+      "maxItems": 15,
+      "description": "Anonymized insights kept from this call.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "theme",
+          "theme_status",
+          "pain",
+          "quote",
+          "speaker_role",
+          "segment",
+          "call_count",
+          "repeated"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 4,
+            "pattern": "^I[0-9]+$"
+          },
+          "theme": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "description": "Normalized pain label, 2 to 5 words, sentence case. Reuses an existing store theme exactly when it is the same pain."
+          },
+          "theme_status": {
+            "type": "string",
+            "enum": [
+              "existing",
+              "new"
+            ]
+          },
+          "pain": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "quote": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 1,
+            "description": "Verbatim from one customer-side turn; placeholders such as [company] are the only change."
+          },
+          "speaker_role": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1,
+            "description": "Function and level only, e.g. Finance leader."
+          },
+          "segment": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1
+          },
+          "call_count": {
+            "type": "integer",
+            "minimum": 1,
+            "description": "Distinct calls with this theme, including this one."
+          },
+          "repeated": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "rows_to_append": {
+      "type": "array",
+      "maxItems": 15,
+      "description": "One row per insight for the store's append step; keys are column or property names, every value a string.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "call_key",
+          "call_date",
+          "theme",
+          "pain",
+          "quote",
+          "speaker_role",
+          "segment"
+        ],
+        "properties": {
+          "call_key": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "call_date": {
+            "type": "string",
+            "maxLength": 10,
+            "pattern": "^([0-9]{4}-[0-9]{2}-[0-9]{2}|unknown)$"
+          },
+          "theme": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1
+          },
+          "pain": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "quote": {
+            "type": "string",
+            "maxLength": 400,
+            "minLength": 1
+          },
+          "speaker_role": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1
+          },
+          "segment": {
+            "type": "string",
+            "maxLength": 80,
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "sheet_values": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 7,
+        "maxItems": 7
+      },
+      "minItems": 1,
+      "description": "rows_to_append as spreadsheet cells: call_key, call_date, theme, pain, quote, speaker_role, segment. null when empty."
+    },
+    "repeated_pains": {
+      "type": "array",
+      "maxItems": 15,
+      "description": "Themes from this call heard on at least repeat_threshold calls, most calls first.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "theme",
+          "call_count",
+          "newly_repeated",
+          "segments"
+        ],
+        "properties": {
+          "theme": {
+            "type": "string",
+            "maxLength": 60,
+            "minLength": 1
+          },
+          "call_count": {
+            "type": "integer",
+            "minimum": 2
+          },
+          "newly_repeated": {
+            "type": "boolean",
+            "description": "This call is the one that reached the threshold."
+          },
+          "segments": {
+            "type": "array",
+            "maxItems": 20,
+            "items": {
+              "type": "string",
+              "maxLength": 80,
+              "minLength": 1
+            }
+          }
+        }
+      }
+    },
+    "already_stored": {
+      "type": "boolean",
+      "description": "This call_key is already in the store; nothing to append."
+    },
+    "anonymization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "redaction_count",
+        "dropped"
+      ],
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "clean",
+            "clean_after_drops",
+            "nothing_kept"
+          ]
+        },
+        "redaction_count": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Placeholders inserted across kept insights."
+        },
+        "dropped": {
+          "type": "array",
+          "maxItems": 15,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "reason"
+            ],
+            "properties": {
+              "reason": {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1,
+                "description": "Generic; never repeats a removed value."
+              },
+              "theme": {
+                "type": "string",
+                "maxLength": 60
+              }
+            }
+          }
+        }
+      }
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft — not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    }
+  }
+}

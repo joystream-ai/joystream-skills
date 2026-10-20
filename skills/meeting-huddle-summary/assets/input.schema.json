@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "transcript": {
+      "type": "string",
+      "description": "The huddle transcript: Zoom VTT, Google Meet transcript text, or 'Speaker: text' lines. Required unless a prior recorder step supplies it (the skill then reads that output). Cited as input:transcript."
+    },
+    "attendees": {
+      "type": "array",
+      "maxItems": 50,
+      "description": "Who was in the huddle. A string's name is the part before ' ('. Owners come only from these names.",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          {
+            "type": "object",
+            "required": [
+              "name"
+            ],
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 200,
+                "minLength": 1
+              },
+              "role": {
+                "type": "string",
+                "maxLength": 200
+              }
+            }
+          }
+        ]
+      }
+    },
+    "meeting_date": {
+      "type": "string",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "The huddle's date, YYYY-MM-DD. Absent: a date the transcript states, else null. Never taken from now."
+    },
+    "meeting_title": {
+      "type": "string",
+      "maxLength": 120,
+      "default": "Morning huddle",
+      "description": "The meeting's name, used in the page title."
+    },
+    "team": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "Optional team name prefixed to the title, e.g. Growth."
+    },
+    "include_updates": {
+      "type": "boolean",
+      "default": true,
+      "description": "Add per-person status updates."
+    },
+    "max_tldr": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 7,
+      "default": 5,
+      "description": "The most TL;DR bullets."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for report.meta only. Optional; never used to compute a date."
+    }
+  }
+}
