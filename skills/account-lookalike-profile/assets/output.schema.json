@@ -3,7 +3,6 @@
   "type": "object",
   "required": [
     "seed",
-    "status",
     "traits",
     "search_queries",
     "rubric",
@@ -44,7 +43,7 @@
         "seller_only",
         "no_evidence"
       ],
-      "description": "ok: traits rest on public evidence; seller_only: public evidence was missing or about another company, so traits rest on why_good_customer alone; no_evidence: neither gave a usable trait."
+      "description": "ok: traits rest on public evidence; seller_only: public evidence was missing or about another company, so traits rest on why_good_customer alone; no_evidence: neither gave a usable trait. Expected on every result; optional in the schema so a missing value does not discard an otherwise valid profile (nothing downstream reads it)."
     },
     "traits": {
       "type": "array",

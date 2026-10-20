@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.0.2"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -203,7 +203,7 @@ record has a public one, such as a company website):
    then the constraints, then the sentence `Same industry alone is not a fit.`
 9. **Build the report** (see Output), then **check the result has every top-level
    field**: `seed`, `status`, `traits`, `search_queries`, `rubric`, `rubric_notes`,
-   `icp_text`, `report`. A result missing `status` is rejected.
+   `icp_text`, `report`.
 
 # Output
 
@@ -222,7 +222,7 @@ Return the fields of `assets/output.schema.json` as your result:
   criterion, text `<criterion> (weight <w>)`, citations from `rubric_notes`, `label` =
   kind), and `Searches` (one item per query, no citations, `label` = dimension); every
   cited source in `sources` (`input:why_good_customer` with provider `input`);
-  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.0.1",
+  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.0.2",
   generated_at: <now>}`. `severity: info`, or `attention` when `status` is not `ok`.
 
 # Constraints

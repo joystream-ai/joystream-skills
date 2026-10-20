@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -241,7 +241,7 @@ Return the fields of `assets/output.schema.json`:
   evidence.`; for `not_checked`, `History not checked: the agent has no email or CRM
   step.`, both with empty citations), `Goals`, `Questions to ask` (empty citations),
   `Risks`; every cited source in `sources`; `unknowns`; `meta` `{skill:
-  "meeting-prep-brief", skill_version: "1.0.0", generated_at: <now>}` (left out when no
+  "meeting-prep-brief", skill_version: "1.0.1", generated_at: <now>}` (left out when no
   time is known).
 
 **Skipped** (empty slot): `meeting` with empty strings, `what_they_do` `unknown`, empty lists,
@@ -252,6 +252,9 @@ info`, and no sections, sources or unknowns.
 
 # Constraints
 
+- **Source ids are `S` plus a number** (`S1`, `S2`, …). A second source from the same
+  page gets its own next number, never a letter suffix such as `S6b`. `report` is an
+  object, never a JSON-encoded string.
 - **Cite or say unknown.** Every factual claim (role, event, history line, risk, TL;DR
   line) cites a kept source. No source: `unknown`, and a line in `report.unknowns`.
   Facts read from the meeting item itself (attendee names, domains, responses, the
