@@ -1,0 +1,55 @@
+{
+  "slots": [
+    {
+      "i": 0,
+      "item_key": "domain:orbit.example",
+      "label": "Orbit Ledger (orbit.example)",
+      "query": "Orbit Ledger orbit.example leadership team, appoints, joins as, hires"
+    },
+    {
+      "i": 1,
+      "item_key": "domain:kestrel.example",
+      "label": "Kestrel Freight (kestrel.example)",
+      "query": "Kestrel Freight kestrel.example leadership team, appoints, joins as, hires"
+    },
+    null
+  ],
+  "accepted_count": 2,
+  "accepted": [
+    {
+      "index": 0,
+      "item": {
+        "name": "Orbit Ledger",
+        "domain": "orbit.example"
+      },
+      "item_key": "domain:orbit.example",
+      "query": "Orbit Ledger orbit.example leadership team, appoints, joins as, hires",
+      "queries": [
+        "Orbit Ledger head of revenue operations",
+        "Orbit Ledger VP marketing"
+      ]
+    },
+    {
+      "index": 1,
+      "item": {
+        "name": "Kestrel Freight",
+        "domain": "kestrel.example"
+      },
+      "item_key": "domain:kestrel.example",
+      "query": "Kestrel Freight kestrel.example leadership team, appoints, joins as, hires",
+      "queries": [
+        "Kestrel Freight head of revenue operations",
+        "Kestrel Freight VP marketing"
+      ]
+    }
+  ],
+  "dropped": [
+    {
+      "item": {
+        "name": "Orbit Ledger",
+        "domain": "www.orbit.example"
+      },
+      "reason": "duplicate"
+    }
+  ]
+}

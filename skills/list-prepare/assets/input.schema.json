@@ -60,6 +60,16 @@
       "maxLength": 2000,
       "description": "What each branch's search should look for, e.g. 'fit against this ICP: ...'. Appended to the item's own fields and shortened to fit."
     },
+    "query_terms": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 100
+      },
+      "description": "Optional. One short search per term per item, e.g. the roles to find [\"head of revenue operations\", \"VP marketing\"]. Each accepted item then has queries: '<item name> <term>' for every term, in term order. Short single-topic queries find far more than one query listing every term."
+    },
     "now": {
       "type": "string",
       "description": "Current time, ISO 8601. Optional and not needed for the work; never guessed."

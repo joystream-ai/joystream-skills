@@ -1,0 +1,29 @@
+{
+  "items": [
+    {
+      "name": "Orbit Ledger",
+      "domain": "orbit.example"
+    },
+    {
+      "name": "Kestrel Freight",
+      "domain": "kestrel.example"
+    },
+    {
+      "name": "Orbit Ledger",
+      "domain": "www.orbit.example"
+    }
+  ],
+  "item_kind": "company",
+  "identity_keys": [
+    "domain",
+    "name"
+  ],
+  "max_items": 3,
+  "slot_count": 3,
+  "query_hint": "leadership team, appoints, joins as, hires",
+  "query_terms": [
+    "head of revenue operations",
+    "VP marketing"
+  ],
+  "now": "2026-10-21T09:00:00Z"
+}

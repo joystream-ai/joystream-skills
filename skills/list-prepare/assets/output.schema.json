@@ -95,6 +95,16 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 200
+          },
+          "queries": {
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            },
+            "description": "Present only when query_terms is given: one query per term, in term order, each '<item name (else domain)> <term>'. Lives here, not in slots, so slots stay under their byte cap."
           }
         }
       }
