@@ -1,0 +1,124 @@
+{
+  "candidates": [],
+  "counts": {
+    "mentioned": 3,
+    "returned": 0,
+    "already_seen": 2,
+    "excluded": 1,
+    "not_a_fit": 0,
+    "over_limit": 0,
+    "seen_total": 3
+  },
+  "dropped": [
+    {
+      "name": "Shiftplate",
+      "item_key": "domain:shiftplate.example",
+      "reason": "already_seen"
+    },
+    {
+      "name": "Ovenly Labs",
+      "item_key": "domain:ovenly.example",
+      "reason": "already_seen"
+    },
+    {
+      "name": "Tablewise",
+      "item_key": "domain:tablewise.example",
+      "reason": "excluded"
+    }
+  ],
+  "next_queries": [
+    {
+      "query": "hotel group back-office software startup Canada OR \"United States\"",
+      "target": "web",
+      "why": "This run's directory filter is exhausted; hotels are an untried part of the ICP."
+    },
+    {
+      "query": "\"month-end close\" restaurant group finance team manual",
+      "target": "community",
+      "why": "Finance-buyer pain phrasing finds operators that directories miss."
+    },
+    {
+      "query": "hospitality software sponsors exhibitors 2026 conference",
+      "target": "directory",
+      "why": "Event sponsor and exhibitor pages list many companies at once."
+    }
+  ],
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:cuisinecloud.example",
+        "fingerprint": "CuisineCloud|cuisinecloud.example",
+        "observed_at": "2026-10-20T09:00:00Z",
+        "data": {
+          "name": "CuisineCloud",
+          "domain": "cuisinecloud.example"
+        }
+      },
+      {
+        "item_key": "domain:shiftplate.example",
+        "fingerprint": "Shiftplate|shiftplate.example",
+        "observed_at": "2026-10-13T09:00:00Z",
+        "data": {
+          "name": "Shiftplate",
+          "domain": "shiftplate.example"
+        }
+      },
+      {
+        "item_key": "domain:ovenly.example",
+        "fingerprint": "Ovenly Labs|ovenly.example",
+        "observed_at": "2026-10-13T09:00:00Z",
+        "data": {
+          "name": "Ovenly Labs",
+          "domain": "ovenly.example"
+        }
+      }
+    ]
+  },
+  "report": {
+    "title": "Account discovery: 0 new companies",
+    "summary": "No new companies this run: 2 already returned, 1 excluded. Three new search directions are suggested.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Suggested next searches",
+        "items": [
+          {
+            "text": "hotel group back-office software startup Canada OR \"United States\"",
+            "citations": [],
+            "label": "web"
+          },
+          {
+            "text": "\"month-end close\" restaurant group finance team manual",
+            "citations": [],
+            "label": "community"
+          },
+          {
+            "text": "hospitality software sponsors exhibitors 2026 conference",
+            "citations": [],
+            "label": "directory"
+          }
+        ]
+      },
+      {
+        "heading": "Skipped",
+        "items": [
+          {
+            "text": "2 already returned in earlier runs.",
+            "citations": []
+          },
+          {
+            "text": "1 on the exclude list.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [],
+    "unknowns": [],
+    "meta": {
+      "skill": "account-discovery-candidates",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-27T09:00:00Z"
+    }
+  }
+}

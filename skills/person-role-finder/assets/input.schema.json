@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "target_roles"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "target_roles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      },
+      "description": "The roles to fill, in plain words, e.g. [\"VP Marketing\", \"Head of Demand Generation\", \"CFO\"]."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The company name. Required unless item is given."
+    },
+    "company_domain": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The company's website domain, e.g. acme.example. Pages on it count as the company's own."
+    },
+    "item": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "In a list agent: the company bound to this branch, as a list-prepare slot {i, item_key, label, query}, a list-prepare accepted entry {index, item: {name, domain}, item_key, query} (for_each), or {name, domain}. null = empty slot."
+    },
+    "allow_adjacent": {
+      "type": "boolean",
+      "default": true,
+      "description": "When a role has no exact holder, accept one level up or down in the same function, labelled adjacent."
+    },
+    "max_people_per_role": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 2
+    },
+    "stale_after_months": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 60,
+      "default": 12,
+      "description": "Evidence older than this many months is flagged possibly_stale."
+    },
+    "include_contact_details": {
+      "type": "boolean",
+      "default": false,
+      "description": "Opt in to contact details (work email, phone, profile url) from enrichment records, returned only in the contacts field and never in report. Route contacts to a private destination only."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for freshness and report.meta. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

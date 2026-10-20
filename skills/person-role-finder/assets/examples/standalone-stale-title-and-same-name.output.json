@@ -1,0 +1,175 @@
+{
+  "people": [
+    {
+      "person_key": "name_company:priya-example@northwind-ledger",
+      "name": "Priya Example",
+      "title": "Vice President, Marketing",
+      "target_role": "VP Marketing",
+      "match_type": "exact",
+      "evidence_date": "2026-10-20",
+      "date_basis": "page_live",
+      "freshness": "current",
+      "confidence": "high",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "person_key": "name_company:sam-sample@northwind-ledger",
+      "name": "Sam Sample",
+      "title": "Chief Financial Officer",
+      "target_role": "CFO",
+      "match_type": "exact",
+      "role_since": "2025-03",
+      "evidence_date": "2026-10-20",
+      "date_basis": "page_live",
+      "freshness": "current",
+      "confidence": "high",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "person_key": "name_company:lee-placeholder@northwind-ledger",
+      "name": "Lee Placeholder",
+      "title": "Head of Demand Generation",
+      "target_role": "Head of Demand Generation",
+      "match_type": "exact",
+      "evidence_date": "2025-06-12",
+      "date_basis": "event",
+      "freshness": "possibly_stale",
+      "confidence": "low",
+      "source_ids": [
+        "S3"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "role": "VP Marketing",
+      "status": "found",
+      "people_count": 1
+    },
+    {
+      "role": "Head of Demand Generation",
+      "status": "unconfirmed",
+      "people_count": 1
+    },
+    {
+      "role": "CFO",
+      "status": "found",
+      "people_count": 1
+    },
+    {
+      "role": "Head of Revenue Operations",
+      "status": "not_found",
+      "people_count": 0
+    }
+  ],
+  "excluded": [],
+  "rejected_count": 1,
+  "contacts": [],
+  "verdict": "Partial",
+  "coverage_score": 2,
+  "item_result": {
+    "item": {
+      "name": "Northwind Ledger",
+      "domain": "northwind-ledger.example"
+    },
+    "item_key": "domain:northwind-ledger.example",
+    "item_label": "Northwind Ledger (northwind-ledger.example)",
+    "status": "ok",
+    "verdict": "Partial",
+    "score": 2,
+    "score_scale": "0-4",
+    "headline": "2/4 roles found: Priya Example, Vice President, Marketing",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Northwind Ledger: people in target roles",
+    "summary": "2 of 4 roles found: Priya Example (VP Marketing) and Sam Sample (CFO), both on the company's live team page. Head of Demand Generation is possibly stale (last seen June 2025); no Head of Revenue Operations was found.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Found",
+        "items": [
+          {
+            "text": "Priya Example, Vice President, Marketing (company team page, seen 2026-10-20).",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high",
+            "label": "VP Marketing"
+          },
+          {
+            "text": "Sam Sample, Chief Financial Officer (company team page, seen 2026-10-20; appointed March 2025).",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "CFO"
+          }
+        ]
+      },
+      {
+        "heading": "Unconfirmed or adjacent",
+        "items": [
+          {
+            "text": "Lee Placeholder, Head of Demand Generation: possibly stale, last seen as a speaker on 2025-06-12 and not on the current team page.",
+            "citations": [
+              "S3",
+              "S1"
+            ],
+            "confidence": "low",
+            "label": "Head of Demand Generation"
+          }
+        ]
+      },
+      {
+        "heading": "Not found",
+        "items": [
+          {
+            "text": "Head of Revenue Operations: no source names a holder at Northwind Ledger.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://northwind-ledger.example/about/team",
+        "title": "Our team | Northwind Ledger",
+        "provider": "firecrawl"
+      },
+      {
+        "id": "S2",
+        "url": "https://news.example.com/2025/03/northwind-ledger-appoints-cfo",
+        "title": "Northwind Ledger appoints Sam Sample as CFO",
+        "published_at": "2025-03-04",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://events.example.org/finops-summit-2025/speakers",
+        "title": "FinOps Summit 2025 speakers",
+        "published_at": "2025-06-12",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "Rejected 1 candidate (same name at another company, or no company link).",
+      "Head of Demand Generation: the only source is 16 months old; confirm Lee Placeholder still holds the role.",
+      "Head of Revenue Operations: not on the team page and not named in any result."
+    ],
+    "meta": {
+      "skill": "person-role-finder",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

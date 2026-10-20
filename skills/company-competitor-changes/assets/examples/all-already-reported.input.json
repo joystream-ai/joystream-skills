@@ -1,0 +1,14 @@
+{
+  "item": {
+    "index": 3,
+    "item": {
+      "name": "Placeholder Ops",
+      "domain": "example.org"
+    },
+    "item_key": "domain:example.org",
+    "query": "Placeholder Ops example.org news announcements pricing launch"
+  },
+  "lookback_days": 7,
+  "now": "2026-10-19T08:00:00Z",
+  "our_positioning": "We sell Example Flow, a chat-built agent automation platform for go-to-market teams at 20-200 person B2B startups. Flat team pricing, no per-seat fees; we win on time-to-first-agent and on not needing an ops engineer."
+}

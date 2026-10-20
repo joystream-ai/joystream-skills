@@ -1,0 +1,117 @@
+{
+  "meeting_date": null,
+  "attendees": [
+    "Sam Demo",
+    "Jordan Example",
+    "Alex Sample"
+  ],
+  "tldr": [
+    "Support tickets idle more than 14 days will auto-close, starting Monday.",
+    "The churn deck still has last quarter's numbers and must be refreshed before the board pack; nobody owns it yet.",
+    "Support backlog is at 140 open tickets; the macro review has no owner while Dana is out."
+  ],
+  "decisions": [
+    {
+      "decision": "Turn on auto-close for tickets idle more than 14 days, starting Monday.",
+      "decided_by": "Sam Demo",
+      "quote": "Let's do that. Auto-close at 14 days, starting Monday."
+    }
+  ],
+  "action_items": [
+    {
+      "task": "Refresh the customer churn deck with current numbers before the board pack goes out.",
+      "owner": "unassigned",
+      "due": "before the board pack goes out",
+      "quote": "Someone should refresh it before the board pack goes out."
+    },
+    {
+      "task": "Review the support macros; Dana (not in the sync, out this week) was suggested.",
+      "owner": "unassigned",
+      "tentative": true,
+      "quote": "Maybe Dana can take a look at the macros."
+    },
+    {
+      "task": "Turn on auto-close for tickets idle more than 14 days.",
+      "owner": "unassigned",
+      "due": "starting Monday",
+      "quote": "Let's do that. Auto-close at 14 days, starting Monday."
+    }
+  ],
+  "blockers": [],
+  "updates": [],
+  "open_questions": [],
+  "notion_page": {
+    "title": "Weekly ops sync — undated",
+    "properties": {
+      "Date": null,
+      "Attendees": [
+        "Sam Demo",
+        "Jordan Example",
+        "Alex Sample"
+      ]
+    },
+    "body_md": "## TL;DR\n- Support tickets idle more than 14 days will auto-close, starting Monday.\n- The churn deck still has last quarter's numbers and must be refreshed before the board pack; nobody owns it yet.\n- Support backlog is at 140 open tickets; the macro review has no owner while Dana is out.\n## Decisions\n- Turn on auto-close for tickets idle more than 14 days, starting Monday. (Sam Demo)\n  > \"Let's do that. Auto-close at 14 days, starting Monday.\"\n## Action items\n- [ ] Refresh the customer churn deck with current numbers before the board pack goes out. — **unassigned** — due before the board pack goes out\n  > \"Someone should refresh it before the board pack goes out.\"\n- [ ] Review the support macros; Dana (not in the sync, out this week) was suggested. — **unassigned** (tentative)\n  > \"Maybe Dana can take a look at the macros.\"\n- [ ] Turn on auto-close for tickets idle more than 14 days. — **unassigned** — due starting Monday\n  > \"Let's do that. Auto-close at 14 days, starting Monday.\"\n## Blockers\nNone.\n## Updates\nNone.\n## Open questions\nNone."
+  },
+  "report": {
+    "title": "Weekly ops sync — undated",
+    "summary": "Support tickets idle more than 14 days will auto-close, starting Monday. The churn deck still has last quarter's numbers and must be refreshed before the board pack; nobody owns it yet. Support backlog is at 140 open tickets; the macro review has no owner while Dana is out.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Decisions",
+        "items": [
+          {
+            "text": "Turn on auto-close for tickets idle more than 14 days, starting Monday.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Action items",
+        "items": [
+          {
+            "text": "Refresh the customer churn deck with current numbers before the board pack goes out. (due before the board pack goes out)",
+            "citations": [
+              "S1"
+            ],
+            "label": "unassigned"
+          },
+          {
+            "text": "Review the support macros; Dana (not in the sync, out this week) was suggested.",
+            "citations": [
+              "S1"
+            ],
+            "label": "unassigned"
+          },
+          {
+            "text": "Turn on auto-close for tickets idle more than 14 days. (due starting Monday)",
+            "citations": [
+              "S1"
+            ],
+            "label": "unassigned"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "title": "Weekly ops sync transcript",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "No attendee list was given; attendees are the named speakers.",
+      "Meeting date: not given and not stated in the transcript.",
+      "3 action items have no owner."
+    ],
+    "meta": {
+      "skill": "meeting-huddle-summary",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T16:05:00Z"
+    }
+  }
+}

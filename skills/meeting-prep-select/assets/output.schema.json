@@ -1,0 +1,387 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "slots",
+    "accepted_count",
+    "accepted",
+    "drop_counts",
+    "dropped",
+    "window",
+    "own_domains_used",
+    "warnings"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "slots": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 25,
+      "description": "Exactly slot_count entries: accepted meeting i at index i, then null. Each non-null slot is at most 250 bytes as compact JSON.",
+      "items": {
+        "anyOf": [
+          {
+            "type": "null"
+          },
+          {
+            "type": "object",
+            "required": [
+              "i",
+              "item_key",
+              "label",
+              "query"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "i": {
+                "type": "integer",
+                "minimum": 0,
+                "maximum": 24
+              },
+              "item_key": {
+                "type": "string",
+                "maxLength": 200,
+                "pattern": "^event:\\S+$"
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60
+              },
+              "query": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 200
+              }
+            }
+          }
+        ]
+      }
+    },
+    "accepted_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 25
+    },
+    "accepted": {
+      "type": "array",
+      "maxItems": 25,
+      "description": "Accepted meetings in start order; each is one for_each item.",
+      "items": {
+        "type": "object",
+        "required": [
+          "index",
+          "item",
+          "item_key",
+          "query"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "index": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 24
+          },
+          "item": {
+            "type": "object",
+            "required": [
+              "event_id",
+              "title",
+              "start",
+              "start_local",
+              "label",
+              "company_domain",
+              "company_name_guess",
+              "company_is_guess",
+              "other_external_domains",
+              "external_attendees",
+              "external_attendee_count",
+              "internal_attendee_count",
+              "organizer_is_external",
+              "agenda",
+              "people_query",
+              "calendar"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "event_id": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 1024,
+                "description": "The calendar's event id, exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 150
+              },
+              "start": {
+                "type": "string",
+                "description": "ISO 8601 with an offset."
+              },
+              "end": {
+                "type": "string",
+                "description": "ISO 8601 with an offset, when the event gives one."
+              },
+              "start_local": {
+                "type": "string",
+                "maxLength": 60,
+                "description": "HH:MM and the zone, e.g. 15:00 Europe/Berlin."
+              },
+              "label": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 60
+              },
+              "company_domain": {
+                "type": "string",
+                "maxLength": 253,
+                "description": "The external company domain with the most attendees; empty when every external attendee uses a personal mail domain."
+              },
+              "company_name_guess": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "company_is_guess": {
+                "type": "boolean",
+                "const": true
+              },
+              "other_external_domains": {
+                "type": "array",
+                "maxItems": 10,
+                "items": {
+                  "type": "string",
+                  "maxLength": 253
+                }
+              },
+              "external_attendees": {
+                "type": "array",
+                "maxItems": 10,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "name",
+                    "name_source",
+                    "domain",
+                    "optional",
+                    "response"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "maxLength": 120,
+                      "description": "Display name, or first and last name read from a first.last address; empty when unknown."
+                    },
+                    "name_source": {
+                      "type": "string",
+                      "enum": [
+                        "calendar",
+                        "email",
+                        "none"
+                      ]
+                    },
+                    "domain": {
+                      "type": "string",
+                      "maxLength": 253,
+                      "description": "Email domain only; never the full address."
+                    },
+                    "optional": {
+                      "type": "boolean"
+                    },
+                    "response": {
+                      "type": "string",
+                      "enum": [
+                        "accepted",
+                        "declined",
+                        "tentative",
+                        "none"
+                      ]
+                    }
+                  }
+                }
+              },
+              "external_attendee_count": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "internal_attendee_count": {
+                "type": "integer",
+                "minimum": 0
+              },
+              "organizer_is_external": {
+                "type": "boolean"
+              },
+              "agenda": {
+                "type": "string",
+                "maxLength": 400,
+                "description": "The event description without links, phone numbers, emails, meeting ids, passcodes or conferencing boilerplate."
+              },
+              "people_query": {
+                "type": "string",
+                "maxLength": 200,
+                "description": "One web search query for the named external attendees; empty when none is named."
+              },
+              "calendar": {
+                "type": "string",
+                "enum": [
+                  "google",
+                  "outlook",
+                  "other"
+                ]
+              }
+            }
+          },
+          "item_key": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^event:\\S+$"
+          },
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "drop_counts": {
+      "type": "object",
+      "required": [
+        "unreadable",
+        "all_day",
+        "outside_window",
+        "cancelled",
+        "declined",
+        "not_a_meeting",
+        "skip_title",
+        "no_other_attendees",
+        "internal_only",
+        "personal_only",
+        "too_large",
+        "duplicate",
+        "over_limit"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "unreadable": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "all_day": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "outside_window": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "cancelled": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "declined": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_a_meeting": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "skip_title": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "no_other_attendees": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "internal_only": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "personal_only": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "too_large": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "over_limit": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "dropped": {
+      "type": "array",
+      "maxItems": 200,
+      "description": "Events dropped for a reason other than all_day or outside_window.",
+      "items": {
+        "type": "object",
+        "required": [
+          "event_id",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "maxLength": 1024
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "unreadable",
+              "cancelled",
+              "declined",
+              "not_a_meeting",
+              "skip_title",
+              "no_other_attendees",
+              "internal_only",
+              "personal_only",
+              "too_large",
+              "duplicate",
+              "over_limit"
+            ]
+          }
+        }
+      }
+    },
+    "window": {
+      "type": "object",
+      "required": [
+        "open",
+        "close"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "open": {
+          "type": "string"
+        },
+        "close": {
+          "type": "string"
+        }
+      }
+    },
+    "own_domains_used": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string"
+      }
+    },
+    "warnings": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "maxLength": 300
+      }
+    }
+  }
+}

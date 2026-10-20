@@ -1,0 +1,5 @@
+{
+  "transcript": "Weekly ops sync - Transcript\nAttendees\nSam Demo, Jordan Example, Alex Sample\nTranscript\n00:00:00\nSam Demo: Okay, two things today. The customer churn deck and the support backlog.\n00:01:10\nJordan Example: The churn deck still has last quarter's numbers. Someone should refresh it before the board pack goes out.\n00:01:32\nAlex Sample: Yeah, it needs doing.\n00:02:05\nSam Demo: On the backlog, we're at 140 open tickets. Maybe Dana can take a look at the macros.\n00:02:40\nJordan Example: Dana's out this week though.\n00:03:02\nAlex Sample: We should probably also turn on auto-close for tickets idle more than 14 days.\n00:03:20\nSam Demo: Let's do that. Auto-close at 14 days, starting Monday.\n00:03:41\nJordan Example: Fine by me.\n",
+  "meeting_title": "Weekly ops sync",
+  "now": "2026-10-20T16:05:00Z"
+}

@@ -1,0 +1,28 @@
+{
+  "people": [],
+  "roles": [],
+  "excluded": [],
+  "rejected_count": 0,
+  "contacts": [],
+  "item_result": {
+    "item": null,
+    "item_key": "",
+    "item_label": "",
+    "status": "skipped",
+    "headline": "Empty slot.",
+    "source_ids": []
+  },
+  "report": {
+    "title": "Empty slot",
+    "summary": "",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [],
+    "meta": {
+      "skill": "person-role-finder",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

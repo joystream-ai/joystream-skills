@@ -1,0 +1,84 @@
+{
+  "insights": [
+    {
+      "id": "I1",
+      "theme": "Claims reconciliation in spreadsheets",
+      "theme_status": "new",
+      "pain": "Claims are reconciled across several spreadsheets and a shared inbox, so the numbers are not trusted until well into the month.",
+      "quote": "Our claims reconciliation is three spreadsheets and a shared inbox. Nobody trusts the numbers until the 10th of the month.",
+      "speaker_role": "Unknown role",
+      "segment": "Enterprise healthcare",
+      "call_count": 1,
+      "repeated": false
+    }
+  ],
+  "rows_to_append": [
+    {
+      "call_key": "pasted:20261020T090000Z",
+      "call_date": "2026-10-19",
+      "theme": "Claims reconciliation in spreadsheets",
+      "pain": "Claims are reconciled across several spreadsheets and a shared inbox, so the numbers are not trusted until well into the month.",
+      "quote": "Our claims reconciliation is three spreadsheets and a shared inbox. Nobody trusts the numbers until the 10th of the month.",
+      "speaker_role": "Unknown role",
+      "segment": "Enterprise healthcare"
+    }
+  ],
+  "repeated_pains": [],
+  "already_stored": false,
+  "anonymization": {
+    "status": "clean_after_drops",
+    "redaction_count": 0,
+    "dropped": [
+      {
+        "reason": "The pain depends on a specific named incident and a regulator that could identify the customer.",
+        "theme": "Audit trail for adjustments"
+      }
+    ]
+  },
+  "report": {
+    "title": "Customer insights: Enterprise healthcare",
+    "summary": "1 anonymized insight from this call: claims reconciliation in spreadsheets (first call with this theme). 1 insight was dropped because it could identify the customer.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Insights from this call",
+        "items": [
+          {
+            "text": "Claims are reconciled across spreadsheets and a shared inbox. \"Our claims reconciliation is three spreadsheets and a shared inbox. Nobody trusts the numbers until the 10th of the month.\"",
+            "citations": [
+              "S1"
+            ],
+            "label": "Claims reconciliation in spreadsheets"
+          }
+        ]
+      },
+      {
+        "heading": "Dropped for privacy",
+        "items": [
+          {
+            "text": "Audit trail for adjustments: dropped because the pain depends on a specific named incident that could identify the customer.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "Speaker sides were inferred, not given.",
+      "No call_key: re-running this transcript will count it again.",
+      "No existing rows were provided; counts cover this call only."
+    ],
+    "footer": "Anonymized: names, companies and identifying figures removed.",
+    "meta": {
+      "skill": "customer-insight-extract",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

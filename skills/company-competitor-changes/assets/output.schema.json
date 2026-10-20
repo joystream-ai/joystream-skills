@@ -1,0 +1,514 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "company",
+    "item_key",
+    "changes",
+    "tracked_pages",
+    "change_count",
+    "change_score",
+    "dropped",
+    "item_result",
+    "state_out",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The competitor's name; empty for a skipped slot."
+    },
+    "item_key": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^$|^[a-z_]+:\\S+$",
+      "description": "The competitor's stable key; the previous state entry and state_out use it."
+    },
+    "changes": {
+      "type": "array",
+      "maxItems": 15,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "date",
+          "date_basis",
+          "category",
+          "what_changed",
+          "so_what",
+          "impact",
+          "importance",
+          "source_id"
+        ],
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+            "description": "YYYY-MM-DD inside [now - lookback_days, now]."
+          },
+          "date_basis": {
+            "type": "string",
+            "enum": [
+              "published",
+              "observed"
+            ],
+            "description": "published = the evidence states the date; observed = found by comparing a page with the previous state, dated now."
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "pricing",
+              "launch",
+              "positioning",
+              "funding",
+              "leadership",
+              "partnership",
+              "hiring",
+              "customer",
+              "other"
+            ]
+          },
+          "what_changed": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "What the competitor did, as the source says it."
+          },
+          "so_what": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 250,
+            "description": "What it means for us, against our positioning. Adds no new facts."
+          },
+          "impact": {
+            "type": "string",
+            "enum": [
+              "threat",
+              "opportunity",
+              "watch"
+            ]
+          },
+          "importance": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^S[0-9]+$"
+          }
+        }
+      },
+      "description": "High importance first, then newest."
+    },
+    "tracked_pages": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "pricing",
+        "changelog",
+        "home"
+      ],
+      "properties": {
+        "pricing": {
+          "type": "string",
+          "enum": [
+            "changed",
+            "unchanged",
+            "baseline",
+            "unavailable"
+          ]
+        },
+        "changelog": {
+          "type": "string",
+          "enum": [
+            "changed",
+            "unchanged",
+            "baseline",
+            "unavailable"
+          ]
+        },
+        "home": {
+          "type": "string",
+          "enum": [
+            "changed",
+            "unchanged",
+            "baseline",
+            "unavailable"
+          ]
+        }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "Major",
+        "Minor",
+        "Quiet",
+        "Unknown"
+      ],
+      "description": "Absent only for a skipped slot."
+    },
+    "change_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 15
+    },
+    "change_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 45,
+      "description": "3 per high, 2 per medium, 1 per low change."
+    },
+    "dropped": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "undated",
+        "out_of_window",
+        "generic",
+        "other_entity",
+        "not_relevant",
+        "already_reported"
+      ],
+      "description": "Evidence items left out, by reason. Each non-zero count is also a line in report.unknowns.",
+      "properties": {
+        "undated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "out_of_window": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generic": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "other_entity": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_relevant": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "already_reported": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "item_result": {
+      "title": "Per-item result",
+      "description": "What a per-item judge skill returns next to its own fields, so results-rank can combine the branches of any fan-out agent. Copied into properties.item_result of each output schema that has an item_result property.",
+      "type": "object",
+      "required": [
+        "item",
+        "item_key",
+        "item_label",
+        "status",
+        "headline",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The item judged, echoed from the slot it came from. Null for a skipped (empty) slot."
+        },
+        "item_key": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^$|^[a-z_]+:\\S+$",
+          "description": "The stable identity key list-prepare gave this item (e.g. domain:acme.example, email:jo@acme.example). Copied unchanged. Memory, de-duplication across runs and later agents join on it. Empty only for a skipped slot."
+        },
+        "item_label": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "How to name the item in a list, e.g. 'Acme (acme.example)'. Empty for a skipped slot."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "skipped",
+            "no_evidence"
+          ],
+          "description": "skipped = the slot was empty; no_evidence = judged, but nothing usable was found. A failed branch is detected by the platform, not reported here."
+        },
+        "verdict": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "The skill's own verdict word, e.g. Pursue, Research, Reject."
+        },
+        "score": {
+          "type": "number",
+          "description": "The skill's own score; score_scale gives its range."
+        },
+        "score_scale": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "E.g. '0-5'."
+        },
+        "headline": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "One-line reason in plain text."
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]+$"
+          },
+          "description": "Ids in this skill's report.sources that back the headline."
+        }
+      }
+    },
+    "state_out": {
+      "title": "State to remember",
+      "description": "What a skill that compares over time asks the agent to save for the next run. Copied into properties.state_out of each output schema that has a state_out property. The skill never saves it; a later write step does (Sheets, Notion, a memory connector, or platform memory once it exists).",
+      "type": "object",
+      "required": [
+        "entries"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "entries": {
+          "type": "array",
+          "maxItems": 100,
+          "items": {
+            "type": "object",
+            "required": [
+              "item_key",
+              "fingerprint",
+              "observed_at"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "item_key": {
+                "type": "string",
+                "pattern": "^[a-z_]+:\\S+$",
+                "maxLength": 200
+              },
+              "fingerprint": {
+                "type": "string",
+                "maxLength": 500,
+                "description": "A short, stable summary of what was observed (e.g. sorted event urls, a price string), compared on the next run to detect change."
+              },
+              "observed_at": {
+                "type": "string",
+                "description": "The run's `now` input."
+              },
+              "data": {
+                "type": "object",
+                "description": "Small extra fields the next run needs. Keep it under 2 KB."
+              }
+            }
+          }
+        }
+      }
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft — not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    }
+  }
+}

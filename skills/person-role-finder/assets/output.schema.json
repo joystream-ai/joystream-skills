@@ -1,0 +1,523 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "people",
+    "roles",
+    "excluded",
+    "rejected_count",
+    "contacts",
+    "item_result",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "people": {
+      "type": "array",
+      "maxItems": 50,
+      "description": "One entry per person per target role filled. Never holds contact details.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "person_key",
+          "name",
+          "title",
+          "target_role",
+          "match_type",
+          "evidence_date",
+          "date_basis",
+          "freshness",
+          "confidence",
+          "source_ids"
+        ],
+        "properties": {
+          "person_key": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^name_company:\\S+$",
+            "description": "name_company:<name>@<company>, lower case, spaces as -."
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "description": "As the source states it."
+          },
+          "target_role": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1,
+            "description": "The target_roles entry this person fills, copied exactly."
+          },
+          "match_type": {
+            "type": "string",
+            "enum": [
+              "exact",
+              "synonym",
+              "adjacent"
+            ]
+          },
+          "role_since": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "YYYY or YYYY-MM or YYYY-MM-DD, only when a source states it."
+          },
+          "evidence_date": {
+            "type": "string",
+            "pattern": "^([0-9]{4}-[0-9]{2}-[0-9]{2}|unknown)$",
+            "description": "Newest date stated by a kept source, YYYY-MM-DD, or unknown."
+          },
+          "date_basis": {
+            "type": "string",
+            "enum": [
+              "published",
+              "event",
+              "page_live",
+              "record",
+              "none"
+            ]
+          },
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "current",
+              "possibly_stale",
+              "undated"
+            ]
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            }
+          }
+        }
+      }
+    },
+    "roles": {
+      "type": "array",
+      "maxItems": 10,
+      "description": "One per target role, in input order.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "role",
+          "status",
+          "people_count"
+        ],
+        "properties": {
+          "role": {
+            "type": "string",
+            "maxLength": 120,
+            "minLength": 1
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "found",
+              "unconfirmed",
+              "adjacent_only",
+              "not_found"
+            ],
+            "description": "found = a current holder (not adjacent); unconfirmed = holders, but none current (possibly stale or undated); adjacent_only = only an adjacent-level holder; not_found."
+          },
+          "people_count": {
+            "type": "integer",
+            "minimum": 0
+          }
+        }
+      }
+    },
+    "excluded": {
+      "type": "array",
+      "maxItems": 10,
+      "description": "People tied to the company and a target role who should not be contacted for it.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "reason",
+          "source_ids"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "reason": {
+            "type": "string",
+            "enum": [
+              "left_company",
+              "superseded",
+              "not_employee",
+              "ambiguous"
+            ]
+          },
+          "note": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "source_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            }
+          }
+        }
+      }
+    },
+    "rejected_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Same-name people at other companies, and candidates without name + title + company in one source."
+    },
+    "contacts": {
+      "type": "array",
+      "maxItems": 50,
+      "description": "Empty unless include_contact_details is true. Personal data: route only to a private destination; never copied into report.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "person_key",
+          "name",
+          "record_ref"
+        ],
+        "properties": {
+          "person_key": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^name_company:\\S+$"
+          },
+          "name": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1
+          },
+          "email": {
+            "type": "string",
+            "maxLength": 254,
+            "description": "Work email exactly as the record states it. Never constructed."
+          },
+          "email_status": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "As the provider gives it, e.g. verified, guessed, unavailable."
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 40
+          },
+          "profile_url": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "record_ref": {
+            "type": "string",
+            "pattern": "^[a-z0-9_]+:[^\\s@]+$",
+            "maxLength": 200,
+            "description": "The enrichment record, <provider>:<kind>/<id>. Never contains an email address."
+          }
+        }
+      }
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "Found",
+        "Partial",
+        "Not found"
+      ],
+      "description": "Absent only for a skipped slot."
+    },
+    "coverage_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "Target roles with status found."
+    },
+    "item_result": {
+      "title": "Per-item result",
+      "description": "What a per-item judge skill returns next to its own fields, so results-rank can combine the branches of any fan-out agent. Copied into properties.item_result of each output schema that has an item_result property.",
+      "type": "object",
+      "required": [
+        "item",
+        "item_key",
+        "item_label",
+        "status",
+        "headline",
+        "source_ids"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "type": [
+            "object",
+            "null"
+          ],
+          "description": "The item judged, echoed from the slot it came from. Null for a skipped (empty) slot."
+        },
+        "item_key": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^$|^[a-z_]+:\\S+$",
+          "description": "The stable identity key list-prepare gave this item (e.g. domain:acme.example, email:jo@acme.example). Copied unchanged. Memory, de-duplication across runs and later agents join on it. Empty only for a skipped slot."
+        },
+        "item_label": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "How to name the item in a list, e.g. 'Acme (acme.example)'. Empty for a skipped slot."
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "ok",
+            "skipped",
+            "no_evidence"
+          ],
+          "description": "skipped = the slot was empty; no_evidence = judged, but nothing usable was found. A failed branch is detected by the platform, not reported here."
+        },
+        "verdict": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "The skill's own verdict word, e.g. Pursue, Research, Reject."
+        },
+        "score": {
+          "type": "number",
+          "description": "The skill's own score; score_scale gives its range."
+        },
+        "score_scale": {
+          "type": "string",
+          "maxLength": 20,
+          "description": "E.g. '0-5'."
+        },
+        "headline": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "One-line reason in plain text."
+        },
+        "source_ids": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^S[0-9]+$"
+          },
+          "description": "Ids in this skill's report.sources that back the headline."
+        }
+      }
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft \u2014 not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    }
+  }
+}

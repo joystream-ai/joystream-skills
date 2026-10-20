@@ -1,0 +1,246 @@
+{
+  "meeting": {
+    "title": "Discovery: Example Analytics",
+    "start": "2026-10-20T14:50:00Z",
+    "start_local": "16:50 Europe/Berlin",
+    "company_name": "Example Analytics",
+    "company_domain": "exampleanalytics.example"
+  },
+  "tldr": [
+    {
+      "text": "Jordan Placeholder (Example Analytics, organizer) and Casey Example (advisors.example, optional); public sources confirm neither.",
+      "source_ids": []
+    },
+    {
+      "text": "Example Analytics sells product analytics to mobile game studios.",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "text": "No dated news in the last 90 days; history with us was not checked.",
+      "source_ids": []
+    }
+  ],
+  "attendees": [
+    {
+      "name": "Jordan Placeholder",
+      "domain": "exampleanalytics.example",
+      "identity": "not_found",
+      "role": "unknown",
+      "role_source_ids": [],
+      "notes": []
+    },
+    {
+      "name": "Casey Example",
+      "domain": "advisors.example",
+      "identity": "not_found",
+      "role": "unknown",
+      "role_source_ids": [],
+      "notes": []
+    }
+  ],
+  "attendees_not_described": 0,
+  "company": {
+    "what_they_do": {
+      "text": "Product analytics for mobile game studios.",
+      "source_ids": [
+        "S1"
+      ]
+    }
+  },
+  "recent_events": [],
+  "history": {
+    "status": "not_checked",
+    "items": []
+  },
+  "goals": [
+    {
+      "text": "Learn who owns month-end close at Example Analytics and whether it is a priority this quarter.",
+      "source_ids": []
+    }
+  ],
+  "questions": [
+    "What is your role in choosing finance tooling, Jordan?",
+    "Why is Casey Example from advisors.example joining?",
+    "How does your finance team run month-end close today?"
+  ],
+  "risks": [
+    {
+      "text": "Could not confirm who Jordan Placeholder is; check before the meeting.",
+      "source_ids": []
+    }
+  ],
+  "rejected_count": 4,
+  "verdict": "Thin",
+  "item_result": {
+    "item": {
+      "index": 1,
+      "item": {
+        "event_id": "3hv8exan22",
+        "title": "Discovery: Example Analytics",
+        "start": "2026-10-20T14:50:00Z",
+        "end": "2026-10-20T15:20:00Z",
+        "start_local": "16:50 Europe/Berlin",
+        "label": "16:50 Example Analytics",
+        "company_domain": "exampleanalytics.example",
+        "company_name_guess": "Example Analytics",
+        "company_is_guess": true,
+        "other_external_domains": [
+          "advisors.example"
+        ],
+        "external_attendees": [
+          {
+            "name": "Jordan Placeholder",
+            "name_source": "calendar",
+            "domain": "exampleanalytics.example",
+            "optional": false,
+            "response": "accepted"
+          },
+          {
+            "name": "Casey Example",
+            "name_source": "calendar",
+            "domain": "advisors.example",
+            "optional": true,
+            "response": "tentative"
+          }
+        ],
+        "external_attendee_count": 2,
+        "internal_attendee_count": 2,
+        "organizer_is_external": true,
+        "agenda": "",
+        "people_query": "\"Jordan Placeholder\" OR \"Casey Example\" Example Analytics",
+        "calendar": "google"
+      },
+      "item_key": "event:3hv8exan22",
+      "query": "Example Analytics exampleanalytics.example company overview, recent news, funding, leadership"
+    },
+    "item_key": "event:3hv8exan22",
+    "item_label": "16:50 Example Analytics",
+    "status": "ok",
+    "verdict": "Thin",
+    "headline": "Jordan Placeholder (Example Analytics, organizer) and Casey Example (advisors.example, optional); public sources confirm neither.",
+    "source_ids": []
+  },
+  "report": {
+    "title": "Meeting prep: Discovery: Example Analytics (16:50 Europe/Berlin)",
+    "summary": "Jordan Placeholder (organizer) and Casey Example meet us for Example Analytics, which sells product analytics to mobile game studios. Public sources confirm neither attendee, there is no dated news in the last 90 days, and history with us was not checked.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "TL;DR",
+        "items": [
+          {
+            "text": "Jordan Placeholder (Example Analytics, organizer) and Casey Example (advisors.example, optional); public sources confirm neither.",
+            "citations": []
+          },
+          {
+            "text": "Example Analytics sells product analytics to mobile game studios.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "No dated news in the last 90 days; history with us was not checked.",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Who is coming",
+        "items": [
+          {
+            "text": "Jordan Placeholder, role unknown (exampleanalytics.example), organizer. No public source ties this name to Example Analytics.",
+            "citations": [],
+            "label": "not_found"
+          },
+          {
+            "text": "Casey Example, role unknown (advisors.example), optional. Another organization than Example Analytics; not researched.",
+            "citations": [],
+            "label": "not_found"
+          }
+        ]
+      },
+      {
+        "heading": "The company",
+        "items": [
+          {
+            "text": "Example Analytics sells product analytics to mobile game studios.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "History with us",
+        "items": [
+          {
+            "text": "History not checked: the agent has no email or CRM step.",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Goals",
+        "items": [
+          {
+            "text": "Learn who owns month-end close at Example Analytics and whether it is a priority this quarter.",
+            "citations": [],
+            "label": "goal"
+          }
+        ]
+      },
+      {
+        "heading": "Questions to ask",
+        "items": [
+          {
+            "text": "What is your role in choosing finance tooling, Jordan?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "Why is Casey Example from advisors.example joining?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "How does your finance team run month-end close today?",
+            "citations": [],
+            "label": "question"
+          }
+        ]
+      },
+      {
+        "heading": "Risks",
+        "items": [
+          {
+            "text": "Could not confirm who Jordan Placeholder is; check before the meeting.",
+            "citations": [],
+            "label": "risk"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://exampleanalytics.example/",
+        "title": "Example Analytics: product analytics for mobile games",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "Rejected 4 results about other people named Jordan Placeholder (a basketball player and a VP Marketing at another company).",
+      "No public source about Casey Example.",
+      "Dropped 1 event older than 90 days (a press release dated 2025-11-03).",
+      "History with us not checked: no email or CRM step output."
+    ],
+    "meta": {
+      "skill": "meeting-prep-brief",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T13:05:00Z"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "meeting_date": "2026-10-21",
+  "attendees": [
+    "Robin Example",
+    "Casey Sample"
+  ],
+  "tldr": [
+    "Casey expects to ship the export bug fix today, then write the incident summary.",
+    "No decisions or blockers."
+  ],
+  "decisions": [],
+  "action_items": [
+    {
+      "task": "Ship a fix for the export bug, pairing with support.",
+      "owner": "Casey Sample",
+      "due": "today",
+      "quote": "I'm pairing with support on the export bug, should have a fix out today."
+    },
+    {
+      "task": "Write the incident summary once the export fix is live.",
+      "owner": "Casey Sample",
+      "quote": "Anyway, I'll write the incident summary once the fix is live."
+    }
+  ],
+  "blockers": [],
+  "updates": [
+    {
+      "person": "Casey Sample",
+      "update": "Pairing with support on the export bug; fix expected today."
+    }
+  ],
+  "open_questions": [],
+  "notion_page": {
+    "title": "Morning huddle — 2026-10-21",
+    "properties": {
+      "Date": "2026-10-21",
+      "Attendees": [
+        "Robin Example",
+        "Casey Sample"
+      ]
+    },
+    "body_md": "## TL;DR\n- Casey expects to ship the export bug fix today, then write the incident summary.\n- No decisions or blockers.\n## Decisions\nNone.\n## Action items\n- [ ] Ship a fix for the export bug, pairing with support. — **Casey Sample** — due today\n  > \"I'm pairing with support on the export bug, should have a fix out today.\"\n- [ ] Write the incident summary once the export fix is live. — **Casey Sample**\n  > \"Anyway, I'll write the incident summary once the fix is live.\"\n## Blockers\nNone.\n## Updates\n- **Casey Sample:** Pairing with support on the export bug; fix expected today.\n## Open questions\nNone."
+  },
+  "report": {
+    "title": "Morning huddle — 2026-10-21",
+    "summary": "Casey expects to ship the export bug fix today, then write the incident summary. No decisions or blockers.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Action items",
+        "items": [
+          {
+            "text": "Ship a fix for the export bug, pairing with support. (due today)",
+            "citations": [
+              "S1"
+            ],
+            "label": "Casey Sample"
+          },
+          {
+            "text": "Write the incident summary once the export fix is live.",
+            "citations": [
+              "S1"
+            ],
+            "label": "Casey Sample"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "title": "Morning huddle transcript",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "The transcript contains a line addressed to an assistant; it was not acted on."
+    ],
+    "meta": {
+      "skill": "meeting-huddle-summary",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-21T09:20:00Z"
+    }
+  }
+}

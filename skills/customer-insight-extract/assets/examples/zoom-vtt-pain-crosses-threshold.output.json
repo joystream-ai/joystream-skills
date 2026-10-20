@@ -1,0 +1,164 @@
+{
+  "insights": [
+    {
+      "id": "I1",
+      "theme": "Manual invoice matching",
+      "theme_status": "existing",
+      "pain": "Carrier invoices are matched to purchase orders by hand in a spreadsheet every week, taking most of a day for two people.",
+      "quote": "Honestly it's all by hand. Every Friday two of us match carrier invoices against purchase orders in Excel, and at [company] that eats most of the day.",
+      "speaker_role": "Finance operations leader",
+      "segment": "Mid-market logistics",
+      "call_count": 3,
+      "repeated": true
+    },
+    {
+      "id": "I2",
+      "theme": "Spreadsheet handoffs between teams",
+      "theme_status": "existing",
+      "pain": "Matched invoices are emailed to accounts payable and re-keyed into the ERP, and items get lost in the handoff.",
+      "quote": "We email the sheet to accounts payable, they re-key it into NetSuite, and things get lost between the two teams.",
+      "speaker_role": "Finance operations leader",
+      "segment": "Mid-market logistics",
+      "call_count": 4,
+      "repeated": true
+    },
+    {
+      "id": "I3",
+      "theme": "Late carrier invoices",
+      "theme_status": "new",
+      "pain": "Carriers send invoices weeks late, so the month closes with unaccrued costs.",
+      "quote": "And some carriers send invoices six weeks late, so we're closing the month with gaps. Last quarter that was about [amount] we couldn't accrue.",
+      "speaker_role": "Finance operations leader",
+      "segment": "Mid-market logistics",
+      "call_count": 1,
+      "repeated": false
+    }
+  ],
+  "rows_to_append": [
+    {
+      "call_key": "zoom:recording/8812",
+      "call_date": "2026-10-14",
+      "theme": "Manual invoice matching",
+      "pain": "Carrier invoices are matched to purchase orders by hand in a spreadsheet every week, taking most of a day for two people.",
+      "quote": "Honestly it's all by hand. Every Friday two of us match carrier invoices against purchase orders in Excel, and at [company] that eats most of the day.",
+      "speaker_role": "Finance operations leader",
+      "segment": "Mid-market logistics"
+    },
+    {
+      "call_key": "zoom:recording/8812",
+      "call_date": "2026-10-14",
+      "theme": "Spreadsheet handoffs between teams",
+      "pain": "Matched invoices are emailed to accounts payable and re-keyed into the ERP, and items get lost in the handoff.",
+      "quote": "We email the sheet to accounts payable, they re-key it into NetSuite, and things get lost between the two teams.",
+      "speaker_role": "Finance operations leader",
+      "segment": "Mid-market logistics"
+    },
+    {
+      "call_key": "zoom:recording/8812",
+      "call_date": "2026-10-14",
+      "theme": "Late carrier invoices",
+      "pain": "Carriers send invoices weeks late, so the month closes with unaccrued costs.",
+      "quote": "And some carriers send invoices six weeks late, so we're closing the month with gaps. Last quarter that was about [amount] we couldn't accrue.",
+      "speaker_role": "Finance operations leader",
+      "segment": "Mid-market logistics"
+    }
+  ],
+  "repeated_pains": [
+    {
+      "theme": "Spreadsheet handoffs between teams",
+      "call_count": 4,
+      "newly_repeated": false,
+      "segments": [
+        "Mid-market logistics",
+        "Enterprise logistics"
+      ]
+    },
+    {
+      "theme": "Manual invoice matching",
+      "call_count": 3,
+      "newly_repeated": true,
+      "segments": [
+        "Mid-market logistics"
+      ]
+    }
+  ],
+  "already_stored": false,
+  "anonymization": {
+    "status": "clean",
+    "redaction_count": 2,
+    "dropped": []
+  },
+  "report": {
+    "title": "Customer insights: Mid-market logistics",
+    "summary": "3 anonymized insights from this call. Manual invoice matching has now come up on 3 calls (newly repeated) and spreadsheet handoffs between teams on 4. Late carrier invoices is a new theme.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Repeated pains",
+        "items": [
+          {
+            "text": "Spreadsheet handoffs between teams: 4 calls.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "Repeated"
+          },
+          {
+            "text": "Manual invoice matching: 3 calls (new).",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "Repeated"
+          }
+        ]
+      },
+      {
+        "heading": "Insights from this call",
+        "items": [
+          {
+            "text": "Carrier invoices are matched to purchase orders by hand every week. \"Honestly it's all by hand. Every Friday two of us match carrier invoices against purchase orders in Excel, and at [company] that eats most of the day.\"",
+            "citations": [
+              "S1"
+            ],
+            "label": "Manual invoice matching"
+          },
+          {
+            "text": "Matched invoices are re-keyed into the ERP and get lost in the handoff. \"We email the sheet to accounts payable, they re-key it into NetSuite, and things get lost between the two teams.\"",
+            "citations": [
+              "S1"
+            ],
+            "label": "Spreadsheet handoffs between teams"
+          },
+          {
+            "text": "Late carrier invoices leave unaccrued costs at month end. \"And some carriers send invoices six weeks late, so we're closing the month with gaps. Last quarter that was about [amount] we couldn't accrue.\"",
+            "citations": [
+              "S1"
+            ],
+            "label": "Late carrier invoices"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "provider": "input"
+      },
+      {
+        "id": "S2",
+        "record_ref": "notion:database/3f9c2a7e",
+        "provider": "notion"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Anonymized: names, companies and identifying figures removed.",
+    "meta": {
+      "skill": "customer-insight-extract",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

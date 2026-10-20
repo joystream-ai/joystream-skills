@@ -1,0 +1,97 @@
+{
+  "company": "Placeholder Ops",
+  "item_key": "domain:example.org",
+  "changes": [],
+  "tracked_pages": {
+    "pricing": "unchanged",
+    "changelog": "unchanged",
+    "home": "unavailable"
+  },
+  "verdict": "Quiet",
+  "change_count": 0,
+  "change_score": 0,
+  "dropped": {
+    "undated": 0,
+    "out_of_window": 1,
+    "generic": 2,
+    "other_entity": 0,
+    "not_relevant": 0,
+    "already_reported": 2
+  },
+  "item_result": {
+    "item": {
+      "index": 3,
+      "item": {
+        "name": "Placeholder Ops",
+        "domain": "example.org"
+      },
+      "item_key": "domain:example.org",
+      "query": "Placeholder Ops example.org news announcements pricing launch"
+    },
+    "item_key": "domain:example.org",
+    "item_label": "Placeholder Ops (example.org)",
+    "status": "ok",
+    "verdict": "Quiet",
+    "score": 0,
+    "score_scale": "0-45",
+    "headline": "No new changes in the last 7 days.",
+    "source_ids": []
+  },
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:example.org",
+        "fingerprint": "pricing=Starter: 99 USD/mo; Growth: 399 USD/mo; Enterprise: contact sales; changelog=2026-10-09 Bulk enrichment; home=The operations layer for modern sales teams",
+        "observed_at": "2026-10-19T08:00:00Z",
+        "data": {
+          "pricing": "Starter: 99 USD/mo; Growth: 399 USD/mo; Enterprise: contact sales",
+          "changelog_latest": "2026-10-09 Bulk enrichment",
+          "home": "The operations layer for modern sales teams",
+          "reported": [
+            {
+              "d": "2026-10-16",
+              "c": "partnership",
+              "s": "salesforce-appexchange-listing",
+              "u": "https://news.example.net/placeholder-ops-appexchange"
+            },
+            {
+              "d": "2026-10-13",
+              "c": "leadership",
+              "s": "new-cro-sam-sample",
+              "u": "https://example.org/blog/welcoming-our-new-cro"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "report": {
+    "title": "Placeholder Ops: what changed, last 7 days",
+    "summary": "Quiet: nothing new since 2026-10-16. The AppExchange listing and the new CRO in this window were already reported last run; pricing and changelog pages are unchanged.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Tracked pages",
+        "items": [
+          {
+            "text": "Home page was not extracted this run; the saved headline was kept.",
+            "citations": [],
+            "label": "unavailable"
+          }
+        ]
+      }
+    ],
+    "sources": [],
+    "unknowns": [
+      "Dropped 1 item outside the 7-day window.",
+      "Dropped 2 generic items.",
+      "Dropped 2 items already reported on 2026-10-16.",
+      "Home page: not extracted this run."
+    ],
+    "meta": {
+      "skill": "company-competitor-changes",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-19T08:00:00Z"
+    }
+  }
+}
