@@ -234,6 +234,11 @@ Return the fields of `assets/output.schema.json` as your result:
     can be returned again later, and `report.unknowns` says `Seen set has <n> companies;
     state_out keeps the newest 100. Use state_mode append to keep them all.`
   - Previous state in sheet rows without `observed_at`: carried entries use `now`.
+- `state_sheet_values`: `state_out.entries` as a grid of cells for a spreadsheet write
+  step, one inner array per entry in the column order `item_key, fingerprint,
+  observed_at, data_json` (`data_json` = the entry's `data` as compact JSON text, `""`
+  when absent), every cell a string, no header row. `null` (not `[]`) when there are no
+  entries, so the write step is skipped.
 - `report`: title `Account discovery: <returned> new companies`; summary with the count,
   how many were already seen or excluded, and the strongest pattern (`Most came from the
   fintech directory filter.`); `severity: info`, or `attention` when nothing new was

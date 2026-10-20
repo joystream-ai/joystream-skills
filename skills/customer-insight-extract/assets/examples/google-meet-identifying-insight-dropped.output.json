@@ -23,6 +23,17 @@
       "segment": "Enterprise healthcare"
     }
   ],
+  "sheet_values": [
+    [
+      "pasted:20261020T090000Z",
+      "2026-10-19",
+      "Claims reconciliation in spreadsheets",
+      "Claims are reconciled across several spreadsheets and a shared inbox, so the numbers are not trusted until well into the month.",
+      "Our claims reconciliation is three spreadsheets and a shared inbox. Nobody trusts the numbers until the 10th of the month.",
+      "Unknown role",
+      "Enterprise healthcare"
+    ]
+  ],
   "repeated_pains": [],
   "already_stored": false,
   "anonymization": {

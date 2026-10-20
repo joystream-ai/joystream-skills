@@ -135,6 +135,32 @@
       }
     ]
   },
+  "state_sheet_values": [
+    [
+      "domain:shiftplate.example",
+      "Shiftplate|shiftplate.example",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"Shiftplate\",\"domain\":\"shiftplate.example\",\"fit_reason\":\"Labor scheduling software for multi-location restaurants; hiring a Head of Finance.\",\"source_url\":\"https://directory.example.org/companies?industry=hospitality\"}"
+    ],
+    [
+      "domain:ovenly.example",
+      "Ovenly Labs|ovenly.example",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"Ovenly Labs\",\"domain\":\"ovenly.example\",\"fit_reason\":\"Inventory forecasting for restaurant groups, 40 employees, Toronto.\",\"source_url\":\"https://directory.example.org/companies?industry=hospitality\"}"
+    ],
+    [
+      "domain:cuisinecloud.example",
+      "CuisineCloud|cuisinecloud.example",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"CuisineCloud\",\"domain\":\"cuisinecloud.example\",\"fit_reason\":\"Series A in October 2026 for hotel procurement software.\",\"source_url\":\"https://news.example.org/2026/10/02/cuisinecloud-raises-series-a\"}"
+    ],
+    [
+      "name:brightgrill",
+      "Brightgrill|-",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"Brightgrill\",\"fit_reason\":\"Operations lead describes manual tip reconciliation across 30 locations.\",\"source_url\":\"https://news.example.com/item?id=9001\"}"
+    ]
+  ],
   "report": {
     "title": "Account discovery: 4 new companies",
     "summary": "4 new companies fit the ICP, 3 of them strongly; 2 were excluded and 1 did not fit. Most came from the hospitality directory filter.",

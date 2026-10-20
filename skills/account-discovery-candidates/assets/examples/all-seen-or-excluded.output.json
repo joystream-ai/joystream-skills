@@ -74,6 +74,26 @@
       }
     ]
   },
+  "state_sheet_values": [
+    [
+      "domain:cuisinecloud.example",
+      "CuisineCloud|cuisinecloud.example",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"CuisineCloud\",\"domain\":\"cuisinecloud.example\"}"
+    ],
+    [
+      "domain:shiftplate.example",
+      "Shiftplate|shiftplate.example",
+      "2026-10-13T09:00:00Z",
+      "{\"name\":\"Shiftplate\",\"domain\":\"shiftplate.example\"}"
+    ],
+    [
+      "domain:ovenly.example",
+      "Ovenly Labs|ovenly.example",
+      "2026-10-13T09:00:00Z",
+      "{\"name\":\"Ovenly Labs\",\"domain\":\"ovenly.example\"}"
+    ]
+  ],
   "report": {
     "title": "Account discovery: 0 new companies",
     "summary": "No new companies this run: 2 already returned, 1 excluded. Three new search directions are suggested.",

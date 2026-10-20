@@ -7,7 +7,8 @@
     "repeated_pains",
     "already_stored",
     "anonymization",
-    "report"
+    "report",
+    "sheet_values"
   ],
   "additionalProperties": false,
   "properties": {
@@ -135,6 +136,22 @@
           }
         }
       }
+    },
+    "sheet_values": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 7,
+        "maxItems": 7
+      },
+      "minItems": 1,
+      "description": "rows_to_append as spreadsheet cells: call_key, call_date, theme, pain, quote, speaker_role, segment. null when empty."
     },
     "repeated_pains": {
       "type": "array",

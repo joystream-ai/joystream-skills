@@ -63,6 +63,35 @@
       "segment": "Mid-market logistics"
     }
   ],
+  "sheet_values": [
+    [
+      "zoom:recording/8812",
+      "2026-10-14",
+      "Manual invoice matching",
+      "Carrier invoices are matched to purchase orders by hand in a spreadsheet every week, taking most of a day for two people.",
+      "Honestly it's all by hand. Every Friday two of us match carrier invoices against purchase orders in Excel, and at [company] that eats most of the day.",
+      "Finance operations leader",
+      "Mid-market logistics"
+    ],
+    [
+      "zoom:recording/8812",
+      "2026-10-14",
+      "Spreadsheet handoffs between teams",
+      "Matched invoices are emailed to accounts payable and re-keyed into the ERP, and items get lost in the handoff.",
+      "We email the sheet to accounts payable, they re-key it into NetSuite, and things get lost between the two teams.",
+      "Finance operations leader",
+      "Mid-market logistics"
+    ],
+    [
+      "zoom:recording/8812",
+      "2026-10-14",
+      "Late carrier invoices",
+      "Carriers send invoices weeks late, so the month closes with unaccrued costs.",
+      "And some carriers send invoices six weeks late, so we're closing the month with gaps. Last quarter that was about [amount] we couldn't accrue.",
+      "Finance operations leader",
+      "Mid-market logistics"
+    ]
+  ],
   "repeated_pains": [
     {
       "theme": "Spreadsheet handoffs between teams",

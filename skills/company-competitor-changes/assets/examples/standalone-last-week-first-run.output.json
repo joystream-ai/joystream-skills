@@ -83,6 +83,14 @@
       }
     ]
   },
+  "state_sheet_values": [
+    [
+      "domain:example.org",
+      "pricing=Pro: 79 USD/user/mo; Business: 129 USD/user/mo; changelog=; home=Pipeline analytics your board will trust",
+      "2026-10-20T14:00:00Z",
+      "{\"pricing\":\"Pro: 79 USD/user/mo; Business: 129 USD/user/mo\",\"changelog_latest\":\"\",\"home\":\"Pipeline analytics your board will trust\",\"reported\":[{\"d\":\"2026-10-17\",\"c\":\"funding\",\"s\":\"seed-extension-12m\",\"u\":\"https://news.example.net/demo-pipeline-seed-extension\"},{\"d\":\"2026-10-15\",\"c\":\"leadership\",\"s\":\"vp-marketing-riley-example\",\"u\":\"https://example.org/blog/riley-joins-as-vp-marketing\"}]}"
+    ]
+  ],
   "report": {
     "title": "Demo Pipeline: what changed, last 7 days",
     "summary": "Major: Demo Pipeline raised a 12 million USD seed extension (2026-10-17) and hired a new VP Marketing (2026-10-15). No positioning was given, so the so-what lines are general.",

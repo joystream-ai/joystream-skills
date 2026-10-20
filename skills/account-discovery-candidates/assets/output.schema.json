@@ -6,7 +6,8 @@
     "counts",
     "dropped",
     "next_queries",
-    "report"
+    "report",
+    "state_sheet_values"
   ],
   "additionalProperties": false,
   "properties": {
@@ -249,6 +250,22 @@
           }
         }
       }
+    },
+    "state_sheet_values": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 4,
+        "maxItems": 4
+      },
+      "minItems": 1,
+      "description": "state_out.entries as spreadsheet cells: item_key, fingerprint, observed_at, data_json. null when there are no entries."
     },
     "report": {
       "title": "Channel-neutral report",

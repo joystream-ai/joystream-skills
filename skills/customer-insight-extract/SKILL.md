@@ -238,6 +238,10 @@ Return the fields of `assets/output.schema.json` as your result:
 - `rows_to_append[]`: one per insight, every value a string: `{call_key, call_date,
   theme, pain, quote, speaker_role, segment}`. `call_date` is `YYYY-MM-DD` or `unknown`.
   `[]` when already stored or nothing was kept.
+- `sheet_values`: the same rows as a grid of cells for a spreadsheet append step, one
+  inner array per row in the column order `call_key, call_date, theme, pain, quote,
+  speaker_role, segment`, every cell a string, no header row. `null` (not `[]`) when
+  `rows_to_append` is empty, so the append step is skipped.
 - `repeated_pains[]`: one per repeated theme from **this call**, most calls first:
   `{theme, call_count, newly_repeated, segments[]}`, `segments` = the distinct segments
   on that theme's rows plus this call's.

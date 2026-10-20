@@ -65,6 +65,14 @@
       }
     ]
   },
+  "state_sheet_values": [
+    [
+      "domain:example.org",
+      "pricing=Starter: 99 USD/mo; Growth: 399 USD/mo; Enterprise: contact sales; changelog=2026-10-09 Bulk enrichment; home=The operations layer for modern sales teams",
+      "2026-10-19T08:00:00Z",
+      "{\"pricing\":\"Starter: 99 USD/mo; Growth: 399 USD/mo; Enterprise: contact sales\",\"changelog_latest\":\"2026-10-09 Bulk enrichment\",\"home\":\"The operations layer for modern sales teams\",\"reported\":[{\"d\":\"2026-10-16\",\"c\":\"partnership\",\"s\":\"salesforce-appexchange-listing\",\"u\":\"https://news.example.net/placeholder-ops-appexchange\"},{\"d\":\"2026-10-13\",\"c\":\"leadership\",\"s\":\"new-cro-sam-sample\",\"u\":\"https://example.org/blog/welcoming-our-new-cro\"}]}"
+    ]
+  ],
   "report": {
     "title": "Placeholder Ops: what changed, last 7 days",
     "summary": "Quiet: nothing new since 2026-10-16. The AppExchange listing and the new CRO in this window were already reported last run; pricing and changelog pages are unchanged.",

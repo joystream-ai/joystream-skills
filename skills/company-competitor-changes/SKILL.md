@@ -247,6 +247,8 @@ Return the fields of `assets/output.schema.json` as your result:
   each `{d: date, c: category, s: a slug of 2-6 words, u: source url}`. A page that is
   `unavailable` this run keeps its previous value: never overwrite saved state with
   nothing. Keep `data` under about 2 KB (shorten slugs first).
+- `state_sheet_values`: the entries as string cells `[item_key, fingerprint,
+  observed_at, data_json]` (`data` as compact JSON), no header; `null` when none.
 - `report`: title `<company>: what changed, last <lookback_days> days`; `summary` = the
   TL;DR: the verdict and the one to three most important changes with their so-what, in
   plain text (`Quiet: nothing new since <previous observed date>.` when empty);

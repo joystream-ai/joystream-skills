@@ -119,6 +119,14 @@
       }
     ]
   },
+  "state_sheet_values": [
+    [
+      "domain:example.com",
+      "pricing=Free: 1 agent; Team: 49 USD/seat/mo; Enterprise: contact sales; changelog=2026-10-15 Agent Studio public beta; home=Automate your revenue team with AI agents",
+      "2026-10-19T08:00:00Z",
+      "{\"pricing\":\"Free: 1 agent; Team: 49 USD/seat/mo; Enterprise: contact sales\",\"changelog_latest\":\"2026-10-15 Agent Studio public beta\",\"home\":\"Automate your revenue team with AI agents\",\"reported\":[{\"d\":\"2026-10-19\",\"c\":\"pricing\",\"s\":\"team-plan-per-seat\",\"u\":\"https://example.com/pricing\"},{\"d\":\"2026-10-15\",\"c\":\"launch\",\"s\":\"agent-studio-beta\",\"u\":\"https://example.com/changelog#agent-studio\"},{\"d\":\"2026-10-14\",\"c\":\"customer\",\"s\":\"example-payroll-case-study\",\"u\":\"https://example.com/blog/example-payroll-lead-routing\"},{\"d\":\"2026-10-12\",\"c\":\"launch\",\"s\":\"hubspot-sync-beta\",\"u\":\"https://example.com/changelog#hubspot-sync-beta\"},{\"d\":\"2026-09-30\",\"c\":\"funding\",\"s\":\"series-a-18m\",\"u\":\"https://news.example.net/sample-automate-series-a\"}]}"
+    ]
+  ],
   "report": {
     "title": "Sample Automate: what changed, last 7 days",
     "summary": "Major: Sample Automate moved its Team plan to per-seat pricing (49 USD per seat, was 299 USD flat), which makes our flat price cheaper for most teams, and launched Agent Studio, a chat agent builder that targets our main difference.",
