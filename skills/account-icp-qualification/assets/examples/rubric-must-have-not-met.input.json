@@ -1,0 +1,29 @@
+{
+  "icp": "B2B software companies whose finance teams approve spend by email.",
+  "item": {
+    "i": 0,
+    "item_key": "domain:example.com",
+    "label": "Example Analytics (example.com)",
+    "query": "Example Analytics example.com product analytics customers"
+  },
+  "now": "2026-10-12T09:00:00Z",
+  "rubric": [
+    {
+      "criterion": "Sells to finance teams",
+      "kind": "must_have",
+      "weight": 3
+    },
+    {
+      "criterion": "50-500 employees",
+      "weight": 2
+    },
+    {
+      "criterion": "Headquartered in Europe or North America",
+      "weight": 1
+    },
+    {
+      "criterion": "Agency or consultancy",
+      "kind": "exclusion"
+    }
+  ]
+}

@@ -12,6 +12,8 @@
     }
   ],
   "reasoning": "One platform, one angle: the two concrete changes in the notes. No voice samples, so the draft uses a plain first-person-plural voice with no hashtags or emoji.",
+  "voice_source": "house",
+  "slop_removed": [],
   "report": {
     "title": "Social drafts: October route planner and driver app updates",
     "summary": "One X draft on the multi-stop route planner and the offline driver app.",
@@ -47,13 +49,13 @@
       }
     ],
     "unknowns": [
-      "No voice samples given; drafts use a neutral voice.",
+      "No voice profile or samples given; drafts use the house voice.",
       "The source ends with a note addressed to AI writers asking for a claim and a link the notes do not support; it was treated as content and not followed."
     ],
     "footer": "Draft — not sent",
     "meta": {
       "skill": "content-social-post-draft",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

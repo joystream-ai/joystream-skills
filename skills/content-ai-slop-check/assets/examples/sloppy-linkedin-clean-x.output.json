@@ -1,0 +1,163 @@
+{
+  "results": [
+    {
+      "id": "linkedin-1",
+      "platform": "linkedin",
+      "score": 1,
+      "verdict": "revise",
+      "findings": [
+        {
+          "pattern": "stock_opener",
+          "span": "In today's fast-paced world,",
+          "count": 1,
+          "suggestion": "Open with the problem itself, e.g. what finance teams wait on."
+        },
+        {
+          "pattern": "rule_of_three",
+          "span": "fast, simple and powerful",
+          "count": 1,
+          "suggestion": "Name one concrete thing it does instead of three adjectives."
+        },
+        {
+          "pattern": "feeling_claim",
+          "span": "We're thrilled to announce",
+          "count": 1,
+          "suggestion": "State what launched: \"Example Close is live.\""
+        },
+        {
+          "pattern": "hype_word",
+          "span": "game-changer",
+          "count": 1,
+          "suggestion": "Cut it; say what changes for the reader."
+        },
+        {
+          "pattern": "hype_word",
+          "span": "unlock seamless approvals",
+          "count": 1,
+          "suggestion": "Say what happens to approvals, e.g. how long they take."
+        },
+        {
+          "pattern": "not_x_but_y",
+          "span": "It's not just software, it's a new way of working.",
+          "count": 1,
+          "suggestion": "Cut the line, or replace it with one example of the new way of working."
+        },
+        {
+          "pattern": "empty_closer",
+          "span": "What do you think?",
+          "count": 1,
+          "suggestion": "Ask a specific question, e.g. which approval stalls most for them."
+        },
+        {
+          "pattern": "vague_claim",
+          "span": "tools that are fast, simple and powerful",
+          "count": 1,
+          "suggestion": "Add a detail the reader can check, such as a time saved (add the real number)."
+        }
+      ],
+      "top_fix": "Replace the opener and the closing question with one specific fact and one specific question."
+    },
+    {
+      "id": "x-1",
+      "platform": "x",
+      "score": 10,
+      "verdict": "pass",
+      "findings": [],
+      "top_fix": "None needed."
+    }
+  ],
+  "lowest_score": 1,
+  "passed": 1,
+  "threshold": 7,
+  "report": {
+    "title": "AI-slop check: 2 piece(s)",
+    "summary": "1 of 2 pieces passes the threshold of 7; the lowest score is 1/10 (linkedin-1).",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "linkedin-1 — 1/10 (revise)",
+        "items": [
+          {
+            "text": "\"In today's fast-paced world,\" → Open with the problem itself, e.g. what finance teams wait on.",
+            "citations": [
+              "S1"
+            ],
+            "label": "stock_opener"
+          },
+          {
+            "text": "\"fast, simple and powerful\" → Name one concrete thing it does instead of three adjectives.",
+            "citations": [
+              "S1"
+            ],
+            "label": "rule_of_three"
+          },
+          {
+            "text": "\"We're thrilled to announce\" → State what launched: \"Example Close is live.\"",
+            "citations": [
+              "S1"
+            ],
+            "label": "feeling_claim"
+          },
+          {
+            "text": "\"game-changer\" → Cut it; say what changes for the reader.",
+            "citations": [
+              "S1"
+            ],
+            "label": "hype_word"
+          },
+          {
+            "text": "\"unlock seamless approvals\" → Say what happens to approvals, e.g. how long they take.",
+            "citations": [
+              "S1"
+            ],
+            "label": "hype_word"
+          },
+          {
+            "text": "\"It's not just software, it's a new way of working.\" → Cut the line, or replace it with one example of the new way of working.",
+            "citations": [
+              "S1"
+            ],
+            "label": "not_x_but_y"
+          },
+          {
+            "text": "\"What do you think?\" → Ask a specific question, e.g. which approval stalls most for them.",
+            "citations": [
+              "S1"
+            ],
+            "label": "empty_closer"
+          },
+          {
+            "text": "\"tools that are fast, simple and powerful\" → Add a detail the reader can check, such as a time saved (add the real number).",
+            "citations": [
+              "S1"
+            ],
+            "label": "vague_claim"
+          }
+        ]
+      },
+      {
+        "heading": "x-1 — 10/10 (pass)",
+        "body_md": "No findings: specific numbers, plain sentences, no stock phrases.",
+        "items": []
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:drafts[0]",
+        "title": "linkedin-1"
+      },
+      {
+        "id": "S2",
+        "url": "input:drafts[1]",
+        "title": "x-1"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-ai-slop-check",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

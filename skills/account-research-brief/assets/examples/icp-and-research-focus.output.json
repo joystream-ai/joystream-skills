@@ -1,0 +1,291 @@
+{
+  "what_they_do": {
+    "text": "Sells a usage-analytics product to operations teams at software companies.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "recent_events": [
+    {
+      "event": "Opened four sales roles in Berlin.",
+      "date": "2026-10-01",
+      "category": "hiring",
+      "source_id": "S2"
+    },
+    {
+      "event": "Raised a $30M Series B led by Example Ventures.",
+      "date": "2026-09-18",
+      "category": "funding",
+      "source_id": "S3"
+    },
+    {
+      "event": "Launched usage-based pricing for the Growth plan.",
+      "date": "2026-08-04",
+      "category": "launch",
+      "source_id": "S4"
+    }
+  ],
+  "likely_problem_owner": {
+    "guess": "Head of Operations",
+    "basis": "The careers page places billing operations inside the operations team.",
+    "is_guess": true,
+    "source_ids": [
+      "S2"
+    ]
+  },
+  "angles": [
+    {
+      "text": "Usage-based pricing makes usage-to-billing reconciliation a monthly job.",
+      "source_ids": [
+        "S4"
+      ]
+    },
+    {
+      "text": "A fast-growing sales team adds invoices to reconcile.",
+      "source_ids": [
+        "S2",
+        "S3"
+      ]
+    }
+  ],
+  "open_questions": [
+    "Which billing system do they use?",
+    "How many employees do they have?",
+    "How many people close the month?"
+  ],
+  "icp_fit": {
+    "fit": "partial",
+    "icp_source": "input",
+    "criteria": [
+      {
+        "criterion": "B2B SaaS",
+        "status": "met",
+        "source_ids": [
+          "S1"
+        ]
+      },
+      {
+        "criterion": "50-500 employees",
+        "status": "unknown",
+        "source_ids": []
+      },
+      {
+        "criterion": "Usage-based pricing",
+        "status": "met",
+        "source_ids": [
+          "S4"
+        ]
+      },
+      {
+        "criterion": "Europe or North America",
+        "status": "met",
+        "source_ids": [
+          "S2"
+        ]
+      }
+    ]
+  },
+  "focus_findings": [
+    {
+      "focus": "which billing system they use",
+      "finding": "unknown",
+      "source_ids": []
+    },
+    {
+      "focus": "are they hiring in finance or billing operations",
+      "finding": "No finance or billing roles; the open roles are four sales roles in Berlin.",
+      "source_ids": [
+        "S2"
+      ]
+    }
+  ],
+  "brief_text": "Account brief — Example Analytics (example.com), 2026-10-12.\n- What they do: sells a usage-analytics product to operations teams at software companies (example.com/).\n- Opened four sales roles in Berlin on 2026-10-01 (example.com/careers).\n- Raised a $30M Series B led by Example Ventures on 2026-09-18 (news.example.com/example-analytics-series-b).\n- Launched usage-based pricing for the Growth plan on 2026-08-04 (example.com/blog/usage-pricing).\n- ICP fit: partial — B2B SaaS, usage-based pricing, Europe; unknown: 50-500 employees.\n- Which billing system they use: unknown.\n- Hiring in finance or billing operations: no, the open roles are sales in Berlin (example.com/careers).\n- Likely problem owner: Head of Operations (a guess, based on the careers page placing billing operations in the operations team).\nAngles: usage-based pricing makes usage-to-billing reconciliation a monthly job; a fast-growing sales team adds invoices to reconcile.\nOpen questions: which billing system they use; headcount; how many people close the month.",
+  "report": {
+    "title": "Example Analytics — account brief",
+    "summary": "Partial ICP fit: B2B SaaS with usage-based pricing in Europe; headcount is not stated. A usage-analytics vendor for operations teams that raised a Series B in September and is hiring sales in Berlin. Its new usage-based pricing is the strongest angle. The owner below is a guess.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "What they do",
+        "items": [
+          {
+            "text": "Sells a usage-analytics product to operations teams at software companies.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "ICP fit",
+        "items": [
+          {
+            "text": "B2B SaaS: met.",
+            "citations": [
+              "S1"
+            ],
+            "label": "met"
+          },
+          {
+            "text": "50-500 employees: unknown.",
+            "citations": [],
+            "label": "unknown"
+          },
+          {
+            "text": "Usage-based pricing: met.",
+            "citations": [
+              "S4"
+            ],
+            "label": "met"
+          },
+          {
+            "text": "Europe or North America: met.",
+            "citations": [
+              "S2"
+            ],
+            "label": "met"
+          }
+        ]
+      },
+      {
+        "heading": "Research focus",
+        "items": [
+          {
+            "text": "which billing system they use: unknown",
+            "citations": [],
+            "label": "unknown"
+          },
+          {
+            "text": "are they hiring in finance or billing operations: No finance or billing roles; the open roles are four sales roles in Berlin.",
+            "citations": [
+              "S2"
+            ],
+            "label": "found"
+          }
+        ]
+      },
+      {
+        "heading": "Recent events",
+        "items": [
+          {
+            "text": "2026-10-01: opened four sales roles in Berlin.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "hiring"
+          },
+          {
+            "text": "2026-09-18: raised a $30M Series B led by Example Ventures.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high",
+            "label": "funding"
+          },
+          {
+            "text": "2026-08-04: launched usage-based pricing for the Growth plan.",
+            "citations": [
+              "S4"
+            ],
+            "confidence": "high",
+            "label": "launch"
+          }
+        ]
+      },
+      {
+        "heading": "Likely problem owner",
+        "items": [
+          {
+            "text": "Head of Operations (a guess): the careers page places billing operations in the operations team.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "low",
+            "label": "guess"
+          }
+        ]
+      },
+      {
+        "heading": "Angles",
+        "items": [
+          {
+            "text": "Usage-based pricing makes usage-to-billing reconciliation a monthly job.",
+            "citations": [
+              "S4"
+            ],
+            "label": "angle"
+          },
+          {
+            "text": "A fast-growing sales team adds invoices to reconcile.",
+            "citations": [
+              "S2",
+              "S3"
+            ],
+            "label": "angle"
+          }
+        ]
+      },
+      {
+        "heading": "Open questions",
+        "items": [
+          {
+            "text": "Which billing system do they use?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "How many employees do they have?",
+            "citations": [],
+            "label": "question"
+          },
+          {
+            "text": "How many people close the month?",
+            "citations": [],
+            "label": "question"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Analytics — usage analytics for operations teams",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/careers",
+        "title": "Careers at Example Analytics",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://news.example.com/example-analytics-series-b",
+        "title": "Example Analytics raises $30M Series B",
+        "published_at": "2026-09-18",
+        "provider": "tavily"
+      },
+      {
+        "id": "S4",
+        "url": "https://example.com/blog/usage-pricing",
+        "title": "Introducing usage-based pricing",
+        "published_at": "2026-08-04",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Dropped 2 undated or older events (a 2025 partnership and an undated award).",
+      "Customer count: no source states it.",
+      "Headcount: no source states it, so the 50-500 employees criterion is unknown.",
+      "Billing system: not named in the evidence."
+    ],
+    "meta": {
+      "skill": "account-research-brief",
+      "skill_version": "1.1.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

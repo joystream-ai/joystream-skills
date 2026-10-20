@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "drafts": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "text"
+        ],
+        "additionalProperties": true,
+        "properties": {
+          "id": {
+            "type": "string",
+            "maxLength": 80
+          },
+          "platform": {
+            "type": "string",
+            "enum": [
+              "linkedin",
+              "x",
+              "blog",
+              "email",
+              "other"
+            ]
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 20000
+          }
+        }
+      },
+      "description": "Pieces to check. Absent: the drafts of the step this one depends on."
+    },
+    "threshold": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 7,
+      "description": "A piece passes at this score or above."
+    },
+    "voice_profile": {
+      "type": "string",
+      "maxLength": 8000,
+      "description": "The author's voice guide; its deliberate habits are not slop, its dont rules are findings."
+    },
+    "allow": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "maxLength": 80
+      },
+      "description": "Words or habits never flagged."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for report.meta. Never guessed."
+    }
+  }
+}

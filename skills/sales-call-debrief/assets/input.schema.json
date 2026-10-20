@@ -9,7 +9,7 @@
     "transcript": {
       "type": "string",
       "minLength": 1,
-      "description": "The call transcript, usually one turn per line as 'Speaker Name: text'. Pasted, or a shortened copy of a recorder step's output (the skill then reads that output). Cited as input:transcript."
+      "description": "The call transcript: 'Speaker: text' lines, a Zoom WebVTT transcript, or a Google Meet transcript with timestamp lines."
     },
     "attendees": {
       "type": "array",
@@ -61,6 +61,21 @@
         "maxLength": 200
       },
       "description": "Names of the attendees on the seller's side; the follow-up email is written from them."
+    },
+    "focus": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "Optional topics to listen for (budget, competitors mentioned, decision process, fit with our ICP: <line>). Each gets a finding or 'Not discussed.' in focus_findings."
+    },
+    "include_follow_up_email": {
+      "type": "boolean",
+      "default": true,
+      "description": "False leaves out follow_up_email and its report section."
     },
     "now": {
       "type": "string",

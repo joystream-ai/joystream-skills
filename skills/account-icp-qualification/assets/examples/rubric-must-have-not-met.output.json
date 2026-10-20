@@ -1,0 +1,132 @@
+{
+  "verdict": "Reject",
+  "fit_score": 1,
+  "fit_reasons": [
+    "Must-have not met: sells to operations teams, not finance teams.",
+    "About 180 employees, inside the 50-500 range.",
+    "Headquartered in Berlin, inside the target regions."
+  ],
+  "why_now": [
+    "Raised a $30M Series B on 2026-09-18."
+  ],
+  "evidence": [
+    {
+      "claim": "Example Analytics sells a usage-analytics product to operations teams at software companies.",
+      "source_id": "S1"
+    },
+    {
+      "claim": "The about page lists about 180 employees and a Berlin headquarters.",
+      "source_id": "S2"
+    },
+    {
+      "claim": "Raised a $30M Series B led by Example Ventures on 2026-09-18.",
+      "source_id": "S3"
+    }
+  ],
+  "confidence": "high",
+  "item_result": {
+    "item": {
+      "i": 0,
+      "item_key": "domain:example.com",
+      "label": "Example Analytics (example.com)",
+      "query": "Example Analytics example.com product analytics customers"
+    },
+    "item_key": "domain:example.com",
+    "item_label": "Example Analytics (example.com)",
+    "status": "ok",
+    "verdict": "Reject",
+    "score": 1,
+    "score_scale": "0-5",
+    "headline": "Must-have not met: sells to operations teams, not finance teams.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Example Analytics — ICP fit",
+    "summary": "Reject, 1 of 5: the must-have \"sells to finance teams\" is not met; Example Analytics sells to operations teams. Size and region fit.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Fit",
+        "items": [
+          {
+            "text": "Sells to finance teams: no; it sells usage analytics to operations teams.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high",
+            "label": "not met · must-have"
+          },
+          {
+            "text": "50-500 employees: about 180.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "met"
+          },
+          {
+            "text": "Headquartered in Europe or North America: Berlin.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "met"
+          }
+        ]
+      },
+      {
+        "heading": "Why now",
+        "items": [
+          {
+            "text": "Raised a $30M Series B led by Example Ventures on 2026-09-18.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Unknown criteria",
+        "items": [
+          {
+            "text": "Agency or consultancy: no source shows services revenue.",
+            "citations": [],
+            "label": "unknown · exclusion"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Analytics — usage analytics for operations teams",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/about",
+        "title": "About Example Analytics",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://news.example.com/example-analytics-series-b",
+        "title": "Example Analytics raises $30M Series B",
+        "published_at": "2026-09-18",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Agency or consultancy: no source says how revenue is earned."
+    ],
+    "meta": {
+      "skill": "account-icp-qualification",
+      "skill_version": "1.2.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

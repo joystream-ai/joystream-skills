@@ -1,0 +1,73 @@
+{
+  "website_url": "https://rival.example",
+  "brand_name": "Rival Flow",
+  "brand_description": "Rival Flow is a workflow automation platform for finance teams.",
+  "audit_date": "2026-10-20",
+  "keywords": [
+    "finance workflow automation",
+    "approval audit trail",
+    "what is agent governance"
+  ],
+  "pages": [
+    {
+      "url": "https://rival.example/",
+      "title": "Rival Flow — Finance workflow automation",
+      "content": "# Rival Flow\n\nRival Flow is a workflow automation platform for finance teams.\n\n## What is finance workflow automation?\nFinance workflow automation routes invoices, approvals and month-end tasks through rules instead of email, so nothing waits in an inbox.\n\n## Customers\nUsed by 120 finance teams."
+    },
+    {
+      "url": "https://rival.example/robots.txt",
+      "content": "User-agent: *\nAllow: /\nUser-agent: GPTBot\nDisallow: /\n\nSitemap: https://rival.example/sitemap.xml"
+    },
+    {
+      "url": "https://rival.example/llms.txt",
+      "failed": true,
+      "error": "404 Not Found"
+    },
+    {
+      "url": "https://rival.example/sitemap.xml",
+      "content": "<urlset><url><loc>https://rival.example/</loc></url><url><loc>https://rival.example/security</loc></url></urlset>"
+    },
+    {
+      "url": "https://rival.example/security",
+      "title": "Security — Rival Flow",
+      "content": "Every approval is logged. Export the approval audit trail as CSV from Settings."
+    }
+  ],
+  "search_results": [
+    {
+      "query": "finance workflow automation",
+      "results": [
+        {
+          "url": "https://rival.example/",
+          "title": "Rival Flow — Finance workflow automation",
+          "content": "Rival Flow is a workflow automation platform for finance teams."
+        },
+        {
+          "url": "https://review.example/finance-automation-tools",
+          "title": "Finance automation tools compared",
+          "content": "Rival Flow and two other tools automate invoice approvals for finance teams."
+        }
+      ]
+    },
+    {
+      "query": "approval audit trail",
+      "results": [
+        {
+          "url": "https://news.example/audit-trails",
+          "title": "Why approval audit trails matter",
+          "content": "An audit trail records who approved what and when."
+        }
+      ]
+    },
+    {
+      "query": "what is agent governance",
+      "results": [
+        {
+          "url": "https://news.example/agent-governance",
+          "title": "What is agent governance?",
+          "content": "Agent governance is the set of controls over what AI agents may do."
+        }
+      ]
+    }
+  ]
+}

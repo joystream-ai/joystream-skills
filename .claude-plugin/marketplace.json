@@ -38,11 +38,13 @@
     },
     {
       "name": "content-studio",
-      "description": "Social content from real work: decide whether recent GitHub activity is worth a post, then draft LinkedIn and X posts in the author's voice. Drafts only; nothing is posted.",
+      "description": "Social content from real work: decide whether recent GitHub activity is worth a post, then draft LinkedIn and X posts in the author's voice (a voice profile built once), and check drafts for AI slop. Drafts only; nothing is posted.",
       "source": "./",
       "skills": [
         "./skills/content-social-post-draft",
-        "./skills/github-activity-post-worthiness"
+        "./skills/github-activity-post-worthiness",
+        "./skills/content-voice-profile",
+        "./skills/content-ai-slop-check"
       ]
     },
     {

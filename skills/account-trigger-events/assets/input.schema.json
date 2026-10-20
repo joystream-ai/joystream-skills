@@ -51,6 +51,31 @@
       "type": "string",
       "maxLength": 1000,
       "description": "What the reader sells or cares about; used only for why_it_matters."
+    },
+    "rubric": {
+      "type": "array",
+      "maxItems": 10,
+      "description": "Optional signals that count. When given, only events matching a signal are kept, and rubric_score = 10 x matched weight / total weight sets the verdict.",
+      "items": {
+        "type": "object",
+        "required": [
+          "signal"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "signal": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3,
+            "default": 1
+          }
+        }
+      }
     }
   }
 }

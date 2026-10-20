@@ -111,7 +111,7 @@
     ],
     "meta": {
       "skill": "account-trigger-events",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

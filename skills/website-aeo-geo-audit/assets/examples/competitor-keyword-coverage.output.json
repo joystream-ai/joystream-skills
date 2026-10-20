@@ -1,0 +1,363 @@
+{
+  "overall_score": 52,
+  "verdict": "Clear on its core keyword, but blocks GPTBot and says nothing about agent governance.",
+  "site_files": {
+    "robots_txt": "present",
+    "llms_txt": "missing",
+    "sitemap": "present"
+  },
+  "client_rendered": false,
+  "categories": [
+    {
+      "key": "crawler_access",
+      "score": 5,
+      "summary": "GPTBot is disallowed; other agents are allowed and the sitemap is declared.",
+      "confidence": "verified"
+    },
+    {
+      "key": "llms_txt",
+      "score": 3,
+      "summary": "No llms.txt (404) on an otherwise readable site.",
+      "confidence": "verified"
+    },
+    {
+      "key": "answerability",
+      "score": 7,
+      "summary": "Quotable definition and one question heading; no FAQ.",
+      "confidence": "verified"
+    },
+    {
+      "key": "metadata",
+      "score": 6,
+      "summary": "Specific titles; descriptions and structured data not visible in rendered text.",
+      "confidence": "partial"
+    },
+    {
+      "key": "external_authority",
+      "score": 5,
+      "summary": "One independent comparison names it; it ranks for its own category keyword.",
+      "confidence": "verified"
+    },
+    {
+      "key": "depth_freshness",
+      "score": 5,
+      "summary": "Two core pages, no dated or authored content.",
+      "confidence": "verified"
+    }
+  ],
+  "strengths": [
+    "Quotable definition: \"Rival Flow is a workflow automation platform for finance teams.\"",
+    "Answers \"What is finance workflow automation?\" under a question heading and ranks for it.",
+    "Named in an independent comparison of finance automation tools."
+  ],
+  "gaps": [
+    "robots.txt disallows GPTBot (User-agent: GPTBot / Disallow: /).",
+    "No llms.txt: the request returned 404 Not Found.",
+    "\"what is agent governance\" is absent from every page read.",
+    "No FAQ and no dated content."
+  ],
+  "recommendations": [
+    {
+      "priority": 1,
+      "action": "Remove the GPTBot disallow rule from /robots.txt.",
+      "effort": "quick_fix"
+    },
+    {
+      "priority": 2,
+      "action": "Publish /llms.txt listing the homepage and /security with one-line descriptions.",
+      "effort": "quick_fix"
+    },
+    {
+      "priority": 3,
+      "action": "Add an explainer page answering \"what is agent governance\" and link it from the homepage.",
+      "effort": "project"
+    },
+    {
+      "priority": 4,
+      "action": "Give /security a heading \"Is there an approval audit trail?\" with the CSV export answer under it.",
+      "effort": "quick_fix"
+    }
+  ],
+  "caveats": [
+    "Meta descriptions, canonical tags and JSON-LD are not exposed in the extracted text.",
+    "Only the homepage and /security were read; the sitemap lists no other pages."
+  ],
+  "sources": [
+    {
+      "url": "https://rival.example/",
+      "title": "Rival Flow — Finance workflow automation",
+      "kind": "site"
+    },
+    {
+      "url": "https://rival.example/robots.txt",
+      "kind": "site"
+    },
+    {
+      "url": "https://rival.example/security",
+      "title": "Security — Rival Flow",
+      "kind": "site"
+    },
+    {
+      "url": "https://review.example/finance-automation-tools",
+      "title": "Finance automation tools compared",
+      "kind": "third_party"
+    },
+    {
+      "url": "https://news.example/audit-trails",
+      "title": "Why approval audit trails matter",
+      "kind": "third_party"
+    },
+    {
+      "url": "https://news.example/agent-governance",
+      "title": "What is agent governance?",
+      "kind": "third_party"
+    }
+  ],
+  "keyword_coverage": [
+    {
+      "keyword": "finance workflow automation",
+      "on_site": "answered",
+      "in_search": "ranks",
+      "note": "Homepage heading \"What is finance workflow automation?\" with an answer; the homepage is the top result.",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "keyword": "approval audit trail",
+      "on_site": "mentioned",
+      "in_search": "not_ranking",
+      "note": "/security mentions the CSV export but has no heading or answer for it; only a news article ranks.",
+      "source_ids": [
+        "S3",
+        "S5"
+      ]
+    },
+    {
+      "keyword": "what is agent governance",
+      "on_site": "absent",
+      "in_search": "not_ranking",
+      "note": "No page read uses the term; a news explainer answers it instead.",
+      "source_ids": [
+        "S6"
+      ]
+    }
+  ],
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "site:rival.example",
+        "fingerprint": "score=52;files=p/m/p",
+        "observed_at": "2026-10-20",
+        "data": {
+          "overall_score": 52,
+          "categories": {
+            "crawler_access": 5,
+            "llms_txt": 3,
+            "answerability": 7,
+            "metadata": 6,
+            "external_authority": 5,
+            "depth_freshness": 5
+          },
+          "site_files": {
+            "robots_txt": "present",
+            "llms_txt": "missing",
+            "sitemap": "present"
+          },
+          "keywords": {
+            "finance workflow automation": "answered",
+            "approval audit trail": "mentioned",
+            "what is agent governance": "absent"
+          }
+        }
+      }
+    ]
+  },
+  "report_markdown": "# AEO/GEO audit: rival.example\n2026-10-20 · Overall **52/100** — Clear on its core keyword, but blocks GPTBot and says nothing about agent governance.\n\n| Category | Score | Finding |\n|---|---|---|\n| AI crawler access | 5/10 | GPTBot disallowed (`User-agent: GPTBot` / `Disallow: /`); sitemap declared. |\n| llms.txt | 3/10 | Missing (404). |\n| Answerability | 7/10 | Quotable definition, one question heading, no FAQ. |\n| Metadata | 6/10 | Specific titles; descriptions and structured data not visible. |\n| External authority | 5/10 | One independent comparison names it. |\n| Depth & freshness | 5/10 | Two core pages, nothing dated. |\n\n## Strengths\n- Quotable definition: \"Rival Flow is a workflow automation platform for finance teams.\"\n- Answers and ranks for \"finance workflow automation\".\n- Named in an independent comparison of finance automation tools.\n\n## Gaps\n- robots.txt disallows GPTBot.\n- No llms.txt (404).\n- \"what is agent governance\" is absent from every page read.\n- No FAQ and no dated content.\n\n## Keywords\n| Keyword | On site | In search | Note |\n|---|---|---|---|\n| finance workflow automation | answered | ranks | Homepage question heading; homepage is the top result. |\n| approval audit trail | mentioned | not ranking | /security mentions the CSV export, no answer. |\n| what is agent governance | absent | not ranking | A news explainer answers it instead. |\n\n## Fix first (ranked)\n1. Remove the GPTBot disallow rule (quick fix).\n2. Publish /llms.txt (quick fix).\n3. Add an explainer answering \"what is agent governance\" (project).\n4. Add an audit-trail question heading to /security (quick fix).\n\n## What this audit could not verify\n- Meta descriptions, canonical tags and JSON-LD.\n- Only the homepage and /security were read.\n\n## Pages audited\n- https://rival.example/ (present) · https://rival.example/robots.txt (present) · https://rival.example/llms.txt (missing) · https://rival.example/sitemap.xml (present) · https://rival.example/security (present)\n\n## Sources\n- https://rival.example/ · https://rival.example/robots.txt · https://rival.example/security · https://review.example/finance-automation-tools · https://news.example/audit-trails · https://news.example/agent-governance\n",
+  "summary_markdown": "*AEO/GEO audit — rival.example: 52/100*\nClear on its core keyword, but blocks GPTBot and says nothing about agent governance.\nStrengths: quotable definition · ranks for its category keyword · one independent comparison\nGaps: GPTBot blocked · no llms.txt · agent governance absent\nKeywords: 1 answered · 1 mentioned · 1 absent\nFull report available from the run.",
+  "report": {
+    "title": "AEO/GEO audit: rival.example",
+    "summary": "52/100. Clear on its core keyword, but blocks GPTBot and says nothing about agent governance.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Scores",
+        "items": [
+          {
+            "text": "AI crawler access: 5/10 — GPTBot is disallowed; other agents allowed, sitemap declared.",
+            "citations": [
+              "S2"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "llms.txt: 3/10 — missing (404) on an otherwise readable site.",
+            "citations": [],
+            "label": "verified"
+          },
+          {
+            "text": "Answerability: 7/10 — quotable definition and one question heading; no FAQ.",
+            "citations": [
+              "S1"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "Metadata: 6/10 — specific titles; descriptions and structured data not visible.",
+            "citations": [
+              "S1",
+              "S3"
+            ],
+            "label": "partial"
+          },
+          {
+            "text": "External authority: 5/10 — one independent comparison names it.",
+            "citations": [
+              "S4"
+            ],
+            "label": "verified"
+          },
+          {
+            "text": "Depth & freshness: 5/10 — two core pages, nothing dated.",
+            "citations": [
+              "S1",
+              "S3"
+            ],
+            "label": "verified"
+          }
+        ]
+      },
+      {
+        "heading": "Strengths",
+        "items": [
+          {
+            "text": "Quotable definition: \"Rival Flow is a workflow automation platform for finance teams.\"",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Named in an independent comparison of finance automation tools.",
+            "citations": [
+              "S4"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Gaps",
+        "items": [
+          {
+            "text": "robots.txt disallows GPTBot.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "\"what is agent governance\" is absent from every page read; a news explainer answers it instead.",
+            "citations": [
+              "S6"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Keywords",
+        "items": [
+          {
+            "text": "finance workflow automation: answered under a homepage question heading; the homepage ranks first.",
+            "citations": [
+              "S1"
+            ],
+            "label": "answered"
+          },
+          {
+            "text": "approval audit trail: /security mentions the CSV export but does not answer it; only a news article ranks.",
+            "citations": [
+              "S3",
+              "S5"
+            ],
+            "label": "mentioned"
+          },
+          {
+            "text": "what is agent governance: no page read uses the term.",
+            "citations": [
+              "S6"
+            ],
+            "label": "absent"
+          }
+        ]
+      },
+      {
+        "heading": "Fix first",
+        "items": [
+          {
+            "text": "Remove the GPTBot disallow rule from /robots.txt.",
+            "citations": [],
+            "label": "quick_fix"
+          },
+          {
+            "text": "Publish /llms.txt listing the homepage and /security.",
+            "citations": [],
+            "label": "quick_fix"
+          },
+          {
+            "text": "Add an explainer page answering \"what is agent governance\".",
+            "citations": [],
+            "label": "project"
+          },
+          {
+            "text": "Add an audit-trail question heading to /security.",
+            "citations": [],
+            "label": "quick_fix"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://rival.example/",
+        "title": "Rival Flow — Finance workflow automation"
+      },
+      {
+        "id": "S2",
+        "url": "https://rival.example/robots.txt"
+      },
+      {
+        "id": "S3",
+        "url": "https://rival.example/security",
+        "title": "Security — Rival Flow"
+      },
+      {
+        "id": "S4",
+        "url": "https://review.example/finance-automation-tools",
+        "title": "Finance automation tools compared"
+      },
+      {
+        "id": "S5",
+        "url": "https://news.example/audit-trails",
+        "title": "Why approval audit trails matter"
+      },
+      {
+        "id": "S6",
+        "url": "https://news.example/agent-governance",
+        "title": "What is agent governance?"
+      }
+    ],
+    "unknowns": [
+      "Meta descriptions, canonical tags and JSON-LD are not exposed in the extracted text.",
+      "Only the homepage and /security were read; the sitemap lists no other pages.",
+      "https://rival.example/llms.txt: 404 Not Found."
+    ],
+    "meta": {
+      "skill": "website-aeo-geo-audit",
+      "skill_version": "1.2.0",
+      "generated_at": "2026-10-20"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "author": "Sam Example",
+  "writings": [
+    "Most finance teams don't have an approvals problem. They have an inbox problem.\n\nWe spent a year watching controllers chase sign-offs over email. The fix wasn't a new form. It was one place to see who is waiting on whom.\n\nWhat's the one approval that always stalls for you?",
+    "9 days.\n\nThat's how long month-end took at the first company we worked with. Now it's 4.\n\nNo magic. We moved approvals out of email and put a deadline on each one.\n\nShort post today. Back to building.",
+    "I used to think more features would win deals.\n\nThey don't. Clarity does. Every customer we lost last year understood our product less than the one they chose.\n\nSo this quarter we are deleting things.",
+    "Hiring note: we are looking for an engineer who likes boring, reliable software.\n\nIf you get excited by an audit log that never misses a row, talk to me.",
+    "Three things I've learned selling to controllers:\n\n1. They read everything.\n2. They hate surprises.\n3. They remember who was honest about limits.\n\nWrite for that reader.",
+    "Small win this week: a customer closed the quarter without a single approval reminder.\n\nNobody noticed. That's the point."
+  ],
+  "admired_authors": [
+    "Paul Example — short declarative sentences",
+    "Ann Sample — ends with one plain question"
+  ],
+  "avoid": [
+    "hype",
+    "corporate jargon"
+  ],
+  "platforms": [
+    "linkedin",
+    "x"
+  ],
+  "now": "2026-10-20T09:00:00Z"
+}

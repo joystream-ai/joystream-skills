@@ -1,4 +1,8 @@
 {
+  "key_points": [
+    "No capacity for anything new until the EHR migration ends in February.",
+    "No next step was agreed; we will check in after the migration."
+  ],
   "summary": "Casey Demo spoke with Morgan Placeholder of Harbor Clinics. Harbor Clinics is in an EHR migration until February and is not taking on anything new before then. No next step was agreed.",
   "pains": [],
   "objections": [
@@ -38,6 +42,28 @@
     "summary": "Casey Demo spoke with Morgan Placeholder of Harbor Clinics. Harbor Clinics is in an EHR migration until February and is not taking on anything new before then. No next step was agreed.",
     "severity": "info",
     "sections": [
+      {
+        "heading": "Key points",
+        "items": [
+          {
+            "text": "No capacity for anything new until the EHR migration ends in February.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "No next step was agreed; we will check in after the migration.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Who was there",
+        "body_md": "**Our side:** Casey Demo\n**Their side:** Morgan Placeholder",
+        "items": []
+      },
       {
         "heading": "Objections",
         "items": [
@@ -80,7 +106,7 @@
     "footer": "Draft — not sent",
     "meta": {
       "skill": "sales-call-debrief",
-      "skill_version": "1.0.1",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-14T16:00:00Z"
     }
   }

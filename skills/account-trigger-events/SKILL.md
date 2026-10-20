@@ -4,13 +4,15 @@ description: >-
   Find dated, sourced trigger events for one company in a lookback window (funding,
   hiring, launches, leadership changes, partnerships) from news, search and careers-page
   evidence, and say why each matters. Drops undated, out-of-window and generic items and
-  counts them. Works on one account, or as the per-item judge in a fan-out list agent
-  (returns item_result for results-rank). Use for trigger detection, buying signals,
-  account monitoring or "why now" research. It does not search, fetch or post.
+  counts them. An optional rubric of the signals you care about (weighted) narrows it to
+  relevant news in the window and scores the account against it. Works on one account,
+  or as the per-item judge in a fan-out list agent (returns item_result for
+  results-rank). Use for trigger detection, buying signals, account monitoring or "why
+  now" research. It does not search, fetch or post.
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -47,6 +49,11 @@ Input data holds only small values the agent passes in:
   applied: keep no triggers and say so in `unknowns`. Never guess a date.
 - **context** (string, optional): what the reader sells or cares about, used only to
   write `why_it_matters`.
+- **rubric** (array, optional, at most 10): the signals that count, each `{signal,
+  weight?}`, e.g. `{signal: "raised a Series A or later", weight: 3}` or `{signal:
+  "announced an AI or automation initiative"}`. `weight` is 1-3 (default 1). When given,
+  only events that match a signal are kept (step 6) and the verdict comes from the
+  rubric (step 8).
 
 The evidence is not an input field. It is the output of the steps this one depends on.
 
@@ -150,6 +157,13 @@ record has a public one, such as a company website):
    Anything else (industry trend pieces, lists of companies, evergreen pages, awards,
    opinion) is dropped as `generic`. Two items about the same event are one trigger;
    cite the most specific source and keep the earliest date.
+
+   **With a `rubric`:** any specific, dated news event at this company may count, in
+   the categories above or `news` (a specific event that fits none of them, such as a
+   regulatory filing, a major customer win or an outage). Keep an event only when it
+   matches at least one rubric signal, and list the signals it matches in `matches`,
+   copied exactly. A specific event that matches no signal is dropped as `off_rubric`.
+   Generic items are still dropped as `generic`.
 7. **Write each trigger**: `event` (one plain sentence of what happened, as the source
    says it), `date` (`YYYY-MM-DD`), `category`, `source_id`, and `why_it_matters` (one
    sentence linking it to `context`, or to buying in general; it adds no new facts).
@@ -159,22 +173,30 @@ record has a public one, such as a company website):
    triggers, newest first; with more, keep funding, leadership and launch first and
    count the rest in `unknowns`.
 
+   **With a `rubric`:** `rubric_score` = 10 × (weight of the signals matched by at
+   least one trigger) ÷ (weight of all signals), rounded half up. `Hot` at 5 or more,
+   `Warm` at 1-4, `Quiet` at 0. With more than 10 triggers, keep those matching the
+   heaviest signals first.
+
 # Output
 
 Return the fields of `assets/output.schema.json` as your result:
 
-- `triggers[]`: `{event, date, category, source_id, why_it_matters}`.
+- `triggers[]`: `{event, date, category, source_id, why_it_matters}`, plus `matches`
+  (the rubric signals it matches) when a rubric was given.
+- `rubric_score` (integer 0-10): only when a rubric was given (step 8).
 - `verdict`: `Hot`, `Warm`, `Quiet`, or `Unknown` for `no_evidence`. Leave it out for a
   skipped slot.
 - `trigger_count`: the number of triggers.
 - `dropped`: `{undated, out_of_window, generic, other_entity}`, counts of evidence items
-  left out.
+  left out, plus `off_rubric` when a rubric was given.
 - `item_result`: `item` = the input slot unchanged (standalone: `{name, domain}` from
   the inputs; `null` when skipped); `item_key` = the slot's `item_key` copied exactly
   (standalone: `domain:<domain>` in lower case without `www.`, else
   `name:<company in lower case, spaces as ->`; `""` when skipped); `item_label` = the
   slot's `label`, else `<company> (<domain>)`; `status` `ok`, `no_evidence` or
-  `skipped`; `verdict` and `score` = the top-level `verdict` and `trigger_count`;
+  `skipped`; `verdict` and `score` = the top-level `verdict` and `trigger_count` (with
+  a rubric, `rubric_score`);
   `score_scale: "0-10"`; `headline` = the strongest trigger in one line, or why there
   is none; `source_ids` = the sources behind the headline.
 - `report`: title `<company>: trigger events, last <lookback_days> days`; summary = the
@@ -183,8 +205,10 @@ Return the fields of `assets/output.schema.json` as your result:
   `<date>: <event> <why_it_matters>`, `label` = category, citations = its source);
   every cited source in `sources`; `unknowns` with one line per non-zero drop count,
   e.g. `Dropped 3 undated items.`, `Dropped 2 items outside the 90-day window.`,
-  `Dropped 4 generic items.`; `meta` with `skill: account-trigger-events`,
-  `skill_version: 1.0.0`, `generated_at` = `now`.
+  `Dropped 4 generic items.`, `Dropped 2 events that match no rubric signal.`; with a
+  rubric, the summary starts with `Rubric <rubric_score>/10` and each item's `label` is
+  its first matched signal, cut to 40 characters; `meta` with `skill:
+  account-trigger-events`, `skill_version: 1.1.0`, `generated_at` = `now`.
 
 A skipped slot returns `triggers: []`, `trigger_count: 0`, all drop counts 0, the
 skipped `item_result` with headline `Empty slot.` and `source_ids: []`, and a report
@@ -220,8 +244,12 @@ quiet means the evidence was read and nothing qualified.
 ## A careers page with no dates
 It is not a hiring trigger. Count it as `undated`.
 
+## Rubric given, nothing matches
+`status: ok`, `rubric_score: 0`, verdict `Quiet`, and `off_rubric` says how many real
+events were left out, so the reader can widen the rubric.
+
 # Examples
 
 See the paired cases in `assets/examples/`: a standalone account with funding and a
-leadership hire plus dropped items, a fan-out branch whose evidence carries an injected
-instruction, and an empty slot.
+leadership hire plus dropped items, the same account scored against a rubric, a fan-out
+branch whose evidence carries an injected instruction, and an empty slot.

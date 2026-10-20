@@ -68,6 +68,40 @@
         }
       }
     },
+    "rubric": {
+      "type": "array",
+      "maxItems": 12,
+      "description": "Optional scoring criteria that replace splitting the ICP. Each criterion is met, not met or unknown from cited evidence; an exclusion met gives 0, a must-have not met caps the score at 1, otherwise the score is 5 x met weight / total weight.",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "criterion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "must_have",
+              "nice_to_have",
+              "exclusion"
+            ],
+            "default": "nice_to_have"
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3,
+            "default": 1
+          }
+        }
+      }
+    },
     "now": {
       "type": "string",
       "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time, and without it the skill uses the run start time from its instructions. Never guessed."

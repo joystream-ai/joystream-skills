@@ -43,6 +43,31 @@
       "basis": "listed as an alternative"
     }
   ],
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:example.com",
+        "fingerprint": "Starter 6 USD per person per month; Agency 9 USD per person per month; annual billing saves 15%.|Contractor Pay: pays freelancers in 30 currencies.|Payroll: monthly payroll with tax filings.",
+        "observed_at": "2026-10-12T09:00:00Z",
+        "data": {
+          "positioning": "Payroll and contractor payments for small creative agencies.",
+          "pricing": "Starter 6 USD per person per month; Agency 9 USD per person per month; annual billing saves 15%.",
+          "products": [
+            "Payroll: monthly payroll with tax filings.",
+            "Contractor Pay: pays freelancers in 30 currencies."
+          ],
+          "proof_points": [
+            "Case study: Placeholder Studio cut payroll time from two days to two hours.",
+            "States SOC 2 Type II certification."
+          ],
+          "competitors": [
+            "Demo Payroll",
+            "Example Wages"
+          ]
+        }
+      }
+    ]
+  },
   "report": {
     "title": "Sample Payroll: website profile",
     "summary": "Sample Payroll sells payroll and contractor payments to creative and marketing agencies with 5 to 50 people.",
@@ -161,7 +186,7 @@
     "unknowns": [],
     "meta": {
       "skill": "company-website-profile",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

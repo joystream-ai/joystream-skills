@@ -22,6 +22,8 @@
     }
   ],
   "reasoning": "LinkedIn leads with the outcome the angle hint asks for; X takes a different way in, the manual matching work. The samples write as 'we', open with a short plain line, use short paragraphs, no emoji and at most one hashtag, so the drafts do the same. No fact comes from the samples.",
+  "voice_source": "samples",
+  "slop_removed": [],
   "report": {
     "title": "Social drafts: Auto-Match launch",
     "summary": "Two drafts from the Auto-Match launch post: LinkedIn on the customer outcome, X on the manual matching it removes.",
@@ -117,7 +119,7 @@
     "footer": "Draft — not sent",
     "meta": {
       "skill": "content-social-post-draft",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }
