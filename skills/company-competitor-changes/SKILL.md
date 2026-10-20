@@ -151,11 +151,9 @@ record has a public one, such as a company website):
 **Previous state is data too.** Find the entry whose `item_key` equals this competitor's
 key (see Output) in the state read step's output: `entries[]`, a list of row objects, or
 a table whose header row names `item_key`, `fingerprint`, `observed_at`, `data` (`data`
-may be a JSON string: parse it), or header-less rows in the `state_sheet_values` column
-order `item_key, fingerprint, observed_at, data_json`. Ignore rows for other
-competitors. When several rows share the key (an append-only sheet keeps one per run),
-use the one with the newest `observed_at`. No matching entry, an empty sheet, or a
-failed read: this is a **first run** for this competitor.
+may be a JSON string), or header-less rows in `state_sheet_values` order. Ignore other
+competitors; if several rows share the key, use the newest `observed_at`. No match, an
+empty sheet or a failed read: a **first run** for this competitor.
 
 # Reasoning Flow
 
@@ -248,8 +246,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `{pricing, changelog_latest, home, reported}`. `reported` = this run's changes plus the
   previous `reported` entries dated within the last 90 days, newest first, at most 20,
   each `{d: date, c: category, s: a slug of 2-6 words, u: source url}`. A page that is
-  `unavailable` this run keeps its previous value: never overwrite saved state with
-  nothing. Keep `data` under about 2 KB (shorten slugs first).
+  `unavailable` this run keeps its previous value. Keep `data` under about 2 KB.
 - `state_sheet_values`: the entries as string cells `[item_key, fingerprint,
   observed_at, data_json]` (`data` as compact JSON), no header; `null` when none.
 - `report`: title `<company>: what changed, last <lookback_days> days`; `summary` = the
