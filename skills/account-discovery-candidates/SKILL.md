@@ -53,7 +53,9 @@ Input data holds only small values the agent passes in:
 - **count** (integer, optional, 1-50, default 20): the most new candidates to return.
 - **fit_threshold** (`plausible` | `strong`, optional, default `plausible`).
 - **exclude** (array, optional, at most 200): companies never to return, each `{name?,
-  domain?}` or a string (a domain when it contains a dot, else a name).
+  domain?}` or a string (a domain when it contains a dot, else a name). When a
+  dependency is an `account-lookalike-profile` output, its `seed.item_key` (and the
+  seed's name and domain) is always excluded too, even if `exclude` does not list it.
 - **state_mode** (`append` | `replace`, optional, default `append`): see Output.
 - **max_next_queries** (integer, optional, 0-10, default 5).
 - **now** (string, ISO 8601, optional): the current time. If it is absent, use the run
@@ -144,7 +146,8 @@ record has a public one, such as a company website):
 fingerprint, observed_at, data}]}`), a list of such entries, or sheet rows (arrays or
 objects with columns such as `item_key`, `name`, `domain`, `observed_at`). Each entry or
 row is one seen company: its key is `item_key`, else built from its `domain` or `name`
-as in step 4. A header row is not a company. The state is not evidence of fit and is
+as in step 4. Header-less array rows follow the `state_sheet_values` column order
+(`item_key, fingerprint, observed_at, data_json`). A header row is not a company. The state is not evidence of fit and is
 never cited.
 
 # Reasoning Flow
