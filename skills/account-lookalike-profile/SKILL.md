@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -143,6 +143,11 @@ record has a public one, such as a company website):
    `report.unknowns`. Without a `domain`, keep only sources whose description matches
    `why_good_customer` and say `No domain given; identity checked against the seller's
    description.`
+
+   **Set `status` now; it is a required field of every result:** `ok` when at least one
+   public source about the seed was kept, `seller_only` when none was (traits will rest
+   on `why_good_customer` alone), `no_evidence` when step 4 later finds no usable trait
+   from either.
 4. **Profile the seed**, at most 16 traits in all, each one fact with its source:
    - **fit**: industry, business model, customer type, size, geography, stack the
      product depends on.
@@ -196,7 +201,9 @@ record has a public one, such as a company website):
    - `why` names the trait the query is looking for.
 8. **ICP text**, at most 1,500 characters: one paragraph per dimension in plain words,
    then the constraints, then the sentence `Same industry alone is not a fit.`
-9. **Build the report** (see Output).
+9. **Build the report** (see Output), then **check the result has every top-level
+   field**: `seed`, `status`, `traits`, `search_queries`, `rubric`, `rubric_notes`,
+   `icp_text`, `report`. A result missing `status` is rejected.
 
 # Output
 
@@ -215,7 +222,7 @@ Return the fields of `assets/output.schema.json` as your result:
   criterion, text `<criterion> (weight <w>)`, citations from `rubric_notes`, `label` =
   kind), and `Searches` (one item per query, no citations, `label` = dimension); every
   cited source in `sources` (`input:why_good_customer` with provider `input`);
-  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.0.0",
+  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.0.1",
   generated_at: <now>}`. `severity: info`, or `attention` when `status` is not `ok`.
 
 # Constraints

@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -248,7 +248,8 @@ Return the fields of `assets/output.schema.json` as your result:
   each `{d: date, c: category, s: a slug of 2-6 words, u: source url}`. A page that is
   `unavailable` this run keeps its previous value. Keep `data` under about 2 KB.
 - `state_sheet_values`: the entries as string cells `[item_key, fingerprint,
-  observed_at, data_json]` (`data` as compact JSON), no header; `null` when none.
+  observed_at, data_json]` (`data` as compact JSON), no header; `null` when none. An
+  array, not a JSON string.
 - `report`: title `<company>: what changed, last <lookback_days> days`; `summary` = the
   TL;DR: the verdict and the one to three most important changes with their so-what, in
   plain text (`Quiet: nothing new since <previous observed date>.` when empty);
@@ -260,7 +261,7 @@ Return the fields of `assets/output.schema.json` as your result:
   cited); every cited source in `sources`; `unknowns` with one line per non-zero drop
   count (`Dropped 2 items already reported on 2026-10-13.`), each failed fetch, and
   `First run for <company>: baselines saved; page changes are reported from the next
-  run.` on a first run; `meta` `{skill: company-competitor-changes, skill_version: 1.0.0,
+  run.` on a first run; `meta` `{skill: company-competitor-changes, skill_version: 1.0.1,
   generated_at: now}`.
 
 A skipped slot returns `changes: []`, counts 0, all pages `unavailable`, the skipped
