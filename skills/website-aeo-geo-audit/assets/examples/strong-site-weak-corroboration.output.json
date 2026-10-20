@@ -106,6 +106,32 @@
       "kind": "site"
     }
   ],
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "site:example.com",
+        "fingerprint": "score=70;files=p/p/p",
+        "observed_at": "2026-10-12",
+        "data": {
+          "overall_score": 70,
+          "categories": {
+            "crawler_access": 9,
+            "llms_txt": 8,
+            "answerability": 9,
+            "metadata": 7,
+            "external_authority": 3,
+            "depth_freshness": 6
+          },
+          "site_files": {
+            "robots_txt": "present",
+            "llms_txt": "present",
+            "sitemap": "present"
+          },
+          "keywords": {}
+        }
+      }
+    ]
+  },
   "report_markdown": "# AEO/GEO audit: example.com\n2026-10-12 · Overall **70/100** — Ready to be cited, but nothing outside the site corroborates it.\n\n| Category | Score | Finding |\n|---|---|---|\n| AI crawler access | 9/10 | robots.txt allows all agents (`User-agent: *` / `Allow: /`) and declares the sitemap. |\n| llms.txt | 8/10 | Present and well-formed; links the FAQ and About pages, but not the blog. |\n| Answerability | 9/10 | Quotable definition up top; question headings; nine FAQ pairs. |\n| Metadata | 7/10 | Titles are specific on every page audited; descriptions and structured data not visible in the extracted text. |\n| External authority | 3/10 | Search returned only the brand's own pages. |\n| Depth & freshness | 6/10 | Solid core pages; one dated post (2026-03-02) and a launch post. |\n\n## Strengths\n- Quotable definition: \"Example Ledger is bookkeeping software for independent cafes and bakeries.\"\n- robots.txt allows every crawler and declares https://example.com/sitemap.xml.\n- llms.txt present, with a summary line and described links.\n- Nine real question-and-answer pairs on the FAQ.\n\n## Gaps\n- No independent coverage: both searches returned only example.com pages.\n- The site does not appear for the buyer question except through its own launch post.\n- Meta descriptions and structured data could not be checked from rendered text.\n\n## Fix first (ranked)\n1. Earn independent coverage: reviews, directory listings, a guest post on a cafe-trade site (project).\n2. Publish a comparison page answering \"best bookkeeping software for a small cafe\" (project).\n3. Add the blog to llms.txt (quick fix).\n\n## What this audit could not verify\n- Meta descriptions, canonical tags and JSON-LD: not exposed in the extracted text.\n\n## Sources\n- https://example.com/ · https://example.com/robots.txt · https://example.com/llms.txt · https://example.com/faq · https://example.com/about · https://example.com/blog/launch\n",
   "summary_markdown": "*AEO/GEO audit — example.com: 70/100*\nReady to be cited, but nothing outside the site corroborates it.\nStrengths: AI crawlers allowed · llms.txt present · clear product definition\nGaps: no independent coverage · absent from buyer-question results · metadata unverified\nFull report available from the run.",
   "report": {
@@ -253,7 +279,7 @@
     ],
     "meta": {
       "skill": "website-aeo-geo-audit",
-      "skill_version": "1.1.0",
+      "skill_version": "1.2.0",
       "generated_at": "2026-10-12"
     }
   }

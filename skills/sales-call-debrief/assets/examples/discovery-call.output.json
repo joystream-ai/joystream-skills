@@ -1,4 +1,10 @@
 {
+  "key_points": [
+    "Biggest pain: matching remittances from four portals by hand, about two days per clinic across eleven clinics.",
+    "Biggest objection: a HIPAA BAA is required before anything touches patient billing.",
+    "Also wary of per-clinic pricing after a past vendor's bill doubled.",
+    "Agreed: if legal approves the BAA, a two-clinic test in November, planning call on 2026-10-28."
+  ],
   "summary": "Casey Demo met Morgan Placeholder and Dana Sample of Harbor Clinics. Matching insurance remittances from four portals takes about two days per clinic across eleven clinics, and format changes break the spreadsheet. Objections were the HIPAA BAA requirement and per-clinic pricing. If legal approves the BAA, they will test two clinics in November, with a planning call on 2026-10-28.",
   "pains": [
     {
@@ -89,6 +95,40 @@
     "severity": "action_needed",
     "sections": [
       {
+        "heading": "Key points",
+        "items": [
+          {
+            "text": "Biggest pain: matching remittances from four portals by hand, about two days per clinic across eleven clinics.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "Biggest objection: a HIPAA BAA is required before anything touches patient billing.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "Also wary of per-clinic pricing after a past vendor's bill doubled.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "Agreed: if legal approves the BAA, a two-clinic test in November, planning call on 2026-10-28.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Who was there",
+        "body_md": "**Our side:** Casey Demo\n**Their side:** Morgan Placeholder, Dana Sample",
+        "items": []
+      },
+      {
         "heading": "Pains",
         "items": [
           {
@@ -177,7 +217,7 @@
     "footer": "Draft — not sent",
     "meta": {
       "skill": "sales-call-debrief",
-      "skill_version": "1.0.1",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-14T16:00:00Z"
     }
   }

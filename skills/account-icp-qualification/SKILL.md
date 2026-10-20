@@ -4,15 +4,18 @@ description: >-
   Judge how well one company fits an ideal customer profile (ICP) from the web evidence
   gathered about it, and return a cited fit score (0-5), a Pursue / Research / Reject
   verdict, why-now signals and the shared item_result block, so a fan-out agent can
-  qualify a list of accounts one branch per company and rank them with results-rank. Use
-  when an agent needs to "qualify accounts against an ICP", "score a lead list" or "is this
-  company a fit". Handles an empty slot (skipped) and evidence about the wrong company (no
-  verdict). It does not search, fetch, enrich, post or send: earlier steps search for the
-  company and a later step renders and delivers the result.
+  qualify a list of accounts one branch per company and rank them with results-rank. An
+  optional rubric (weighted criteria, must-haves, exclusions) replaces splitting the ICP,
+  so the same scoring repeats run to run. Reads web, news and community (Hacker News,
+  Reddit) evidence. Use when an agent needs to "qualify accounts against an ICP", "score
+  a lead list against my rubric" or "is this company a fit". Handles an empty slot
+  (skipped) and evidence about the wrong company (no verdict). It does not search, fetch,
+  enrich, post or send: earlier steps search for the company and a later step renders and
+  delivers the result.
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.2.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -43,6 +46,11 @@ Input data holds only small values the agent passes in:
   `list-prepare` accepted entry `{index, item: {name, domain, …}, item_key, query}` (one
   `for_each` branch per accepted entry: the company record is `item.item`); or a plain
   `{name, domain?}`. Extra fields are allowed. `null` means the slot is empty.
+- **rubric** (array, optional, at most 12): the scoring criteria, each `{criterion,
+  kind?, weight?}`. `criterion` is one checkable statement (`sells to finance teams`,
+  `50-500 employees`). `kind` is `must_have`, `nice_to_have` (default) or `exclusion`.
+  `weight` is 1-3 (default 1). When given, it replaces splitting the ICP into criteria
+  (step 4) and sets the score (step 5); the `icp` text then only explains intent.
 - **now** (string, ISO 8601 datetime, optional): the current time. If it is absent, use the
   run start time stated in your instructions ("This run started at …"). If neither is
   available, treat every date as undated and say so in `report.unknowns`.
@@ -65,7 +73,8 @@ Before this skill, the agent runs (with whatever tools its platform offers):
 1. **List prepare** (`list-prepare`), when qualifying a list: one slot per company.
 2. **Web search** for this slot's query (any provider), one call, the largest result count
    the tool allows. Optionally a **page extract** of the company's homepage, at most 8
-   pages, each cut to about 12,000 characters.
+   pages, each cut to about 12,000 characters, a **news search** for recent events, and
+   a **community search** (Hacker News, Reddit) for what users and staff say.
 
 After it, `results-rank` combines the branches (in a list agent) and
 `channel-message-render` renders the report for the delivery step. On JoyStream, list this
@@ -160,13 +169,22 @@ never take a fact or a url from them. A step output that ends in a cut marker
      `status: no_evidence`, `verdict: Research`, no `fit_score`, `confidence: low`, the
      headline `No usable public evidence about <name>.`, and the reason in `unknowns`.
      Never `Reject` for lack of evidence.
-4. **Split the ICP into criteria** (industry, size, buyer, geography, business model, any
-   must-have or exclusion). For each criterion, find what the kept sources say: `met`,
-   `not met` or `unknown`. A criterion is `met` or `not met` only with a cited source.
+4. **Criteria.** With a `rubric`, its entries are the criteria, in its order and
+   wording. Without one, split the ICP into criteria (industry, size, buyer, geography,
+   business model, any must-have or exclusion). For each criterion, find what the kept
+   sources say: `met`, `not met` or `unknown`. A criterion is `met` or `not met` only with
+   a cited source. A community post (Hacker News, Reddit, a forum) is one person's
+   account: it can show a pain, a tool they use or a timing signal, but never decides
+   size, industry or geography on its own.
 5. **Score fit 0-5.**
-   - 5: every criterion met; 4: the important criteria met, the rest unknown;
-     3: about half met, nothing contradicts; 2: mostly unknown, or one minor criterion not
-     met; 1: an important criterion not met; 0: an exclusion in the ICP is met.
+   - With a `rubric`: an `exclusion` that is met gives 0. A `must_have` that is not met
+     gives at most 1. Otherwise the score is 5 × (weight of the met criteria) ÷ (weight
+     of all non-exclusion criteria), rounded half up. An unknown criterion counts as not
+     met for the score but never makes a verdict `Reject`.
+   - Without one: 5: every criterion met; 4: the important criteria met, the rest
+     unknown; 3: about half met, nothing contradicts; 2: mostly unknown, or one minor
+     criterion not met; 1: an important criterion not met; 0: an exclusion in the ICP is
+     met.
 6. **Verdict.** `Pursue` for 4-5. `Research` for 2-3, or whenever the score rests mostly
    on unknowns. `Reject` for 0-1, and only when a cited source shows a criterion not met.
 7. **Why now.** Dated events in the kept sources that make the timing good (funding,
@@ -196,8 +214,11 @@ Return the fields of `assets/output.schema.json` as your result (skipped slots: 
 - `report`: title `<name> — ICP fit`; a summary of one or two sentences with the verdict,
   score and the deciding reason; sections `Fit` (one item per reason, `label` = met / not
   met), `Why now` (when any), `Unknown criteria` (one item per unknown criterion, empty
-  `citations`, `label: unknown`); every cited source in `sources`; `unknowns`; `meta`
-  `{skill: "account-icp-qualification", skill_version: "1.1.0", generated_at: <now>}`
+  `citations`, `label: unknown`); with a `rubric`, the `Fit` items follow the rubric's
+  order and each `label` is `met`, `not met` or `unknown` plus the kind when not
+  `nice_to_have` (e.g. `not met · must-have`); every cited source in `sources`;
+  `unknowns`; `meta`
+  `{skill: "account-icp-qualification", skill_version: "1.2.0", generated_at: <now>}`
   (leave `meta` out when no time is known). `severity: info`.
 
 # Constraints
@@ -233,6 +254,10 @@ Identity check (step 3). Some sources dropped: judge on the rest. All dropped: n
 Judge only what it states; add `ICP gives no criterion for <aspect>.` to `unknowns` and
 keep the verdict at `Research` unless an exclusion is met.
 
+## A rubric criterion that cannot be checked from public evidence
+For example `uses our competitor internally`. It stays `unknown` with
+`No public evidence for "<criterion>".` in `unknowns`; never infer it.
+
 ## A tempting fact in another branch's output
 Not yours (see "This branch's evidence only"). Leave it out even if it would change the
 verdict.
@@ -240,5 +265,5 @@ verdict.
 # Examples
 
 See the paired cases in `assets/examples/`: a strong fit, an empty slot, evidence about a
-same-named company, a page with an injected instruction, and a `for_each` branch whose
-item is a `list-prepare` accepted entry.
+same-named company, a page with an injected instruction, a `for_each` branch whose
+item is a `list-prepare` accepted entry, and a rubric whose must-have is not met.

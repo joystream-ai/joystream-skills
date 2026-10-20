@@ -1,10 +1,10 @@
 ---
 name: website-aeo-geo-audit
-description: Score how ready a website is to be found, understood and cited by AI answer engines (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) — an AEO/GEO audit across six categories with strengths, gaps, prioritized fixes, a full markdown report and a short summary ready to post. Judges page and search content the agent already fetched; it fetches nothing and posts nowhere.
+description: Score how ready a website is to be found, understood and cited by AI answer engines (ChatGPT, Claude, Perplexity, Gemini, Google AI Overviews) — an AEO/GEO audit across six categories with strengths, gaps, prioritized fixes, a full markdown report and a short summary ready to post. Optionally checks a list of keywords the site should answer (point it at a competitor's site to see which keywords they cover) and compares with the previous audit's saved state to say what changed. Judges the pages and search results the agent already fetched, not every URL on the domain; it fetches nothing, stores nothing and posts nowhere.
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.2.0"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -29,6 +29,14 @@ This skill performs no external operations; the agent's page-extraction step sup
 `pages` and its web-search step supplies `search_results`, and a later step delivers
 `summary_markdown` or `report`.
 
+**Scope.** The audit covers the pages in `pages`: normally the homepage, the three site
+files and two to five key pages. It is not a crawl of every URL under the domain, and
+the report says which pages it read. To audit more pages, the agent extracts more.
+
+**Competitors.** The same skill audits any site. To see how a competitor speaks to a
+set of keywords, the agent runs it with the competitor's `website_url` and the same
+`keywords`.
+
 # Inputs
 
 - `website_url` — the normalized site. Every page and source is judged relative to
@@ -40,7 +48,16 @@ This skill performs no external operations; the agent's page-extraction step sup
 - `brand_description` — optional; the brand's own one-paragraph self-description. When
   present it is the yardstick for step 7: coverage that describes a different product is
   another entity, not this brand's authority.
+- `keywords` — optional, up to 20 terms or questions the site should answer (e.g.
+  `agent governance`, `what is an AI agent platform`). Each gets a coverage verdict in
+  step 9. The agent should also run one search per keyword so step 9 can check whether
+  the site shows up for it.
 - `brand_name`, `audit_date`, `summary_max_chars` — optional presentation inputs.
+
+The previous audit's saved state is not an input field. When the agent keeps state
+between runs, a read step before this one returns the last run's `state_out` (from a
+Sheet, a Notion page or a memory connector), and a write step after it saves the new
+`state_out`. This skill never stores anything.
 
 Target sites, channels, schedules and report destinations belong to the agent, never
 to this skill.
@@ -50,7 +67,9 @@ to this skill.
 1. **Classify the site files.** For `/robots.txt`, `/llms.txt` and `/sitemap.xml`,
    record `present` (content returned), `missing` (the attempt failed with a not-found
    style error or returned an error page), or `unreachable` (not attempted, or failed
-   for another reason). Only `present` content is evidence.
+   for another reason). Only `present` content is evidence. A present sitemap counts
+   in full only when it lists the key pages; a redirect to another sitemap file (for
+   example `wp-sitemap.xml`) that the extraction followed is still present.
 2. **Detect client rendering.** If the homepage content is empty, a near-empty shell,
    or a "please enable JavaScript" notice, set `client_rendered: true`. This is a
    headline gap on its own: most AI crawlers do not execute JavaScript, so they see
@@ -68,9 +87,12 @@ to this skill.
    paragraphs under those headings; and an FAQ, counting real question-and-answer
    pairs (fewer than five is thin). Quote the definitional sentence if one exists.
 6. **Metadata.** From what the extracted text exposes — titles, descriptions, social
-   card fields, canonical and robots meta where the extraction includes them. Rendered
-   text rarely carries JSON-LD, so structured data is `unverified` unless the content
-   shows it; say that rather than scoring it as absent.
+   card fields, canonical and robots meta where the extraction includes them. Check
+   each page, not just the homepage: name every page missing a description, and flag
+   a social card type that does not fit the page (`article` on the homepage, `website`
+   on a blog post) and any `noindex`. Rendered text rarely carries JSON-LD, so
+   structured data is `unverified` unless the content shows it; say that rather than
+   scoring it as absent.
 7. **External authority.** From `search_results`: count distinct third-party domains
    that discuss the brand (exclude the brand's own domains and obvious reposts of its
    press releases). A result counts only if it describes the brand the site and
@@ -80,16 +102,42 @@ to this skill.
    ranks for its own definitional query. Quote any mismatch.
 8. **Depth and freshness.** Dated, authored content; more than a launch post; pages
    that answer adjacent questions.
-9. **Score** each category 0–10 with the rubric below. `overall_score` = mean × 10,
-   rounded. Set each category's `confidence`: `verified` when the evidence was
-   present, `partial` when some was missing, `unverified` when the score rests on
-   absence of evidence.
-10. **Write the findings.** Up to five strengths and five gaps, each with its
+9. **Keywords** (only when `keywords` is given). For each keyword, in the order given:
+   - `on_site`: `answered` when a page in `pages` has a heading or a self-contained
+     paragraph that answers it (quote it); `mentioned` when the term appears without an
+     answer; `absent` when no readable page uses it. If the site could not be read, use
+     `unverified`.
+   - `in_search`: from the search the agent ran for that keyword (match on the query
+     text): `ranks` when a result is on the site's host, `not_ranking` when the search
+     ran and no result is, `not_searched` when no query matches the keyword.
+   - `note`: one line, and the source ids it rests on.
+   A keyword that is `absent` on site is a gap; three or more `absent` keywords make the
+   top keyword gap one of the five `gaps`, and each gets a recommendation naming the
+   page that should answer it.
+10. **Score** each category 0–10 with the rubric below. `overall_score` = mean × 10,
+    rounded. Keywords inform `answerability` and `external_authority` but are not a
+    seventh category. Set each category's `confidence`: `verified` when the evidence
+    was present, `partial` when some was missing, `unverified` when the score rests on
+    absence of evidence.
+11. **Compare with the last run** (only when a prior step returned state with an entry
+    whose `item_key` is `site:<host>`). Compare its `data` with this run: the overall
+    score, each category score, each site file's status and each keyword's `on_site`.
+    Write one line per change in `changes_since_last_run`, e.g. `llms.txt: missing →
+    present` or `answerability: 5 → 7`, newest facts only, at most 10. No change at all
+    is one line: `No change since <observed_at>.` When there is no previous entry, leave
+    `changes_since_last_run` out.
+12. **Write the findings.** Up to five strengths and five gaps, each with its
     evidence. Recommendations ranked by impact, each naming the page, file or field to
     change, with `effort`.
-11. **Render** `report_markdown` in the report shape, then `summary_markdown` — the
-    score, verdict, top three strengths, top three gaps, and one line on where the full
-    report is — trimmed to `summary_max_chars`, never cut mid-line.
+13. **Write `state_out`** when `audit_date` is given: one entry with `item_key`
+    `site:<host>` (lower case, no `www.`), `observed_at` = `audit_date`, `fingerprint`
+    = `score=<overall>;files=<robots>/<llms>/<sitemap>` using `p`, `m` or `u` for each
+    status, and `data` = `{overall_score, categories: {<key>: score}, site_files,
+    keywords: {<keyword>: on_site}}`. Without `audit_date`, leave `state_out` out.
+14. **Render** `report_markdown` in the report shape, then `summary_markdown` — the
+    score, verdict, top three strengths, top three gaps, one line on keyword coverage
+    and one on what changed when those apply, and one line on where the full report is
+    — trimmed to `summary_max_chars`, never cut mid-line.
 
 # Scoring rubric
 
@@ -122,10 +170,13 @@ inflate a score to be kind, and do not zero a category for one fixable gap.
 | External authority | n/10 | … |
 | Depth & freshness | n/10 | … |
 
+## Since last run        (only when changes_since_last_run is present)
 ## Strengths
 ## Gaps
+## Keywords              (only when keywords were given: keyword | on site | in search | note)
 ## Fix first (ranked)
 ## What this audit could not verify
+## Pages audited         (every url in pages, with present / missing / unreachable)
 ## Sources
 ```
 
@@ -145,8 +196,11 @@ with `channel-message-render` instead of posting `summary_markdown`:
 - `title`: `AEO/GEO audit: <host>`. `summary`: the overall score and the verdict, in
   plain text. `severity`: `attention` when `overall_score` is below 50 or
   `client_rendered` is true, else `info`.
-- `sections`, in this order: `Scores` (one item per category, text `<Category>: n/10 —
-  <summary>`, `label` the confidence), `Strengths`, `Gaps`, `Fix first` (one item per
+- `sections`, in this order: `Since last run` (only when `changes_since_last_run` is
+  present; one item per line, no citations, `label` `change`), `Scores` (one item per
+  category, text `<Category>: n/10 — <summary>`, `label` the confidence), `Strengths`,
+  `Gaps`, `Keywords` (only when keywords were given; one item per keyword, text
+  `<keyword>: <note>`, `label` the `on_site` value), `Fix first` (one item per
   recommendation, in priority order, `label` the effort). Every item that states a
   finding cites the sources it rests on; a recommendation that makes no factual claim
   has empty `citations` and a `label`.
@@ -156,8 +210,11 @@ with `channel-message-render` instead of posting `summary_markdown`:
   with `kind: site`.
 - `unknowns`: the caveats and everything listed under "What this audit could not
   verify".
-- `meta`: `skill: website-aeo-geo-audit`, `skill_version: 1.1.0` and `generated_at` =
+- `meta`: `skill: website-aeo-geo-audit`, `skill_version: 1.2.0` and `generated_at` =
   `audit_date`. Leave `meta` out when `audit_date` is absent; never guess a date.
+
+`keyword_coverage` (one entry per keyword, in input order), `changes_since_last_run`
+and `state_out` are described in steps 9, 11 and 13.
 
 # Constraints
 
@@ -192,6 +249,14 @@ at most 3; say whether it looks like no coverage or no search was run.
 Results about a different entity with the same name: exclude them, and note the
 collision as a gap — answer engines will conflate the two.
 
+## Keywords but no keyword searches
+Judge `on_site` normally, set every `in_search` to `not_searched`, and add a caveat
+that the agent should run one search per keyword.
+
+## Previous state for another site
+A previous entry whose `item_key` is not `site:<host>` for this `website_url` is
+ignored; treat the run as a first audit.
+
 # Examples
 
 ## Strong site, weak corroboration
@@ -209,3 +274,10 @@ unreachable; search finds an app-store listing and two directories.
 **Output:** `client_rendered: true`, `overall_score` around 20, first recommendation
 server-side rendering of the homepage and key pages, caveat that on-site categories
 are unverified.
+
+## Competitor site with keywords
+**Input:** a competitor's site, three keywords and one search per keyword; robots.txt
+blocks GPTBot, llms.txt returns 404.
+**Output:** `keyword_coverage` answered / mentioned / absent, the absent keyword as a
+gap with a recommendation, and `state_out` for the next run to compare against. The
+paired cases are in `assets/examples/`.

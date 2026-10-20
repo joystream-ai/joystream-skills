@@ -1,0 +1,10 @@
+{
+  "icp": "B2B software for restaurant and hospitality groups, 20-500 employees, North America. Buyer is finance or operations.",
+  "count": 10,
+  "exclude": [
+    "tablewise.example"
+  ],
+  "state_mode": "replace",
+  "max_next_queries": 3,
+  "now": "2026-10-27T09:00:00Z"
+}

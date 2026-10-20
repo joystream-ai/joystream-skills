@@ -1,0 +1,107 @@
+{
+  "triggers": [
+    {
+      "event": "Example Freight raised a 30 million USD Series B led by Sample Ventures.",
+      "date": "2026-09-15",
+      "category": "funding",
+      "source_id": "S1",
+      "why_it_matters": "New funding usually comes with a mandate to scale operations, which is where route planning pays off.",
+      "matches": [
+        "raised a Series B or later"
+      ]
+    },
+    {
+      "event": "Example Freight hired Jordan Placeholder as VP Operations.",
+      "date": "2026-08-20",
+      "category": "leadership",
+      "source_id": "S2",
+      "why_it_matters": "A new operations leader often reviews the tooling in their first 90 days.",
+      "matches": [
+        "new operations leader"
+      ]
+    }
+  ],
+  "verdict": "Hot",
+  "rubric_score": 8,
+  "trigger_count": 2,
+  "dropped": {
+    "undated": 2,
+    "out_of_window": 1,
+    "generic": 1,
+    "other_entity": 1,
+    "off_rubric": 1
+  },
+  "item_result": {
+    "item": {
+      "name": "Example Freight",
+      "domain": "example.com"
+    },
+    "item_key": "domain:example.com",
+    "item_label": "Example Freight (example.com)",
+    "status": "ok",
+    "verdict": "Hot",
+    "score": 8,
+    "score_scale": "0-10",
+    "headline": "Raised a 30 million USD Series B on 2026-09-15.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Example Freight: trigger events, last 90 days",
+    "summary": "Rubric 8/10, Hot: a 30 million USD Series B (2026-09-15) and a new VP Operations (2026-08-20). No sign of expansion into a new region.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Triggers",
+        "items": [
+          {
+            "text": "2026-09-15: Example Freight raised a 30 million USD Series B led by Sample Ventures. New funding usually comes with a mandate to scale operations, which is where route planning pays off.",
+            "citations": [
+              "S1"
+            ],
+            "label": "raised a Series B or later",
+            "confidence": "high"
+          },
+          {
+            "text": "2026-08-20: Example Freight hired Jordan Placeholder as VP Operations. A new operations leader often reviews the tooling in their first 90 days.",
+            "citations": [
+              "S2"
+            ],
+            "label": "new operations leader",
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://news.example.net/example-freight-series-b",
+        "title": "Example Freight raises 30M Series B",
+        "published_at": "2026-09-15",
+        "provider": "brave"
+      },
+      {
+        "id": "S2",
+        "url": "https://news.example.net/example-freight-vp-operations",
+        "title": "Example Freight names new VP Operations",
+        "published_at": "2026-08-20",
+        "provider": "brave"
+      }
+    ],
+    "unknowns": [
+      "Dropped 2 undated items.",
+      "Dropped 1 item outside the 90-day window.",
+      "Dropped 1 generic item.",
+      "Dropped 1 item about a different Example Freight.",
+      "Dropped 1 event that matches no rubric signal.",
+      "No evidence for the rubric signal \"expanding into a new region\"."
+    ],
+    "meta": {
+      "skill": "account-trigger-events",
+      "skill_version": "1.1.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "seed",
+    "why_good_customer"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "seed": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": true,
+      "description": "The good customer to find more of: {name, domain?}. The domain is how the skill tells the seed apart from same-named companies.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "domain": {
+          "type": "string",
+          "maxLength": 253
+        }
+      }
+    },
+    "why_good_customer": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 2000,
+      "description": "The seller's own words on why the seed is a good customer: what they bought, why, what made the deal fast or large, what they do with it."
+    },
+    "constraints": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Hard limits for every lookalike, e.g. 'North America only, no agencies, under 1,000 employees'. They become must_have or exclusion rubric criteria."
+    },
+    "max_queries": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 15,
+      "default": 8,
+      "description": "The most search queries to return, firmographic ones included."
+    },
+    "firmographic_queries": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 4,
+      "default": 2,
+      "description": "How many of the queries may be plain industry or size searches, labelled firmographic. The rest are led by behavior, pain or timing."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Dates timing traits and stamps report.meta. Without it the skill uses the run start time from its instructions; never guessed."
+    }
+  }
+}

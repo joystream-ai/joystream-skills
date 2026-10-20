@@ -1,18 +1,20 @@
 ---
 name: sales-call-debrief
 description: >-
-  Debrief one sales or discovery call from its transcript: a short summary, the
-  customer's pains and objections, verbatim quotes, next steps with owners taken only
-  from the attendees (or "unassigned"), and a follow-up email draft. Every quote is copied
-  exactly from the transcript, and long transcripts are read in ordered sections and
-  merged. Use when an agent needs to "debrief a sales call", "summarize this meeting
-  transcript", "pull next steps and objections from a call" or "draft the follow-up
-  email". It does not fetch recordings, update a CRM, post or send: the transcript is
-  pasted or read by an earlier step, and the follow-up stays a draft.
+  Debrief one sales or discovery call from its transcript: key points first, then a
+  short summary, the customer's pains and objections, verbatim quotes, next steps with
+  owners taken only from the attendees (or "unassigned"), what was said about each topic
+  you ask it to listen for (budget, competitors, decision process, ICP fit), and a
+  follow-up email draft. Reads Zoom (VTT), Google Meet and "Speaker: text" transcripts.
+  Every quote is copied exactly from the transcript, and long transcripts are read in
+  ordered sections and merged. Use when an agent needs to "debrief a sales call",
+  "summarize this meeting transcript", "pull next steps and objections from a call" or
+  "draft the follow-up email". It does not fetch recordings, update a CRM, post or send:
+  the transcript is pasted or read by an earlier step, and the follow-up stays a draft.
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -36,8 +38,13 @@ never fetches, updates a CRM, posts or sends.
 
 Input data holds small values the agent passes in, plus the pasted transcript:
 
-- **transcript** (string, required): the call transcript, usually one turn per line as
-  `Speaker Name: what they said`.
+- **transcript** (string, required): the call transcript in any of these formats:
+  - `Speaker Name: what they said`, one turn per line;
+  - a Zoom transcript (WebVTT: a `WEBVTT` line, numbered cues, `00:01:02.000 -->
+    00:01:05.000` timing lines, then `Speaker Name: text`);
+  - a Google Meet transcript (timestamp lines such as `00:11:35` between turns, and
+    `Speaker Name: text` or a speaker name on its own line followed by their text).
+  See step 1 for how each is read.
 - **attendees** (array of strings or `{name, company?, role?}` objects, optional): who
   was on the call, e.g. `Jo Example (Acme Metrics, Head of Operations)`. A person's
   **name** is the part before ` (`. Absent: the attendees are the named speakers in the
@@ -46,6 +53,13 @@ Input data holds small values the agent passes in, plus the pasted transcript:
 - **our_side** (array of names, optional): the attendees from the seller's side. Absent:
   attendees marked `our side` in `attendees`; if none are, say so in `unknowns` and write
   the follow-up email from an unnamed sender.
+- **focus** (array of strings, optional, at most 8): topics to listen for, e.g.
+  `budget`, `competitors mentioned`, `decision process`, `timeline`, `fit with our ICP:
+  <one line>`. Each gets a finding or `Not discussed.` in `focus_findings`. Absent: no
+  `focus_findings`.
+- **include_follow_up_email** (boolean, optional, default true): false leaves out
+  `follow_up_email` and its report section, for internal calls or when the team writes
+  its own.
 - **now** (string, ISO 8601 datetime, optional): the current time, for `report.meta`. If it
   is absent, use the run start time stated in your instructions; if neither is
   available, leave `meta` out. Never use it to compute a due date.
@@ -122,9 +136,17 @@ Every report item about the call cites it.
 
 # Reasoning Flow
 
-1. **Check the transcript.** Empty: return the empty-call result (Edge Cases). If it ends
-   mid-sentence or carries a truncation marker, add `The transcript appears cut after
-   "<last words>"; nothing after it was used.` to `unknowns`.
+1. **Check and read the transcript.** Empty: return the empty-call result (Edge Cases).
+   If it ends mid-sentence or carries a truncation marker, add `The transcript appears
+   cut after "<last words>"; nothing after it was used.` to `unknowns`. Read the format:
+   - **Zoom VTT:** skip the `WEBVTT` line, cue numbers and timing lines; each cue's text
+     is `Speaker Name: text`. Consecutive cues from the same speaker are one turn.
+   - **Google Meet:** skip lines that are only a timestamp; a line that is only a name
+     (and matches an attendee or recurs as a label) starts that speaker's turn, and the
+     text lines under it belong to them.
+   - Timestamps, cue numbers and the `WEBVTT` header are never part of a quote. A quote
+     is copied from the turn's text only, so it must still be a verbatim substring of
+     one cue or line.
 2. **Split into ordered sections.** Read the transcript in order, one section at a time.
    A section is one topic (a new question or agenda item usually starts one), never
    longer than about 12,000 characters, and always ends at the end of a speaker turn. A
@@ -157,8 +179,16 @@ Every report item about the call cites it.
    `tentative: true` and no `due`.
 7. **Summary** of at most five sentences: who met, the main pains, the main objections,
    what was agreed. If nothing was agreed, say `No next step was agreed.`
-8. **Follow-up email** from our side to the customer attendees (see Output).
-9. **Check the output contract** (below) before returning: one JSON object, every
+8. **Key points:** three to five bullets a reader can skim in ten seconds: the biggest
+   pain, the biggest objection, what was agreed (or that nothing was), and anything
+   surprising. Each restates a pain, objection or next step; no new facts.
+9. **Focus topics** (only when `focus` is given), in the order given: one finding per
+   topic from what was said, with the quotes that show it, or `Not discussed.` with no
+   quotes. A topic about ICP fit compares what the customer said with the ICP line given
+   and says `fits`, `does not fit` or `unclear`, with the reason.
+10. **Follow-up email** from our side to the customer attendees (see Output), unless
+    `include_follow_up_email` is false.
+11. **Check the output contract** (below) before returning: one JSON object, every
    limit met. However many sections you read, there is exactly one output; the sections
    and their notes are your working, never fields of the result.
 
@@ -166,8 +196,12 @@ Every report item about the call cites it.
 
 Return the fields of `assets/output.schema.json` as your result:
 
+- `key_points[]`: three to five strings, each at most 200 characters (step 8).
 - `summary`: plain text, at most five sentences and **600 characters**, no fact absent
   from the transcript.
+- `focus_findings[]` (only when `focus` is given): `{topic, finding, quote_ids}` in the
+  order of `focus`; `topic` copied exactly; `finding` at most 300 characters or `Not
+  discussed.`; `quote_ids` empty when not discussed.
 - `pains[]` and `objections[]`: `{text, quote_ids}` in the order discussed; objections
   may add `response` (what our side answered, as said). `quote_ids` point into `quotes`.
 - `quotes[]`: `{id, speaker?, text}`, ids `Q1`, `Q2`, … in transcript order.
@@ -175,15 +209,20 @@ Return the fields of `assets/output.schema.json` as your result:
   (the part of the `attendees` entry before ` (`), or `unassigned`. `due` is `YYYY-MM-DD` when the transcript
   states that date, else the time words as said (`today`, `this week`, `before March`);
   leave it out when none was said. Never compute a date.
-- `follow_up_email`: `{subject, body}`. Subject at most 10 words. Body at most 150 words:
+- `follow_up_email` (left out when `include_follow_up_email` is false): `{subject,
+  body}`. Subject at most 10 words. Body at most 150 words:
   thank them, recap the pains in their words, list the agreed next steps with owners and
   dates as said, and nothing else. No meeting, pilot, price or promise that was not
   agreed on the call. Our pending items are written as "I'll …", never as done.
 - `report`: title `Call debrief — <company>` (or `Call debrief`); `summary` = the summary;
-  sections `Pains`, `Objections`, `Next steps` (each item cites the transcript source;
-  next steps carry `label` = the owner), `Follow-up email` (`body_md` = subject and body,
-  and `items: []`); `sources`; `unknowns`; **`footer: "Draft — not sent"`**; `meta`
-  `{skill: "sales-call-debrief", skill_version: "1.0.1", generated_at: <now>}`.
+  sections, in this order: `Key points` (one item per key point), `Who was there`
+  (`body_md`: our side and their side by name, from `attendees` or the speakers, and
+  `items: []`), `Pains`, `Objections`, `Next steps` (next steps carry `label` = the
+  owner), `Focus` (only with `focus`; one item per topic, `label` the topic cut to 40
+  characters), `Follow-up email` (only when included; `body_md` = subject and body, and
+  `items: []`). Every item cites the transcript source. Then `sources`; `unknowns`;
+  **`footer: "Draft — not sent"`**; `meta` `{skill: "sales-call-debrief",
+  skill_version: "1.1.0", generated_at: <now>}`.
   `severity: info`, or `action_needed` when next steps are owned by our side.
 
 ## Output contract
@@ -191,9 +230,10 @@ Return the fields of `assets/output.schema.json` as your result:
 The result must validate against `assets/output.schema.json`; a result that does not is
 discarded, however good its content. Check each line before returning:
 
-- **Exactly these top-level fields:** `summary`, `pains`, `objections`, `quotes`,
-  `next_steps`, `follow_up_email`, `report`. No other field anywhere: no section numbers,
-  topics, ledger, confidence or speaker fields beyond the ones listed below.
+- **Exactly these top-level fields:** `key_points`, `summary`, `pains`, `objections`,
+  `quotes`, `next_steps`, `report`, plus `focus_findings` when `focus` was given and
+  `follow_up_email` unless `include_follow_up_email` is false. No other field anywhere:
+  no section numbers, ledger, confidence or speaker fields beyond the ones listed below.
 - **Objects and their fields:** pains and objections `{text, quote_ids}` (objections may
   add `response`); quotes `{id, text}` plus `speaker` only for a named attendee; next
   steps `{action, owner}` plus `due` and `tentative` only when they apply;
@@ -207,7 +247,9 @@ discarded, however good its content. Check each line before returning:
 
 | Field | Limit |
 |---|---|
+| `key_points` | 3-5 entries, 200 characters each |
 | `summary`, `report.summary` | 600 characters (the same text) |
+| `focus_findings` | 8 entries; `finding` 300 characters |
 | `pains`, `objections` | 10 entries each; `text` and `response` 300 characters |
 | `quotes` | 20 entries; `text` 400 characters (about 30 words is the aim) |
 | `next_steps` | 15 entries; `action` 300 characters; `owner` 200; `due` 60 |
@@ -260,6 +302,11 @@ agreed.` The follow-up thanks them and proposes nothing new.
 ## Unnamed or inaudible speakers
 Quotes from them have no `speaker`; their commitments are `unassigned`.
 
+## Zoom or Meet transcript with timestamps only, no speaker names
+Read it as one unnamed speaker per turn: quotes have no `speaker`, every commitment is
+`unassigned`, and `unknowns` says `The transcript has no speaker names; owners could not
+be assigned.`
+
 ## A long transcript
 Above 96,000 characters: ordered sections and merge (Reasoning Flow steps 2-4;
 `references/long-transcripts.md`), and add `Long transcript: read in N ordered sections.`
@@ -268,4 +315,5 @@ to `unknowns`.
 # Examples
 
 See the paired cases in `assets/examples/`: a discovery call, a call with no agreed next
-step, and a transcript with a line addressed to an assistant.
+step, a transcript with a line addressed to an assistant, and a Zoom (VTT) transcript
+with focus topics and no follow-up email.

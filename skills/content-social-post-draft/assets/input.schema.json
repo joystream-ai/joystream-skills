@@ -25,6 +25,11 @@
       "maxLength": 50000,
       "description": "Pasted source content (blog post, notes). Cited as input:source_text. Without it, the source is the output of the steps this one depends on."
     },
+    "voice_profile": {
+      "type": "string",
+      "maxLength": 8000,
+      "description": "The author's voice as a written guide, usually content-voice-profile's profile_markdown kept in a document. Style only, never facts. Wins over voice_samples."
+    },
     "voice_samples": {
       "type": "array",
       "maxItems": 10,
@@ -33,7 +38,31 @@
         "minLength": 1,
         "maxLength": 3000
       },
-      "description": "Earlier posts by the author, 3-10 recommended. Style only, never facts. Empty: a neutral voice, noted in report.unknowns."
+      "description": "Earlier posts by the author, 3-10 recommended, used only when there is no voice profile. Style only, never facts. None of profile, document or samples: the house voice, noted in report.unknowns."
+    },
+    "style_rules": {
+      "type": "array",
+      "maxItems": 15,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "Your own rules; they win over the voice and the defaults."
+    },
+    "structure": {
+      "type": "string",
+      "maxLength": 600,
+      "description": "Your post template, e.g. 'hook / the problem / what we did / one number / takeaway'."
+    },
+    "emoji_level": {
+      "type": "string",
+      "enum": [
+        "none",
+        "light",
+        "medium"
+      ],
+      "description": "none, light (<=2 LinkedIn, <=1 X, never in the hook) or medium (<=5 LinkedIn, <=2 X). Absent: follow the voice, else none."
     },
     "angle_hint": {
       "type": "string",

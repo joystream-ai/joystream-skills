@@ -25,6 +25,25 @@
       "basis": "listed as an alternative"
     }
   ],
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:example.org",
+        "fingerprint": "unknown",
+        "observed_at": "2026-10-12T09:00:00Z",
+        "data": {
+          "positioning": "unknown",
+          "pricing": "unknown",
+          "products": [],
+          "proof_points": [],
+          "competitors": [
+            "Shift Example",
+            "Demo Roster"
+          ]
+        }
+      }
+    ]
+  },
   "report": {
     "title": "Sample Rota: website profile",
     "summary": "The site could not be read: its pages need JavaScript. Only competitors could be established, from one directory listing.",
@@ -65,7 +84,7 @@
     ],
     "meta": {
       "skill": "company-website-profile",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

@@ -1,0 +1,130 @@
+{
+  "meeting_date": "2026-10-20",
+  "attendees": [
+    "Priya Example",
+    "Marco Sample",
+    "Lee Placeholder"
+  ],
+  "tldr": [
+    "Launch moves to November 4 so the webinar lands first.",
+    "Pricing page is blocked on legal sign-off for the annual discount wording; Priya will get an answer by noon.",
+    "Marco updates the launch calendar and tells sales by Wednesday.",
+    "Press release versus blog post only is still open."
+  ],
+  "decisions": [
+    {
+      "decision": "Move the launch to November 4 so the webinar lands first.",
+      "decided_by": "Priya Example",
+      "quote": "Agreed. Let's go with November 4 for the launch."
+    }
+  ],
+  "action_items": [
+    {
+      "task": "Ping legal about the annual discount wording and get Lee an answer.",
+      "owner": "Priya Example",
+      "due": "by noon",
+      "quote": "Okay, I'll ping legal this morning and get you an answer by noon."
+    },
+    {
+      "task": "Update the launch calendar to November 4 and tell the sales team.",
+      "owner": "Marco Sample",
+      "due": "by Wednesday",
+      "quote": "Yes, I'll do both by Wednesday."
+    }
+  ],
+  "blockers": [
+    {
+      "blocker": "The pricing page cannot ship until legal signs off on the annual discount wording.",
+      "raised_by": "Lee Placeholder",
+      "needs": "legal sign-off",
+      "quote": "I can't ship it until legal signs off on the annual discount wording."
+    }
+  ],
+  "updates": [
+    {
+      "person": "Marco Sample",
+      "update": "Finished the onboarding email sequence; today on the webinar landing page."
+    },
+    {
+      "person": "Lee Placeholder",
+      "update": "Still on the pricing page, waiting on legal."
+    }
+  ],
+  "open_questions": [
+    "Press release, or just the blog post? To be decided Thursday."
+  ],
+  "notion_page": {
+    "title": "Growth Morning huddle — 2026-10-20",
+    "properties": {
+      "Date": "2026-10-20",
+      "Attendees": [
+        "Priya Example",
+        "Marco Sample",
+        "Lee Placeholder"
+      ]
+    },
+    "body_md": "## TL;DR\n- Launch moves to November 4 so the webinar lands first.\n- Pricing page is blocked on legal sign-off for the annual discount wording; Priya will get an answer by noon.\n- Marco updates the launch calendar and tells sales by Wednesday.\n- Press release versus blog post only is still open.\n## Decisions\n- Move the launch to November 4 so the webinar lands first. (Priya Example)\n  > \"Agreed. Let's go with November 4 for the launch.\"\n## Action items\n- [ ] Ping legal about the annual discount wording and get Lee an answer. — **Priya Example** — due by noon\n  > \"Okay, I'll ping legal this morning and get you an answer by noon.\"\n- [ ] Update the launch calendar to November 4 and tell the sales team. — **Marco Sample** — due by Wednesday\n  > \"Yes, I'll do both by Wednesday.\"\n## Blockers\n- The pricing page cannot ship until legal signs off on the annual discount wording. — raised by Lee Placeholder; needs legal sign-off\n## Updates\n- **Marco Sample:** Finished the onboarding email sequence; today on the webinar landing page.\n- **Lee Placeholder:** Still on the pricing page, waiting on legal.\n## Open questions\n- Press release, or just the blog post? To be decided Thursday."
+  },
+  "report": {
+    "title": "Growth Morning huddle — 2026-10-20",
+    "summary": "Launch moves to November 4 so the webinar lands first. Pricing page is blocked on legal sign-off for the annual discount wording; Priya will get an answer by noon. Marco updates the launch calendar and tells sales by Wednesday. Press release versus blog post only is still open.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Decisions",
+        "items": [
+          {
+            "text": "Move the launch to November 4 so the webinar lands first.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Action items",
+        "items": [
+          {
+            "text": "Ping legal about the annual discount wording and get Lee an answer. (due by noon)",
+            "citations": [
+              "S1"
+            ],
+            "label": "Priya Example"
+          },
+          {
+            "text": "Update the launch calendar to November 4 and tell the sales team. (due by Wednesday)",
+            "citations": [
+              "S1"
+            ],
+            "label": "Marco Sample"
+          }
+        ]
+      },
+      {
+        "heading": "Blockers",
+        "items": [
+          {
+            "text": "The pricing page cannot ship until legal signs off on the annual discount wording.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "title": "Growth morning huddle transcript",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "meeting-huddle-summary",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:40:00Z"
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "item": {
+    "index": 1,
+    "item": {
+      "name": "Sample Automate",
+      "domain": "example.com",
+      "pricing_url": "https://example.com/pricing",
+      "changelog_url": "https://example.com/changelog",
+      "blog_url": "https://example.com/blog"
+    },
+    "item_key": "domain:example.com",
+    "query": "Sample Automate example.com news announcements pricing launch"
+  },
+  "lookback_days": 7,
+  "now": "2026-10-19T08:00:00Z",
+  "our_positioning": "We sell Example Flow, a chat-built agent automation platform for go-to-market teams at 20-200 person B2B startups. Flat team pricing, no per-seat fees; we win on time-to-first-agent and on not needing an ops engineer.",
+  "watch": [
+    "per-seat pricing",
+    "AI agent builder",
+    "HubSpot integration"
+  ],
+  "max_changes": 8
+}

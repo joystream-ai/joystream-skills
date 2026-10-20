@@ -3,13 +3,16 @@ name: company-website-profile
 description: >-
   Profile a company from its own website and a web search: positioning, target
   customer, products, pricing, proof points and competitors, every field cited or marked
-  unknown. Competitors come only from search results, never from model knowledge. Use when
-  an agent needs website intelligence, a competitor snapshot or a company overview from a
-  URL. It does not fetch pages, search the web or post anywhere.
+  unknown. Competitors come only from search results, never from model knowledge. Given
+  the previous run's saved state, it also says what changed since then (new products,
+  pricing, positioning, competitors), so a scheduled agent can watch a competitor's site.
+  Use when an agent needs website intelligence, a competitor snapshot, "what changed on
+  their site" or a company overview from a URL. It does not fetch pages, search the web,
+  store state or post anywhere.
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -43,6 +46,10 @@ Input data holds only small values the agent passes in:
   out. Never guess a date.
 
 The evidence is not an input field. It is the output of the steps this one depends on.
+So is the previous run's state: when the agent keeps state between runs, a read step
+before this one returns the last `state_out` (from a Sheet, a Notion page or a memory
+connector), and a write step after it saves the new one. This skill never stores
+anything.
 
 # What this skill needs
 
@@ -140,7 +147,21 @@ record has a public one, such as a company website):
    competitor from your own knowledge, from the company's own product pages, or because
    it seems similar. Leave out the company itself, its own products, and results about a
    different company with the same name (count them in `unknowns`). At most 8.
-6. **Write the report** (see Output).
+6. **Compare with the last run** (only when a prior step returned state with an entry
+   whose `item_key` is `domain:<host>`, the host of `url` in lower case without
+   `www.`). Compare its `data` with this run's known values: `positioning`, `pricing`,
+   and the names in `products`, `proof_points` and `competitors`. Write one line per
+   change in `changes_since_last_run`, e.g. `New product: Example Insights`, `Pricing:
+   "From $29/month" → "From $39/month"`, `Competitor no longer listed: Example Co`,
+   at most 10. A field that is `unknown` now but was known before is `Could not confirm
+   <field> this run`, not a removal. No change at all is one line: `No change since
+   <observed_at>.` Without a previous entry, leave `changes_since_last_run` out.
+7. **Write `state_out`** when `now` is known: one entry with `item_key`
+   `domain:<host>`, `observed_at` = `now`, `fingerprint` = the pricing value and the
+   sorted product names joined with `|` (at most 500 characters), and `data` =
+   `{positioning, pricing, products: [names], proof_points: [values], competitors:
+   [names]}`, keeping it under 2 KB. Without `now`, leave `state_out` out.
+8. **Write the report** (see Output).
 
 # Output
 
@@ -156,12 +177,17 @@ Return the fields of `assets/output.schema.json` as your result. Every field is 
 - `products[]`, `proof_points[]`, `competitors[]`: lists of known facts; an empty list
   means none were found, and `report.unknowns` says why. Each competitor also has
   `basis` (`listed as an alternative`, `compared in a "vs" article`).
+- `changes_since_last_run` (list of strings, optional) and `state_out` (optional): see
+  steps 6 and 7.
 - `report`: title `<company>: website profile`; summary = positioning plus target
-  customer in one or two sentences; `severity: attention` when the site could not be
-  read, else `info`; sections `Positioning`, `Products and pricing`, `Proof points`,
-  `Competitors`, each item citing its source (an unknown field is not an item); every
-  cited source in `sources`; `meta` with `skill: company-website-profile`,
-  `skill_version: 1.0.0`, `generated_at` = `now`.
+  customer in one or two sentences, and when there are changes, their count (`3 changes
+  since 2026-10-13.`); `severity: attention` when the site could not be read, else
+  `info`; sections `Since last run` first when `changes_since_last_run` is present (one
+  item per line, citing the new value's source or none, `label` `change`), then
+  `Positioning`, `Products and pricing`, `Proof points`, `Competitors`, each item
+  citing its source (an unknown field is not an item); every cited source in
+  `sources`; `meta` with `skill: company-website-profile`, `skill_version: 1.1.0`,
+  `generated_at` = `now`.
 
 # Constraints
 
@@ -194,6 +220,15 @@ Leave them out and add `Ignored N results about a different <company>.` to `unkn
 
 ## Pricing behind a form
 `pricing.value: "Contact sales"` cited to the page that says so.
+
+## Previous state for another company
+A previous entry whose `item_key` is not `domain:<host>` for this `url` is ignored;
+treat the run as the first one.
+
+## Site unreadable this run, readable last run
+Do not report every field as removed. Write one change line, `Site could not be read
+this run; nothing compared.`, and carry the previous entry into `state_out` unchanged,
+including its `observed_at`, so the next run compares against the last real reading.
 
 # Examples
 

@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "author"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "author": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 200,
+      "description": "Whose voice this is."
+    },
+    "writings": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 12000
+      },
+      "description": "Pieces the author wrote themselves, pasted. 3-20 recommended. Writing read by earlier steps counts too."
+    },
+    "admired_authors": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "Writers whose style the author likes, optionally with what they like about it. Direction words only."
+    },
+    "avoid": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "What the author never wants to sound like."
+    },
+    "platforms": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "linkedin",
+          "x",
+          "blog",
+          "email"
+        ]
+      },
+      "description": "Platforms that get a note. Absent: linkedin and x."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

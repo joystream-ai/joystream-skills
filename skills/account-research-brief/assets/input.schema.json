@@ -30,7 +30,17 @@
     "icp": {
       "type": "string",
       "maxLength": 3000,
-      "description": "Your ideal customer profile, when the brief should note fit."
+      "description": "Your ideal customer profile (ICP) in plain words. When given (or when an earlier step read an ICP document), the brief says whether this account matches it, criterion by criterion."
+    },
+    "research_focus": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "What you are researching this account for, in your own words (characteristics, roles, latest news). Each item gets a cited finding or unknown."
     },
     "lookback_days": {
       "type": "integer",

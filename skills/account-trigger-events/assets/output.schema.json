@@ -43,7 +43,8 @@
               "hiring",
               "launch",
               "leadership",
-              "partnership"
+              "partnership",
+              "news"
             ]
           },
           "source_id": {
@@ -54,6 +55,15 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 250
+          },
+          "matches": {
+            "type": "array",
+            "maxItems": 10,
+            "items": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "description": "The rubric signals this event matches, copied exactly. Only when a rubric was given."
           }
         }
       }
@@ -67,6 +77,12 @@
         "Unknown"
       ],
       "description": "Absent only for a skipped slot."
+    },
+    "rubric_score": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "description": "10 x weight of matched rubric signals / total weight, rounded half up. Only when a rubric was given."
     },
     "trigger_count": {
       "type": "integer",
@@ -99,6 +115,11 @@
         "other_entity": {
           "type": "integer",
           "minimum": 0
+        },
+        "off_rubric": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "Specific events that matched no rubric signal. Only when a rubric was given."
         }
       }
     },

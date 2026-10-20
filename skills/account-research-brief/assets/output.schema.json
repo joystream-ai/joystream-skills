@@ -145,6 +145,100 @@
         "maxLength": 200
       }
     },
+    "icp_fit": {
+      "type": "object",
+      "required": [
+        "fit",
+        "criteria",
+        "icp_source"
+      ],
+      "additionalProperties": false,
+      "description": "Only when there is an ICP.",
+      "properties": {
+        "fit": {
+          "type": "string",
+          "enum": [
+            "strong",
+            "partial",
+            "weak",
+            "unclear"
+          ]
+        },
+        "icp_source": {
+          "type": "string",
+          "enum": [
+            "document",
+            "input"
+          ]
+        },
+        "criteria": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "criterion",
+              "status",
+              "source_ids"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "criterion": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "status": {
+                "type": "string",
+                "enum": [
+                  "met",
+                  "not met",
+                  "unknown"
+                ]
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]+$"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "focus_findings": {
+      "type": "array",
+      "maxItems": 8,
+      "description": "Only when research_focus is given; one per item, in order.",
+      "items": {
+        "type": "object",
+        "required": [
+          "focus",
+          "finding",
+          "source_ids"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "focus": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "finding": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            }
+          }
+        }
+      }
+    },
     "brief_text": {
       "type": "string",
       "minLength": 1,

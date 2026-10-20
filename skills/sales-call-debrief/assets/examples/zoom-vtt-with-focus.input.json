@@ -1,0 +1,18 @@
+{
+  "transcript": "WEBVTT\n\n1\n00:00:01.000 --> 00:00:06.000\nCasey Demo: Thanks for making time. What does month-end look like today?\n\n2\n00:00:06.500 --> 00:00:14.000\nRiley Example: We close in nine days. Most of that is chasing approvals over email.\n\n3\n00:00:14.500 --> 00:00:19.000\nRiley Example: We looked at Sample Close last year but it was too rigid for us.\n\n4\n00:00:19.500 --> 00:00:24.000\nCasey Demo: Who else would weigh in on a change like this?\n\n5\n00:00:24.500 --> 00:00:31.000\nRiley Example: Our CFO signs off on anything over ten thousand a year.\n\n6\n00:00:31.500 --> 00:00:36.000\nCasey Demo: I'll send a short write-up you can forward to your CFO.\n\n7\n00:00:36.500 --> 00:00:39.000\nRiley Example: Great, thanks.",
+  "attendees": [
+    "Riley Example (Example Freight, Controller)",
+    "Casey Demo (our side, Founder)"
+  ],
+  "company": "Example Freight",
+  "our_side": [
+    "Casey Demo"
+  ],
+  "focus": [
+    "budget",
+    "competitors mentioned",
+    "decision process"
+  ],
+  "include_follow_up_email": false,
+  "now": "2026-10-20T09:00:00Z"
+}

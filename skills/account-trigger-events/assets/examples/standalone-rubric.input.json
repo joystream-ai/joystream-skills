@@ -1,0 +1,21 @@
+{
+  "company": "Example Freight",
+  "domain": "example.com",
+  "lookback_days": 90,
+  "now": "2026-10-12T09:00:00Z",
+  "context": "We sell route-planning software to logistics teams.",
+  "rubric": [
+    {
+      "signal": "raised a Series B or later",
+      "weight": 3
+    },
+    {
+      "signal": "new operations leader",
+      "weight": 2
+    },
+    {
+      "signal": "expanding into a new region",
+      "weight": 1
+    }
+  ]
+}

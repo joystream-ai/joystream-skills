@@ -1,0 +1,106 @@
+{
+  "tone": "Warm and direct (a default from the stated preferences, not learned from writing).",
+  "traits": [],
+  "do": [
+    "Write in a warm, direct first person.",
+    "Say the point in the first line.",
+    "Keep paragraphs to one or two lines.",
+    "End with one plain question."
+  ],
+  "dont": [
+    "No listicles or numbered 'top 5' formats.",
+    "No hype words (game-changer, revolutionary, thrilled).",
+    "No exclamation marks."
+  ],
+  "vocabulary": {
+    "use": [],
+    "avoid": [
+      "game-changer",
+      "revolutionary",
+      "thrilled"
+    ]
+  },
+  "emoji": {
+    "level": "none",
+    "note": "Default: no writing to learn from."
+  },
+  "hashtags": {
+    "per_post_max": 1,
+    "note": "Default."
+  },
+  "platform_notes": [
+    {
+      "platform": "linkedin",
+      "note": "Short paragraphs, the point first, one closing question.",
+      "is_default": true
+    },
+    {
+      "platform": "x",
+      "note": "One post, the point first.",
+      "is_default": true
+    }
+  ],
+  "example_openers": [
+    "Here is what changed this week, and why it matters to you.",
+    "One thing I got wrong this month."
+  ],
+  "confidence": "low",
+  "profile_markdown": "# Voice profile: Riley Example\n2026-10-20 · built from 0 pieces · confidence low\n\n## Tone\nWarm and direct (a default from stated preferences).\n\n## Do\n- Write in a warm, direct first person.\n- Say the point in the first line.\n- Keep paragraphs to one or two lines.\n- End with one plain question.\n\n## Don't\n- No listicles or numbered 'top 5' formats.\n- No hype words (game-changer, revolutionary, thrilled).\n- No exclamation marks.\n\n## Words we use / words we avoid\nAvoid: game-changer, revolutionary, thrilled\n\n## Openings and closings\nThe point first; one plain question at the end.\n\n## Emoji and hashtags\nNone; at most one hashtag.\n\n## Platform notes\n- LinkedIn (default): short paragraphs.\n- X (default): one post.\n\n## Example openers (new, not copied)\n- Here is what changed this week, and why it matters to you.\n- One thing I got wrong this month.\n",
+  "report": {
+    "title": "Voice profile: Riley Example",
+    "summary": "Warm and direct (a default from the stated preferences, not learned from writing).",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Rules",
+        "items": [
+          {
+            "text": "Write in a warm, direct first person.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "Say the point in the first line.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "Keep paragraphs to one or two lines.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "End with one plain question.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "No listicles or numbered 'top 5' formats.",
+            "citations": [],
+            "label": "don't"
+          },
+          {
+            "text": "No hype words (game-changer, revolutionary, thrilled).",
+            "citations": [],
+            "label": "don't"
+          },
+          {
+            "text": "No exclamation marks.",
+            "citations": [],
+            "label": "don't"
+          }
+        ]
+      }
+    ],
+    "sources": [],
+    "unknowns": [
+      "No writing by the author was given; every rule is a default.",
+      "Add 5-10 pieces of your own writing and run this again to make the profile yours."
+    ],
+    "meta": {
+      "skill": "content-voice-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

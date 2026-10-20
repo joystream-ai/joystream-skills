@@ -1,0 +1,212 @@
+{
+  "company": "Sample Automate",
+  "item_key": "domain:example.com",
+  "changes": [
+    {
+      "date": "2026-10-19",
+      "date_basis": "observed",
+      "category": "pricing",
+      "what_changed": "The Team plan moved from a flat 299 USD per month to 49 USD per seat per month, and the free tier dropped from 3 agents to 1.",
+      "so_what": "Per-seat pricing gets expensive past six seats, so our flat team price is now the cheaper option for most GTM teams; lead with it in head-to-head deals.",
+      "impact": "opportunity",
+      "importance": "high",
+      "source_id": "S1"
+    },
+    {
+      "date": "2026-10-15",
+      "date_basis": "published",
+      "category": "launch",
+      "what_changed": "Sample Automate launched Agent Studio, a chat interface for building agents, in public beta.",
+      "so_what": "Chat-built agents were our clearest difference; expect prospects to ask how we compare, so publish a side-by-side on time-to-first-agent.",
+      "impact": "threat",
+      "importance": "high",
+      "source_id": "S2"
+    },
+    {
+      "date": "2026-10-14",
+      "date_basis": "published",
+      "category": "customer",
+      "what_changed": "Sample Automate published a case study with Example Payroll, a 120-person B2B startup, on automating lead routing.",
+      "so_what": "They are winning our exact segment with lead routing; check whether lead routing is in our template gallery.",
+      "impact": "watch",
+      "importance": "medium",
+      "source_id": "S3"
+    }
+  ],
+  "tracked_pages": {
+    "pricing": "changed",
+    "changelog": "unchanged",
+    "home": "unchanged"
+  },
+  "verdict": "Major",
+  "change_count": 3,
+  "change_score": 8,
+  "dropped": {
+    "undated": 1,
+    "out_of_window": 2,
+    "generic": 1,
+    "other_entity": 0,
+    "not_relevant": 3,
+    "already_reported": 1
+  },
+  "item_result": {
+    "item": {
+      "index": 1,
+      "item": {
+        "name": "Sample Automate",
+        "domain": "example.com",
+        "pricing_url": "https://example.com/pricing",
+        "changelog_url": "https://example.com/changelog",
+        "blog_url": "https://example.com/blog"
+      },
+      "item_key": "domain:example.com",
+      "query": "Sample Automate example.com news announcements pricing launch"
+    },
+    "item_key": "domain:example.com",
+    "item_label": "Sample Automate (example.com)",
+    "status": "ok",
+    "verdict": "Major",
+    "score": 8,
+    "score_scale": "0-45",
+    "headline": "Switched the Team plan to 49 USD per seat per month (was 299 USD flat).",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:example.com",
+        "fingerprint": "pricing=Free: 1 agent; Team: 49 USD/seat/mo; Enterprise: contact sales; changelog=2026-10-15 Agent Studio public beta; home=Automate your revenue team with AI agents",
+        "observed_at": "2026-10-19T08:00:00Z",
+        "data": {
+          "pricing": "Free: 1 agent; Team: 49 USD/seat/mo; Enterprise: contact sales",
+          "changelog_latest": "2026-10-15 Agent Studio public beta",
+          "home": "Automate your revenue team with AI agents",
+          "reported": [
+            {
+              "d": "2026-10-19",
+              "c": "pricing",
+              "s": "team-plan-per-seat",
+              "u": "https://example.com/pricing"
+            },
+            {
+              "d": "2026-10-15",
+              "c": "launch",
+              "s": "agent-studio-beta",
+              "u": "https://example.com/changelog#agent-studio"
+            },
+            {
+              "d": "2026-10-14",
+              "c": "customer",
+              "s": "example-payroll-case-study",
+              "u": "https://example.com/blog/example-payroll-lead-routing"
+            },
+            {
+              "d": "2026-10-12",
+              "c": "launch",
+              "s": "hubspot-sync-beta",
+              "u": "https://example.com/changelog#hubspot-sync-beta"
+            },
+            {
+              "d": "2026-09-30",
+              "c": "funding",
+              "s": "series-a-18m",
+              "u": "https://news.example.net/sample-automate-series-a"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "state_sheet_values": [
+    [
+      "domain:example.com",
+      "pricing=Free: 1 agent; Team: 49 USD/seat/mo; Enterprise: contact sales; changelog=2026-10-15 Agent Studio public beta; home=Automate your revenue team with AI agents",
+      "2026-10-19T08:00:00Z",
+      "{\"pricing\":\"Free: 1 agent; Team: 49 USD/seat/mo; Enterprise: contact sales\",\"changelog_latest\":\"2026-10-15 Agent Studio public beta\",\"home\":\"Automate your revenue team with AI agents\",\"reported\":[{\"d\":\"2026-10-19\",\"c\":\"pricing\",\"s\":\"team-plan-per-seat\",\"u\":\"https://example.com/pricing\"},{\"d\":\"2026-10-15\",\"c\":\"launch\",\"s\":\"agent-studio-beta\",\"u\":\"https://example.com/changelog#agent-studio\"},{\"d\":\"2026-10-14\",\"c\":\"customer\",\"s\":\"example-payroll-case-study\",\"u\":\"https://example.com/blog/example-payroll-lead-routing\"},{\"d\":\"2026-10-12\",\"c\":\"launch\",\"s\":\"hubspot-sync-beta\",\"u\":\"https://example.com/changelog#hubspot-sync-beta\"},{\"d\":\"2026-09-30\",\"c\":\"funding\",\"s\":\"series-a-18m\",\"u\":\"https://news.example.net/sample-automate-series-a\"}]}"
+    ]
+  ],
+  "report": {
+    "title": "Sample Automate: what changed, last 7 days",
+    "summary": "Major: Sample Automate moved its Team plan to per-seat pricing (49 USD per seat, was 299 USD flat), which makes our flat price cheaper for most teams, and launched Agent Studio, a chat agent builder that targets our main difference.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "What changed",
+        "items": [
+          {
+            "text": "2026-10-19: The Team plan moved from a flat 299 USD per month to 49 USD per seat per month, and the free tier dropped from 3 agents to 1. So what: our flat team price is now cheaper past six seats; lead with it in head-to-head deals.",
+            "citations": [
+              "S1"
+            ],
+            "label": "pricing",
+            "confidence": "medium"
+          },
+          {
+            "text": "2026-10-15: Sample Automate launched Agent Studio, a chat interface for building agents, in public beta. So what: chat-built agents were our clearest difference; publish a side-by-side on time-to-first-agent.",
+            "citations": [
+              "S2"
+            ],
+            "label": "launch",
+            "confidence": "high"
+          },
+          {
+            "text": "2026-10-14: Case study with Example Payroll, a 120-person B2B startup, on automating lead routing. So what: they are winning our segment with lead routing; check our template gallery.",
+            "citations": [
+              "S3"
+            ],
+            "label": "customer",
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Tracked pages",
+        "items": [
+          {
+            "text": "Pricing page changed since the last run on 2026-10-12.",
+            "citations": [
+              "S1"
+            ],
+            "label": "changed"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/pricing",
+        "title": "Pricing — Sample Automate",
+        "provider": "firecrawl"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/changelog#agent-studio",
+        "title": "Agent Studio is in public beta",
+        "published_at": "2026-10-15",
+        "provider": "firecrawl"
+      },
+      {
+        "id": "S3",
+        "url": "https://example.com/blog/example-payroll-lead-routing",
+        "title": "How Example Payroll routes every lead in under a minute",
+        "published_at": "2026-10-14",
+        "provider": "firecrawl"
+      }
+    ],
+    "unknowns": [
+      "Dropped 1 undated item.",
+      "Dropped 2 items outside the 7-day window.",
+      "Dropped 1 generic item.",
+      "Dropped 3 items not relevant to our positioning (minor changelog fixes).",
+      "Dropped 1 item already reported on 2026-10-12."
+    ],
+    "meta": {
+      "skill": "company-competitor-changes",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-19T08:00:00Z"
+    }
+  }
+}

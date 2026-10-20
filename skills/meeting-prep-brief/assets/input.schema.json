@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "item"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "item": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "The meeting: a meeting-prep-select accepted entry {index, item: {event_id, title, start, ...}, item_key, query} (a for_each branch; the meeting is item.item), the meeting object itself, or a slot {i, item_key, label, query}. item_key is top-level and copied unchanged into item_result.item_key. null means the slot is empty.",
+      "properties": {
+        "index": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "i": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "item_key": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "query": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "item": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "In an accepted entry: the meeting record (title, start, start_local, company_domain, company_name_guess, external_attendees, agenda, ...)."
+        },
+        "title": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "start": {
+          "type": "string"
+        },
+        "company_domain": {
+          "type": "string",
+          "maxLength": 253
+        },
+        "company_name_guess": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "external_attendees": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 120
+              },
+              "domain": {
+                "type": "string",
+                "maxLength": 253
+              }
+            }
+          }
+        }
+      }
+    },
+    "context": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "Who we are and what we sell. Shapes goals and questions."
+    },
+    "focus": {
+      "type": "string",
+      "maxLength": 1000,
+      "description": "What to look for, e.g. 'their data stack, hiring for RevOps, latest funding'. Default: attendee roles, what the company does, latest news, history with us."
+    },
+    "icp": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "Your ICP as text. Optional; when empty, an ICP stated in a dependency's document output is used. No ICP: no fit line."
+    },
+    "lookback_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 365,
+      "default": 90,
+      "description": "How old a recent event may be, in days."
+    },
+    "max_attendees": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 5,
+      "description": "How many external attendees to describe."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time, and without it the skill uses the run start time from its instructions. Never guessed."
+    }
+  }
+}

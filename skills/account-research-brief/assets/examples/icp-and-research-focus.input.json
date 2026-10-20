@@ -1,0 +1,13 @@
+{
+  "company": "Example Analytics",
+  "domain": "example.com",
+  "person": "Jo Example, Head of Operations",
+  "context": "We automate usage-to-billing reconciliation for SaaS operations teams.",
+  "lookback_days": 90,
+  "now": "2026-10-12T09:00:00Z",
+  "icp": "B2B SaaS companies with 50-500 employees and usage-based pricing, in Europe or North America.",
+  "research_focus": [
+    "which billing system they use",
+    "are they hiring in finance or billing operations"
+  ]
+}

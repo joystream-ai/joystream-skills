@@ -4,15 +4,18 @@ description: >-
   Write a short, cited pre-call brief on one company from the web evidence gathered about
   it: what they do, dated recent events inside a lookback window, the likely owner of the
   problem you solve (always flagged as a guess), angles for outreach and open questions,
-  plus a paste-ready brief of at most 1,800 characters for a message-drafting step. Use
-  when an agent needs to "research an account", "brief me before a sales call", "what's
-  new at this company" or "prep for a meeting with". It does not search, fetch, post or
-  send: earlier steps search and extract pages, and a later step renders and delivers the
-  brief.
+  plus a paste-ready brief of at most 1,800 characters for a message-drafting step. Given
+  your ICP (pasted, or read from your ICP document by an earlier step) it says whether
+  the account matches, criterion by criterion; given your own research focus (what you
+  are looking for, which roles, which news) it answers each item. Use when an agent needs
+  to "research an account", "does this account match our ICP", "brief me before a sales
+  call", "what's new at this company" or "prep for a meeting with". It does not search,
+  fetch, post or send: earlier steps search and extract pages, and a later step renders
+  and delivers the brief.
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -43,13 +46,29 @@ Input data holds only small values the agent passes in:
 - **person** (string, optional): who you will contact or meet, e.g. `Jo Example, Head of
   Operations`. Shapes the angles; not researched.
 - **context** (string, optional): what you sell or why you are reaching out.
-- **icp** (string, optional): your ideal customer profile, if the brief should note fit.
+- **icp** (string, optional): your ideal customer profile (ICP): who your customer is, in
+  plain words. When given, the brief says whether this account matches it (step 8). The
+  ICP may instead come from an earlier step that read your ICP document (a Google Doc, a
+  Notion page, a file): see "Where the ICP comes from".
+- **research_focus** (array of strings, optional, at most 8): what you are researching
+  this account for, in your own words, e.g. `do they run Kubernetes in production`, `who
+  leads platform engineering`, `latest product launches`, `are they hiring data
+  engineers`. Each gets its own cited finding or `unknown`. Absent: the brief covers the
+  default focus, which is what the standard sections already answer (what they do,
+  recent events, likely problem owner, angles).
 - **lookback_days** (integer 1-365, optional, default 90): how far back an event may be.
 - **now** (string, ISO 8601 datetime, optional): the current time. If it is absent, use the
   run start time stated in your instructions ("This run started at …"). If neither is
   available, do not guess a date: leave `recent_events` empty and say why in `unknowns`.
 
 The evidence is not an input field. It is the output of the steps this one depends on.
+
+**Where the ICP comes from.** Use the first of these that exists: (1) the output of an
+earlier step that read an ICP document, recognisable as a page or file whose title or
+text says it is the ideal customer profile, or the step the agent names as the ICP
+source; (2) the `icp` input. When both exist and disagree, follow the document and say
+so in `unknowns`. When neither exists, leave `icp_fit` out. The ICP document is a
+reference, not evidence about the company: never cite it as a fact about the account.
 
 # What this skill needs
 
@@ -155,9 +174,21 @@ absent.
 7. **Angles.** At most 4 reasons to reach out now, each built on cited facts (an event, a
    hiring pattern, a stated priority) and tied to `context` when given. No context: write
    angles about the company's own stated priorities.
-8. **Open questions.** At most 5 things the evidence does not answer that matter for the
-   conversation (budget owner, current tool, team size, …).
-9. **Write `brief_text`** (see Output) and the report.
+8. **ICP fit** (only when there is an ICP; see Inputs). Split the ICP into its
+   criteria (industry, size, buyer, geography, business model, must-haves, exclusions)
+   and mark each `met`, `not met` or `unknown`, citing the source for met and not met.
+   Overall `fit`: `strong` when every important criterion is met; `partial` when some
+   are met and none of the important ones is contradicted; `weak` when an important
+   criterion is not met or an exclusion applies; `unclear` when most are unknown. For a
+   scored Pursue / Research / Reject verdict, the agent adds `account-icp-qualification`.
+9. **Research focus** (only when `research_focus` is given), in the order given: one
+   finding per item from the kept sources, cited, or `unknown` with what evidence would
+   answer it. A focus item about roles names a person only when a source names them in
+   that role, never from general knowledge.
+10. **Open questions.** At most 5 things the evidence does not answer that matter for the
+    conversation (budget owner, current tool, team size, …), including unanswered focus
+    items.
+11. **Write `brief_text`** (see Output) and the report.
 
 # Output
 
@@ -170,6 +201,11 @@ Return the fields of `assets/output.schema.json` as your result:
   `expansion`, `other`.
 - `likely_problem_owner`: `{guess, basis, is_guess: true, source_ids}`.
 - `angles[]`: `{text, source_ids}`; `open_questions[]`: plain strings.
+- `icp_fit` (only with an ICP): `{fit, criteria: [{criterion, status, source_ids}],
+  icp_source}` with `fit` one of `strong`, `partial`, `weak`, `unclear`, `status` one of
+  `met`, `not met`, `unknown`, and `icp_source` `document` or `input`.
+- `focus_findings[]` (only with `research_focus`): `{focus, finding, source_ids}`,
+  `focus` copied exactly, `finding` at most 300 characters or `unknown`.
 - `brief_text`: plain text, **at most 1,800 characters**, in this shape:
 
   ```
@@ -177,17 +213,25 @@ Return the fields of `assets/output.schema.json` as your result:
   - What they do: <one sentence> (<source address>).
   - <event> on <date> (<source address>).
   - Likely problem owner: <guess> (a guess, based on <basis>).
+  - ICP fit: <fit> — <met criteria>; not met: <criteria>.
+  - <focus>: <finding> (<source address>).
   Angles: <angle>; <angle>.
   Open questions: <question>; <question>.
   ```
 
+  The ICP fit line appears only when there is an ICP, and there is one focus line per
+  `research_focus` item, none without it.
+
   `<source address>` is the cited url without `https://`. Drop the lowest-value lines
   first (older events, then angles) to stay under 1,800 characters, never a citation.
-- `report`: title `<company> — account brief`; a summary of at most three sentences;
-  sections `What they do`, `Recent events` (each item `label` = its category), `Likely
-  problem owner` (`label: guess`), `Angles` (`label: angle`), `Open questions` (empty
-  `citations`, `label: question`); every cited source in `sources`; `unknowns`; `meta`
-  `{skill: "account-research-brief", skill_version: "1.0.0", generated_at: <now>}` (leave
+- `report`: title `<company> — account brief`; a summary of at most three sentences,
+  starting with the ICP fit when there is one (`Partial ICP fit: …`); sections `What
+  they do`, `ICP fit` (only with an ICP; one item per criterion, `label` = its status),
+  `Research focus` (only with `research_focus`; one item per focus, `label` = `found` or
+  `unknown`), `Recent events` (each item `label` = its category), `Likely problem owner`
+  (`label: guess`), `Angles` (`label: angle`), `Open questions` (empty `citations`,
+  `label: question`); every cited source in `sources`; `unknowns`; `meta`
+  `{skill: "account-research-brief", skill_version: "1.1.0", generated_at: <now>}` (leave
   `meta` out when no time is known). `severity: info`, or `attention` when the evidence
   was too thin to brief.
 
@@ -226,6 +270,10 @@ results came back.
 `recent_events: []` is a valid result. Say `No dated events in the last <lookback_days>
 days.` in the summary and `brief_text`.
 
+## ICP given, but the evidence says nothing about most criteria
+`fit: unclear`, each criterion `unknown`, and the open questions name the missing facts
+(e.g. `Headcount not stated.`). Never infer size or industry from the company's name.
+
 ## A person is given but not found
 Do not research or describe the person. Use the role for the owner guess only when a
 source supports it.
@@ -233,4 +281,4 @@ source supports it.
 # Examples
 
 See the paired cases in `assets/examples/`: a full brief, a company with no recent events,
-and a page with an injected instruction.
+a page with an injected instruction, and a brief with an ICP and a research focus.

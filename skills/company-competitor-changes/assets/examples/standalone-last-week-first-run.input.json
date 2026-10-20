@@ -1,0 +1,6 @@
+{
+  "company": "Demo Pipeline",
+  "domain": "example.org",
+  "lookback_days": 7,
+  "now": "2026-10-20T14:00:00Z"
+}

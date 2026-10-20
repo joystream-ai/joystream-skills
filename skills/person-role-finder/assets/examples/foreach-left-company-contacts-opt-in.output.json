@@ -1,0 +1,181 @@
+{
+  "people": [
+    {
+      "person_key": "name_company:morgan-sample@harbor-freightworks",
+      "name": "Morgan Sample",
+      "title": "Vice President of Sales",
+      "target_role": "VP Sales",
+      "match_type": "exact",
+      "role_since": "2026-07",
+      "evidence_date": "2026-07-14",
+      "date_basis": "published",
+      "freshness": "current",
+      "confidence": "high",
+      "source_ids": [
+        "S2",
+        "S3"
+      ]
+    },
+    {
+      "person_key": "name_company:casey-example@harbor-freightworks",
+      "name": "Casey Example",
+      "title": "Revenue Operations Manager",
+      "target_role": "Head of Revenue Operations",
+      "match_type": "adjacent",
+      "evidence_date": "unknown",
+      "date_basis": "none",
+      "freshness": "undated",
+      "confidence": "low",
+      "source_ids": [
+        "S4"
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "role": "VP Sales",
+      "status": "found",
+      "people_count": 1
+    },
+    {
+      "role": "Head of Revenue Operations",
+      "status": "adjacent_only",
+      "people_count": 1
+    }
+  ],
+  "excluded": [
+    {
+      "name": "Dana Placeholder",
+      "reason": "left_company",
+      "note": "Still on the team page (last updated 2025-01), but the 2026-07-14 release says Dana left to join another company.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    }
+  ],
+  "rejected_count": 0,
+  "contacts": [
+    {
+      "person_key": "name_company:morgan-sample@harbor-freightworks",
+      "name": "Morgan Sample",
+      "email": "morgan.sample@harbor-freightworks.example",
+      "email_status": "verified",
+      "record_ref": "apollo:person/64f0a1b2c3"
+    },
+    {
+      "person_key": "name_company:casey-example@harbor-freightworks",
+      "name": "Casey Example",
+      "email": "casey@harbor-freightworks.example",
+      "email_status": "guessed",
+      "record_ref": "apollo:person/64f0a1b2d9"
+    }
+  ],
+  "verdict": "Partial",
+  "coverage_score": 1,
+  "item_result": {
+    "item": {
+      "index": 2,
+      "item": {
+        "name": "Harbor Freightworks",
+        "domain": "harbor-freightworks.example"
+      },
+      "item_key": "domain:harbor-freightworks.example",
+      "query": "Harbor Freightworks"
+    },
+    "item_key": "domain:harbor-freightworks.example",
+    "item_label": "Harbor Freightworks (harbor-freightworks.example)",
+    "status": "ok",
+    "verdict": "Partial",
+    "score": 1,
+    "score_scale": "0-2",
+    "headline": "1/2 roles found: Morgan Sample, Vice President of Sales",
+    "source_ids": [
+      "S2"
+    ]
+  },
+  "report": {
+    "title": "Harbor Freightworks: people in target roles",
+    "summary": "1 of 2 roles found: Morgan Sample became VP of Sales in July 2026, replacing Dana Placeholder, who has left. No Head of Revenue Operations; the closest is Casey Example, Revenue Operations Manager, seen only in an enrichment record.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Found",
+        "items": [
+          {
+            "text": "Morgan Sample, Vice President of Sales (press release, 2026-07-14).",
+            "citations": [
+              "S2",
+              "S3"
+            ],
+            "confidence": "high",
+            "label": "VP Sales"
+          }
+        ]
+      },
+      {
+        "heading": "Unconfirmed or adjacent",
+        "items": [
+          {
+            "text": "Casey Example, Revenue Operations Manager: adjacent (one level below Head of), undated, enrichment record only.",
+            "citations": [
+              "S4"
+            ],
+            "confidence": "low",
+            "label": "Head of Revenue Operations"
+          }
+        ]
+      },
+      {
+        "heading": "Excluded",
+        "items": [
+          {
+            "text": "Dana Placeholder, former VP Sales: left the company (2026-07-14 release); the team page is out of date.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "left_company"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://harbor-freightworks.example/company/leadership",
+        "title": "Leadership | Harbor Freightworks",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://harbor-freightworks.example/news/new-vp-sales",
+        "title": "Harbor Freightworks names Morgan Sample Vice President of Sales",
+        "published_at": "2026-07-14",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "record_ref": "apollo:person/64f0a1b2c3",
+        "title": "Morgan Sample, VP of Sales",
+        "provider": "apollo"
+      },
+      {
+        "id": "S4",
+        "record_ref": "apollo:person/64f0a1b2d9",
+        "title": "Casey Example, Revenue Operations Manager",
+        "provider": "apollo"
+      }
+    ],
+    "unknowns": [
+      "Only enrichment records name Casey Example; no public page confirms the role.",
+      "Head of Revenue Operations: no holder at that level was found."
+    ],
+    "footer": "Contact details for 2 people are returned separately, not in this report.",
+    "meta": {
+      "skill": "person-role-finder",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

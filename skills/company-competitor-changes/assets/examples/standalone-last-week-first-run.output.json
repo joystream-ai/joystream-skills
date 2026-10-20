@@ -1,0 +1,167 @@
+{
+  "company": "Demo Pipeline",
+  "item_key": "domain:example.org",
+  "changes": [
+    {
+      "date": "2026-10-17",
+      "date_basis": "published",
+      "category": "funding",
+      "what_changed": "Demo Pipeline raised a 12 million USD seed extension led by Sample Capital.",
+      "so_what": "Fresh money usually funds more sales hiring and discounting over the next two quarters; expect them in more deals.",
+      "impact": "threat",
+      "importance": "high",
+      "source_id": "S1"
+    },
+    {
+      "date": "2026-10-15",
+      "date_basis": "published",
+      "category": "leadership",
+      "what_changed": "Demo Pipeline named Riley Example, formerly at Sample Analytics, as VP Marketing.",
+      "so_what": "A new marketing lead often brings new messaging within a quarter; watch their home page and comparison pages.",
+      "impact": "watch",
+      "importance": "medium",
+      "source_id": "S2"
+    }
+  ],
+  "tracked_pages": {
+    "pricing": "baseline",
+    "changelog": "unavailable",
+    "home": "baseline"
+  },
+  "verdict": "Major",
+  "change_count": 2,
+  "change_score": 5,
+  "dropped": {
+    "undated": 2,
+    "out_of_window": 3,
+    "generic": 1,
+    "other_entity": 1,
+    "not_relevant": 0,
+    "already_reported": 0
+  },
+  "item_result": {
+    "item": {
+      "name": "Demo Pipeline",
+      "domain": "example.org"
+    },
+    "item_key": "domain:example.org",
+    "item_label": "Demo Pipeline (example.org)",
+    "status": "ok",
+    "verdict": "Major",
+    "score": 5,
+    "score_scale": "0-45",
+    "headline": "Raised a 12 million USD seed extension on 2026-10-17.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:example.org",
+        "fingerprint": "pricing=Pro: 79 USD/user/mo; Business: 129 USD/user/mo; changelog=; home=Pipeline analytics your board will trust",
+        "observed_at": "2026-10-20T14:00:00Z",
+        "data": {
+          "pricing": "Pro: 79 USD/user/mo; Business: 129 USD/user/mo",
+          "changelog_latest": "",
+          "home": "Pipeline analytics your board will trust",
+          "reported": [
+            {
+              "d": "2026-10-17",
+              "c": "funding",
+              "s": "seed-extension-12m",
+              "u": "https://news.example.net/demo-pipeline-seed-extension"
+            },
+            {
+              "d": "2026-10-15",
+              "c": "leadership",
+              "s": "vp-marketing-riley-example",
+              "u": "https://example.org/blog/riley-joins-as-vp-marketing"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "state_sheet_values": [
+    [
+      "domain:example.org",
+      "pricing=Pro: 79 USD/user/mo; Business: 129 USD/user/mo; changelog=; home=Pipeline analytics your board will trust",
+      "2026-10-20T14:00:00Z",
+      "{\"pricing\":\"Pro: 79 USD/user/mo; Business: 129 USD/user/mo\",\"changelog_latest\":\"\",\"home\":\"Pipeline analytics your board will trust\",\"reported\":[{\"d\":\"2026-10-17\",\"c\":\"funding\",\"s\":\"seed-extension-12m\",\"u\":\"https://news.example.net/demo-pipeline-seed-extension\"},{\"d\":\"2026-10-15\",\"c\":\"leadership\",\"s\":\"vp-marketing-riley-example\",\"u\":\"https://example.org/blog/riley-joins-as-vp-marketing\"}]}"
+    ]
+  ],
+  "report": {
+    "title": "Demo Pipeline: what changed, last 7 days",
+    "summary": "Major: Demo Pipeline raised a 12 million USD seed extension (2026-10-17) and hired a new VP Marketing (2026-10-15). No positioning was given, so the so-what lines are general.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "What changed",
+        "items": [
+          {
+            "text": "2026-10-17: Demo Pipeline raised a 12 million USD seed extension led by Sample Capital. So what: expect more sales hiring and discounting over the next two quarters.",
+            "citations": [
+              "S1"
+            ],
+            "label": "funding",
+            "confidence": "high"
+          },
+          {
+            "text": "2026-10-15: Demo Pipeline named Riley Example as VP Marketing. So what: new messaging often follows within a quarter; watch their home and comparison pages.",
+            "citations": [
+              "S2"
+            ],
+            "label": "leadership",
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Tracked pages",
+        "items": [
+          {
+            "text": "Pricing and home page: first time seen; baselines saved.",
+            "citations": [],
+            "label": "baseline"
+          },
+          {
+            "text": "Changelog: no changelog page was extracted.",
+            "citations": [],
+            "label": "unavailable"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://news.example.net/demo-pipeline-seed-extension",
+        "title": "Demo Pipeline adds 12M to its seed round",
+        "published_at": "2026-10-17",
+        "provider": "exa"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.org/blog/riley-joins-as-vp-marketing",
+        "title": "Riley Example joins Demo Pipeline as VP Marketing",
+        "published_at": "2026-10-15",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "No positioning or watch list was given; so-what lines are general.",
+      "First run for Demo Pipeline: baselines saved; page changes are reported from the next run.",
+      "Dropped 2 undated items.",
+      "Dropped 3 items outside the 7-day window.",
+      "Dropped 1 generic item.",
+      "Dropped 1 item about a different Demo Pipeline.",
+      "Changelog: no changelog page was extracted."
+    ],
+    "meta": {
+      "skill": "company-competitor-changes",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T14:00:00Z"
+    }
+  }
+}

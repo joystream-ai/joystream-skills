@@ -1,0 +1,16 @@
+{
+  "drafts": [
+    {
+      "id": "linkedin-1",
+      "platform": "linkedin",
+      "text": "In today's fast-paced world, finance teams need tools that are fast, simple and powerful.\n\nWe're thrilled to announce Example Close, a game-changer that will unlock seamless approvals.\n\nIt's not just software, it's a new way of working.\n\nWhat do you think?"
+    },
+    {
+      "id": "x-1",
+      "platform": "x",
+      "text": "Month-end took 9 days at our first customer. Now it takes 4. We moved approvals out of email and put a deadline on each one."
+    }
+  ],
+  "threshold": 7,
+  "now": "2026-10-20T09:00:00Z"
+}

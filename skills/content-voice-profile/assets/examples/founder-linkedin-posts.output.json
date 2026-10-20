@@ -1,0 +1,252 @@
+{
+  "tone": "Plain, dry and specific: a founder talking to controllers, confident without hype, with a light deadpan humour.",
+  "traits": [
+    {
+      "trait": "Opens with a short reframe or a bare number",
+      "evidence": "Most finance teams don't have an approvals problem. They have an inbox problem.",
+      "source_id": "S1"
+    },
+    {
+      "trait": "Numbers stand alone on their own line",
+      "evidence": "9 days.",
+      "source_id": "S2"
+    },
+    {
+      "trait": "Short declarative sentences, often under 10 words",
+      "evidence": "They don't. Clarity does.",
+      "source_id": "S3"
+    },
+    {
+      "trait": "Closes with one plain question or a dry one-liner",
+      "evidence": "Nobody noticed. That's the point.",
+      "source_id": "S6"
+    },
+    {
+      "trait": "First person, singular for lessons and plural for the company",
+      "evidence": "I used to think more features would win deals.",
+      "source_id": "S3"
+    },
+    {
+      "trait": "Numbered lists of at most three short items",
+      "evidence": "1. They read everything.",
+      "source_id": "S5"
+    }
+  ],
+  "do": [
+    "Open with a reframe or a single number on its own line.",
+    "Keep most sentences under 12 words.",
+    "One idea per paragraph, one to three lines each.",
+    "Use 'I' for lessons and 'we' for the company.",
+    "Close with one plain question or a dry one-line takeaway.",
+    "Prefer concrete before-and-after numbers over adjectives."
+  ],
+  "dont": [
+    "No hype words (game-changer, revolutionary, thrilled).",
+    "No corporate jargon (synergy, leverage, best-in-class).",
+    "No exclamation marks.",
+    "No emoji.",
+    "No hashtags.",
+    "No lists longer than three items."
+  ],
+  "vocabulary": {
+    "use": [
+      "inbox",
+      "sign-off",
+      "month-end",
+      "boring",
+      "clarity"
+    ],
+    "avoid": [
+      "excited",
+      "game-changer",
+      "leverage",
+      "synergy"
+    ]
+  },
+  "emoji": {
+    "level": "none",
+    "note": "None of the six pieces uses emoji."
+  },
+  "hashtags": {
+    "per_post_max": 0,
+    "note": "None of the six pieces uses hashtags."
+  },
+  "platform_notes": [
+    {
+      "platform": "linkedin",
+      "note": "Three to six short paragraphs, whitespace between lines, one closing question or one-liner.",
+      "is_default": false
+    },
+    {
+      "platform": "x",
+      "note": "One post: the reframe or the number, then the takeaway. No thread unless there is a list.",
+      "is_default": true
+    }
+  ],
+  "example_openers": [
+    "Most product updates don't need a launch post. This one does.",
+    "2 clicks.\n\nThat's what an update used to cost. Now it's 1."
+  ],
+  "confidence": "medium",
+  "profile_markdown": "# Voice profile: Sam Example\n2026-10-20 · built from 6 pieces · confidence medium\n\n## Tone\nPlain, dry and specific: a founder talking to controllers, confident without hype, with a light deadpan humour.\n\n## Do\n- Open with a reframe or a single number on its own line.\n- Keep most sentences under 12 words.\n- One idea per paragraph, one to three lines each.\n- Use 'I' for lessons and 'we' for the company.\n- Close with one plain question or a dry one-line takeaway.\n- Prefer concrete before-and-after numbers over adjectives.\n\n## Don't\n- No hype words (game-changer, revolutionary, thrilled).\n- No corporate jargon (synergy, leverage, best-in-class).\n- No exclamation marks.\n- No emoji.\n- No hashtags.\n- No lists longer than three items.\n\n## Words we use / words we avoid\nUse: inbox, sign-off, month-end, boring, clarity\nAvoid: excited, game-changer, leverage, synergy\n\n## Openings and closings\nOpen with a reframe (\"X don't have a Y problem. They have a Z problem.\") or a bare number on its own line. Close with one plain question or a dry one-liner.\n\n## Emoji and hashtags\nNone.\n\n## Platform notes\n- LinkedIn: three to six short paragraphs, whitespace between lines.\n- X (default): one post, the reframe or number then the takeaway.\n\n## Example openers (new, not copied)\n- Most product updates don't need a launch post. This one does.\n- 2 clicks. That's what an update used to cost. Now it's 1.\n",
+  "report": {
+    "title": "Voice profile: Sam Example",
+    "summary": "Plain, dry and specific: a founder talking to controllers, confident without hype, with a light deadpan humour.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Traits",
+        "items": [
+          {
+            "text": "Opens with a short reframe or a bare number: \"Most finance teams don't have an approvals problem. They have an inbox problem.\"",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium"
+          },
+          {
+            "text": "Numbers stand alone on their own line: \"9 days.\"",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium"
+          },
+          {
+            "text": "Short declarative sentences, often under 10 words: \"They don't. Clarity does.\"",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "medium"
+          },
+          {
+            "text": "Closes with one plain question or a dry one-liner: \"Nobody noticed. That's the point.\"",
+            "citations": [
+              "S6"
+            ],
+            "confidence": "medium"
+          },
+          {
+            "text": "First person, singular for lessons and plural for the company: \"I used to think more features would win deals.\"",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "medium"
+          },
+          {
+            "text": "Numbered lists of at most three short items: \"1. They read everything.\"",
+            "citations": [
+              "S5"
+            ],
+            "confidence": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Rules",
+        "items": [
+          {
+            "text": "Open with a reframe or a single number on its own line.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "Keep most sentences under 12 words.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "One idea per paragraph, one to three lines each.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "Use 'I' for lessons and 'we' for the company.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "Close with one plain question or a dry one-line takeaway.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "Prefer concrete before-and-after numbers over adjectives.",
+            "citations": [],
+            "label": "do"
+          },
+          {
+            "text": "No hype words (game-changer, revolutionary, thrilled).",
+            "citations": [],
+            "label": "don't"
+          },
+          {
+            "text": "No corporate jargon (synergy, leverage, best-in-class).",
+            "citations": [],
+            "label": "don't"
+          },
+          {
+            "text": "No exclamation marks.",
+            "citations": [],
+            "label": "don't"
+          },
+          {
+            "text": "No emoji.",
+            "citations": [],
+            "label": "don't"
+          },
+          {
+            "text": "No hashtags.",
+            "citations": [],
+            "label": "don't"
+          },
+          {
+            "text": "No lists longer than three items.",
+            "citations": [],
+            "label": "don't"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:writings[0]",
+        "title": "writings[0]"
+      },
+      {
+        "id": "S2",
+        "url": "input:writings[1]",
+        "title": "writings[1]"
+      },
+      {
+        "id": "S3",
+        "url": "input:writings[2]",
+        "title": "writings[2]"
+      },
+      {
+        "id": "S4",
+        "url": "input:writings[3]",
+        "title": "writings[3]"
+      },
+      {
+        "id": "S5",
+        "url": "input:writings[4]",
+        "title": "writings[4]"
+      },
+      {
+        "id": "S6",
+        "url": "input:writings[5]",
+        "title": "writings[5]"
+      }
+    ],
+    "unknowns": [
+      "No X posts in the writing; the X note is a default.",
+      "Six pieces on one topic; 10 or more on different topics would raise confidence."
+    ],
+    "meta": {
+      "skill": "content-voice-profile",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "transcript": {
+      "type": "string",
+      "maxLength": 400000,
+      "description": "The call transcript, pasted (Zoom VTT, Google Meet transcript or 'Speaker: text' lines). Absent or shortened: the skill reads the recorder step's output. Cited as input:transcript."
+    },
+    "segment": {
+      "type": "string",
+      "maxLength": 80,
+      "description": "The customer's segment label, e.g. Mid-market SaaS. Copied onto every row; never the company name. Default: unspecified."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The customer's company name, to remove from every insight."
+    },
+    "our_side": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "string",
+        "maxLength": 200,
+        "minLength": 1
+      },
+      "description": "Names of the people on the seller's side, and the seller's company. Their turns are never insights."
+    },
+    "redact_terms": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "string",
+        "maxLength": 200,
+        "minLength": 1
+      },
+      "description": "Extra words to remove wherever they appear: codenames, a parent company, a customer of theirs."
+    },
+    "call_key": {
+      "type": "string",
+      "maxLength": 200,
+      "pattern": "^\\S+$",
+      "description": "A stable id for this call, e.g. a recorder record id. Counts calls and prevents storing the same call twice."
+    },
+    "call_date": {
+      "type": "string",
+      "maxLength": 10,
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+      "description": "The call date, YYYY-MM-DD. Else the record's date."
+    },
+    "repeat_threshold": {
+      "type": "integer",
+      "minimum": 2,
+      "maximum": 20,
+      "default": 3,
+      "description": "Calls needed to flag a pain as repeated."
+    },
+    "max_insights": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 15,
+      "default": 8
+    },
+    "now": {
+      "type": "string",
+      "maxLength": 40,
+      "description": "Current time, ISO 8601, for report.meta (and the fallback call_key). Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

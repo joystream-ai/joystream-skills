@@ -1,0 +1,274 @@
+{
+  "candidates": [
+    {
+      "name": "Shiftplate",
+      "domain": "shiftplate.example",
+      "item_key": "domain:shiftplate.example",
+      "fit_reason": "Labor scheduling software for multi-location restaurants (directory listing) and hiring a Head of Finance (job post); ICP: hospitality software, finance buyer.",
+      "fit_strength": "strong",
+      "signal": "firmographic",
+      "source_id": "S1",
+      "source_url": "https://directory.example.org/companies?industry=hospitality",
+      "found_via": "directory"
+    },
+    {
+      "name": "Ovenly Labs",
+      "domain": "ovenly.example",
+      "item_key": "domain:ovenly.example",
+      "fit_reason": "Inventory forecasting for restaurant groups, 40 employees, Toronto (directory listing); ICP: hospitality software, 20-500 employees, North America.",
+      "fit_strength": "strong",
+      "signal": "firmographic",
+      "source_id": "S1",
+      "source_url": "https://directory.example.org/companies?industry=hospitality",
+      "found_via": "directory"
+    },
+    {
+      "name": "CuisineCloud",
+      "domain": "cuisinecloud.example",
+      "item_key": "domain:cuisinecloud.example",
+      "fit_reason": "Raised a Series A in October 2026 to build procurement software for hotel groups (news); ICP: hospitality software, timing.",
+      "fit_strength": "strong",
+      "signal": "timing",
+      "source_id": "S3",
+      "source_url": "https://news.example.org/2026/10/02/cuisinecloud-raises-series-a",
+      "found_via": "news"
+    },
+    {
+      "name": "Brightgrill",
+      "item_key": "name:brightgrill",
+      "fit_reason": "An operations lead at Brightgrill describes reconciling tips across 30 locations by hand (community post, one person's account); ICP: operations buyer pain.",
+      "fit_strength": "plausible",
+      "signal": "pain",
+      "source_id": "S4",
+      "source_url": "https://news.example.com/item?id=9001",
+      "found_via": "community"
+    }
+  ],
+  "counts": {
+    "mentioned": 7,
+    "returned": 4,
+    "already_seen": 0,
+    "excluded": 2,
+    "not_a_fit": 1,
+    "over_limit": 0
+  },
+  "dropped": [
+    {
+      "name": "Tablewise",
+      "item_key": "domain:tablewise.example",
+      "reason": "excluded"
+    },
+    {
+      "name": "Plateful Agency",
+      "item_key": "name:plateful-agency",
+      "reason": "icp_exclusion",
+      "note": "Marketing agency for restaurants; the ICP excludes agencies."
+    },
+    {
+      "name": "Mapleleaf Payments",
+      "item_key": "domain:mapleleaf.example",
+      "reason": "not_a_fit",
+      "note": "Consumer payments app; no ICP criterion met."
+    }
+  ],
+  "next_queries": [
+    {
+      "query": "\"restaurant group\" \"hiring\" \"controller\" OR \"head of finance\" software startup",
+      "target": "jobs",
+      "why": "Finance hires at hospitality software companies surfaced the strongest fit this run."
+    },
+    {
+      "query": "reconcile tips across locations spreadsheet restaurant operations",
+      "target": "community",
+      "why": "The ICP's operations pain; community threads name the poster's company."
+    },
+    {
+      "query": "hotel procurement software seed OR \"series a\" 2026",
+      "target": "news",
+      "why": "Funding news found a timely fit; widen it to other hospitality categories."
+    }
+  ],
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:shiftplate.example",
+        "fingerprint": "Shiftplate|shiftplate.example",
+        "observed_at": "2026-10-20T09:00:00Z",
+        "data": {
+          "name": "Shiftplate",
+          "domain": "shiftplate.example",
+          "fit_reason": "Labor scheduling software for multi-location restaurants; hiring a Head of Finance.",
+          "source_url": "https://directory.example.org/companies?industry=hospitality"
+        }
+      },
+      {
+        "item_key": "domain:ovenly.example",
+        "fingerprint": "Ovenly Labs|ovenly.example",
+        "observed_at": "2026-10-20T09:00:00Z",
+        "data": {
+          "name": "Ovenly Labs",
+          "domain": "ovenly.example",
+          "fit_reason": "Inventory forecasting for restaurant groups, 40 employees, Toronto.",
+          "source_url": "https://directory.example.org/companies?industry=hospitality"
+        }
+      },
+      {
+        "item_key": "domain:cuisinecloud.example",
+        "fingerprint": "CuisineCloud|cuisinecloud.example",
+        "observed_at": "2026-10-20T09:00:00Z",
+        "data": {
+          "name": "CuisineCloud",
+          "domain": "cuisinecloud.example",
+          "fit_reason": "Series A in October 2026 for hotel procurement software.",
+          "source_url": "https://news.example.org/2026/10/02/cuisinecloud-raises-series-a"
+        }
+      },
+      {
+        "item_key": "name:brightgrill",
+        "fingerprint": "Brightgrill|-",
+        "observed_at": "2026-10-20T09:00:00Z",
+        "data": {
+          "name": "Brightgrill",
+          "fit_reason": "Operations lead describes manual tip reconciliation across 30 locations.",
+          "source_url": "https://news.example.com/item?id=9001"
+        }
+      }
+    ]
+  },
+  "state_sheet_values": [
+    [
+      "domain:shiftplate.example",
+      "Shiftplate|shiftplate.example",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"Shiftplate\",\"domain\":\"shiftplate.example\",\"fit_reason\":\"Labor scheduling software for multi-location restaurants; hiring a Head of Finance.\",\"source_url\":\"https://directory.example.org/companies?industry=hospitality\"}"
+    ],
+    [
+      "domain:ovenly.example",
+      "Ovenly Labs|ovenly.example",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"Ovenly Labs\",\"domain\":\"ovenly.example\",\"fit_reason\":\"Inventory forecasting for restaurant groups, 40 employees, Toronto.\",\"source_url\":\"https://directory.example.org/companies?industry=hospitality\"}"
+    ],
+    [
+      "domain:cuisinecloud.example",
+      "CuisineCloud|cuisinecloud.example",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"CuisineCloud\",\"domain\":\"cuisinecloud.example\",\"fit_reason\":\"Series A in October 2026 for hotel procurement software.\",\"source_url\":\"https://news.example.org/2026/10/02/cuisinecloud-raises-series-a\"}"
+    ],
+    [
+      "name:brightgrill",
+      "Brightgrill|-",
+      "2026-10-20T09:00:00Z",
+      "{\"name\":\"Brightgrill\",\"fit_reason\":\"Operations lead describes manual tip reconciliation across 30 locations.\",\"source_url\":\"https://news.example.com/item?id=9001\"}"
+    ]
+  ],
+  "report": {
+    "title": "Account discovery: 4 new companies",
+    "summary": "4 new companies fit the ICP, 3 of them strongly; 2 were excluded and 1 did not fit. Most came from the hospitality directory filter.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "New candidates",
+        "items": [
+          {
+            "text": "Shiftplate (shiftplate.example): labor scheduling software for multi-location restaurants, and hiring a Head of Finance.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "strong"
+          },
+          {
+            "text": "Ovenly Labs (ovenly.example): inventory forecasting for restaurant groups, 40 employees, Toronto.",
+            "citations": [
+              "S1"
+            ],
+            "label": "strong"
+          },
+          {
+            "text": "CuisineCloud (cuisinecloud.example): raised a Series A in October 2026 to build procurement software for hotel groups.",
+            "citations": [
+              "S3"
+            ],
+            "label": "strong"
+          },
+          {
+            "text": "Brightgrill: an operations lead describes reconciling tips across 30 locations by hand (one person's account).",
+            "citations": [
+              "S4"
+            ],
+            "label": "plausible"
+          }
+        ]
+      },
+      {
+        "heading": "Suggested next searches",
+        "items": [
+          {
+            "text": "\"restaurant group\" \"hiring\" \"controller\" OR \"head of finance\" software startup",
+            "citations": [],
+            "label": "jobs"
+          },
+          {
+            "text": "reconcile tips across locations spreadsheet restaurant operations",
+            "citations": [],
+            "label": "community"
+          },
+          {
+            "text": "hotel procurement software seed OR \"series a\" 2026",
+            "citations": [],
+            "label": "news"
+          }
+        ]
+      },
+      {
+        "heading": "Skipped",
+        "items": [
+          {
+            "text": "2 excluded (1 on the exclude list, 1 agency).",
+            "citations": []
+          },
+          {
+            "text": "1 did not fit the ICP.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://directory.example.org/companies?industry=hospitality",
+        "title": "Hospitality companies - Example Startup Directory",
+        "provider": "firecrawl"
+      },
+      {
+        "id": "S2",
+        "url": "https://jobs.example.net/listing/4411",
+        "title": "Head of Finance - Shiftplate",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://news.example.org/2026/10/02/cuisinecloud-raises-series-a",
+        "title": "CuisineCloud raises Series A for hotel procurement",
+        "published_at": "2026-10-02",
+        "provider": "brave"
+      },
+      {
+        "id": "S4",
+        "url": "https://news.example.com/item?id=9001",
+        "title": "Ask: how do you reconcile tips across 30 locations?",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "No previous state was read; this is treated as the first run.",
+      "Brightgrill's domain is not in the evidence."
+    ],
+    "meta": {
+      "skill": "account-discovery-candidates",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

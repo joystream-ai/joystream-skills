@@ -38,23 +38,47 @@
     },
     {
       "name": "content-studio",
-      "description": "Social content from real work: decide whether recent GitHub activity is worth a post, then draft LinkedIn and X posts in the author's voice. Drafts only; nothing is posted.",
+      "description": "Social content from real work: decide whether recent GitHub activity is worth a post, then draft LinkedIn and X posts in the author's voice (a voice profile built once), and check drafts for AI slop. Drafts only; nothing is posted.",
       "source": "./",
       "skills": [
         "./skills/content-social-post-draft",
-        "./skills/github-activity-post-worthiness"
+        "./skills/github-activity-post-worthiness",
+        "./skills/content-voice-profile",
+        "./skills/content-ai-slop-check"
       ]
     },
     {
       "name": "gtm-research",
-      "description": "Go-to-market research judgments over evidence the agent already fetched: ICP qualification, pre-call briefs, company profiles, trigger events and public profiles of people, each cited or marked unknown.",
+      "description": "Go-to-market research judgments over evidence the agent already fetched: account discovery, lookalikes of your best customers, ICP qualification, pre-call briefs, company profiles, trigger events, who holds a role, and public profiles of people, each cited or marked unknown.",
       "source": "./",
       "skills": [
         "./skills/account-icp-qualification",
         "./skills/account-research-brief",
         "./skills/account-trigger-events",
         "./skills/company-website-profile",
-        "./skills/person-public-profile"
+        "./skills/person-public-profile",
+        "./skills/account-discovery-candidates",
+        "./skills/account-lookalike-profile",
+        "./skills/person-role-finder"
+      ]
+    },
+    {
+      "name": "market-intelligence",
+      "description": "Watch competitors: what each one changed in the last N days (pricing, launches, positioning, funding, people), with a \"so what\" against your positioning and no repeats between runs.",
+      "source": "./",
+      "skills": [
+        "./skills/company-competitor-changes"
+      ]
+    },
+    {
+      "name": "meeting-intelligence",
+      "description": "Before and after meetings: pick the external meetings to prep, brief each one, file internal huddle notes with decisions and owners, and turn customer calls into anonymized, counted insights.",
+      "source": "./",
+      "skills": [
+        "./skills/meeting-prep-select",
+        "./skills/meeting-prep-brief",
+        "./skills/meeting-huddle-summary",
+        "./skills/customer-insight-extract"
       ]
     },
     {

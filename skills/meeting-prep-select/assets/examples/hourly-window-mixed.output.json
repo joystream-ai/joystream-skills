@@ -1,0 +1,151 @@
+{
+  "slots": [
+    {
+      "i": 0,
+      "item_key": "event:7kq2orbit01",
+      "label": "16:15 Orbit Ledger",
+      "query": "Orbit Ledger orbitledger.example company overview, recent news, funding, leadership"
+    },
+    {
+      "i": 1,
+      "item_key": "event:3hv8exan22",
+      "label": "16:50 Example Analytics",
+      "query": "Example Analytics exampleanalytics.example company overview, recent news, funding, leadership"
+    },
+    null,
+    null,
+    null
+  ],
+  "accepted_count": 2,
+  "accepted": [
+    {
+      "index": 0,
+      "item": {
+        "event_id": "7kq2orbit01",
+        "title": "Orbit Ledger <> OurCo intro",
+        "start": "2026-10-20T14:15:00Z",
+        "end": "2026-10-20T14:45:00Z",
+        "start_local": "16:15 Europe/Berlin",
+        "label": "16:15 Orbit Ledger",
+        "company_domain": "orbitledger.example",
+        "company_name_guess": "Orbit Ledger",
+        "company_is_guess": true,
+        "other_external_domains": [],
+        "external_attendees": [
+          {
+            "name": "Riley Sample",
+            "name_source": "calendar",
+            "domain": "orbitledger.example",
+            "optional": false,
+            "response": "accepted"
+          },
+          {
+            "name": "Sam Example",
+            "name_source": "email",
+            "domain": "orbitledger.example",
+            "optional": false,
+            "response": "none"
+          }
+        ],
+        "external_attendee_count": 2,
+        "internal_attendee_count": 1,
+        "organizer_is_external": false,
+        "agenda": "Agenda: walk through their month-end close process and our pilot proposal.",
+        "people_query": "\"Riley Sample\" OR \"Sam Example\" Orbit Ledger",
+        "calendar": "google"
+      },
+      "item_key": "event:7kq2orbit01",
+      "query": "Orbit Ledger orbitledger.example company overview, recent news, funding, leadership"
+    },
+    {
+      "index": 1,
+      "item": {
+        "event_id": "3hv8exan22",
+        "title": "Discovery: Example Analytics",
+        "start": "2026-10-20T14:50:00Z",
+        "end": "2026-10-20T15:20:00Z",
+        "start_local": "16:50 Europe/Berlin",
+        "label": "16:50 Example Analytics",
+        "company_domain": "exampleanalytics.example",
+        "company_name_guess": "Example Analytics",
+        "company_is_guess": true,
+        "other_external_domains": [
+          "advisors.example"
+        ],
+        "external_attendees": [
+          {
+            "name": "Jordan Placeholder",
+            "name_source": "calendar",
+            "domain": "exampleanalytics.example",
+            "optional": false,
+            "response": "accepted"
+          },
+          {
+            "name": "Casey Example",
+            "name_source": "calendar",
+            "domain": "advisors.example",
+            "optional": true,
+            "response": "tentative"
+          }
+        ],
+        "external_attendee_count": 2,
+        "internal_attendee_count": 2,
+        "organizer_is_external": true,
+        "agenda": "",
+        "people_query": "\"Jordan Placeholder\" OR \"Casey Example\" Example Analytics",
+        "calendar": "google"
+      },
+      "item_key": "event:3hv8exan22",
+      "query": "Example Analytics exampleanalytics.example company overview, recent news, funding, leadership"
+    }
+  ],
+  "drop_counts": {
+    "unreadable": 0,
+    "all_day": 1,
+    "outside_window": 1,
+    "cancelled": 1,
+    "declined": 1,
+    "not_a_meeting": 1,
+    "skip_title": 1,
+    "no_other_attendees": 0,
+    "internal_only": 1,
+    "personal_only": 0,
+    "too_large": 0,
+    "duplicate": 1,
+    "over_limit": 0
+  },
+  "dropped": [
+    {
+      "event_id": "9zz1orbitcopy",
+      "reason": "duplicate"
+    },
+    {
+      "event_id": "5stand0up",
+      "reason": "internal_only"
+    },
+    {
+      "event_id": "2lumdemo",
+      "reason": "declined"
+    },
+    {
+      "event_id": "8nwsync",
+      "reason": "cancelled"
+    },
+    {
+      "event_id": "4focus",
+      "reason": "not_a_meeting"
+    },
+    {
+      "event_id": "6intv",
+      "reason": "skip_title"
+    }
+  ],
+  "window": {
+    "open": "2026-10-20T14:00:00Z",
+    "close": "2026-10-20T15:00:00Z"
+  },
+  "own_domains_used": [
+    "ourco.example"
+  ],
+  "warnings": []
+}

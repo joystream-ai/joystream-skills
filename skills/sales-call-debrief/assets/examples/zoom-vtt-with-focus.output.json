@@ -1,0 +1,189 @@
+{
+  "key_points": [
+    "Biggest pain: month-end close takes nine days, mostly chasing approvals over email.",
+    "Objection: a competitor they tried last year was too rigid.",
+    "The CFO signs off on anything over ten thousand a year.",
+    "Agreed: Casey Demo sends a write-up Riley Example can forward to the CFO."
+  ],
+  "summary": "Casey Demo spoke with Riley Example of Example Freight. Month-end close takes nine days, mostly chasing approvals over email. They tried Sample Close last year and found it too rigid. The CFO signs off on spend over ten thousand a year; Casey Demo will send a write-up to forward.",
+  "pains": [
+    {
+      "text": "Month-end close takes nine days, most of it chasing approvals over email.",
+      "quote_ids": [
+        "Q1"
+      ]
+    }
+  ],
+  "objections": [
+    {
+      "text": "A product they evaluated last year was too rigid for them.",
+      "quote_ids": [
+        "Q2"
+      ]
+    }
+  ],
+  "quotes": [
+    {
+      "id": "Q1",
+      "speaker": "Riley Example",
+      "text": "We close in nine days. Most of that is chasing approvals over email."
+    },
+    {
+      "id": "Q2",
+      "speaker": "Riley Example",
+      "text": "We looked at Sample Close last year but it was too rigid for us."
+    },
+    {
+      "id": "Q3",
+      "speaker": "Riley Example",
+      "text": "Our CFO signs off on anything over ten thousand a year."
+    }
+  ],
+  "next_steps": [
+    {
+      "action": "Send a short write-up Riley Example can forward to the CFO.",
+      "owner": "Casey Demo"
+    }
+  ],
+  "focus_findings": [
+    {
+      "topic": "budget",
+      "finding": "No budget figure was given; spend over ten thousand a year needs CFO sign-off.",
+      "quote_ids": [
+        "Q3"
+      ]
+    },
+    {
+      "topic": "competitors mentioned",
+      "finding": "Sample Close, evaluated last year and found too rigid.",
+      "quote_ids": [
+        "Q2"
+      ]
+    },
+    {
+      "topic": "decision process",
+      "finding": "The CFO signs off on anything over ten thousand a year.",
+      "quote_ids": [
+        "Q3"
+      ]
+    }
+  ],
+  "report": {
+    "title": "Call debrief — Example Freight",
+    "summary": "Casey Demo spoke with Riley Example of Example Freight. Month-end close takes nine days, mostly chasing approvals over email. They tried Sample Close last year and found it too rigid. The CFO signs off on spend over ten thousand a year; Casey Demo will send a write-up to forward.",
+    "severity": "action_needed",
+    "sections": [
+      {
+        "heading": "Key points",
+        "items": [
+          {
+            "text": "Biggest pain: month-end close takes nine days, mostly chasing approvals over email.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "Objection: a competitor they tried last year was too rigid.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "The CFO signs off on anything over ten thousand a year.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "Agreed: Casey Demo sends a write-up Riley Example can forward to the CFO.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Who was there",
+        "body_md": "**Our side:** Casey Demo\n**Their side:** Riley Example",
+        "items": []
+      },
+      {
+        "heading": "Pains",
+        "items": [
+          {
+            "text": "Month-end close takes nine days, most of it chasing approvals over email.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Objections",
+        "items": [
+          {
+            "text": "A product they evaluated last year was too rigid for them.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Next steps",
+        "items": [
+          {
+            "text": "Send a short write-up Riley Example can forward to the CFO.",
+            "citations": [
+              "S1"
+            ],
+            "label": "Casey Demo"
+          }
+        ]
+      },
+      {
+        "heading": "Focus",
+        "items": [
+          {
+            "text": "budget: No budget figure was given; spend over ten thousand a year needs CFO sign-off.",
+            "citations": [
+              "S1"
+            ],
+            "label": "budget"
+          },
+          {
+            "text": "competitors mentioned: Sample Close, evaluated last year and found too rigid.",
+            "citations": [
+              "S1"
+            ],
+            "label": "competitors mentioned"
+          },
+          {
+            "text": "decision process: The CFO signs off on anything over ten thousand a year.",
+            "citations": [
+              "S1"
+            ],
+            "label": "decision process"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:transcript",
+        "title": "transcript",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Draft — not sent",
+    "meta": {
+      "skill": "sales-call-debrief",
+      "skill_version": "1.1.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "item": {
+    "index": 1,
+    "item": {
+      "event_id": "3hv8exan22",
+      "title": "Discovery: Example Analytics",
+      "start": "2026-10-20T14:50:00Z",
+      "end": "2026-10-20T15:20:00Z",
+      "start_local": "16:50 Europe/Berlin",
+      "label": "16:50 Example Analytics",
+      "company_domain": "exampleanalytics.example",
+      "company_name_guess": "Example Analytics",
+      "company_is_guess": true,
+      "other_external_domains": [
+        "advisors.example"
+      ],
+      "external_attendees": [
+        {
+          "name": "Jordan Placeholder",
+          "name_source": "calendar",
+          "domain": "exampleanalytics.example",
+          "optional": false,
+          "response": "accepted"
+        },
+        {
+          "name": "Casey Example",
+          "name_source": "calendar",
+          "domain": "advisors.example",
+          "optional": true,
+          "response": "tentative"
+        }
+      ],
+      "external_attendee_count": 2,
+      "internal_attendee_count": 2,
+      "organizer_is_external": true,
+      "agenda": "",
+      "people_query": "\"Jordan Placeholder\" OR \"Casey Example\" Example Analytics",
+      "calendar": "google"
+    },
+    "item_key": "event:3hv8exan22",
+    "query": "Example Analytics exampleanalytics.example company overview, recent news, funding, leadership"
+  },
+  "context": "OurCo automates month-end close for finance teams at mid-size companies.",
+  "now": "2026-10-20T13:05:00Z"
+}

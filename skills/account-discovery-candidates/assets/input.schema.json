@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "icp": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "The ideal customer profile in plain words: industry, size, buyer, geography, business model, behavior or pain signals, must-haves and exclusions. Optional when an earlier step read an ICP document (its output is then the ICP) or a rubric is given."
+    },
+    "rubric": {
+      "type": "array",
+      "maxItems": 12,
+      "description": "Optional weighted criteria in the account-icp-qualification rubric shape (e.g. the rubric from account-lookalike-profile). When given, fit reasons are judged against these criteria; exclusions drop a company.",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "criterion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "must_have",
+              "nice_to_have",
+              "exclusion"
+            ],
+            "default": "nice_to_have"
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3,
+            "default": 1
+          }
+        }
+      }
+    },
+    "count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 50,
+      "default": 20,
+      "description": "The most new candidates to return. list-prepare accepts at most 50 items."
+    },
+    "fit_threshold": {
+      "type": "string",
+      "enum": [
+        "plausible",
+        "strong"
+      ],
+      "default": "plausible",
+      "description": "plausible keeps companies with one cited ICP criterion met and none contradicted; strong keeps only companies with two or more."
+    },
+    "exclude": {
+      "type": "array",
+      "maxItems": 200,
+      "description": "Companies never to return: customers, open pipeline, competitors, the seed of a lookalike search. Each {name?, domain?} or a plain string (a domain if it contains a dot, else a name).",
+      "items": {
+        "anyOf": [
+          {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 253
+          },
+          {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 200
+              },
+              "domain": {
+                "type": "string",
+                "maxLength": 253
+              },
+              "item_key": {
+                "type": "string",
+                "maxLength": 200
+              }
+            }
+          }
+        ]
+      }
+    },
+    "state_mode": {
+      "type": "string",
+      "enum": [
+        "append",
+        "replace"
+      ],
+      "default": "append",
+      "description": "append: state_out holds only this run's new candidates, for a write step that appends rows (keeps every company ever returned). replace: state_out holds the whole seen set, newest first, capped at 100 entries, for a write step that overwrites."
+    },
+    "max_next_queries": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "default": 5,
+      "description": "The most follow-up searches to suggest when fewer than count new candidates were found. 0 turns suggestions off."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Stamps state_out entries and report.meta. Without it the skill uses the run start time from its instructions; never guessed."
+    }
+  }
+}

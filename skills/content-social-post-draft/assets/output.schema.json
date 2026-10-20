@@ -4,7 +4,9 @@
   "required": [
     "drafts",
     "reasoning",
-    "report"
+    "report",
+    "voice_source",
+    "slop_removed"
   ],
   "additionalProperties": false,
   "properties": {
@@ -125,6 +127,24 @@
       "type": "string",
       "maxLength": 1000,
       "description": "Why these angles and what in the voice samples shaped the style. Plain text."
+    },
+    "voice_source": {
+      "type": "string",
+      "enum": [
+        "profile",
+        "document",
+        "samples",
+        "house"
+      ]
+    },
+    "slop_removed": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "maxLength": 80
+      },
+      "description": "Names of the AI-slop patterns removed while writing; empty when none."
     },
     "report": {
       "title": "Channel-neutral report",

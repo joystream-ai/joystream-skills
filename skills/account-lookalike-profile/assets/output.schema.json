@@ -1,0 +1,433 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "seed",
+    "status",
+    "traits",
+    "search_queries",
+    "rubric",
+    "rubric_notes",
+    "icp_text",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "seed": {
+      "type": "object",
+      "required": [
+        "name",
+        "item_key"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "domain": {
+          "type": "string",
+          "maxLength": 253
+        },
+        "item_key": {
+          "type": "string",
+          "maxLength": 200,
+          "pattern": "^(domain|name):\\S+$",
+          "description": "domain:<domain>, else name:<name>; add it to the exclude list of the discovery step so the seed is never returned as its own lookalike."
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "seller_only",
+        "no_evidence"
+      ],
+      "description": "ok: traits rest on public evidence; seller_only: public evidence was missing or about another company, so traits rest on why_good_customer alone; no_evidence: neither gave a usable trait."
+    },
+    "traits": {
+      "type": "array",
+      "maxItems": 16,
+      "description": "The seed's profile, each trait cited.",
+      "items": {
+        "type": "object",
+        "required": [
+          "dimension",
+          "trait",
+          "look_for",
+          "source_ids",
+          "confidence"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "dimension": {
+            "type": "string",
+            "enum": [
+              "fit",
+              "behavior",
+              "pain",
+              "timing"
+            ]
+          },
+          "trait": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "What is true of the seed, with the fact behind it."
+          },
+          "look_for": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "The same trait stated for any company, as something public evidence can show."
+          },
+          "source_ids": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            }
+          },
+          "confidence": {
+            "type": "string",
+            "enum": [
+              "high",
+              "medium",
+              "low"
+            ]
+          },
+          "seller_named": {
+            "type": "boolean",
+            "description": "True when why_good_customer names this trait as a reason the seed is a good customer."
+          }
+        }
+      }
+    },
+    "search_queries": {
+      "type": "array",
+      "maxItems": 15,
+      "description": "Searches for the agent's search step, behavior and pain first.",
+      "items": {
+        "type": "object",
+        "required": [
+          "query",
+          "dimension",
+          "target",
+          "why"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "query": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "dimension": {
+            "type": "string",
+            "enum": [
+              "firmographic",
+              "behavior",
+              "pain",
+              "timing"
+            ]
+          },
+          "target": {
+            "type": "string",
+            "enum": [
+              "web",
+              "news",
+              "community",
+              "jobs",
+              "directory"
+            ]
+          },
+          "why": {
+            "type": "string",
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "rubric": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "description": "Criteria in exactly the account-icp-qualification rubric shape; pass it straight to that skill's rubric input (and to account-discovery-candidates). Each criterion starts with its dimension: 'Fit: ', 'Behavior: ', 'Pain: ', 'Timing: ' or 'Constraint: '.",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "criterion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "must_have",
+              "nice_to_have",
+              "exclusion"
+            ],
+            "default": "nice_to_have"
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3,
+            "default": 1
+          }
+        }
+      }
+    },
+    "rubric_notes": {
+      "type": "array",
+      "maxItems": 12,
+      "description": "One entry per rubric criterion, same order: what it came from.",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion",
+          "dimension",
+          "source_ids"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "criterion": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "dimension": {
+            "type": "string",
+            "enum": [
+              "fit",
+              "behavior",
+              "pain",
+              "timing",
+              "constraint"
+            ]
+          },
+          "signals": {
+            "type": "array",
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "maxLength": 120
+            },
+            "description": "What a page would say if the criterion is met."
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            },
+            "description": "The seed's sources behind it; empty for a constraint."
+          }
+        }
+      }
+    },
+    "icp_text": {
+      "type": "string",
+      "maxLength": 1500,
+      "description": "The lookalike profile as ICP text, for agents and skills that take icp as text."
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft — not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    }
+  }
+}
