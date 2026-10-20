@@ -61,10 +61,17 @@ jobs:
     steps:
       - name: Apply the fork and label rules
         id: decide
+        env:
+          # Only whether the App secrets are set; their values never reach this step.
+          EVALS_APP_CONFIGURED: ${{ secrets.EVALS_APP_ID != '' && secrets.EVALS_APP_PRIVATE_KEY != '' }}
         run: |
           set -euo pipefail
           dispatch=false
-          if [ "$IS_FORK" = "true" ]; then
+          if [ "$EVALS_APP_CONFIGURED" != "true" ]; then
+            # Until the evals GitHub App is installed and its secrets are added, there is
+            # nothing to dispatch with. Skip with a warning instead of failing every PR.
+            echo "::warning title=Evals not dispatched::EVALS_APP_ID / EVALS_APP_PRIVATE_KEY are not set on this repository, so the private evals were not dispatched."
+          elif [ "$IS_FORK" = "true" ]; then
             # A fork dispatches only on the labeled event for run-evals; a push to a
             # previously labeled fork PR does not.
             if [ "$EVENT_ACTION" = "labeled" ] && [ "$LABEL_NAME" = "$RUN_EVALS_LABEL" ]; then
