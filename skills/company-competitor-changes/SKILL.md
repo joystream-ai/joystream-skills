@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -257,7 +257,9 @@ Return the fields of `assets/output.schema.json` as your result:
   TL;DR: the verdict and the one to three most important changes with their so-what, in
   plain text (`Quiet: nothing new since <previous observed date>.` when empty);
   `severity: attention` for `Major`, else `info`; section `What changed` with one item
-  per change (text `<date>: <what_changed> So what: <so_what>`, `label` = category,
+  per change (text `<date>: <what_changed> So what: <so_what>`, at most 380 characters:
+  shorten the wording, never cut a sentence, so a renderer never truncates it; `label` =
+  category,
   `confidence` `high` for the company's own page or a dated news story, `medium` for a
   page comparison or a single secondary source); section `Tracked pages` only when a page
   is `changed`, `baseline` or `unavailable` (one item each, no citations unless a page is

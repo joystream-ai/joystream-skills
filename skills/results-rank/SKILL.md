@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.3.0"
+  version: "1.3.1"
   category: operations
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -185,7 +185,9 @@ Return the fields of `assets/output.schema.json`:
     about one item tells the reader nothing.
   - `severity`: `attention` when at least one branch failed, else `info`. Never
     `action_needed`.
-  - `sections[0]`, heading e.g. `Top 2 of 4 companies`: one item per shown rank,
+  - `sections[0]`, heading e.g. `Top 2 of 4 companies`: one item per shown rank. With
+    exactly one ranked item and `item_details` > 0, leave this section out: the item's
+    detail section (below) says the same thing in full.
     `text` = `<rank>. <item_label> — <verdict>, <score> (<score_scale>): <headline>`
     (leave out the parts a branch did not give, and the score and scale when
     `show_score` is false), `citations` = its new `source_ids`,
@@ -221,7 +223,7 @@ Return the fields of `assets/output.schema.json`:
   - `unknowns`: only what the ranking could not settle (an ignored `rank_by` key, sources
     dropped at the cap) and each headline withheld because it reads as an instruction.
     Empty otherwise.
-  - `meta`: `{skill: "results-rank", skill_version: "1.3.0", generated_at: <now>}`.
+  - `meta`: `{skill: "results-rank", skill_version: "1.3.1", generated_at: <now>}`.
 
 # Constraints
 
