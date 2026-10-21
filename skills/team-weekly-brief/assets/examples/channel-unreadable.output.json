@@ -1,0 +1,79 @@
+{
+  "highlights": [
+    {
+      "text": "Support response times are reported at under two hours for the third week running.",
+      "area": "Support",
+      "source_ids": [
+        "S1"
+      ]
+    }
+  ],
+  "by_area": [
+    {
+      "area": "Pipeline",
+      "status": "unreadable",
+      "message_count": 0,
+      "items": []
+    },
+    {
+      "area": "Support",
+      "status": "active",
+      "message_count": 1,
+      "items": [
+        {
+          "text": "Support response times are reported at under two hours for the third week running.",
+          "source_ids": [
+            "S1"
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions_needed": [],
+  "risks": [],
+  "quiet_areas": [],
+  "report": {
+    "title": "Weekly brief: 2026-10-09–2026-10-16",
+    "summary": "Support kept response times under two hours for the third week running. The Pipeline channel could not be read, so this brief has no pipeline news.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Highlights",
+        "items": [
+          {
+            "text": "Support response times are reported at under two hours for the third week running.",
+            "citations": [
+              "S1"
+            ],
+            "label": "Support"
+          }
+        ]
+      },
+      {
+        "heading": "Support",
+        "items": [
+          {
+            "text": "Response times under two hours for the third week running.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "slack:message/1792050000.000100"
+      }
+    ],
+    "unknowns": [
+      "Pipeline: the channel could not be read."
+    ],
+    "meta": {
+      "skill": "team-weekly-brief",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-16T09:00:00Z"
+    }
+  }
+}

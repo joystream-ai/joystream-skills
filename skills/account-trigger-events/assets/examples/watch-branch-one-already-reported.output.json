@@ -1,0 +1,110 @@
+{
+  "triggers": [
+    {
+      "event": "Harborline Freight named Jo Example as chief operating officer, responsible for its warehouse operations.",
+      "date": "2026-10-14",
+      "category": "leadership",
+      "source_id": "S1",
+      "why_it_matters": "A new operations leader often reviews the team's tooling in the first months, which opens a window for an automation conversation."
+    }
+  ],
+  "verdict": "Hot",
+  "trigger_count": 1,
+  "dropped": {
+    "undated": 0,
+    "out_of_window": 1,
+    "generic": 1,
+    "other_entity": 0,
+    "already_reported": 1
+  },
+  "item_result": {
+    "item": {
+      "i": 2,
+      "item_key": "domain:harborline.example",
+      "label": "Harborline Freight (harborline.example)",
+      "query": "Harborline Freight harborline.example funding hiring launch leadership"
+    },
+    "item_key": "domain:harborline.example",
+    "item_label": "Harborline Freight (harborline.example)",
+    "status": "ok",
+    "verdict": "Hot",
+    "score": 1,
+    "score_scale": "0-10",
+    "headline": "Named Jo Example as COO on 2026-10-14.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Harborline Freight: trigger events, last 30 days",
+    "summary": "Hot: a new chief operating officer, Jo Example (2026-10-14). The Series B raise was already reported on 2026-10-05.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Triggers",
+        "items": [
+          {
+            "text": "2026-10-14: Harborline Freight named Jo Example as chief operating officer, responsible for its warehouse operations. A new operations leader often reviews tooling early.",
+            "citations": [
+              "S1"
+            ],
+            "label": "leadership",
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://harborline.example/news/jo-example-joins-as-coo",
+        "title": "Jo Example joins Harborline Freight as COO",
+        "published_at": "2026-10-14",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Dropped 1 event already reported on 2026-10-05.",
+      "Dropped 1 item outside the 30-day window.",
+      "Dropped 1 generic item."
+    ],
+    "meta": {
+      "skill": "account-trigger-events",
+      "skill_version": "1.2.0",
+      "generated_at": "2026-10-19T07:00:00Z"
+    }
+  },
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:harborline.example",
+        "fingerprint": "https://harborline.example/news/jo-example-joins-as-coo https://news.example.net/harborline-series-b",
+        "observed_at": "2026-10-19T07:00:00Z",
+        "data": {
+          "reported": [
+            {
+              "d": "2026-10-14",
+              "c": "leadership",
+              "s": "new-coo-jo-example",
+              "u": "https://harborline.example/news/jo-example-joins-as-coo"
+            },
+            {
+              "d": "2026-10-02",
+              "c": "funding",
+              "s": "series-b-raise",
+              "u": "https://news.example.net/harborline-series-b"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "state_sheet_values": [
+    [
+      "domain:harborline.example",
+      "https://harborline.example/news/jo-example-joins-as-coo https://news.example.net/harborline-series-b",
+      "2026-10-19T07:00:00Z",
+      "{\"reported\":[{\"d\":\"2026-10-14\",\"c\":\"leadership\",\"s\":\"new-coo-jo-example\",\"u\":\"https://harborline.example/news/jo-example-joins-as-coo\"},{\"d\":\"2026-10-02\",\"c\":\"funding\",\"s\":\"series-b-raise\",\"u\":\"https://news.example.net/harborline-series-b\"}]}"
+    ]
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "posts": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "description": "What was approved, one entry per platform. The post steps publish approved_text unchanged. Give posts, or linkedin_text and/or x_text.",
+      "items": {
+        "type": "object",
+        "required": [
+          "platform",
+          "approved_text"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "platform": {
+            "type": "string",
+            "enum": [
+              "linkedin",
+              "x"
+            ]
+          },
+          "approved_text": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 3000,
+            "description": "The exact text the person approved."
+          }
+        }
+      }
+    },
+    "linkedin_text": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "The approved LinkedIn text, when posts is absent."
+    },
+    "x_text": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "The approved X text, when posts is absent."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Used as posted_at and in report.meta. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "posts"
+      ]
+    },
+    {
+      "required": [
+        "linkedin_text"
+      ]
+    },
+    {
+      "required": [
+        "x_text"
+      ]
+    }
+  ]
+}

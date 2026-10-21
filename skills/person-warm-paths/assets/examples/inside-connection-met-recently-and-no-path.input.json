@@ -1,0 +1,27 @@
+{
+  "targets": [
+    {
+      "company": "Lumen Payroll",
+      "domain": "lumenpayroll.example",
+      "people": [
+        "Pat Example"
+      ],
+      "roles": [
+        "Controller"
+      ]
+    },
+    {
+      "company": "Harbor Analytics",
+      "domain": "harboranalytics.example",
+      "roles": [
+        "VP Data"
+      ]
+    }
+  ],
+  "own_domains": [
+    "yourcompany.example"
+  ],
+  "recent_days": 180,
+  "max_paths_per_target": 3,
+  "now": "2026-10-12T09:00:00Z"
+}

@@ -1,0 +1,98 @@
+{
+  "plan": [
+    {
+      "date": "2026-10-22",
+      "platform": "linkedin",
+      "pillar": "Automation without the hype",
+      "topic": "Approvals stuck in email threads",
+      "angle": "An approval that lives in an inbox is a decision nobody can see, so it waits.",
+      "format": "text",
+      "reason": "Approvals stuck in email came up again in the insight store, and posts that open with a number did about twice the median last week.",
+      "inputs_used": [
+        "S1",
+        "S3"
+      ],
+      "input_kinds": [
+        "performance",
+        "customer"
+      ]
+    }
+  ],
+  "coverage": {
+    "performance": {
+      "status": "used",
+      "items_read": 1
+    },
+    "market": {
+      "status": "unused",
+      "items_read": 2
+    },
+    "customer": {
+      "status": "used",
+      "items_read": 3
+    }
+  },
+  "backlog": [
+    {
+      "idea": "What a starter-plan price rise tells small teams: price the whole workflow, not the seat.",
+      "reason": "A competitor raised its starter plan price this week; left out of the plan only because there was one slot.",
+      "source_ids": [
+        "S2"
+      ]
+    }
+  ],
+  "report": {
+    "title": "Editorial plan: 2026-10-19–2026-10-25",
+    "summary": "1 LinkedIn post planned: approvals stuck in email threads, a pain repeated on customer calls, with a number-led hook that did best last week. Market input was usable but left for the backlog: only one slot.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Plan",
+        "items": [
+          {
+            "text": "2026-10-22 (Thu): Approvals stuck in email threads. Angle: An approval that lives in an inbox is a decision nobody can see, so it waits. Format: text. Why: repeated on customer calls; number-led hooks did best last week.",
+            "citations": [
+              "S1",
+              "S3"
+            ],
+            "label": "linkedin"
+          }
+        ]
+      },
+      {
+        "heading": "Backlog",
+        "items": [
+          {
+            "text": "What a starter-plan price rise tells small teams: price the whole workflow, not the seat. Left out only because there was one slot.",
+            "citations": [
+              "S2"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "slack:message/1791792000"
+      },
+      {
+        "id": "S2",
+        "record_ref": "slack:message/1792050000"
+      },
+      {
+        "id": "S3",
+        "record_ref": "googlesheets:row/17"
+      }
+    ],
+    "unknowns": [
+      "The customer digest read (read-customer-digest) failed; customer input came from the insight store only.",
+      "Market input was usable but unused: one slot was planned, so the market idea is in the backlog."
+    ],
+    "meta": {
+      "skill": "content-editorial-plan",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-16T09:00:00Z"
+    }
+  }
+}

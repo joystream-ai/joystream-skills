@@ -1,0 +1,22 @@
+{
+  "inputs": [
+    {
+      "kind": "performance",
+      "label": "read-performance"
+    },
+    {
+      "kind": "market",
+      "label": "read-market"
+    },
+    {
+      "kind": "customer",
+      "label": "read-insight-store"
+    }
+  ],
+  "platforms": [
+    "linkedin",
+    "x"
+  ],
+  "slots": 2,
+  "now": "2026-10-16T09:00:00Z"
+}

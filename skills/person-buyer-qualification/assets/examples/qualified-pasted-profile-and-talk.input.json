@@ -1,0 +1,24 @@
+{
+  "item": {
+    "index": 0,
+    "item": {
+      "name": "Jo Example",
+      "company": "Bramblewood Clinics",
+      "role": "Controller",
+      "profile_text": "Jo Example - Controller at Bramblewood Clinics. I run accounting and the monthly close for our twelve clinic entities. Recent post (2 weeks ago): we cut our close from 12 days to 8 by moving intercompany reconciliations out of spreadsheets."
+    },
+    "item_key": "name_company:jo-example@bramblewood-clinics",
+    "query": "\"Jo Example\" Bramblewood Clinics",
+    "queries": [
+      "\"Jo Example\" podcast OR talk OR interview"
+    ]
+  },
+  "problem": "Month-end close takes too long for multi-entity companies; usually owned by the controller or VP Finance.",
+  "owner_roles": [
+    "Controller",
+    "VP Finance",
+    "Head of Accounting"
+  ],
+  "active_within_days": 180,
+  "now": "2026-10-12T09:00:00Z"
+}

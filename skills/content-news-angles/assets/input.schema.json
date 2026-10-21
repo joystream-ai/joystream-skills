@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "point_of_view"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "point_of_view": {
+      "type": "string",
+      "maxLength": 6000,
+      "description": "The author's stated beliefs, positions and the topics they own, written by the author. The only source of the author's views."
+    },
+    "topics": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "The topics the news searches covered; used to label stories."
+    },
+    "avoid": {
+      "type": "array",
+      "maxItems": 20,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "Topics or kinds of news never to react to."
+    },
+    "max_angles": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3,
+      "default": 2,
+      "description": "The most stories to pick."
+    },
+    "freshness_hours": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 336,
+      "default": 48,
+      "description": "A story published longer ago than this is stale."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

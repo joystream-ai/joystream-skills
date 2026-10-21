@@ -1,0 +1,43 @@
+{
+  "targets": [
+    {
+      "company": "Example Analytics",
+      "item_key": "domain:exampleanalytics.example",
+      "status": "no_path",
+      "paths": []
+    }
+  ],
+  "counts": {
+    "targets": 1,
+    "with_paths": 0,
+    "connections_read": 0,
+    "events_read": 0
+  },
+  "report": {
+    "title": "Warm paths: 0 of 1 targets",
+    "summary": "No warm path found: the connections spreadsheet has no rows and no calendar events were returned.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "No path found",
+        "items": [
+          {
+            "text": "Example Analytics: no connection or meeting in your data.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [],
+    "unknowns": [
+      "Second-degree connections are not in this data.",
+      "The connections spreadsheet has no rows.",
+      "The calendar read returned no events."
+    ],
+    "meta": {
+      "skill": "person-warm-paths",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

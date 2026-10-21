@@ -1,0 +1,20 @@
+{
+  "channels": [
+    {
+      "channel_id": "C0EXAMPLE01",
+      "label": "Pipeline"
+    },
+    {
+      "channel_id": "C0EXAMPLE02",
+      "label": "Content"
+    },
+    {
+      "channel_id": "C0EXAMPLE03",
+      "label": "Product"
+    }
+  ],
+  "window_days": 7,
+  "audience": "founder",
+  "max_highlights": 5,
+  "now": "2026-10-16T09:00:00Z"
+}

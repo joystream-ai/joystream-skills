@@ -1,0 +1,13 @@
+{
+  "channels": [
+    {
+      "channel_id": "C0EXAMPLE01",
+      "label": "Pipeline"
+    },
+    {
+      "channel_id": "C0EXAMPLE04",
+      "label": "Support"
+    }
+  ],
+  "now": "2026-10-16T09:00:00Z"
+}

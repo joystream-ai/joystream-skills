@@ -1,0 +1,69 @@
+{
+  "published": [
+    {
+      "platform": "linkedin",
+      "status": "posted",
+      "post_id": "urn:li:share:7300000000000000002",
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:share:7300000000000000002",
+      "text_matches": null,
+      "note": "LinkedIn does not return the posted text."
+    },
+    {
+      "platform": "x",
+      "status": "not_posted",
+      "post_id": null,
+      "post_url": null,
+      "text_matches": null,
+      "note": "Not posted: no response from the post step (not approved, skipped or not run)."
+    }
+  ],
+  "all_posted": false,
+  "sheet_values": [
+    [
+      "2026-10-21T15:04:00Z",
+      "linkedin",
+      "urn:li:share:7300000000000000002",
+      "https://www.linkedin.com/feed/update/urn:li:share:7300000000000000002",
+      "unknown",
+      "Three things we learned running support with a team of two:\n\n1. Write the answer once, link it forever.\n2. Tag every ticket by cause, not by product area.\n3. Read the angriest ticket of the week out loud on Monday."
+    ]
+  ],
+  "report": {
+    "title": "Published: 1 of 2 posts",
+    "summary": "The LinkedIn post went out. The X post was not posted: its step returned nothing (not approved, skipped or not run).",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Posts",
+        "items": [
+          {
+            "text": "LinkedIn: posted. LinkedIn does not return the posted text.",
+            "citations": [
+              "S1"
+            ],
+            "label": "posted"
+          },
+          {
+            "text": "X: not posted. No response from the post step (not approved, skipped or not run).",
+            "citations": [],
+            "label": "not_posted"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://www.linkedin.com/feed/update/urn:li:share:7300000000000000002",
+        "record_ref": "linkedin:post/urn:li:share:7300000000000000002",
+        "provider": "linkedin"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-publish-receipt",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-21T15:04:00Z"
+    }
+  }
+}
