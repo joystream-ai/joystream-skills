@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.1"
+  version: "1.1.2"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -265,7 +265,7 @@ Return the fields of `assets/output.schema.json` as your result:
   criterion, text `<criterion> (weight <w>)`, citations from `rubric_notes`, `label` =
   kind), and `Searches` (one item per query, no citations, `label` = dimension); every
   cited source in `sources` (`input:why_good_customer` with provider `input`);
-  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.1.1",
+  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.1.2",
   generated_at: <now>}`. `severity: info`, or `attention` when `status` is not `ok`.
 
 # Constraints
