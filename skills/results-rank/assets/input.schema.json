@@ -68,6 +68,18 @@
       "maxLength": 150,
       "description": "Report title. Default: '<Item kind> ranking'."
     },
+    "item_details": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 10,
+      "default": 0,
+      "description": "Lines of each shown branch's own report to carry into the ranking; 0 = one line per item."
+    },
+    "show_score": {
+      "type": "boolean",
+      "default": true,
+      "description": "False leaves score and scale out of every line (ranking unchanged)."
+    },
     "now": {
       "type": "string",
       "description": "Current time, ISO 8601, for report.meta.generated_at. Optional: without it the skill uses the run start time from its instructions. Never guessed."
