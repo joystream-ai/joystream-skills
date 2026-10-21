@@ -83,6 +83,7 @@
     {
       "event": "Raised a $12M Series A.",
       "date": "2026-09-15",
+      "days_ago": 35,
       "category": "funding",
       "source_id": "S2"
     }
@@ -399,11 +400,11 @@
     ],
     "unknowns": [
       "Rejected 2 results about other people or companies: a chef named Sam Example and a different Orbit Ledger on orbitledger-astro.example.",
-      "Dropped 1 undated event (a careers page with no posting date)."
+      "Dropped 2 events: one undated (a careers page with no posting date) and one outside the 90-day window (a seed round on 2025-11-04, 350 days before now)."
     ],
     "meta": {
       "skill": "meeting-prep-brief",
-      "skill_version": "1.0.1",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-20T13:05:00Z"
     }
   }

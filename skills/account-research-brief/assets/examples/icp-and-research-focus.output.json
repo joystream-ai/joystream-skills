@@ -9,18 +9,21 @@
     {
       "event": "Opened four sales roles in Berlin.",
       "date": "2026-10-01",
+      "days_ago": 11,
       "category": "hiring",
       "source_id": "S2"
     },
     {
       "event": "Raised a $30M Series B led by Example Ventures.",
       "date": "2026-09-18",
+      "days_ago": 24,
       "category": "funding",
       "source_id": "S3"
     },
     {
       "event": "Launched usage-based pricing for the Growth plan.",
       "date": "2026-08-04",
+      "days_ago": 69,
       "category": "launch",
       "source_id": "S4"
     }
@@ -284,7 +287,7 @@
     ],
     "meta": {
       "skill": "account-research-brief",
-      "skill_version": "1.1.0",
+      "skill_version": "1.2.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

@@ -3,6 +3,7 @@
     {
       "text": "Support response times are reported at under two hours for the third week running.",
       "area": "Support",
+      "days_ago": 1,
       "source_ids": [
         "S1"
       ]
@@ -22,6 +23,7 @@
       "items": [
         {
           "text": "Support response times are reported at under two hours for the third week running.",
+          "days_ago": 1,
           "source_ids": [
             "S1"
           ]
@@ -72,7 +74,7 @@
     ],
     "meta": {
       "skill": "team-weekly-brief",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-16T09:00:00Z"
     }
   }

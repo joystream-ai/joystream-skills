@@ -69,6 +69,7 @@
           "post_id",
           "platform",
           "posted_at",
+          "days_ago",
           "post_url",
           "metrics",
           "primary_value",
@@ -87,6 +88,11 @@
           },
           "posted_at": {
             "type": "string"
+          },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from posted_at's date to now's date, computed (step 3); at most window_days."
           },
           "post_url": {
             "type": [

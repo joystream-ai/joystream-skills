@@ -38,12 +38,13 @@
     "recent_events": {
       "type": "array",
       "maxItems": 8,
-      "description": "Dated events inside [now - lookback_days, now], newest first.",
+      "description": "Dated events with 0 <= days_ago <= lookback_days, newest first.",
       "items": {
         "type": "object",
         "required": [
           "event",
           "date",
+          "days_ago",
           "source_id"
         ],
         "additionalProperties": false,
@@ -57,6 +58,11 @@
             "type": "string",
             "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
             "description": "YYYY-MM-DD, as stated in the evidence."
+          },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from date to now's date, computed (step 5); at most lookback_days."
           },
           "category": {
             "type": "string",

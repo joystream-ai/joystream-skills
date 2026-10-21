@@ -34,6 +34,7 @@
       "competitor": "Quillfield Desk",
       "what_changed": "Launched SLA breach dashboards with alerts before a response target is missed.",
       "date": "2026-10-14",
+      "days_ago": 5,
       "source_ids": [
         "S5"
       ]
@@ -42,6 +43,7 @@
       "competitor": "Harborline Support",
       "what_changed": "Raised its Pro plan price from $29 to $35 per agent per month.",
       "date": "2026-10-13",
+      "days_ago": 6,
       "source_ids": [
         "S5"
       ]
@@ -52,6 +54,7 @@
       "title": "v3.8.0",
       "kind": "release",
       "date": "2026-10-16",
+      "days_ago": 3,
       "url": "https://git.example.com/example-org/example-desk/releases/tag/v3.8.0",
       "source_ids": [
         "S7"
@@ -61,6 +64,7 @@
       "title": "Auto-route new tickets by topic and language",
       "kind": "pr",
       "date": "2026-10-15",
+      "days_ago": 4,
       "url": "https://git.example.com/example-org/example-desk/pull/412",
       "source_ids": [
         "S6"
@@ -229,11 +233,12 @@
       }
     ],
     "unknowns": [
-      "Skipped 3 dependency, CI or chore changes."
+      "Skipped 3 dependency, CI or chore changes.",
+      "1 pull request merged before the week (2026-10-09, 10 days ago) was left out."
     ],
     "meta": {
       "skill": "product-weekly-intelligence",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-19T08:00:00Z"
     }
   }

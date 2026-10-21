@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.2.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -161,11 +161,14 @@ absent.
 5. **Recent events.** Go through the kept sources for funding, hiring, launches,
    leadership changes, partnerships, expansion, layoffs and similar. Keep an event only
    if the evidence gives its **day** (`YYYY-MM-DD`; a relative date such as "3 days ago"
-   only when the evidence says what day it is relative to) and that day is inside
-   `[now - lookback_days, now]`. Drop undated, month-only and out-of-window events and
-   count them in `unknowns` (`Dropped N undated or older events.`). Newest first, at most
-   8, one event per happening (the same news from two sources is one event; cite the
-   better source).
+   only when the evidence says what day it is relative to). Then compute and write
+   `days_ago` = the number of calendar days from that day to `now`'s date (`2026-10-09` is
+   12 days before a `now` on `2026-10-21`); do the subtraction for every event, never
+   estimate it. Keep an event only when `0 ≤ days_ago ≤ lookback_days`, however important
+   it looks. Drop undated, month-only, future and out-of-window events and count them in
+   `unknowns` (`Dropped N undated or older events.`); an older event is never kept or
+   mentioned as context. Newest first, at most 8, one event per happening (the same news
+   from two sources is one event; cite the better source).
 6. **Likely problem owner.** Name the role (and the person, only if a source names them in
    that role) most likely to own the problem that `context` describes, with the basis
    (e.g. "the careers page says the operations team owns billing tooling"). It is
@@ -177,7 +180,11 @@ absent.
 8. **ICP fit** (only when there is an ICP; see Inputs). Split the ICP into its
    criteria (industry, size, buyer, geography, business model, must-haves, exclusions)
    and mark each `met`, `not met` or `unknown`, citing the source for met and not met.
-   Overall `fit`: `strong` when every important criterion is met; `partial` when some
+   A criterion with a time window (`raised in the last 12 months`) is `met` only by an
+   event whose computed age is inside it: `months_ago` = (year of `now` − year of the
+   event) × 12 + (month of `now` − month of the event), so `2025-06` is 16 months before a
+   `now` in `2026-10`; an older event makes it `not met` (give its date), and only
+   undated evidence leaves it `unknown`. Overall `fit`: `strong` when every important criterion is met; `partial` when some
    are met and none of the important ones is contradicted; `weak` when an important
    criterion is not met or an exclusion applies; `unclear` when most are unknown. For a
    scored Pursue / Research / Reject verdict, the agent adds `account-icp-qualification`.
@@ -196,7 +203,8 @@ Return the fields of `assets/output.schema.json` as your result:
 
 - `what_they_do`: `{text, source_ids}`; `text: "unknown"` with empty `source_ids` when no
   source says.
-- `recent_events[]`: `{event, date, category, source_id}`; `date` is `YYYY-MM-DD`;
+- `recent_events[]`: `{event, date, days_ago, category, source_id}`; `date` is `YYYY-MM-DD`;
+  `days_ago` is computed in step 5, from 0 to `lookback_days`;
   `category` is one of `funding`, `hiring`, `launch`, `leadership`, `partnership`,
   `expansion`, `other`.
 - `likely_problem_owner`: `{guess, basis, is_guess: true, source_ids}`.
@@ -231,7 +239,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `unknown`), `Recent events` (each item `label` = its category), `Likely problem owner`
   (`label: guess`), `Angles` (`label: angle`), `Open questions` (empty `citations`,
   `label: question`); every cited source in `sources`; `unknowns`; `meta`
-  `{skill: "account-research-brief", skill_version: "1.1.0", generated_at: <now>}` (leave
+  `{skill: "account-research-brief", skill_version: "1.2.0", generated_at: <now>}` (leave
   `meta` out when no time is known). `severity: info`, or `attention` when the evidence
   was too thin to brief.
 
@@ -241,7 +249,8 @@ Return the fields of `assets/output.schema.json` as your result:
   When the evidence does not support a field, write `unknown` and add a line to
   `unknowns`.
 - **Every event is dated and inside the window.** Each `recent_events[].date` is a full
-  day inside `[now - lookback_days, now]`. In `report.sources`, set `published_at` only
+  day with a computed `days_ago` from 0 to `lookback_days`. Never call an event recent or
+  "in the last N days" anywhere (angles, brief_text, report) unless its `days_ago` says so. In `report.sources`, set `published_at` only
   for a source dated inside the window; leave it out for older or undated sources.
 - **The owner is always a guess.** `is_guess` is `true` and every place that names the
   owner says it is a guess.

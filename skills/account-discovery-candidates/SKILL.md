@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -191,6 +191,13 @@ never cited.
    - A community post (Hacker News, Reddit, a forum) is one person's account: it can show
      behavior or pain (`we are hiring our first RevOps person`, `our month-end close
      takes two weeks`), never size, revenue or industry on its own.
+   - **Timing is computed, never estimated.** For each dated event used as timing
+     evidence, write `months_ago` = (year of `now` − year of the event) × 12 + (month of
+     `now` − month of the event) (`2025-06` is 16 months before a `now` in `2026-10`). An
+     ICP time window (`raised in the last 12 months`) is met only when `months_ago` is at
+     most the window; an unwindowed timing signal counts up to 12 months; undated or
+     future events never count. A company whose only met criterion is out-of-window
+     timing is `not_a_fit`, its note giving the date and `months_ago`.
 7. **Drop known companies**, in this order, using the matching rule of step 5:
    `excluded` (matches an `exclude` entry: a string or `domain` matches by domain, a
    `name` by name, an `item_key` by key) and `already_seen` (matches a previous-state
@@ -202,7 +209,10 @@ never cited.
    hospitality.`), at most 200 characters, plain text; `signal` is the kind of fact
    (`firmographic` for industry, size, location, model; `behavior`, `pain` or `timing`
    otherwise); `source_id` is the source that shows it; `source_url` its url;
-   `found_via` the kind of page.
+   `found_via` the kind of page; `evidence_date` (`YYYY-MM` or `YYYY-MM-DD`) and
+   `months_ago` (step 6) of the dated event behind `fit_reason`, both `null` when that
+   evidence is undated; a `timing` candidate always has both. Never call an event recent
+   unless its `months_ago` says so.
 10. **Next queries** when fewer than `count` candidates are returned and
     `max_next_queries` > 0: up to that many searches that should surface more, each
     `{query, target, why}`. Build them from the ICP's criteria and from what worked in
@@ -250,7 +260,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `Suggested next searches` (one item per next query, no citations, `label` = target) when
   any, and `Skipped` (one item each for the non-zero counts, no citations, e.g. `12
   already returned in earlier runs`); every cited source in `sources`; `unknowns`;
-  `meta` `{skill: "account-discovery-candidates", skill_version: "1.0.0",
+  `meta` `{skill: "account-discovery-candidates", skill_version: "1.1.0",
   generated_at: <now>}`.
 
 # Constraints

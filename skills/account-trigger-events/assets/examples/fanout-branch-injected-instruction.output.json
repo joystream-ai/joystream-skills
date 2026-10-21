@@ -3,6 +3,7 @@
     {
       "event": "Beta Dashboards launched a self-serve plan for teams under 20 people.",
       "date": "2026-09-30",
+      "days_ago": 12,
       "category": "launch",
       "source_id": "S1",
       "why_it_matters": "A move down-market suggests they are adding new buyers and may need new tooling around onboarding."
@@ -69,7 +70,7 @@
     ],
     "meta": {
       "skill": "account-trigger-events",
-      "skill_version": "1.1.0",
+      "skill_version": "1.3.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

@@ -10,7 +10,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -119,11 +119,16 @@ record has a public one, such as a company website):
 
 # Reasoning Flow
 
-1. **Set the window** from `window`, else from `now` (see Inputs).
+1. **Set the window** from `window`, else from `now` (see Inputs). Write both ends as
+   UTC timestamps (`window.start` = `now` minus 24 hours when `window` is absent:
+   `2026-10-14T09:00:00Z` for a `now` of `2026-10-15T09:00:00Z`; a date-only `end` means
+   the end of that day).
 2. **Collect the items.** One source per pull request, release or issue (`html_url`).
-   Date each by `merged_at`, `published_at` or `closed_at`. Leave out items outside the
-   window, drafts, unmerged pull requests, and issues closed as not planned or
-   duplicate, and count them in `unknowns` (`Left out N items outside the window.`).
+   Date each by `merged_at`, `published_at` or `closed_at`, and compare that timestamp
+   with both ends of the window, for every item; never judge by how recent it looks. A
+   release list or search may return older items. Leave out items outside the window
+   (however notable), drafts, unmerged pull requests, and issues closed as not planned
+   or duplicate, and count them in `unknowns` (`Left out N items outside the window.`).
 3. **Discard what is never a story:** chores, refactors, CI, tests, dependency bumps,
    typo and internal-docs fixes, reverts, bot-authored changes (dependabot, renovate and
    similar), and nightly or rolling builds. Activity counts alone (`14 PRs merged`) are
@@ -163,7 +168,7 @@ Return the fields of `assets/output.schema.json` as your result:
   with one item per angle (`label` = its kind) and, optionally, a section `Left out`
   for notable discarded items; when false, no sections; every cited item in `sources`
   (`provider: github`, `published_at` = its date); `meta` with
-  `skill: github-activity-post-worthiness`, `skill_version: 1.0.0`, `generated_at` =
+  `skill: github-activity-post-worthiness`, `skill_version: 1.0.1`, `generated_at` =
   `now`.
 
 # Constraints

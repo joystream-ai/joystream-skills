@@ -12,6 +12,7 @@
         "S2"
       ],
       "current_title": "Controller",
+      "title_months_ago": 1,
       "stale": false
     },
     "active": {
@@ -20,7 +21,9 @@
       "source_ids": [
         "S2",
         "S3"
-      ]
+      ],
+      "latest_activity_date": "2026-09-17",
+      "latest_activity_days_ago": 25
     },
     "reachable": {
       "score": 2,
@@ -145,7 +148,7 @@
     ],
     "meta": {
       "skill": "person-buyer-qualification",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

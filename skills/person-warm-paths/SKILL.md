@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -128,11 +128,16 @@ The evidence is the output of the steps that ran before this one, shown in full 
      introduce.
    - `met`: an attendee from the company the user met in an event (not already a
      connection; a connection who was also met is one path, with both refs).
-6. **Strength.**
-   - `strong`: met within `recent_days`; or a `direct` connection who was also met.
+6. **Strength.** First write `last_met_days_ago` for every path with a `last_met`: the
+   number of calendar days from `last_met` to `now`'s date (`2026-04-15` is 180 days
+   before a `now` on `2026-10-12`); do the subtraction for every path, never estimate it
+   (`null` when there is no `last_met` or no `now`). A meeting is recent only when
+   `last_met_days_ago` ≤ `recent_days`.
+   - `strong`: a recent meeting (`last_met_days_ago` ≤ `recent_days`); or a `direct`
+     connection who was also met.
    - `medium`: a `direct` connection; an `inside` connection whose `Position` is in the
      same function as a target role or senior to it (e.g. `CFO` for a `Controller`
-     target); a `met` path older than `recent_days`.
+     target); a `met` path with `last_met_days_ago` > `recent_days`.
    - `weak`: any other `inside` connection.
    Write `why` as one sentence from the data (`Connected since 2021; VP Finance there,
    senior to the Controller you want to reach.`), never a claim the data does not make.
@@ -147,7 +152,8 @@ The evidence is the output of the steps that ran before this one, shown in full 
 Return the fields of `assets/output.schema.json` as your result:
 
 - `targets[]`, in input order: `{company, item_key, status, paths[]}`; each path
-  `{via_name, via_title, path_type, strength, why, evidence[], connected_on, last_met}`.
+  `{via_name, via_title, path_type, strength, why, evidence[], connected_on, last_met,
+  last_met_days_ago}` (`last_met_days_ago` from step 6, `null` with no `last_met`).
   `via_title` is the connection's `Position`, else `unknown` (a calendar attendee has no
   title); `via_name` is the connection's name or the attendee's `displayName`; an attendee
   with no display name is `unknown attendee`, never their email; `connected_on` and `last_met` are `YYYY-MM-DD` or `null`;
@@ -163,7 +169,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `sources`: one per cited record, `{id, record_ref}` (never a url or email); `unknowns`
   always includes `Second-degree connections are not in this data.`, plus unreadable
   sources, unmatched attendees for lack of a domain, and paths over the cap; `meta`
-  with `skill: person-warm-paths`, `skill_version: 1.0.0`, `generated_at` = `now`.
+  with `skill: person-warm-paths`, `skill_version: 1.1.0`, `generated_at` = `now`.
 
 # Constraints
 

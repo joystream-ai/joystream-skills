@@ -9,7 +9,9 @@
       "signal": "firmographic",
       "source_id": "S1",
       "source_url": "https://directory.example.org/companies?industry=hospitality",
-      "found_via": "directory"
+      "found_via": "directory",
+      "evidence_date": null,
+      "months_ago": null
     },
     {
       "name": "Ovenly Labs",
@@ -20,7 +22,9 @@
       "signal": "firmographic",
       "source_id": "S1",
       "source_url": "https://directory.example.org/companies?industry=hospitality",
-      "found_via": "directory"
+      "found_via": "directory",
+      "evidence_date": null,
+      "months_ago": null
     },
     {
       "name": "CuisineCloud",
@@ -31,7 +35,9 @@
       "signal": "timing",
       "source_id": "S3",
       "source_url": "https://news.example.org/2026/10/02/cuisinecloud-raises-series-a",
-      "found_via": "news"
+      "found_via": "news",
+      "evidence_date": "2026-10-02",
+      "months_ago": 0
     },
     {
       "name": "Brightgrill",
@@ -41,15 +47,17 @@
       "signal": "pain",
       "source_id": "S4",
       "source_url": "https://news.example.com/item?id=9001",
-      "found_via": "community"
+      "found_via": "community",
+      "evidence_date": null,
+      "months_ago": null
     }
   ],
   "counts": {
-    "mentioned": 7,
+    "mentioned": 8,
     "returned": 4,
     "already_seen": 0,
     "excluded": 2,
-    "not_a_fit": 1,
+    "not_a_fit": 2,
     "over_limit": 0
   },
   "dropped": [
@@ -69,6 +77,12 @@
       "item_key": "domain:mapleleaf.example",
       "reason": "not_a_fit",
       "note": "Consumer payments app; no ICP criterion met."
+    },
+    {
+      "name": "Harborview Kitchens",
+      "item_key": "name:harborview-kitchens",
+      "reason": "not_a_fit",
+      "note": "Only timing evidence: a seed round in 2025-02, 20 months before now, outside the 12-month timing window."
     }
   ],
   "next_queries": [
@@ -163,7 +177,7 @@
   ],
   "report": {
     "title": "Account discovery: 4 new companies",
-    "summary": "4 new companies fit the ICP, 3 of them strongly; 2 were excluded and 1 did not fit. Most came from the hospitality directory filter.",
+    "summary": "4 new companies fit the ICP, 3 of them strongly; 2 were excluded and 2 did not fit. Most came from the hospitality directory filter.",
     "severity": "info",
     "sections": [
       {
@@ -228,7 +242,7 @@
             "citations": []
           },
           {
-            "text": "1 did not fit the ICP.",
+            "text": "2 did not fit the ICP (one only had a funding round 20 months old).",
             "citations": []
           }
         ]
@@ -267,7 +281,7 @@
     ],
     "meta": {
       "skill": "account-discovery-candidates",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-20T09:00:00Z"
     }
   }

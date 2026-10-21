@@ -62,6 +62,7 @@
           "competitor",
           "what_changed",
           "date",
+          "days_ago",
           "source_ids"
         ],
         "additionalProperties": false,
@@ -83,6 +84,11 @@
             ],
             "description": "YYYY-MM-DD as the message states it, else null."
           },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from the item's date (else its message's date) to now's date, computed (step 1); at most window_days."
+          },
           "source_ids": {
             "type": "array",
             "items": {
@@ -103,6 +109,7 @@
           "title",
           "kind",
           "date",
+          "days_ago",
           "url",
           "source_ids"
         ],
@@ -123,6 +130,11 @@
           "date": {
             "type": "string",
             "description": "YYYY-MM-DD merged or published."
+          },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from the item's date (else its message's date) to now's date, computed (step 1); at most window_days."
           },
           "url": {
             "type": "string",

@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -160,12 +160,19 @@ cite the message, and the link too when it is in the message.
    that count in `skipped`:**
    - `undated`: no published date (relative dates count only as Reading the evidence
      says).
-   - `stale`: published more than `freshness_hours` before `now`, or after `now`.
+   - `stale`: compute `hours_ago` = whole hours from the item's published timestamp to
+     `now`, rounded down; a date with no time counts as `00:00` UTC that day
+     (`2026-10-20` is 32 hours before a `now` of `2026-10-21T08:00:00Z`). Do this
+     subtraction for every item and never estimate it. Keep the item only when
+     `0 ≤ hours_ago ≤ freshness_hours`; otherwise it is `stale`, however newsworthy it
+     looks.
    - `generic`: not one specific event (explainers, listicles, evergreen guides,
      opinion roundups, "top 10" pages, a vendor's product page).
    - `avoided`: it matches an `avoid` entry by topic or kind.
-   - `already_covered`: its url is in the store, or its `topic_key` (step 4) is in the
-     store with `covered_at` within the 30 days before `now`.
+   - `already_covered`: its url is anywhere in the store, or its `topic_key` (step 4) is
+     in the store on a row whose computed age is at most 30 days (calendar days from the
+     row's `covered_at` date to `now`'s date: `2026-09-21` is 30 days before a `now` on
+     `2026-10-21`).
    - `off_pov`: no belief in `point_of_view` bears on it. A belief bears on a story when
      the author could agree, disagree or add something specific because of that belief;
      sharing a buzzword is not enough.
@@ -194,8 +201,9 @@ Return the fields of `assets/output.schema.json` as your result:
   (at most 200 characters); `evidence_refs` = the source ids behind it. Empty when not
   worth posting.
 - `source_text` (at most 1,500 characters): see step 7; `""` when not worth posting.
-- `angles[]`: `{id, topic_key, headline, source_id, published_at, why_timely,
-  pov_belief, take, hook, outline, caution}`. `id` `A1`, `A2` …; `headline` as the
+- `angles[]`: `{id, topic_key, headline, source_id, published_at, hours_ago, why_timely,
+  pov_belief, take, hook, outline, caution}`; `hours_ago` is the computed age from step
+  3, from 0 to `freshness_hours`. `id` `A1`, `A2` …; `headline` as the
   source states it; `published_at` `YYYY-MM-DD` or a full timestamp as given;
   `why_timely` one sentence (what happened, when); `pov_belief` an exact excerpt of
   `point_of_view`, at most 200 characters, copied character for character (one belief,
@@ -215,12 +223,13 @@ Return the fields of `assets/output.schema.json` as your result:
   angle (text `<headline>: <take>`, `label` = topic, citations = its source), a section
   `Skipped` with one item per non-zero count, no citations; every cited source in
   `sources`; `unknowns` for failed searches and reads; `meta` `{skill:
-  "content-news-angles", skill_version: "1.0.0", generated_at: <now>}`.
+  "content-news-angles", skill_version: "1.1.0", generated_at: <now>}`.
 
 # Constraints
 
-- **Fresh, dated, sourced.** Every angle cites one source whose date is within
-  `freshness_hours` before `now`.
+- **Fresh, dated, sourced.** Every angle cites one source and carries a computed
+  `hours_ago` from 0 to `freshness_hours`. An older story is never picked, not even as
+  context.
 - **The take is the author's.** Every `pov_belief` appears word for word in
   `point_of_view`; a take with no belief behind it is not written.
 - **Never invent** a fact, figure, quote, name, date or url. A url in `sources` or

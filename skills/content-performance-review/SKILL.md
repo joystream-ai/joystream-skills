@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -39,11 +39,10 @@ store, posts or sends.
 
 Input data holds only small values the agent passes in:
 
-- **window_days** (integer, default 7): posts whose `posted_at` falls in
-  `[now − window_days, now]` are this period. Compare full timestamps, not dates: with
-  `now` 2026-10-21T07:00Z and 7 days, a post at 2026-10-14T06:59Z is baseline.
-- **baseline_days** (integer, default 56): posts published in the `baseline_days` before
-  this period are the baseline.
+- **window_days** (integer, default 7): posts whose computed `days_ago` (step 3) is
+  from 0 to `window_days` are this period.
+- **baseline_days** (integer, default 56): posts whose `days_ago` is from
+  `window_days + 1` to `window_days + baseline_days` are the baseline.
 - **top_n** (integer 1-5, default 3): how many top and bottom posts to explain.
 - **primary_metric** (`engagement_rate` | `impressions` | `reactions` | `comments` |
   `clicks`, default `engagement_rate`): the metric that ranks posts.
@@ -91,8 +90,14 @@ read: the empty result (Edge Cases).
 2. **Derived metric.** `engagement_rate` = (reactions + comments + reposts + clicks) ÷
    impressions, counting blank metrics as unknown (sum only the known ones and say so),
    computed only when impressions > 0; otherwise it is unknown for that post.
-3. **Split by `posted_at`**: this period, baseline, or older (ignored). A post with no
-   `posted_at` is ignored and counted in `unknowns`.
+3. **Age and split.** For every post compute `days_ago` = the number of calendar days
+   from the date of its `posted_at` to `now`'s date (a post at `2026-10-14T08:10Z` is 7
+   days before a `now` on `2026-10-21`); do the subtraction for every post, never
+   estimate it. Then: `0 ≤ days_ago ≤ window_days` is this period; `window_days <
+   days_ago ≤ window_days + baseline_days` is the baseline; older posts, and posts dated
+   after `now`, are ignored (count them in `unknowns`). A post with no `posted_at` is
+   ignored and counted in `unknowns`. Only this period's posts are listed in `posts`;
+   baseline posts appear only in the baseline median and by `post_id` in patterns.
 4. **Age check.** A post younger than 48 hours at `now` is `too_early`: it is listed, but
    never ranked against older posts or used in a pattern.
 5. **Baseline.** The median of `primary_metric` over baseline posts that have it. Each
@@ -126,8 +131,8 @@ Return the fields of `assets/output.schema.json` as your result:
   `now − window_days` and `now`, or `unknown` without `now`; `posts` = this period's
   posts.
 - `baseline`: `{posts, median}`; `median` is `null` when unknown.
-- `posts[]`: this period's posts, newest first: `{post_id, platform, posted_at,
-  post_url, metrics {impressions, reactions, comments, reposts, clicks,
+- `posts[]`: this period's posts only, newest first: `{post_id, platform, posted_at,
+  days_ago` (step 3, from 0 to `window_days`), `post_url, metrics {impressions, reactions, comments, reposts, clicks,
   engagement_rate}` (`null` for unknown), `primary_value` (or `null`), `vs_baseline`,
   `too_early`, `source_id}`.
 - `top[]`, `bottom[]`: `{post_id, primary_value, why_it_likely_worked_or_not,
@@ -144,10 +149,12 @@ Return the fields of `assets/output.schema.json` as your result:
   metrics); every cited post in `sources` (`url` = `post_url`, `record_ref` = its newest
   row, `published_at` = `posted_at`); `unknowns` for missing metrics, skipped rows,
   posts too early to judge and the sample size; `meta` `{skill:
-  "content-performance-review", skill_version: "1.0.0", generated_at: <now>}`.
+  "content-performance-review", skill_version: "1.1.0", generated_at: <now>}`.
 
 # Constraints
 
+- **This period is computed.** Every post in `posts` carries its computed `days_ago`
+  from 0 to `window_days`; an older post is never listed there, not even as context.
 - **Numbers come from the rows.** Never estimate a metric; unknown stays unknown, and a
   blank is never zero.
 - **Reasons are likely and visible.** Every reason points at something in the post's

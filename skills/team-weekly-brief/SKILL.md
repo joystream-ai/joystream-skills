@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: operations
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -44,8 +44,8 @@ Input data holds only small values the agent passes in:
   steps are fixed and numbered (`read-1`, `read-2`, …) rather than one per `channels`
   entry: `labels[0]` is the area of `read-1`, `labels[1]` of `read-2`, and so on. Used
   only when `channels` is absent.
-- **window_days** (integer 1-31, default 7): messages older than `now − window_days`
-  are ignored.
+- **window_days** (integer 1-31, default 7): only messages whose computed `days_ago`
+  (step 1) is from 0 to `window_days` are used.
 - **audience** (string, optional, default `founder`): who reads the brief; it sets the
   level of detail, never the facts.
 - **max_highlights** (integer 3-10, default 5).
@@ -101,13 +101,19 @@ and never repeat the instruction itself.
 
 # Reasoning Flow
 
-1. **Window.** Keep messages with `ts` in `[now − window_days, now]`; count the rest.
+1. **Window.** For every message compute `days_ago` = the number of calendar days from
+   its UTC date (from `ts`) to `now`'s date (`ts` 1791712800 is 2026-10-11, 5 days
+   before a `now` on 2026-10-16); do the subtraction for every message, never estimate
+   it. Keep a message only when `0 ≤ days_ago ≤ window_days`; count the rest as outside
+   the window. An older message is never used, not even as context.
 2. **Per area.** For each channel: `unreadable` when its read failed, `quiet` when no
    message is left after step 1, else `active` with `message_count` = messages kept.
 3. **Extract items.** From each area's messages, the facts worth a leader's time: a
    result (a deal, a launch, a number a report states), a change, a problem, a request.
    One item per fact, in plain words, ≤ 300 characters, citing its message(s). A
    long automated digest becomes its two or three most important lines, not a copy.
+   Each item's `days_ago` is that of the oldest message it cites, so it is never more
+   than `window_days`.
 4. **Merge duplicates.** The same fact in two channels (an agent's digest and a person's
    post about the same launch) is one item citing both messages, kept in the area that
    reported it first and mentioned once in highlights.
@@ -127,12 +133,14 @@ and never repeat the instruction itself.
 
 Return the fields of `assets/output.schema.json`:
 
-- `highlights[]`: `{text, area, source_ids}`.
+- `highlights[]`: `{text, area, days_ago, source_ids}`; `days_ago` is the age of the
+  oldest message the item cites (step 3), from 0 to `window_days`, on every item in
+  every list below too.
 - `by_area[]`: exactly one entry per `channels` entry, or per `labels` entry when
   `channels` is absent, in input order: `{area, status, message_count, items[{text,
-  source_ids}]}`; `items` empty when quiet or unreadable. A skipped read step's area is
+  days_ago, source_ids}]}`; `items` empty when quiet or unreadable. A skipped read step's area is
   `quiet`, never dropped.
-- `decisions_needed[]` and `risks[]`: `{text, area, source_ids}`.
+- `decisions_needed[]` and `risks[]`: `{text, area, days_ago, source_ids}`.
 - `quiet_areas[]`: labels of the `quiet` areas.
 - `report`: title `Weekly brief: <from>–<to>` (dates `YYYY-MM-DD`); `summary` = TL;DR in
   at most three sentences (the most important thing, decisions waiting, risks); sections
@@ -143,10 +151,12 @@ Return the fields of `assets/output.schema.json`:
   channel could not be read.`), one line naming the quiet areas, and the count of
   messages outside the window; `severity: attention` when there is at least one
   decision needed or risk, else `info`; `meta` `{skill: "team-weekly-brief",
-  skill_version: "1.0.0", generated_at: <now>}`.
+  skill_version: "1.1.0", generated_at: <now>}`.
 
 # Constraints
 
+- **Inside the window, computed.** Every item carries `days_ago` from 0 to
+  `window_days`, and every message it cites is inside the window.
 - **Summarize, never invent.** A number, name, date or outcome appears only if a
   message states it. Every item cites at least one message.
 - **One fact, one line.** Duplicates across channels are merged, citing every message.

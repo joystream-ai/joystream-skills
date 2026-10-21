@@ -47,7 +47,8 @@
         "required": [
           "number",
           "title",
-          "gist"
+          "gist",
+          "hours_ago"
         ],
         "properties": {
           "number": {
@@ -64,6 +65,11 @@
             "items": {
               "type": "string"
             }
+          },
+          "hours_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Whole hours from the ticket's closed_at to now, rounded down (step 1); at most lookback_hours."
           }
         }
       }
@@ -96,7 +102,8 @@
         "type": "object",
         "required": [
           "number",
-          "title"
+          "title",
+          "hours_ago"
         ],
         "properties": {
           "number": {
@@ -104,6 +111,11 @@
           },
           "title": {
             "type": "string"
+          },
+          "hours_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Whole hours from the ticket's created_at to now, rounded down (step 1); at most lookback_hours."
           }
         }
       }

@@ -52,7 +52,8 @@
                 "why",
                 "evidence",
                 "connected_on",
-                "last_met"
+                "last_met",
+                "last_met_days_ago"
               ],
               "additionalProperties": false,
               "properties": {
@@ -111,6 +112,14 @@
                     "null"
                   ],
                   "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+                },
+                "last_met_days_ago": {
+                  "type": [
+                    "integer",
+                    "null"
+                  ],
+                  "minimum": 0,
+                  "description": "Calendar days from last_met to now's date, computed (step 6); null when there is no last_met. A meeting is recent only when this is at most recent_days."
                 }
               }
             }

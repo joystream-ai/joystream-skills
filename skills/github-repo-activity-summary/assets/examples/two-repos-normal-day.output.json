@@ -9,31 +9,36 @@
           "number": 212,
           "title": "Refresh expired sessions silently",
           "url": "https://github.example.com/example-org/example-app/pull/212",
-          "author": "dev-ana"
+          "author": "dev-ana",
+          "hours_ago": 19
         },
         {
           "number": 215,
           "title": "Show IdP outage error on login",
           "url": "https://github.example.com/example-org/example-app/pull/215",
-          "author": "dev-ben"
+          "author": "dev-ben",
+          "hours_ago": 17
         },
         {
           "number": 218,
           "title": "Stream CSV exports",
           "url": "https://github.example.com/example-org/example-app/pull/218",
-          "author": "dev-ana"
+          "author": "dev-ana",
+          "hours_ago": 14
         },
         {
           "number": 216,
           "title": "chore(deps): bump the npm group",
           "url": "https://github.example.com/example-org/example-app/pull/216",
-          "author": "dependabot[bot]"
+          "author": "dependabot[bot]",
+          "hours_ago": 17
         },
         {
           "number": 217,
           "title": "chore(deps): bump actions/checkout",
           "url": "https://github.example.com/example-org/example-app/pull/217",
-          "author": "dependabot[bot]"
+          "author": "dependabot[bot]",
+          "hours_ago": 16
         }
       ],
       "opened_prs": [
@@ -41,7 +46,8 @@
           "number": 220,
           "title": "Audit log per workspace",
           "url": "https://github.example.com/example-org/example-app/pull/220",
-          "author": "dev-cy"
+          "author": "dev-cy",
+          "hours_ago": 12
         }
       ],
       "themes": [
@@ -171,7 +177,7 @@
     "unknowns": [],
     "meta": {
       "skill": "github-repo-activity-summary",
-      "skill_version": "2.0.0",
+      "skill_version": "2.1.0",
       "generated_at": "2026-10-15T09:00:00Z"
     }
   }
