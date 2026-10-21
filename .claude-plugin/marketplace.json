@@ -114,6 +114,14 @@
       "skills": [
         "./skills/skill-conformance-fix"
       ]
+    },
+    {
+      "name": "file-export",
+      "description": "Save the document an agent wrote (a Markdown report, CSV, JSON, text or HTML) as a downloadable file in the run, unchanged.",
+      "source": "./",
+      "skills": [
+        "./skills/content-file-save"
+      ]
     }
   ]
 }

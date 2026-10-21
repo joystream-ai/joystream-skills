@@ -1,0 +1,23 @@
+{
+  "saved": true,
+  "path": "/workspace/out/Account-discovery-report.md",
+  "file_name": "Account-discovery-report.md",
+  "format": "md",
+  "media_type": "text/markdown",
+  "bytes": 253,
+  "lines": 8,
+  "sha256": "04b96f4f38d687c0b40586999cc8c82458dd3ff14650dd19275427b45dd87d09",
+  "report": {
+    "title": "Saved Account-discovery-report.md",
+    "summary": "Saved the account discovery report as Account-discovery-report.md (Markdown, 253 bytes). It is in the run's files.",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-file-save",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T23:40:04Z"
+    }
+  }
+}

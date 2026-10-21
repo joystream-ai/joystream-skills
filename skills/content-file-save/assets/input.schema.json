@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "file_name": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "The name to save the file under, without a folder, e.g. \"Account discovery report\". Made safe and given the format's extension. Optional: without it the skill uses the content's title, else \"document\"."
+    },
+    "format": {
+      "type": "string",
+      "enum": [
+        "md",
+        "txt",
+        "csv",
+        "json",
+        "html"
+      ],
+      "default": "md",
+      "description": "The file format. md for a Markdown report (the default), csv for a table, json for structured data, txt for plain text, html for a web page."
+    },
+    "content_hint": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Optional: which earlier output to save when there are several, e.g. \"the report_markdown of the report step\". Without it the skill saves the most recent finished document."
+    }
+  }
+}
