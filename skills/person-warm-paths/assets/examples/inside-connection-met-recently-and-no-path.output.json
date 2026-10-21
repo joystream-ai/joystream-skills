@@ -16,7 +16,8 @@
             "googlecalendar:event/evt0902a"
           ],
           "connected_on": "2022-03-14",
-          "last_met": "2026-09-02"
+          "last_met": "2026-09-02",
+          "last_met_days_ago": 40
         },
         {
           "via_name": "Casey Placeholder",
@@ -28,7 +29,8 @@
             "googlesheets:row/9"
           ],
           "connected_on": "2019-11-05",
-          "last_met": null
+          "last_met": null,
+          "last_met_days_ago": null
         }
       ]
     },
@@ -100,7 +102,7 @@
     ],
     "meta": {
       "skill": "person-warm-paths",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

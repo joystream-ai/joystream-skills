@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.0"
+  version: "1.3.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -173,8 +173,11 @@ it is the date in `already reported on <date>` and `nothing new since <date>`.
 4. **Date every item.** Use the date the evidence states for the event, else its
    published date. A relative date (`3 days ago`) counts only when the evidence says
    what it is relative to. No date: drop it as `undated`.
-5. **Apply the window.** A date before `now − lookback_days` or after `now`: drop it as
-   `out_of_window`.
+5. **Apply the window.** Compute and write `days_ago` = the number of calendar days
+   from the item's date to `now`'s date (`2026-10-09` is 12 days before a `now` on
+   `2026-10-21`); do the subtraction for every item, never estimate it. Keep an item only
+   when `0 ≤ days_ago ≤ lookback_days`; otherwise (older, or dated after `now`) drop it as
+   `out_of_window`, however important it looks.
 6. **Keep only real triggers.** An item is a trigger when it reports one specific event
    at this company in one of these categories:
 
@@ -203,10 +206,10 @@ it is the date in `already reported on <date>` and `nothing new since <date>`.
    of `d`), is dropped as `already_reported`. Everything after this step (verdict, counts,
    `item_result`) uses only the new triggers.
 7. **Write each trigger**: `event` (one plain sentence of what happened, as the source
-   says it), `date` (`YYYY-MM-DD`), `category`, `source_id`, and `why_it_matters` (one
+   says it), `date` (`YYYY-MM-DD`), `days_ago` (step 5), `category`, `source_id`, and `why_it_matters` (one
    sentence linking it to `context`, or to buying in general; it adds no new facts).
 8. **Verdict.** `Hot` when there are 2 or more triggers, or a `funding` or
-   `leadership` trigger in the last 30 days; `Warm` with 1 trigger; `Quiet` with none
+   `leadership` trigger with `days_ago` ≤ 30; `Warm` with 1 trigger; `Quiet` with none
    (the evidence was about the company but nothing qualified). Keep at most 10
    triggers, newest first; with more, keep funding, leadership and launch first and
    count the rest in `unknowns`.
@@ -221,7 +224,7 @@ it is the date in `already reported on <date>` and `nothing new since <date>`.
 
 Return the fields of `assets/output.schema.json` as your result:
 
-- `triggers[]`: `{event, date, category, source_id, why_it_matters}`, plus `matches`
+- `triggers[]`: `{event, date, days_ago, category, source_id, why_it_matters}`, plus `matches`
   (the rubric signals it matches) when a rubric was given.
 - `rubric_score` (integer 0-10): only when a rubric was given (step 8).
 - `verdict`: `Hot`, `Warm`, `Quiet`, or `Unknown` for `no_evidence`. Leave it out for a
@@ -251,12 +254,13 @@ Return the fields of `assets/output.schema.json` as your result:
   `track_state` `First run for <company>: nothing reported before.`; with a
   rubric, the summary starts with `Rubric <rubric_score>/10` and each item's `label` is
   its first matched signal, cut to 40 characters; `meta` with `skill:
-  account-trigger-events`, `skill_version: 1.2.0`, `generated_at` = `now`.
+  account-trigger-events`, `skill_version: 1.3.0`, `generated_at` = `now`.
 - `state_out` (only with `track_state`): `entries` holds exactly one entry for this
   account (none when skipped): `item_key` as in `item_result`; `observed_at` = `now`;
   `data` = `{reported}`, this run's new triggers (`{d: date, c: category, s: a slug of
   2-6 lower-case hyphenated words, u: the cited source url}`) plus the previous
-  `reported` entries dated within the max(180, `lookback_days`) days before `now`,
+  `reported` entries whose `d` is at most max(180, `lookback_days`) days before `now`'s
+  date (computed the same way as `days_ago`, never estimated),
   newest first, at most 25;
   `fingerprint` = the `u` values of `data.reported`, sorted and joined with spaces, cut
   to 500 characters. With `no_evidence`, the entry is the previous one unchanged except
@@ -276,9 +280,10 @@ with the title `Empty slot`, an empty summary, no sections and no sources (with
 
 # Constraints
 
-- **Dated, in the window, sourced, specific.** Every trigger has an ISO date inside
-  `[now − lookback_days, now]` and cites the source that states the event and the date.
-  Every source date you list in `sources` is inside the window too.
+- **Dated, in the window, sourced, specific.** Every trigger has an ISO date and a
+  computed `days_ago` from 0 to `lookback_days`, and cites the source that states the
+  event and the date. A trigger from before the window is never reported, not even as
+  context. Every source date you list in `sources` is inside the window too.
 - **Every dropped item is counted** in `dropped` and in `report.unknowns`; none
   disappears silently.
 - **Never invent** an event, amount, name, date or url. A url in `sources` must appear

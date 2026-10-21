@@ -19,6 +19,7 @@
         "required": [
           "text",
           "area",
+          "days_ago",
           "source_ids"
         ],
         "additionalProperties": false,
@@ -32,6 +33,11 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 60
+          },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from the oldest cited message's date to now's date, computed (step 1); at most window_days."
           },
           "source_ids": {
             "type": "array",
@@ -81,6 +87,7 @@
               "type": "object",
               "required": [
                 "text",
+                "days_ago",
                 "source_ids"
               ],
               "additionalProperties": false,
@@ -89,6 +96,11 @@
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 300
+                },
+                "days_ago": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Calendar days from the oldest cited message's date to now's date, computed (step 1); at most window_days."
                 },
                 "source_ids": {
                   "type": "array",
@@ -112,6 +124,7 @@
         "required": [
           "text",
           "area",
+          "days_ago",
           "source_ids"
         ],
         "additionalProperties": false,
@@ -125,6 +138,11 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 60
+          },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from the oldest cited message's date to now's date, computed (step 1); at most window_days."
           },
           "source_ids": {
             "type": "array",
@@ -145,6 +163,7 @@
         "required": [
           "text",
           "area",
+          "days_ago",
           "source_ids"
         ],
         "additionalProperties": false,
@@ -158,6 +177,11 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 60
+          },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from the oldest cited message's date to now's date, computed (step 1); at most window_days."
           },
           "source_ids": {
             "type": "array",

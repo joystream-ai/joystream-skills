@@ -18,6 +18,7 @@
       "headline": "Four-day week trial: 40 employers keep the schedule after cutting meetings",
       "source_id": "S1",
       "published_at": "2026-10-20",
+      "hours_ago": 32,
       "why_timely": "The trial's final results were published yesterday, 2026-10-20, and are being discussed now.",
       "pov_belief": "Four-day weeks work when teams cut meetings first, not hours.",
       "take": "The four-day week worked because the teams cut meetings first; the shorter week was the reward, not the method.",
@@ -97,7 +98,7 @@
     "unknowns": [],
     "meta": {
       "skill": "content-news-angles",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-21T08:00:00Z"
     }
   }

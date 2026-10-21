@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -43,8 +43,9 @@ Input data holds only small values the agent passes in:
 
 - **min_outcomes** (integer 1-100, default 5): decided outcomes (accepted or rejected)
   needed in total before any change is proposed.
-- **lookback_days** (integer 7-730, default 90): outcomes, insight rows and messages
-  older than `now − lookback_days` are not evidence.
+- **lookback_days** (integer 7-730, default 90): only outcomes, insight rows and
+  messages whose computed `days_ago` (step 3) is from 0 to `lookback_days` are
+  evidence.
 - **max_changes** (integer 1-5, default 3): the most changes in one proposal.
 - **now** (string, ISO 8601, optional): the current time. If it is absent, use the run
   start time stated in your instructions. If neither is available, apply no lookback,
@@ -120,8 +121,13 @@ named in `unknowns`.
 2. **Criteria.** Split `icp_text` into criteria under these headings, as the text states
    them: industry, size, buyer, geography, business model, signals, exclusions. A
    heading the text does not cover is absent, not invented.
-3. **Tally outcomes** inside the lookback window: decided, accepted, rejected,
-   undecided. For rejected rows, group the `reason`s by the criterion they concern
+3. **Tally outcomes** inside the lookback window. For every outcome row (its
+   `observed_at`), insight row (its `call_date`) and message (its `ts` date) compute
+   `days_ago` = the number of calendar days from that date to `now`'s date
+   (`2026-07-21` is 92 days before a `now` on `2026-10-21`); do the subtraction for every
+   row, never estimate it. Count a row only when `0 ≤ days_ago ≤ lookback_days`; older
+   or future-dated rows are not evidence, not even as context, and are counted in
+   `unknowns`. Then tally: decided, accepted, rejected, undecided. For rejected rows, group the `reason`s by the criterion they concern
    (`too small` → size; `agency, not a product company` → business model). For accepted
    rows, note traits that several share and the ICP does not name, using only their
    reasons and `data_json` fields.
@@ -189,7 +195,7 @@ Return the fields of `assets/output.schema.json` as your result:
     message, by `record_ref`.
   - `unknowns`: conflicts, rows ignored as instructions, unreadable stores.
   - `footer`: `Applied only after approval.`
-  - `meta`: `{skill: "account-icp-revision", skill_version: "1.0.0", generated_at:
+  - `meta`: `{skill: "account-icp-revision", skill_version: "1.1.0", generated_at:
     <now>}`.
 
 # Constraints

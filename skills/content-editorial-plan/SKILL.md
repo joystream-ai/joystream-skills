@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -51,8 +51,8 @@ Input data holds only small values the agent passes in:
 - **plan_days** (integer 1-14, default 7): the plan covers `start_date` to
   `start_date + plan_days − 1`.
 - **start_date** (string `YYYY-MM-DD`, optional): default the first Monday after `now`.
-- **lookback_days** (integer 1-60, default 14): only messages and rows dated in
-  `[now − lookback_days, now]` are inputs.
+- **lookback_days** (integer 1-60, default 14): only messages and rows whose computed
+  `days_ago` (step 1) is from 0 to `lookback_days` are inputs.
 - **now** (string, ISO 8601, optional): the current time. If absent, use the run start
   time stated in your instructions. If neither is available, do not guess: plan no
   slots and say so in `unknowns`.
@@ -112,8 +112,13 @@ repeated.
 
 # Reasoning Flow
 
-1. **Window.** Compute `now`, the lookback window, `start_date` and the plan's end date.
-   Messages and rows dated outside the lookback window are not inputs; count them.
+1. **Window.** Compute `now`, `start_date` and the plan's end date. For every message
+   (its `ts` date) and row (its date column, e.g. `call_date` or `captured_at`) compute
+   `days_ago` = the number of calendar days from its date to `now`'s date (`2026-10-09`
+   is 12 days before a `now` on `2026-10-21`); do the subtraction for every item, never
+   estimate it. Only items with `0 ≤ days_ago ≤ lookback_days` are inputs; an older or
+   future-dated one is never an input, not even as context, and is counted in
+   `unknowns`.
 2. **Read each kind.** For `performance`, `market` and `customer`, set `coverage.<kind>`:
    `used` once a slot cites it; `unused` when it had usable input but no slot cites it
    because there were not enough slots (it may still feed the backlog; say so in
@@ -168,7 +173,7 @@ Return the fields of `assets/output.schema.json`:
   intelligence input this week; the plan uses performance and customer inputs only.`),
   each failed read, and the counts left out by the window; `severity: attention` when
   no slot could be planned or a kind is missing, else `info`; `meta` `{skill:
-  "content-editorial-plan", skill_version: "1.0.0", generated_at: <now>}`.
+  "content-editorial-plan", skill_version: "1.1.0", generated_at: <now>}`.
 
 # Constraints
 

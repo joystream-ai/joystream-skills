@@ -75,6 +75,7 @@
           "headline",
           "source_id",
           "published_at",
+          "hours_ago",
           "why_timely",
           "pov_belief",
           "take",
@@ -105,6 +106,11 @@
           "published_at": {
             "type": "string",
             "minLength": 1
+          },
+          "hours_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Whole hours from published_at to now, computed (step 3); at most freshness_hours."
           },
           "why_timely": {
             "type": "string",

@@ -9,6 +9,7 @@
     {
       "event": "Hosted a public webinar, 'Closing the month faster'.",
       "date": "2026-10-03",
+      "days_ago": 9,
       "category": "other",
       "source_id": "S2"
     }
@@ -124,7 +125,7 @@
     ],
     "meta": {
       "skill": "account-research-brief",
-      "skill_version": "1.1.0",
+      "skill_version": "1.2.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

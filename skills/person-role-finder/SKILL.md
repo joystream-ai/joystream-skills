@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -200,8 +200,13 @@ record's evidence date. Contact fields: `email`, `work_email`, `email_status`,
    `record` (an enrichment record's verified or last-changed date) or `none`. A relative
    date (`3 days ago`) counts only with a reference date. Never use a crawl or fetch date
    for a third-party page.
-7. **Freshness.** `current` when `evidence_date` is within `stale_after_months` of
-   `now`; `possibly_stale` when older; `undated` when there is no date or no `now`.
+7. **Freshness.** Compute and write `months_ago` = (year of `now` − year of
+   `evidence_date`) × 12 + (month of `now` − month of `evidence_date`), so `2025-06-12` is
+   16 months before a `now` in `2026-10`; do this arithmetic for every person, never
+   estimate it. `current` when `months_ago` ≤ `stale_after_months`; `possibly_stale` when
+   `months_ago` > `stale_after_months`; `undated` (and `months_ago: null`) when there is
+   no date or no `now`. Never call a title current, recent or new unless its
+   `months_ago` says so.
 8. **Confidence.** `high`: `current`, and the company's own page or press release names
    them in the role, or two independent sources agree. `medium`: `current` from one
    third-party source (speaker list, podcast, news) or one record. `low`:
@@ -240,7 +245,8 @@ are personal data. This skill keeps them apart:
 Return the fields of `assets/output.schema.json` as your result:
 
 - `people[]`: `{person_key, name, title, target_role, match_type, evidence_date,
-  date_basis, freshness, confidence, source_ids[]}`, plus `role_since` when a source
+  months_ago, date_basis, freshness, confidence, source_ids[]}` (`months_ago` from step 7,
+  `null` when `evidence_date` is `unknown`), plus `role_since` when a source
   states it. `title` is copied as the source states it. `evidence_date` is `YYYY-MM-DD`,
   or `unknown`. `person_key` is `name_company:<name>@<company>` (lower case, spaces as
   `-`). One entry per person per role filled.
@@ -266,7 +272,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `severity: info` for `Found`, else `attention`. `sources` = only sources cited by kept
   or excluded people; `unknowns` with `Rejected N candidates (same name at another
   company, or no company link).` when N > 0, each failed fetch, and missing roles' reasons
-  when known; `meta` `{skill: "person-role-finder", skill_version: "1.0.0",
+  when known; `meta` `{skill: "person-role-finder", skill_version: "1.1.0",
   generated_at: <now>}`.
 
 A skipped slot returns empty lists, `rejected_count: 0`, `contacts: []`, the skipped

@@ -46,7 +46,8 @@
               "required": [
                 "number",
                 "title",
-                "url"
+                "url",
+                "hours_ago"
               ],
               "additionalProperties": false,
               "properties": {
@@ -63,6 +64,11 @@
                 "author": {
                   "type": "string",
                   "description": "The author's login, as in the evidence."
+                },
+                "hours_ago": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Whole hours from merged_at (merged) or created_at (opened) to now, rounded down (step 2); at most lookback_hours."
                 }
               }
             }
@@ -74,7 +80,8 @@
               "required": [
                 "number",
                 "title",
-                "url"
+                "url",
+                "hours_ago"
               ],
               "additionalProperties": false,
               "properties": {
@@ -91,6 +98,11 @@
                 "author": {
                   "type": "string",
                   "description": "The author's login, as in the evidence."
+                },
+                "hours_ago": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "description": "Whole hours from merged_at (merged) or created_at (opened) to now, rounded down (step 2); at most lookback_hours."
                 }
               }
             }

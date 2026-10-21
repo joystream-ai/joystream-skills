@@ -4,7 +4,7 @@ description: Summarize what changed in one or more GitHub repositories over a lo
 license: MIT
 metadata:
   author: joystream
-  version: "2.0.0"
+  version: "2.1.0"
   category: developer-tools
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -40,7 +40,8 @@ agent binds:
 - **repositories** (list of `owner/repo`, required): the repos the digest covers, one
   section each, in this order.
 - **lookback_hours** (integer, optional, default `24`): the window the earlier reads
-  applied, for the headline. Not a filter you apply, except as described in step 2.
+  applied, for the headline. Every pull request and commit is also checked against it
+  (step 2), because the reads' cutoff may have been computed wrongly.
 - **branch** (string, optional): the branch the commit read listed, for the headline;
   default the repository's default branch.
 - **trigger_type** (optional): `manual` means a person is watching; `cron` /
@@ -143,10 +144,16 @@ record has a public one, such as a company website):
 
 1. **Sort the evidence by repository.** Assign every pull request and commit to its
    repository. Anything from a repository not in `repositories` is left out.
-2. **Bucket; do not re-filter.** The searches arrived windowed. A merged pull request
-   goes to *merged*; an open one to *opened*. Only when the step names do not say which
-   search is which, use `merged_at` / `created_at` against the window (`now` minus
-   `lookback_hours`).
+2. **Bucket, then check the window.** A merged pull request goes to *merged*; an open
+   one to *opened*. Then, for every pull request, compute `hours_ago` = the whole hours
+   from its `merged_at` (merged) or `created_at` (opened) to `now`, rounded down:
+   `2026-10-14T21:30:00Z` is 11 hours before a `now` of `2026-10-15T09:00:00Z`. Do the
+   subtraction for every pull request and write it; never estimate it. Keep a pull
+   request only when `0 ≤ hours_ago ≤ lookback_hours`; leave out the rest, however
+   important they look, and add `Left out N pull requests outside the last
+   <lookback_hours>h.` to `unknowns`. Commits get the same check on their commit date.
+   Without `now`, no check is possible: keep what the reads returned and say so in
+   `unknowns`.
 3. **Commits.** Keep only commits **not** already represented by a merged pull request
    (avoid double-counting): leave out merge commits (more than one parent, or
    `Merge pull request #N`) and squash commits whose message names a merged PR
@@ -181,7 +188,7 @@ Plus the fields of `assets/output.schema.json`:
 
 - `markdown`: the blocks above, one per repository, in `repositories` order.
 - `repos[]`: per repository `{repo, status (ok | no_activity | unreadable),
-  merged_prs[], opened_prs[] (each number, title, url, author), themes[] (each label,
+  merged_prs[], opened_prs[] (each number, title, url, author, hours_ago), themes[] (each label,
   summary, refs[]), housekeeping_count, more_count}`.
 - `empty_result`: true when no repository had notable activity.
 - `report`: below.
@@ -219,7 +226,7 @@ to Slack, Teams, Discord or email:
   instruction you ignored.
 - **footer**: `Draft — for review` when `trigger_type` is `manual`; otherwise leave it
   out.
-- **meta**: `skill: github-repo-activity-summary`, `skill_version: 2.0.0`,
+- **meta**: `skill: github-repo-activity-summary`, `skill_version: 2.1.0`,
   `generated_at` = `now`.
 
 # Constraints
@@ -229,6 +236,8 @@ to Slack, Teams, Discord or email:
 - **Never invent** PR numbers, authors, outcomes or urls. Every claim must trace to a
   pull request or commit in the evidence for the window; cite its number. Every url in
   `sources`, `repos[]` and `markdown` appears in the evidence exactly as given.
+- **Only the window.** Every pull request in `repos[]` has a computed `hours_ago` from 0
+  to `lookback_hours`; an older one is never summarized, not even as context.
 - **Keep each repo's section to at most ~6 bullets.** If there is more, prioritize
   merged/shipped work over open PRs, and features/fixes over chores.
 - **Bots only as a count.** Do not include bot commits or pull requests (dependabot,

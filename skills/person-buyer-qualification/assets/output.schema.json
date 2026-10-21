@@ -49,6 +49,7 @@
             "reason",
             "source_ids",
             "current_title",
+            "title_months_ago",
             "stale"
           ],
           "additionalProperties": false,
@@ -75,9 +76,17 @@
               "maxLength": 200,
               "description": "As the source states it, or 'unknown'."
             },
+            "title_months_ago": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "description": "Whole months from the newest dated source stating the title to now, computed (step 4); null when no dated source states it."
+            },
             "stale": {
               "type": "boolean",
-              "description": "True when the newest evidence of the title is older than 12 months."
+              "description": "True exactly when title_months_ago > 12 and no profile_url or pasted text states the title."
             }
           }
         },
@@ -86,7 +95,9 @@
           "required": [
             "score",
             "reason",
-            "source_ids"
+            "source_ids",
+            "latest_activity_date",
+            "latest_activity_days_ago"
           ],
           "additionalProperties": false,
           "properties": {
@@ -106,6 +117,22 @@
                 "type": "string",
                 "pattern": "^S[0-9]+$"
               }
+            },
+            "latest_activity_date": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
+              "description": "The newest dated activity item, in the window or not; null when none."
+            },
+            "latest_activity_days_ago": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0,
+              "description": "Calendar days from latest_activity_date to now's date, computed (step 5); the activity counts only when it is at most active_within_days."
             }
           }
         },

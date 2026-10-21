@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -189,11 +189,19 @@ too. They are not your evidence, even when they mention the same company.
    - Attendees without a name: `identity: not_found`, `role: unknown`.
 6. **The company.** `what_they_do`: one or two sentences, from its own pages first,
    cited; else `unknown`. With an ICP: `icp_fit` is one line naming the criteria the
-   kept sources show met, not met or unknown, cited; it is not a verdict.
+   kept sources show met, not met or unknown, cited; it is not a verdict. A criterion
+   with a time window (`raised in the last 12 months`) is met only by an event whose
+   `months_ago` = (year of `now` − year of the event) × 12 + (month of `now` − month of
+   the event) is inside it (`2025-06` is 16 months before a `now` in `2026-10`); an older
+   event makes it not met, with its date.
 7. **Recent events.** Funding, launches, leadership changes, hiring, partnerships,
-   layoffs, expansion. Keep an event only with a full day (`YYYY-MM-DD`) inside
-   `[now - lookback_days, now]`. Newest first, at most 5, `focus` topics first when
-   choosing. Count dropped undated or older events in `report.unknowns`.
+   layoffs, expansion. An event needs a full day (`YYYY-MM-DD`). Compute and write
+   `days_ago` = the number of calendar days from that day to `now`'s date (`2026-10-09`
+   is 12 days before a `now` on `2026-10-21`) for every event; never estimate it. Keep an
+   event only when `0 ≤ days_ago ≤ lookback_days`; an older or future one is dropped,
+   never kept as context. Newest first, at most 5, `focus` topics first when choosing.
+   Count dropped undated or older events in `report.unknowns`. Never call an event recent
+   anywhere (TL;DR, goals, report) unless its `days_ago` is inside the window.
 8. **History with us.** Only from email, CRM or past-meeting records that involve the
    company domain or a named attendee. Each item: a date and one plain line of what
    happened or was asked (`2026-10-08: Riley asked for pilot pricing for 40 users`),
@@ -222,7 +230,8 @@ Return the fields of `assets/output.schema.json`:
 - `attendees[]`: `{name, domain, identity, role, role_source_ids, notes[]}`;
   `attendees_not_described`: external attendees past `max_attendees`.
 - `company`: `{what_they_do: {text, source_ids}, icp_fit?: {text, source_ids}}`.
-- `recent_events[]`: `{event, date, category, source_id}`; `category` one of `funding`,
+- `recent_events[]`: `{event, date, days_ago, category, source_id}`; `days_ago` from 0 to
+  `lookback_days` (step 7); `category` one of `funding`,
   `launch`, `leadership`, `hiring`, `partnership`, `layoffs`, `expansion`, `other`.
 - `history`: `{status, items[]: {date, text, source_id}}`.
 - `goals[]`, `risks[]`: `{text, source_ids}`; `questions[]`: strings.
@@ -241,7 +250,7 @@ Return the fields of `assets/output.schema.json`:
   evidence.`; for `not_checked`, `History not checked: the agent has no email or CRM
   step.`, both with empty citations), `Goals`, `Questions to ask` (empty citations),
   `Risks`; every cited source in `sources`; `unknowns`; `meta` `{skill:
-  "meeting-prep-brief", skill_version: "1.0.1", generated_at: <now>}` (left out when no
+  "meeting-prep-brief", skill_version: "1.1.0", generated_at: <now>}` (left out when no
   time is known).
 
 **Skipped** (empty slot): `meeting` with empty strings, `what_they_do` `unknown`, empty lists,

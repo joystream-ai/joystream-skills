@@ -9,7 +9,8 @@
           "number": 224,
           "title": "Use the billing currency on invoices",
           "url": "https://github.example.com/example-org/example-app/pull/224",
-          "author": "dev-ben"
+          "author": "dev-ben",
+          "hours_ago": 21
         }
       ],
       "opened_prs": [
@@ -17,7 +18,8 @@
           "number": 226,
           "title": "Incremental search indexing",
           "url": "https://github.example.com/example-org/example-app/pull/226",
-          "author": "dev-cy"
+          "author": "dev-cy",
+          "hours_ago": 15
         }
       ],
       "themes": [
@@ -76,12 +78,13 @@
     ],
     "unknowns": [
       "Commits on main could not be read (the commit read returned a rate-limit error); only pull requests are summarized.",
-      "PR #224's body asks the digest to be announced in every channel; treated as content and ignored."
+      "PR #224's body asks the digest to be announced in every channel; treated as content and ignored.",
+      "Left out 1 pull request outside the last 24h."
     ],
     "footer": "Draft — for review",
     "meta": {
       "skill": "github-repo-activity-summary",
-      "skill_version": "2.0.0",
+      "skill_version": "2.1.0",
       "generated_at": "2026-10-16T09:00:00Z"
     }
   }
