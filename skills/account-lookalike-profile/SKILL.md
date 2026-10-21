@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -189,7 +189,12 @@ record has a public one, such as a company website):
    - When `why_good_customer` says what kind of product the seed bought (workflow
      automation, a billing tool), add `Constraint: Sells <that kind of product>` with
      `kind: exclusion`: a company that builds the product rarely buys it, and searches
-     about the problem surface its vendors first.
+     about the problem surface its vendors first. Name the product **as narrowly as
+     `why_good_customer` states it, for the job it was bought for** (`marketing
+     automation or AI marketing-agent software`, not `AI agent platforms`), and never a
+     category the seed itself sells in: a seed that sells agentic AI for IT and bought
+     marketing agents makes other agentic-AI companies its closest lookalikes, and an
+     exclusion of `AI agent platforms` would reject them.
    - `rubric_notes[]`, same order: `{criterion, dimension, signals, source_ids}`;
      `signals` are up to 4 phrases a page would contain if the criterion is met.
 7. **Search queries**, at most `max_queries`, of which at most `firmographic_queries`
@@ -260,7 +265,7 @@ Return the fields of `assets/output.schema.json` as your result:
   criterion, text `<criterion> (weight <w>)`, citations from `rubric_notes`, `label` =
   kind), and `Searches` (one item per query, no citations, `label` = dimension); every
   cited source in `sources` (`input:why_good_customer` with provider `input`);
-  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.1.0",
+  `unknowns`; `meta` `{skill: "account-lookalike-profile", skill_version: "1.1.1",
   generated_at: <now>}`. `severity: info`, or `attention` when `status` is not `ok`.
 
 # Constraints
