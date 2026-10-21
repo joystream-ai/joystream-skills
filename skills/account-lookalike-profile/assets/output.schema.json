@@ -5,6 +5,7 @@
     "seed",
     "traits",
     "search_queries",
+    "company_queries",
     "rubric",
     "rubric_notes",
     "icp_text",
@@ -148,6 +149,16 @@
           }
         }
       }
+    },
+    "company_queries": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 300
+      },
+      "description": "Up to three one-sentence descriptions of the kind of company to find, for a company search (e.g. Exa with category company): what such a company is, sells, who to, its stage, size and place, plus one behavior it shows. Never the seed's name or domain, never the category of product the seed bought."
     },
     "rubric": {
       "type": "array",
