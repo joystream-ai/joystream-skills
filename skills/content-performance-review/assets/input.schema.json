@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "window_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 90,
+      "default": 7,
+      "description": "Posts published in [now - window_days, now] are this period."
+    },
+    "baseline_days": {
+      "type": "integer",
+      "minimum": 7,
+      "maximum": 365,
+      "default": 56,
+      "description": "Posts published in the baseline_days before this period are the baseline."
+    },
+    "top_n": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 3,
+      "description": "How many top and bottom posts to explain."
+    },
+    "primary_metric": {
+      "type": "string",
+      "enum": [
+        "engagement_rate",
+        "impressions",
+        "reactions",
+        "comments",
+        "clicks"
+      ],
+      "default": "engagement_rate",
+      "description": "The metric that ranks posts."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

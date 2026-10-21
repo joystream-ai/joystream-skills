@@ -1,0 +1,23 @@
+{
+  "pains": [],
+  "competitor_moves": [],
+  "shipped": [],
+  "links": [],
+  "report": {
+    "title": "Product intelligence: 2026-10-12–2026-10-19",
+    "summary": "No pains could be counted: the insight store returned no rows. No competitor moves and no shipped work this week.",
+    "severity": "attention",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "The customer insight store returned no rows.",
+      "The competitor channel returned no messages this week.",
+      "No pull requests were merged and no releases were published this week."
+    ],
+    "meta": {
+      "skill": "product-weekly-intelligence",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-19T08:00:00Z"
+    }
+  }
+}

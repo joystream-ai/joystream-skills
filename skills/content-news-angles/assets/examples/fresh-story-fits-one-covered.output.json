@@ -1,0 +1,104 @@
+{
+  "worth_posting": true,
+  "reason": "One fresh story fits a stated belief: a regional four-day-week trial reports that meeting cuts, not shorter hours, drove the results. The fresh data-retention story was already covered last week.",
+  "story_angles": [
+    {
+      "angle": "The four-day week worked because the teams cut meetings first; the shorter week was the reward, not the method.",
+      "kind": "news_take",
+      "evidence_refs": [
+        "S1"
+      ]
+    }
+  ],
+  "source_text": "A six-month four-day-week trial across 40 employers in an example region published its results on 2026-10-20. Participating teams cut recurring meetings by about a third before shortening the week, and most employers kept the schedule after the trial (S1).",
+  "angles": [
+    {
+      "id": "A1",
+      "topic_key": "regional-four-day-week-trial-results",
+      "headline": "Four-day week trial: 40 employers keep the schedule after cutting meetings",
+      "source_id": "S1",
+      "published_at": "2026-10-20",
+      "why_timely": "The trial's final results were published yesterday, 2026-10-20, and are being discussed now.",
+      "pov_belief": "Four-day weeks work when teams cut meetings first, not hours.",
+      "take": "The four-day week worked because the teams cut meetings first; the shorter week was the reward, not the method.",
+      "hook": "A 40-employer trial just showed the four-day week works. Read the method section: the first thing they cut was meetings, not hours.",
+      "outline": [
+        "Claim: shorter weeks follow from fewer meetings, not the other way round.",
+        "Evidence: teams in the trial cut recurring meetings by about a third before shortening the week (S1).",
+        "Lesson: audit your recurring meetings before you debate the calendar."
+      ],
+      "caution": "Results come from one region's employers; avoid presenting them as universal."
+    }
+  ],
+  "skipped": {
+    "stale": 1,
+    "undated": 1,
+    "generic": 2,
+    "off_pov": 0,
+    "avoided": 0,
+    "already_covered": 1
+  },
+  "sheet_values": [
+    [
+      "2026-10-21T08:00:00Z",
+      "regional-four-day-week-trial-results",
+      "Four-day week trial: 40 employers keep the schedule after cutting meetings",
+      "https://news.example.com/2026/10/20/four-day-week-trial-results",
+      "The four-day week worked because the teams cut meetings first; the shorter week was the reward, not the method."
+    ]
+  ],
+  "report": {
+    "title": "News angles: 2026-10-21",
+    "summary": "1 fresh story fits your point of view: the four-day-week trial results, where meeting cuts came first. 1 fresh story was already covered; 4 others were stale, undated or generic.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Angles",
+        "items": [
+          {
+            "text": "Four-day week trial: 40 employers keep the schedule after cutting meetings: The four-day week worked because the teams cut meetings first; the shorter week was the reward, not the method.",
+            "citations": [
+              "S1"
+            ],
+            "label": "four-day work week"
+          }
+        ]
+      },
+      {
+        "heading": "Skipped",
+        "items": [
+          {
+            "text": "1 story already covered in the last 30 days.",
+            "citations": []
+          },
+          {
+            "text": "1 story older than 48 hours.",
+            "citations": []
+          },
+          {
+            "text": "1 story with no date.",
+            "citations": []
+          },
+          {
+            "text": "2 generic items (guides and roundups).",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://news.example.com/2026/10/20/four-day-week-trial-results",
+        "title": "Four-day week trial: 40 employers keep the schedule after cutting meetings",
+        "published_at": "2026-10-20"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-news-angles",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-21T08:00:00Z"
+    }
+  }
+}

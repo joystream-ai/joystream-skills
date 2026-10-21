@@ -1,0 +1,152 @@
+{
+  "identity": {
+    "status": "confirmed",
+    "rejected_count": 1
+  },
+  "criteria": {
+    "owns_problem": {
+      "score": 2,
+      "reason": "Jo Example is Controller at Bramblewood Clinics and runs accounting and the monthly close, a role on the owner list.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ],
+      "current_title": "Controller",
+      "stale": false
+    },
+    "active": {
+      "score": 2,
+      "reason": "Spoke on a close-automation panel on 2026-09-17 and was quoted in a trade article on 2026-08-04, both inside the 180-day window.",
+      "source_ids": [
+        "S2",
+        "S3"
+      ]
+    },
+    "reachable": {
+      "score": 2,
+      "reason": "Speaks at finance operations events and writes publicly about the close; the most recent appearance is inside the window.",
+      "source_ids": [
+        "S2",
+        "S3"
+      ]
+    }
+  },
+  "score": 6,
+  "verdict": "Qualified",
+  "suggested_angle": "Jo Example has spoken about taking intercompany reconciliations out of spreadsheets, which is the slowest part of a multi-entity close.",
+  "item_result": {
+    "item": {
+      "index": 0,
+      "item": {
+        "name": "Jo Example",
+        "company": "Bramblewood Clinics",
+        "role": "Controller",
+        "profile_text": "Jo Example - Controller at Bramblewood Clinics. I run accounting and the monthly close for our twelve clinic entities. Recent post (2 weeks ago): we cut our close from 12 days to 8 by moving intercompany reconciliations out of spreadsheets."
+      },
+      "item_key": "name_company:jo-example@bramblewood-clinics",
+      "query": "\"Jo Example\" Bramblewood Clinics",
+      "queries": [
+        "\"Jo Example\" podcast OR talk OR interview"
+      ]
+    },
+    "item_key": "name_company:jo-example@bramblewood-clinics",
+    "item_label": "Jo Example (Bramblewood Clinics)",
+    "status": "ok",
+    "verdict": "Qualified",
+    "score": 6,
+    "score_scale": "0-6",
+    "headline": "Controller; spoke on close automation in September 2026",
+    "source_ids": [
+      "S1",
+      "S2"
+    ]
+  },
+  "report": {
+    "title": "Jo Example (Bramblewood Clinics): buyer qualification",
+    "summary": "Qualified, 6/6: Jo Example is the Controller who runs the monthly close and spoke about close automation on 2026-09-17.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Owns the problem",
+        "items": [
+          {
+            "text": "Controller at Bramblewood Clinics, responsible for accounting and the monthly close across two entities.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "2/2"
+          }
+        ]
+      },
+      {
+        "heading": "Active",
+        "items": [
+          {
+            "text": "Panelist on close automation on 2026-09-17; quoted on finance team hiring on 2026-08-04.",
+            "citations": [
+              "S2",
+              "S3"
+            ],
+            "confidence": "high",
+            "label": "2/2"
+          }
+        ]
+      },
+      {
+        "heading": "Reachable",
+        "items": [
+          {
+            "text": "Speaks at finance operations events and writes publicly about the close.",
+            "citations": [
+              "S2",
+              "S3"
+            ],
+            "confidence": "medium",
+            "label": "2/2"
+          }
+        ]
+      },
+      {
+        "heading": "Suggested angle",
+        "items": [
+          {
+            "text": "Open with intercompany reconciliations: Jo Example has said publicly that moving them out of spreadsheets shortened the close.",
+            "citations": [
+              "S1"
+            ],
+            "label": "angle"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "input:item.profile_text",
+        "provider": "pasted"
+      },
+      {
+        "id": "S2",
+        "url": "https://events.example.com/close-summit-2026/speakers/jo-example",
+        "published_at": "2026-09-17",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://news.example.org/finance-ops/close-teams-hiring",
+        "published_at": "2026-08-04",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Rejected 1 source about another person named Jo Example."
+    ],
+    "meta": {
+      "skill": "person-buyer-qualification",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

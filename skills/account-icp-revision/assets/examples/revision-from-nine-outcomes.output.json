@@ -1,0 +1,189 @@
+{
+  "current": {
+    "version": "v3",
+    "effective_at": "2026-07-01",
+    "icp_text": "Industry: B2B software companies.\nSize: 20-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies."
+  },
+  "proposal": {
+    "change_type": "revise",
+    "proposed_version": "v4",
+    "proposed_icp_text": "Industry: B2B software companies.\nSize: 50-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies; companies that sell mainly to the public sector.",
+    "changes": [
+      {
+        "kind": "tighten",
+        "criterion": "size",
+        "from": "20-500 employees",
+        "to": "50-500 employees",
+        "evidence": {
+          "accepted": 0,
+          "rejected": 3,
+          "insight_rows": 0,
+          "messages": 0
+        },
+        "source_ids": [
+          "S2",
+          "S3",
+          "S4"
+        ],
+        "confidence": "medium"
+      },
+      {
+        "kind": "add",
+        "criterion": "exclusions",
+        "from": "",
+        "to": "companies that sell mainly to the public sector",
+        "evidence": {
+          "accepted": 0,
+          "rejected": 3,
+          "insight_rows": 0,
+          "messages": 0
+        },
+        "source_ids": [
+          "S8",
+          "S9",
+          "S10"
+        ],
+        "confidence": "medium"
+      }
+    ],
+    "rationale": "Three rejections in 90 days were companies under 50 employees, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
+  },
+  "evidence_summary": {
+    "outcomes_decided": 9,
+    "accepted": 3,
+    "rejected": 6,
+    "undecided": 2,
+    "insight_rows": 4,
+    "messages": 0
+  },
+  "sheet_values": [
+    [
+      "v4",
+      "active",
+      "2026-10-19",
+      "Industry: B2B software companies.\nSize: 50-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies; companies that sell mainly to the public sector.",
+      "Three rejections in 90 days were companies under 50 employees, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
+    ]
+  ],
+  "report": {
+    "title": "ICP revision proposal: v3 -> v4",
+    "summary": "Proposes two changes to ICP v3 from 9 decided outcomes: raise the minimum size from 20 to 50 employees, and exclude companies that sell mainly to the public sector. Nothing else changes.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Proposed changes",
+        "items": [
+          {
+            "text": "tighten size: \"20-500 employees\" -> \"50-500 employees\" (0 accepted, 3 rejected, 0 insight rows)",
+            "citations": [
+              "S2",
+              "S3",
+              "S4"
+            ],
+            "label": "tighten",
+            "confidence": "medium"
+          },
+          {
+            "text": "add exclusions: \"\" -> \"companies that sell mainly to the public sector\" (0 accepted, 3 rejected, 0 insight rows)",
+            "citations": [
+              "S8",
+              "S9",
+              "S10"
+            ],
+            "label": "add",
+            "confidence": "medium"
+          }
+        ]
+      },
+      {
+        "heading": "Evidence",
+        "items": [
+          {
+            "text": "9 decided outcomes in the last 90 days (3 accepted, 6 rejected), 2 undecided, 4 insight rows, no call learning messages. The outcomes sheet has no header row; its rows were read by position.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "The 3 accepted accounts have 80-300 employees, inside both the current and the proposed size range, so they neither support nor contradict the size change.",
+            "citations": [
+              "S5",
+              "S6",
+              "S7"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "What would not change",
+        "items": [
+          {
+            "text": "Industry, buyer, geography, business model and signals stay as in v3.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "googlesheets:icp/row/4",
+        "title": "ICP v3"
+      },
+      {
+        "id": "S2",
+        "record_ref": "googlesheets:outcomes/row/2",
+        "title": "Rejected: too small (about 15 people)"
+      },
+      {
+        "id": "S3",
+        "record_ref": "googlesheets:outcomes/row/5",
+        "title": "Rejected: too small, 30 employees"
+      },
+      {
+        "id": "S4",
+        "record_ref": "googlesheets:outcomes/row/8",
+        "title": "Rejected: under 40 people"
+      },
+      {
+        "id": "S5",
+        "record_ref": "googlesheets:outcomes/row/3",
+        "title": "Accepted: 120 employees"
+      },
+      {
+        "id": "S6",
+        "record_ref": "googlesheets:outcomes/row/6",
+        "title": "Accepted: 80 employees"
+      },
+      {
+        "id": "S7",
+        "record_ref": "googlesheets:outcomes/row/10",
+        "title": "Accepted: 300 employees"
+      },
+      {
+        "id": "S8",
+        "record_ref": "googlesheets:outcomes/row/4",
+        "title": "Rejected: sells to government agencies"
+      },
+      {
+        "id": "S9",
+        "record_ref": "googlesheets:outcomes/row/7",
+        "title": "Rejected: public sector, long procurement"
+      },
+      {
+        "id": "S10",
+        "record_ref": "googlesheets:outcomes/row/9",
+        "title": "Rejected: municipal customers only"
+      }
+    ],
+    "unknowns": [],
+    "footer": "Applied only after approval.",
+    "meta": {
+      "skill": "account-icp-revision",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-19T08:00:00Z"
+    }
+  }
+}

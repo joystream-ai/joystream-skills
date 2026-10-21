@@ -1,0 +1,6 @@
+{
+  "min_outcomes": 5,
+  "lookback_days": 90,
+  "max_changes": 3,
+  "now": "2026-10-19T08:00:00Z"
+}

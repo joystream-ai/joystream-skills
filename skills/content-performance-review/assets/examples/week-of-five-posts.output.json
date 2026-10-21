@@ -1,0 +1,315 @@
+{
+  "period": {
+    "from": "2026-10-14",
+    "to": "2026-10-21",
+    "posts": 5
+  },
+  "baseline": {
+    "posts": 6,
+    "median": 0.041
+  },
+  "posts": [
+    {
+      "post_id": "li-7720",
+      "platform": "linkedin",
+      "posted_at": "2026-10-20T08:00:00Z",
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7720000",
+      "metrics": {
+        "impressions": 2600,
+        "reactions": 110,
+        "comments": 30,
+        "reposts": 9,
+        "clicks": 11,
+        "engagement_rate": 0.0615
+      },
+      "primary_value": 0.0615,
+      "vs_baseline": 1.5,
+      "too_early": true,
+      "source_id": "S5"
+    },
+    {
+      "post_id": "li-7719",
+      "platform": "linkedin",
+      "posted_at": "2026-10-17T17:45:00Z",
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7719000",
+      "metrics": {
+        "impressions": 2000,
+        "reactions": 40,
+        "comments": 6,
+        "reposts": 2,
+        "clicks": 2,
+        "engagement_rate": 0.025
+      },
+      "primary_value": 0.025,
+      "vs_baseline": 0.61,
+      "too_early": false,
+      "source_id": "S3"
+    },
+    {
+      "post_id": "li-7718",
+      "platform": "linkedin",
+      "posted_at": "2026-10-16T08:05:00Z",
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7718000",
+      "metrics": {
+        "impressions": 3100,
+        "reactions": 120,
+        "comments": 64,
+        "reposts": 5,
+        "clicks": 4,
+        "engagement_rate": 0.0623
+      },
+      "primary_value": 0.0623,
+      "vs_baseline": 1.52,
+      "too_early": false,
+      "source_id": "S2"
+    },
+    {
+      "post_id": "li-7717",
+      "platform": "linkedin",
+      "posted_at": "2026-10-15T16:30:00Z",
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7717000",
+      "metrics": {
+        "impressions": 1500,
+        "reactions": 18,
+        "comments": 2,
+        "reposts": 1,
+        "clicks": 25,
+        "engagement_rate": 0.0307
+      },
+      "primary_value": 0.0307,
+      "vs_baseline": 0.75,
+      "too_early": false,
+      "source_id": "S4"
+    },
+    {
+      "post_id": "li-7716",
+      "platform": "linkedin",
+      "posted_at": "2026-10-14T08:10:00Z",
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:activity:7716000",
+      "metrics": {
+        "impressions": 4200,
+        "reactions": 180,
+        "comments": 42,
+        "reposts": 12,
+        "clicks": 30,
+        "engagement_rate": 0.0629
+      },
+      "primary_value": 0.0629,
+      "vs_baseline": 1.53,
+      "too_early": false,
+      "source_id": "S1"
+    }
+  ],
+  "top": [
+    {
+      "post_id": "li-7716",
+      "primary_value": 0.0629,
+      "why_it_likely_worked_or_not": "It likely opened strongly: the first line leads with three concrete numbers from a customer onboarding project, the only numeric hook this week. It was also posted on a Tuesday morning (08:10 UTC), like most of your better posts.",
+      "source_id": "S1"
+    },
+    {
+      "post_id": "li-7718",
+      "primary_value": 0.0623,
+      "why_it_likely_worked_or_not": "It likely drew comments because it ends with a direct question (\"What's the one meeting you'd cut?\"): 64 comments, the most of any post this period. Short text and a morning slot (08:05 UTC) match your other strong posts.",
+      "source_id": "S2"
+    }
+  ],
+  "bottom": [
+    {
+      "post_id": "li-7719",
+      "primary_value": 0.025,
+      "why_it_likely_worked_or_not": "It is likely too long for its hook: about 1,900 characters of story before the point appears, and it went out on Friday evening (17:45 UTC), outside the morning slot of your better posts.",
+      "source_id": "S3"
+    },
+    {
+      "post_id": "li-7717",
+      "primary_value": 0.0307,
+      "why_it_likely_worked_or_not": "It is a link post whose text only announces a blog article; clicks were the highest of the week (25) but reactions and comments were low, which likely means readers left for the article instead of engaging with the post.",
+      "source_id": "S4"
+    }
+  ],
+  "patterns": [
+    {
+      "pattern": "Posts published between 08:00 and 09:00 UTC beat the baseline median.",
+      "post_ids": [
+        "li-7716",
+        "li-7718",
+        "li-7703",
+        "li-7708"
+      ],
+      "sample_note": "4 of 5 morning posts beat the median; 10 posts in all, so treat it as a lead, not a rule."
+    },
+    {
+      "pattern": "Link posts that only announce an article fall below the median.",
+      "post_ids": [
+        "li-7717",
+        "li-7701",
+        "li-7710"
+      ],
+      "sample_note": "3 of 3 link posts were below the median; 10 posts in all."
+    }
+  ],
+  "recommendations": [
+    {
+      "text": "Keep publishing in the 08:00-09:00 UTC slot and move evening posts there.",
+      "pattern_index": 0
+    },
+    {
+      "text": "When sharing an article, put its main point in the post itself and the link last.",
+      "pattern_index": 1
+    }
+  ],
+  "trend": {
+    "direction": "flat",
+    "note": "Median engagement rate 0.0465 this period (4 rankable posts) against 0.041 in the baseline (6 posts): 1.13x."
+  },
+  "report": {
+    "title": "Content performance: 2026-10-14–2026-10-21",
+    "summary": "5 posts this period; engagement is flat against the last 8 weeks (1.13x the median). Best: the post opening with three quarterly-close numbers, at 1.53x the baseline.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Top posts",
+        "items": [
+          {
+            "text": "3 numbers from our quarterly close: engagement rate 0.0629, 1.53x baseline. It likely worked because of the numeric hook and the Tuesday-morning slot.",
+            "citations": [
+              "S1"
+            ]
+          },
+          {
+            "text": "What's the one meeting you'd cut?: engagement rate 0.0623, 1.52x baseline. The closing question likely drew the 64 comments.",
+            "citations": [
+              "S2"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Bottom posts",
+        "items": [
+          {
+            "text": "The week we stopped doing status meetings: engagement rate 0.025, 0.61x baseline. Likely too long before the point, and posted Friday evening.",
+            "citations": [
+              "S3"
+            ]
+          },
+          {
+            "text": "New on the blog: how we plan quarters: engagement rate 0.0307, 0.75x baseline. Readers likely clicked through instead of engaging.",
+            "citations": [
+              "S4"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Patterns",
+        "items": [
+          {
+            "text": "Posts published between 08:00 and 09:00 UTC beat the baseline median (4 of 5; 10 posts in all).",
+            "citations": [
+              "S1",
+              "S2"
+            ]
+          },
+          {
+            "text": "Link posts that only announce an article fall below the median (3 of 3; 10 posts in all).",
+            "citations": [
+              "S4"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Recommendations",
+        "items": [
+          {
+            "text": "Keep publishing in the 08:00-09:00 UTC slot and move evening posts there.",
+            "citations": []
+          },
+          {
+            "text": "When sharing an article, put its main point in the post itself and the link last.",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "All posts this period",
+        "items": [
+          {
+            "text": "2026-10-20 2 of 3 handoffs fail for the same reason: 2,600 impressions, engagement rate 0.0615 (too early to judge).",
+            "citations": [
+              "S5"
+            ],
+            "label": "too early"
+          },
+          {
+            "text": "2026-10-17 The week we stopped doing status meetings: 2,000 impressions, engagement rate 0.025.",
+            "citations": [
+              "S3"
+            ]
+          },
+          {
+            "text": "2026-10-16 What's the one meeting you'd cut?: 3,100 impressions, engagement rate 0.0623.",
+            "citations": [
+              "S2"
+            ]
+          },
+          {
+            "text": "2026-10-15 New on the blog: how we plan quarters: 1,500 impressions, engagement rate 0.0307.",
+            "citations": [
+              "S4"
+            ]
+          },
+          {
+            "text": "2026-10-14 3 numbers from our quarterly close: 4,200 impressions, engagement rate 0.0629.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7716000",
+        "record_ref": "googlesheets:row/14",
+        "published_at": "2026-10-14T08:10:00Z"
+      },
+      {
+        "id": "S2",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7718000",
+        "record_ref": "googlesheets:row/16",
+        "published_at": "2026-10-16T08:05:00Z"
+      },
+      {
+        "id": "S3",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7719000",
+        "record_ref": "googlesheets:row/17",
+        "published_at": "2026-10-17T17:45:00Z"
+      },
+      {
+        "id": "S4",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7717000",
+        "record_ref": "googlesheets:row/15",
+        "published_at": "2026-10-15T16:30:00Z"
+      },
+      {
+        "id": "S5",
+        "url": "https://www.linkedin.com/feed/update/urn:li:activity:7720000",
+        "record_ref": "googlesheets:row/18",
+        "published_at": "2026-10-20T08:00:00Z"
+      }
+    ],
+    "unknowns": [
+      "li-7720 is younger than 48 hours (23 hours); it is listed but not ranked.",
+      "10 posts with an engagement rate in all; patterns are leads, not rules."
+    ],
+    "meta": {
+      "skill": "content-performance-review",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-21T07:00:00Z"
+    }
+  }
+}

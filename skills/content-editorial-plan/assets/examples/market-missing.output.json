@@ -1,0 +1,109 @@
+{
+  "plan": [
+    {
+      "date": "2026-10-20",
+      "platform": "linkedin",
+      "pillar": null,
+      "topic": "Handing off work between two teams without losing items",
+      "angle": "Every handoff that runs through a spreadsheet needs one named owner, or it quietly drops things.",
+      "format": "text",
+      "reason": "Spreadsheet handoffs between teams came up on three recent calls, and plain text posts with a question at the end drew the most comments last week.",
+      "inputs_used": [
+        "S1",
+        "S2",
+        "S3"
+      ],
+      "input_kinds": [
+        "customer",
+        "performance"
+      ]
+    },
+    {
+      "date": "2026-10-21",
+      "platform": "x",
+      "pillar": null,
+      "topic": "Late supplier paperwork and month-end gaps",
+      "angle": "Close the month on what you know and flag the gap, rather than waiting for paperwork that arrives weeks late.",
+      "format": "thread",
+      "reason": "Late supplier paperwork is a new customer theme this week, and short threads were the only X format that beat the median.",
+      "inputs_used": [
+        "S4",
+        "S1"
+      ],
+      "input_kinds": [
+        "customer",
+        "performance"
+      ]
+    }
+  ],
+  "coverage": {
+    "performance": {
+      "status": "used",
+      "items_read": 1
+    },
+    "market": {
+      "status": "missing",
+      "items_read": 0
+    },
+    "customer": {
+      "status": "used",
+      "items_read": 3
+    }
+  },
+  "backlog": [],
+  "report": {
+    "title": "Editorial plan: 2026-10-19–2026-10-25",
+    "summary": "2 posts planned (LinkedIn and X) from customer pains and last week's performance. Market intelligence was missing, so no slot reacts to market news.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Plan",
+        "items": [
+          {
+            "text": "2026-10-20 (Tue): Handing off work between two teams without losing items. Angle: Every handoff that runs through a spreadsheet needs one named owner, or it quietly drops things. Format: text. Why: three recent calls; question-ending posts drew the most comments.",
+            "citations": [
+              "S1",
+              "S2",
+              "S3"
+            ],
+            "label": "linkedin"
+          },
+          {
+            "text": "2026-10-21 (Wed): Late supplier paperwork and month-end gaps. Angle: Close the month on what you know and flag the gap. Format: thread. Why: a new customer theme; short threads beat the median on X.",
+            "citations": [
+              "S4",
+              "S1"
+            ],
+            "label": "x"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "slack:message/1791792000"
+      },
+      {
+        "id": "S2",
+        "record_ref": "googlesheets:row/8"
+      },
+      {
+        "id": "S3",
+        "record_ref": "googlesheets:row/11"
+      },
+      {
+        "id": "S4",
+        "record_ref": "googlesheets:row/12"
+      }
+    ],
+    "unknowns": [
+      "The market read (read-market) failed: no market intelligence input this week; the plan uses performance and customer inputs only."
+    ],
+    "meta": {
+      "skill": "content-editorial-plan",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-16T09:00:00Z"
+    }
+  }
+}

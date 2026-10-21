@@ -1,0 +1,163 @@
+{
+  "plan": [
+    {
+      "date": "2026-10-20",
+      "platform": "linkedin",
+      "pillar": "Finance operations",
+      "topic": "Why bank reconciliation still eats the first week of the month",
+      "angle": "Automating the matching is the easy half; the real time sink is the exceptions nobody owns.",
+      "format": "carousel_outline",
+      "reason": "Manual reconciliation came up again in this week's calls, a competitor just launched an automated reconciliation feature, and carousels were last week's best format.",
+      "inputs_used": [
+        "S1",
+        "S2",
+        "S3",
+        "S4"
+      ],
+      "input_kinds": [
+        "performance",
+        "market",
+        "customer"
+      ]
+    },
+    {
+      "date": "2026-10-22",
+      "platform": "linkedin",
+      "pillar": "Automation without the hype",
+      "topic": "Approvals stuck in email threads",
+      "angle": "An approval that lives in an inbox is a decision nobody can see, so it waits.",
+      "format": "text",
+      "reason": "Approvals stuck in email is a pain repeated on four calls, and posts that open with a number did about twice the median last week.",
+      "inputs_used": [
+        "S5",
+        "S1"
+      ],
+      "input_kinds": [
+        "customer",
+        "performance"
+      ]
+    },
+    {
+      "date": "2026-10-23",
+      "platform": "linkedin",
+      "pillar": "Finance operations",
+      "topic": "What a starter-plan price rise tells small finance teams",
+      "angle": "When entry pricing climbs, small teams should price the whole workflow, not the seat.",
+      "format": "text",
+      "reason": "A competitor raised its starter plan price this week, which small finance teams in the audience will notice now.",
+      "inputs_used": [
+        "S6"
+      ],
+      "input_kinds": [
+        "market"
+      ]
+    }
+  ],
+  "coverage": {
+    "performance": {
+      "status": "used",
+      "items_read": 1
+    },
+    "market": {
+      "status": "used",
+      "items_read": 2
+    },
+    "customer": {
+      "status": "used",
+      "items_read": 4
+    }
+  },
+  "backlog": [
+    {
+      "idea": "A short checklist post: five questions before buying reconciliation automation.",
+      "reason": "Follows the reconciliation slot if it performs; backed by the same customer pain.",
+      "source_ids": [
+        "S3",
+        "S4"
+      ]
+    }
+  ],
+  "report": {
+    "title": "Editorial plan: 2026-10-19–2026-10-25",
+    "summary": "3 LinkedIn posts planned, led by a carousel on bank reconciliation backed by customer calls, a competitor launch and last week's best format. Performance, market and customer inputs all fed the plan.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Plan",
+        "items": [
+          {
+            "text": "2026-10-20 (Tue): Why bank reconciliation still eats the first week of the month. Angle: Automating the matching is the easy half; the real time sink is the exceptions nobody owns. Format: carousel_outline. Why: repeated customer pain, a competitor launch and last week's best format.",
+            "citations": [
+              "S1",
+              "S2",
+              "S3",
+              "S4"
+            ],
+            "label": "linkedin"
+          },
+          {
+            "text": "2026-10-22 (Thu): Approvals stuck in email threads. Angle: An approval that lives in an inbox is a decision nobody can see, so it waits. Format: text. Why: repeated on four calls; number-led hooks did best last week.",
+            "citations": [
+              "S5",
+              "S1"
+            ],
+            "label": "linkedin"
+          },
+          {
+            "text": "2026-10-23 (Fri): What a starter-plan price rise tells small finance teams. Angle: When entry pricing climbs, small teams should price the whole workflow, not the seat. Format: text. Why: a competitor raised its starter price this week.",
+            "citations": [
+              "S6"
+            ],
+            "label": "linkedin"
+          }
+        ]
+      },
+      {
+        "heading": "Backlog",
+        "items": [
+          {
+            "text": "A short checklist post: five questions before buying reconciliation automation. Follows the reconciliation slot if it performs.",
+            "citations": [
+              "S3",
+              "S4"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "slack:message/1791792000"
+      },
+      {
+        "id": "S2",
+        "record_ref": "slack:message/1791883800"
+      },
+      {
+        "id": "S3",
+        "record_ref": "googlesheets:row/14"
+      },
+      {
+        "id": "S4",
+        "record_ref": "googlesheets:row/17"
+      },
+      {
+        "id": "S5",
+        "record_ref": "slack:message/1791993900"
+      },
+      {
+        "id": "S6",
+        "record_ref": "slack:message/1792050000"
+      }
+    ],
+    "unknowns": [
+      "1 market message older than 14 days was left out."
+    ],
+    "meta": {
+      "skill": "content-editorial-plan",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-16T09:00:00Z"
+    }
+  }
+}

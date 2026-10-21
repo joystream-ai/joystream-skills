@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "channels": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "description": "The channels read, in the order the agent reads them; label names the area in the brief.",
+      "items": {
+        "type": "object",
+        "required": [
+          "channel_id",
+          "label"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "channel_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 40
+          },
+          "label": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 60
+          }
+        }
+      }
+    },
+    "labels": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 12,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 60
+      },
+      "description": "Area names alone for numbered read steps: labels[N-1] is the area of read-N. Used only when channels is absent; a skipped read step keeps its label."
+    },
+    "window_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 31,
+      "default": 7,
+      "description": "Messages older than now - window_days are ignored."
+    },
+    "audience": {
+      "type": "string",
+      "maxLength": 80,
+      "default": "founder",
+      "description": "Who reads the brief; sets the level of detail, never the facts."
+    },
+    "max_highlights": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 10,
+      "default": 5,
+      "description": "The most highlights to show."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  },
+  "anyOf": [
+    {
+      "required": [
+        "channels"
+      ]
+    },
+    {
+      "required": [
+        "labels"
+      ]
+    }
+  ]
+}

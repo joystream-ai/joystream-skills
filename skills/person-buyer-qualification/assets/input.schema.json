@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "problem"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "item": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": true,
+      "description": "The one person to judge: a list-prepare slot {i, item_key, label, query, queries?, item?}, a list-prepare accepted entry {index, item, item_key, query, queries?}, or a plain {name, company, ...}; the nested item is the person {name, company, role?, profile_url?, profile_text?}. null = empty slot.",
+      "properties": {
+        "i": {
+          "type": "integer"
+        },
+        "index": {
+          "type": "integer"
+        },
+        "item_key": {
+          "type": "string"
+        },
+        "label": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "queries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "item": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "company": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            },
+            "profile_url": {
+              "type": "string"
+            },
+            "profile_text": {
+              "type": "string",
+              "maxLength": 8000
+            }
+          }
+        },
+        "name": {
+          "type": "string"
+        },
+        "company": {
+          "type": "string"
+        }
+      }
+    },
+    "name": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "The person's full name. Required unless item is given."
+    },
+    "company": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Where they work now. Required unless item is given."
+    },
+    "role": {
+      "type": "string",
+      "maxLength": 200,
+      "description": "Their title as the user knows it."
+    },
+    "profile_url": {
+      "type": "string",
+      "maxLength": 500,
+      "description": "A public profile or bio page the user says is this person."
+    },
+    "profile_text": {
+      "type": "string",
+      "maxLength": 8000,
+      "description": "Profile text the user copied themselves (summary, About section, recent posts). Cited as input:profile_text, medium confidence at most. Nothing is fetched from a profile site."
+    },
+    "problem": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "The problem the seller solves and who usually owns it."
+    },
+    "owner_roles": {
+      "type": "array",
+      "maxItems": 10,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 120
+      },
+      "description": "Roles or functions that typically own the problem."
+    },
+    "active_within_days": {
+      "type": "integer",
+      "minimum": 7,
+      "maximum": 730,
+      "default": 180,
+      "description": "Public activity counts when dated inside [now - active_within_days, now]."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}
