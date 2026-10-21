@@ -186,15 +186,15 @@ record has a public one, such as a company website):
    - `kind` is `nice_to_have` for every trait criterion; only constraints are
      `must_have` or `exclusion`.
    - Timing criteria carry a window (`in the last 12 months`) so they can be checked.
-   - When `why_good_customer` says what kind of product the seed bought (workflow
-     automation, a billing tool), add `Constraint: Sells <that kind of product>` with
-     `kind: exclusion`: a company that builds the product rarely buys it, and searches
-     about the problem surface its vendors first. Name the product **as narrowly as
-     `why_good_customer` states it, for the job it was bought for** (`marketing
-     automation or AI marketing-agent software`, not `AI agent platforms`), and never a
-     category the seed itself sells in: a seed that sells agentic AI for IT and bought
-     marketing agents makes other agentic-AI companies its closest lookalikes, and an
-     exclusion of `AI agent platforms` would reject them.
+   - When `why_good_customer` says what kind of product the seed bought (an invoice
+     reconciliation tool, a scheduling tool), add `Constraint: Sells <that kind of
+     product>` with `kind: exclusion`: a company that builds the product rarely buys
+     it, and searches about the problem surface its vendors first. Name the product
+     **as narrowly as `why_good_customer` states it, for the job it was bought for**
+     (`invoice reconciliation software`, not `finance software` or `software`), and
+     never a category the seed itself sells in: when the seed is a software vendor,
+     other software vendors are its closest lookalikes, and a broad exclusion would
+     reject exactly them.
    - `rubric_notes[]`, same order: `{criterion, dimension, signals, source_ids}`;
      `signals` are up to 4 phrases a page would contain if the criterion is met.
 7. **Search queries**, at most `max_queries`, of which at most `firmographic_queries`
@@ -211,10 +211,10 @@ record has a public one, such as a company website):
      tool to use, rewrite the query.
    - **Buyer words, never seller words.** Describe the buyer's roles, duties, team,
      stack and events, never the solution the seed bought or its category: for a seed
-     that bought workflow automation, not `automate`, `automation`, `workflow tool`,
-     `AI agent`, `integration` or `template`. Solution words return the seller's
-     competitors and their blogs (a run seeded with a workflow-automation buyer
-     returned only release-note tutorials, n8n templates and "GTM automation" guides).
+     that bought invoice reconciliation software, not `reconciliation software`,
+     `automate`, `automation`, `tool`, `platform` or `template`. Solution words return
+     the seller's competitors and their content (how-tos, templates, "best tools"
+     roundups) instead of companies that have the problem.
    - **Mix the targets.** With `max_queries` of 3 or more, at least one `jobs` query (a
      job title plus a duty or stack the trait implies, with one job-board `site:`:
      `site:jobs.ashbyhq.com`, `site:boards.greenhouse.io` or `site:jobs.lever.co`) and at
