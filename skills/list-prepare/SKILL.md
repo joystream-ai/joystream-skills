@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.1.0"
   category: operations
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -49,6 +49,13 @@ judgments. It never searches, fetches, posts or sends.
   `max_items`.
 - **query_hint** (string, optional): what each branch's search should look for, e.g.
   `fit against this ICP: …`. Empty means queries use the item's own fields only.
+- **query_terms** (array of strings, optional, at most 5): one short search per term per
+  item, e.g. the roles to find (`["head of revenue operations", "VP marketing"]`). Given,
+  every accepted item also gets `queries`, one per term (step 7). Use it when a branch
+  needs a search per topic: one query listing every topic finds far less than one short
+  query per topic (a web search for `Ramp ramp.com Head of Revenue Operations, Head of
+  GTM Engineering, VP Marketing, …` returned nothing; `Ramp head of revenue operations`
+  returned the people who hold the role).
 - **now** (string, ISO 8601, optional): the run's current time. Not needed for the work;
   never guess it.
 
@@ -139,10 +146,18 @@ choose them.
      bytes(item_key) + bytes(label) + bytes(query). Over 190 means the slot is over 250
      bytes: apply the truncation rule again to that slot.
 
-7. **Lay out the slots.** `slots` has exactly `slot_count` entries. Entry *i* (from 0) is
+7. **Per-term queries** (only when `query_terms` is given and not empty). For each
+   accepted item, `queries` has one entry per term, in term order:
+   `<item name> <term>`, e.g. `Ramp head of revenue operations`. Use the item's `name`
+   as given (its domain when it has no name); the term exactly as given, trimmed. Never
+   add `query_hint`, the domain, other terms or any other field. Cut a query over 160
+   characters at the last word boundary of the term. They go in `accepted` only, never
+   in `slots`.
+
+8. **Lay out the slots.** `slots` has exactly `slot_count` entries. Entry *i* (from 0) is
    accepted item *i* as `{i, item_key, label, query}`; every remaining entry is `null`.
 
-8. **Return the output** (below), `slots` first.
+9. **Return the output** (below), `slots` first.
 
 # Output
 
@@ -151,9 +166,10 @@ Return the fields of `assets/output.schema.json`, in this order:
 - `slots[]`: exactly `slot_count` entries, each `{i, item_key, label, query}` or `null`.
   Small on purpose: the platform cuts long step outputs, and slots must survive.
 - `accepted_count`: the number of accepted items.
-- `accepted[]`: in input order, each `{index, item, item_key, query}`; `index` is the
-  slot index, `item` is the input object copied exactly as given (every field, unchanged),
-  `item_key` and `query` equal the slot's.
+- `accepted[]`: in input order, each `{index, item, item_key, query}`, plus `queries`
+  when `query_terms` is given; `index` is the slot index, `item` is the input object
+  copied exactly as given (every field, unchanged), `item_key` and `query` equal the
+  slot's. Without `query_terms`, there is no `queries` field.
 - `dropped[]`: each `{item, reason}`, `item` copied as given, `reason` one of
   `duplicate`, `excluded`, `over_limit`, `unidentifiable`.
 
@@ -176,7 +192,7 @@ the cut.
 - **No contact details in slots.** No email address or phone number in `label` or
   `query`, even when `email` is the identity key (the key itself may hold it).
 - **One query per item**, ≤ 200 characters, about that item only. Never name another
-  item in a query.
+  item in a query. The same holds for each of `queries`: one term, that item only.
 - **Each slot ≤ 250 bytes** serialized (compact JSON, UTF-8): the query is cut to
   `min(200, 190 - bytes(item_key) - bytes(label))` bytes by the truncation rule in
   step 6. A slot over 250 bytes may be cut by the platform before a branch reads it.
@@ -203,4 +219,5 @@ Fall through to the next key. If no key applies to an item, it is `unidentifiabl
 # Examples
 
 See the paired cases in `assets/examples/`: companies with duplicates and padding,
-people keyed by email then name+company, and an item whose notes try to give orders.
+people keyed by email then name+company, an item whose notes try to give orders, and
+companies with one query per role (`query_terms`).
