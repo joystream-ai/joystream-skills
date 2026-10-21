@@ -1,0 +1,113 @@
+{
+  "verdict": "Research",
+  "fit_score": 3,
+  "fit_reasons": [
+    "Sells a reporting product to operations teams at software companies.",
+    "About 120 employees, inside the 50-500 range.",
+    "Timing not met: its Series A was in 2025-06, 16 months before now, outside the 12-month window."
+  ],
+  "why_now": [],
+  "dated_events": [
+    {
+      "event": "Raised a $12M Series A",
+      "date": "2025-06",
+      "months_ago": 16,
+      "source_id": "S3"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Harbor Metrics sells a reporting product to operations teams at software companies.",
+      "source_id": "S1"
+    },
+    {
+      "claim": "The about page lists about 120 employees.",
+      "source_id": "S2"
+    },
+    {
+      "claim": "Raised a $12M Series A in June 2025.",
+      "source_id": "S3"
+    }
+  ],
+  "confidence": "high",
+  "item_result": {
+    "item": {
+      "i": 0,
+      "item_key": "domain:example.net",
+      "label": "Harbor Metrics (example.net)",
+      "query": "Harbor Metrics example.net company overview, size, funding, hiring, recent news"
+    },
+    "item_key": "domain:example.net",
+    "item_label": "Harbor Metrics (example.net)",
+    "status": "ok",
+    "verdict": "Research",
+    "score": 3,
+    "score_scale": "0-5",
+    "headline": "Sells to operations teams and fits the size range, but its last funding (2025-06) is outside the 12-month timing window.",
+    "source_ids": [
+      "S1",
+      "S2",
+      "S3"
+    ]
+  },
+  "report": {
+    "title": "Qualification: Harbor Metrics (example.net)",
+    "summary": "Research, 3/5: a fit on product and size; the only dated event, a Series A in 2025-06, is 16 months old, so the timing criterion is not met.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Fit",
+        "items": [
+          {
+            "text": "Sells a reporting product to operations teams at software companies.",
+            "citations": [
+              "S1"
+            ],
+            "label": "met"
+          },
+          {
+            "text": "About 120 employees, inside the 50-500 range.",
+            "citations": [
+              "S2"
+            ],
+            "label": "met · must-have"
+          },
+          {
+            "text": "Timing: Series A in 2025-06 is 16 months before now, outside the 12-month window.",
+            "citations": [
+              "S3"
+            ],
+            "label": "not met"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.net/",
+        "title": "Harbor Metrics: reporting for operations teams",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.net/about",
+        "title": "About Harbor Metrics",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://news.example.com/harbor-metrics-series-a",
+        "title": "Harbor Metrics raises $12M Series A",
+        "published_at": "2025-06-10",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "account-icp-qualification",
+      "skill_version": "1.3.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

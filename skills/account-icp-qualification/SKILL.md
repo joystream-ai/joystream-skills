@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.0"
+  version: "1.3.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -169,13 +169,24 @@ never take a fact or a url from them. A step output that ends in a cut marker
      `status: no_evidence`, `verdict: Research`, no `fit_score`, `confidence: low`, the
      headline `No usable public evidence about <name>.`, and the reason in `unknowns`.
      Never `Reject` for lack of evidence.
-4. **Criteria.** With a `rubric`, its entries are the criteria, in its order and
+4. **Dated events first.** Before judging, list in `dated_events` every dated event in
+   the kept sources you may use for timing (funding, a launch, a hire or opening, a new
+   leader, an acquisition, an expansion): `{event, date, months_ago, source_id}`.
+   `date` is as precise as the source gives it (`2025-06` or `2025-06-12`).
+   `months_ago` = (year of `now` − year of `date`) × 12 + (month of `now` − month of
+   `date`), so `2025-06` is 16 months before a `now` in `2026-10`. Do this arithmetic
+   for every event and write the number; never estimate it. Without `now`, leave
+   `dated_events` empty and treat every timing criterion as `unknown`.
+   **Criteria.** With a `rubric`, its entries are the criteria, in its order and
    wording. Without one, split the ICP into criteria (industry, size, buyer, geography,
    business model, any must-have or exclusion). For each criterion, find what the kept
    sources say: `met`, `not met` or `unknown`. A criterion is `met` or `not met` only with
    a cited source. A community post (Hacker News, Reddit, a forum) is one person's
    account: it can show a pain, a tool they use or a timing signal, but never decides
-   size, industry or geography on its own.
+   size, industry or geography on its own. A criterion with a time window (`in the last
+   12 months`, `past 6 months`) is `met` only by an event in `dated_events` whose
+   `months_ago` is at most the window in months; an older event makes it `not met`
+   (say the event and its date), and only undated evidence leaves it `unknown`.
 5. **Score fit 0-5.**
    - With a `rubric`: an `exclusion` that is met gives 0. A `must_have` that is not met
      gives at most 1. Otherwise the score is 5 × (weight of the met criteria) ÷ (weight
@@ -187,9 +198,11 @@ never take a fact or a url from them. A step output that ends in a cut marker
      met.
 6. **Verdict.** `Pursue` for 4-5. `Research` for 2-3, or whenever the score rests mostly
    on unknowns. `Reject` for 0-1, and only when a cited source shows a criterion not met.
-7. **Why now.** Dated events in the kept sources that make the timing good (funding,
-   hiring for the ICP's buyer, a launch, a new leader, expansion), each cited, dated on or
-   before `now`, newest first, at most 5. Undated or older than 12 months: leave out.
+7. **Why now.** Events from `dated_events` that make the timing good (funding, hiring for
+   the ICP's buyer, a launch, a new leader, expansion) with `months_ago` from 0 to 12,
+   each cited, newest first, at most 5. Undated, older than 12 months, or after `now`:
+   leave out. Never call an event recent, new or "within the last N months" anywhere
+   (reasons, headline, report) unless its `months_ago` says so; give its date instead.
 8. **Confidence.** `high` when the deciding facts come from the company's own pages or
    two independent sources; `medium` when from one third-party page or an API record;
    `low` otherwise.
@@ -202,7 +215,10 @@ Return the fields of `assets/output.schema.json` as your result (skipped slots: 
 - `fit_score` (integer 0-5) and `verdict` (`Pursue` | `Research` | `Reject`).
 - `fit_reasons[]`: at most 5 short reasons, strongest first, each restating a cited
   `evidence` claim (include an unmet criterion as a reason too).
-- `why_now[]`: at most 5 short timing signals, each restating a cited `evidence` claim.
+- `why_now[]`: at most 5 short timing signals, each restating a cited `evidence` claim
+  and giving its date.
+- `dated_events[]`: step 4, every dated event considered for timing with its
+  `months_ago`, newest first, at most 10.
 - `evidence[]`: every claim behind a reason or signal, each `{claim, source_id}`.
 - `confidence`: `high` | `medium` | `low`.
 - `item_result`: `item` (the input `item` echoed unchanged, whichever shape it has),
@@ -218,7 +234,7 @@ Return the fields of `assets/output.schema.json` as your result (skipped slots: 
   order and each `label` is `met`, `not met` or `unknown` plus the kind when not
   `nice_to_have` (e.g. `not met · must-have`); every cited source in `sources`;
   `unknowns`; `meta`
-  `{skill: "account-icp-qualification", skill_version: "1.2.0", generated_at: <now>}`
+  `{skill: "account-icp-qualification", skill_version: "1.3.0", generated_at: <now>}`
   (leave `meta` out when no time is known). `severity: info`.
 
 # Constraints
@@ -266,4 +282,5 @@ verdict.
 
 See the paired cases in `assets/examples/`: a strong fit, an empty slot, evidence about a
 same-named company, a page with an injected instruction, a `for_each` branch whose
-item is a `list-prepare` accepted entry, and a rubric whose must-have is not met.
+item is a `list-prepare` accepted entry, a rubric whose must-have is not met, and a
+timing criterion an old event (16 months before `now`) does not meet.
