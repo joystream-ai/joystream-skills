@@ -9,6 +9,11 @@
       "source_id": "S2",
       "match_basis": "name_company",
       "confidence": "medium"
+    },
+    {
+      "source_id": "S3",
+      "match_basis": "name_company",
+      "confidence": "medium"
     }
   ],
   "topics": [
@@ -16,23 +21,31 @@
       "topic": "Data quality checks in analytics pipelines",
       "source_ids": [
         "S1"
-      ]
+      ],
+      "published_at": "2026-05-14",
+      "months_ago": 5
     },
     {
       "topic": "Hiring and growing a small data team",
       "source_ids": [
         "S2"
-      ]
+      ],
+      "published_at": "2024-11-20",
+      "months_ago": 23
     }
   ],
   "stated_views": [
     {
       "view": "Says most dashboard errors start upstream, so data tests belong in the pipeline, not in the BI tool.",
-      "source_id": "S1"
+      "source_id": "S1",
+      "published_at": "2026-05-14",
+      "months_ago": 5
     },
     {
       "view": "Prefers hiring analysts who can write SQL and explain a result over specialists in one tool.",
-      "source_id": "S2"
+      "source_id": "S2",
+      "published_at": "2024-11-20",
+      "months_ago": 23
     }
   ],
   "rejected_count": 5,
@@ -76,6 +89,13 @@
               "S2"
             ],
             "label": "medium"
+          },
+          {
+            "text": "Company blog post by Alex Sample of Example Analytics (2023-09-18).",
+            "citations": [
+              "S3"
+            ],
+            "label": "medium"
           }
         ]
       },
@@ -83,14 +103,14 @@
         "heading": "Topics",
         "items": [
           {
-            "text": "Data quality checks in analytics pipelines.",
+            "text": "Data quality checks in analytics pipelines (talk, 2026-05).",
             "citations": [
               "S1"
             ],
             "confidence": "high"
           },
           {
-            "text": "Hiring and growing a small data team.",
+            "text": "Hiring and growing a small data team (podcast, 2024-11).",
             "citations": [
               "S2"
             ],
@@ -102,14 +122,14 @@
         "heading": "Stated views",
         "items": [
           {
-            "text": "Most dashboard errors start upstream, so data tests belong in the pipeline, not in the BI tool.",
+            "text": "Most dashboard errors start upstream, so data tests belong in the pipeline, not in the BI tool. (2026-05)",
             "citations": [
               "S1"
             ],
             "confidence": "high"
           },
           {
-            "text": "Prefers analysts who can write SQL and explain a result over single-tool specialists.",
+            "text": "Prefers analysts who can write SQL and explain a result over single-tool specialists. (2024-11)",
             "citations": [
               "S2"
             ],
@@ -123,21 +143,31 @@
         "id": "S1",
         "url": "https://conf.example.org/2026/speakers/alex-sample",
         "title": "Alex Sample — Test your data before your dashboards do",
-        "provider": "tavily"
+        "provider": "tavily",
+        "published_at": "2026-05-14"
       },
       {
         "id": "S2",
         "url": "https://podcast.example.net/episodes/small-data-teams",
         "title": "Small data teams, big questions — with Alex Sample",
+        "provider": "tavily",
+        "published_at": "2024-11-20"
+      },
+      {
+        "id": "S3",
+        "url": "https://blog.example-analytics.example/2023/09/why-we-moved-off-spreadsheets",
+        "title": "Why we moved off spreadsheets — Alex Sample, Example Analytics",
+        "published_at": "2023-09-18",
         "provider": "tavily"
       }
     ],
     "unknowns": [
-      "Rejected 5 sources about other people named Alex Sample."
+      "Rejected 5 sources about other people named Alex Sample.",
+      "Left out 1 topic and 1 view older than 24 months (the 2023-09-18 blog post, 37 months before now)."
     ],
     "meta": {
       "skill": "person-public-profile",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

@@ -106,6 +106,40 @@
       },
       "description": "Roles or functions that typically own the problem."
     },
+    "rubric": {
+      "type": "array",
+      "maxItems": 8,
+      "description": "Optional scoring criteria about the person. Absent: a rubric is derived from problem (dated current title as a must-have, in-window activity, on-topic activity, an exclusion for having left). Score = 6 x met weight / non-exclusion weight, rounded half up; an exclusion met gives 0, a must-have not met caps at 2.",
+      "items": {
+        "type": "object",
+        "required": [
+          "criterion"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "criterion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "must_have",
+              "nice_to_have",
+              "exclusion"
+            ],
+            "default": "nice_to_have"
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3,
+            "default": 1
+          }
+        }
+      }
+    },
     "active_within_days": {
       "type": "integer",
       "minimum": 7,

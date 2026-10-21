@@ -11,13 +11,17 @@
       "topic": "Month-end close automation for finance teams",
       "source_ids": [
         "S1"
-      ]
+      ],
+      "published_at": "2026-08-03",
+      "months_ago": 2
     }
   ],
   "stated_views": [
     {
       "view": "Argues that reconciliation should run daily, not at month end, so the close becomes a review instead of a scramble.",
-      "source_id": "S1"
+      "source_id": "S1",
+      "published_at": "2026-08-03",
+      "months_ago": 2
     }
   ],
   "rejected_count": 1,
@@ -88,7 +92,8 @@
         "id": "S1",
         "url": "https://acme.example/blog/daily-reconciliation",
         "title": "Why we reconcile every day — Jo Example",
-        "provider": "exa"
+        "provider": "exa",
+        "published_at": "2026-08-03"
       }
     ],
     "unknowns": [
@@ -97,7 +102,7 @@
     ],
     "meta": {
       "skill": "person-public-profile",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

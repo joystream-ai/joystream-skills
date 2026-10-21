@@ -1,0 +1,22 @@
+{
+  "item": {
+    "index": 1,
+    "item": {
+      "name": "Rae Placeholder",
+      "company": "Tidewell Freight Systems",
+      "role": "Head of Finance Operations"
+    },
+    "item_key": "name_company:rae-placeholder@tidewell-freight-systems",
+    "query": "\"Rae Placeholder\" Tidewell Freight Systems",
+    "queries": [
+      "\"Rae Placeholder\" podcast OR talk OR interview"
+    ]
+  },
+  "problem": "Carrier invoices are reconciled by hand; usually owned by the head of finance operations or the controller.",
+  "owner_roles": [
+    "Head of Finance Operations",
+    "Controller"
+  ],
+  "active_within_days": 180,
+  "now": "2026-10-12T09:00:00Z"
+}

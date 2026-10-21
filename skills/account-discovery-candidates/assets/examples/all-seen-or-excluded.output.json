@@ -1,5 +1,40 @@
 {
   "candidates": [],
+  "rubric_used": {
+    "origin": "derived",
+    "criteria": [
+      {
+        "criterion": "Fit: sells B2B software to restaurant or hospitality groups",
+        "kind": "must_have",
+        "weight": 3,
+        "public_signal": true
+      },
+      {
+        "criterion": "Size: 20-500 employees",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false
+      },
+      {
+        "criterion": "Geography: based in North America",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false
+      },
+      {
+        "criterion": "Buyer: finance or operations owns the problem or is being hired for it",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true
+      },
+      {
+        "criterion": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true
+      }
+    ]
+  },
   "counts": {
     "mentioned": 3,
     "returned": 0,
@@ -137,7 +172,7 @@
     "unknowns": [],
     "meta": {
       "skill": "account-discovery-candidates",
-      "skill_version": "1.1.0",
+      "skill_version": "1.2.0",
       "generated_at": "2026-10-27T09:00:00Z"
     }
   }

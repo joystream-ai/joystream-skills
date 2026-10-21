@@ -7,6 +7,32 @@
     "Timing not met: its Series A was in 2025-06, 16 months before now, outside the 12-month window."
   ],
   "why_now": [],
+  "rubric_used": {
+    "origin": "given",
+    "criteria": [
+      {
+        "criterion": "Sells to operations teams at software companies",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true,
+        "result": "met"
+      },
+      {
+        "criterion": "50-500 employees",
+        "kind": "must_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "met"
+      },
+      {
+        "criterion": "Timing: raised funding or launched a product in the last 12 months",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true,
+        "result": "not_met"
+      }
+    ]
+  },
   "dated_events": [
     {
       "event": "Raised a $12M Series A",
@@ -106,7 +132,7 @@
     "unknowns": [],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.3.0",
+      "skill_version": "1.4.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

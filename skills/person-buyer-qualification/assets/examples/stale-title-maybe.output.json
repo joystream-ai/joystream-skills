@@ -1,0 +1,178 @@
+{
+  "identity": {
+    "status": "confirmed",
+    "rejected_count": 0
+  },
+  "criteria": {
+    "owns_problem": {
+      "score": 1,
+      "reason": "Tidewell Freight Systems named Rae Placeholder Head of Finance Operations in a post dated 2024-12-03, 22 months before now; no newer source states the title.",
+      "source_ids": [
+        "S1"
+      ],
+      "current_title": "Head of Finance Operations",
+      "title_months_ago": 22,
+      "stale": true
+    },
+    "active": {
+      "score": 1,
+      "reason": "Guest on a freight back-office podcast on 2026-07-22, 82 days before now and inside the 180-day window.",
+      "source_ids": [
+        "S2"
+      ],
+      "latest_activity_date": "2026-07-22",
+      "latest_activity_days_ago": 82
+    },
+    "reachable": {
+      "score": 2,
+      "reason": "Appeared as a podcast guest inside the window; informational only, not scored.",
+      "source_ids": [
+        "S2"
+      ]
+    }
+  },
+  "score": 2,
+  "verdict": "Maybe",
+  "rubric_used": [
+    {
+      "criterion": "current title owns the problem (dated, cited)",
+      "kind": "must_have",
+      "weight": 3,
+      "status": "not_met",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "criterion": "cited public activity inside the window",
+      "kind": "nice_to_have",
+      "weight": 2,
+      "status": "met",
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "criterion": "cited activity about the problem itself",
+      "kind": "nice_to_have",
+      "weight": 1,
+      "status": "met",
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "criterion": "left the company or works in another function",
+      "kind": "exclusion",
+      "weight": 1,
+      "status": "not_met",
+      "source_ids": []
+    }
+  ],
+  "suggested_angle": "Rae Placeholder talked on a podcast about matching carrier invoices by hand, which is the reconciliation work this problem is about.",
+  "item_result": {
+    "item": {
+      "index": 1,
+      "item": {
+        "name": "Rae Placeholder",
+        "company": "Tidewell Freight Systems",
+        "role": "Head of Finance Operations"
+      },
+      "item_key": "name_company:rae-placeholder@tidewell-freight-systems",
+      "query": "\"Rae Placeholder\" Tidewell Freight Systems",
+      "queries": [
+        "\"Rae Placeholder\" podcast OR talk OR interview"
+      ]
+    },
+    "item_key": "name_company:rae-placeholder@tidewell-freight-systems",
+    "item_label": "Rae Placeholder (Tidewell Freight Systems)",
+    "status": "ok",
+    "verdict": "Maybe",
+    "score": 2,
+    "score_scale": "0-6",
+    "headline": "Head of Finance Operations as of 2024-12; title not confirmed in the last 12 months",
+    "source_ids": [
+      "S1",
+      "S2"
+    ]
+  },
+  "report": {
+    "title": "Rae Placeholder (Tidewell Freight Systems): buyer qualification",
+    "summary": "Maybe, 2/6: the title that owns the problem was last stated on 2024-12-03, 22 months ago, so the must-have is not met and the score is capped at 2 until a newer source confirms it.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Owns the problem",
+        "items": [
+          {
+            "text": "Head of Finance Operations per a company post dated 2024-12-03; no newer source confirms the title.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "1/2"
+          }
+        ]
+      },
+      {
+        "heading": "Active",
+        "items": [
+          {
+            "text": "Podcast guest on 2026-07-22 (82 days ago) on carrier invoice reconciliation.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "1/2"
+          }
+        ]
+      },
+      {
+        "heading": "Reachable",
+        "items": [
+          {
+            "text": "Appears on industry podcasts (informational, not scored).",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium",
+            "label": "2/2"
+          }
+        ]
+      },
+      {
+        "heading": "Suggested angle",
+        "items": [
+          {
+            "text": "Open with carrier invoice matching, the topic of the 2026-07-22 podcast.",
+            "citations": [
+              "S2"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://tidewell.example.com/blog/2024-12-finance-team",
+        "published_at": "2024-12-03",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://podcast.example.net/episodes/freight-back-office",
+        "published_at": "2026-07-22",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Title evidence is older than 12 months."
+    ],
+    "meta": {
+      "skill": "person-buyer-qualification",
+      "skill_version": "1.2.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

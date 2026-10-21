@@ -88,7 +88,7 @@
   ],
   "follow_up_email": {
     "subject": "Next steps after today's call",
-    "body": "Hi Morgan and Dana,\n\nThanks for the time today. You described two days per clinic, across eleven clinics, matching insurance remittances from four portals by hand, and spreadsheet macros that break when a file format changes.\n\nWhat we agreed:\n- I'll share our standard BAA today.\n- Dana reviews it with legal next week.\n- If legal is fine, Morgan picks two clinics for a test in November.\n- I'll set up a call for 2026-10-28 to plan the test.\n\nOn pricing: we price per remittance source, not per clinic.\n\nCasey"
+    "body": "Hi Morgan and Dana,\n\nThanks for the time today. You described two days per clinic, across eleven clinics, matching insurance remittances from four portals by hand, and spreadsheet macros that break when a file format changes.\n\nWhat we agreed:\n- I'll share our standard BAA today.\n- Dana reviews it with legal next week.\n- If legal is fine, Morgan picks two clinics for a test in November.\n- I'll set up a call for 2026-10-28 to plan the test.\n\nCasey"
   },
   "report": {
     "title": "Call debrief — Harbor Clinics",
@@ -208,7 +208,7 @@
       },
       {
         "heading": "Follow-up email",
-        "body_md": "**Subject:** Next steps after today's call\n\nHi Morgan and Dana,\n\nThanks for the time today. You described two days per clinic, across eleven clinics, matching insurance remittances from four portals by hand, and spreadsheet macros that break when a file format changes.\n\nWhat we agreed:\n- I'll share our standard BAA today.\n- Dana reviews it with legal next week.\n- If legal is fine, Morgan picks two clinics for a test in November.\n- I'll set up a call for 2026-10-28 to plan the test.\n\nOn pricing: we price per remittance source, not per clinic.\n\nCasey",
+        "body_md": "**Subject:** Next steps after today's call\n\nHi Morgan and Dana,\n\nThanks for the time today. You described two days per clinic, across eleven clinics, matching insurance remittances from four portals by hand, and spreadsheet macros that break when a file format changes.\n\nWhat we agreed:\n- I'll share our standard BAA today.\n- Dana reviews it with legal next week.\n- If legal is fine, Morgan picks two clinics for a test in November.\n- I'll set up a call for 2026-10-28 to plan the test.\n\nCasey",
         "items": []
       }
     ],
@@ -226,7 +226,7 @@
     "footer": "Draft — not sent",
     "meta": {
       "skill": "sales-call-debrief",
-      "skill_version": "1.1.0",
+      "skill_version": "1.1.1",
       "generated_at": "2026-10-14T16:00:00Z"
     }
   }

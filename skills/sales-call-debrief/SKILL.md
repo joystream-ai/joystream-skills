@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -181,7 +181,9 @@ Every report item about the call cites it.
    what was agreed. If nothing was agreed, say `No next step was agreed.`
 8. **Key points:** three to five bullets a reader can skim in ten seconds: the biggest
    pain, the biggest objection, what was agreed (or that nothing was), and anything
-   surprising. Each restates a pain, objection or next step; no new facts.
+   surprising. Each restates a pain, objection or next step; no new facts. Fewer than
+   three only when the call has fewer than three pains, objections and next steps in
+   all (at least one bullet; never pad with a restated summary).
 9. **Focus topics** (only when `focus` is given), in the order given: one finding per
    topic from what was said, with the quotes that show it, or `Not discussed.` with no
    quotes. A topic about ICP fit compares what the customer said with the ICP line given
@@ -196,7 +198,8 @@ Every report item about the call cites it.
 
 Return the fields of `assets/output.schema.json` as your result:
 
-- `key_points[]`: three to five strings, each at most 200 characters (step 8).
+- `key_points[]`: three to five strings (fewer only as step 8 allows), each at most 200
+  characters.
 - `summary`: plain text, at most five sentences and **600 characters**, no fact absent
   from the transcript.
 - `focus_findings[]` (only when `focus` is given): `{topic, finding, quote_ids}` in the
@@ -222,7 +225,7 @@ Return the fields of `assets/output.schema.json` as your result:
   characters), `Follow-up email` (only when included; `body_md` = subject and body, and
   `items: []`). Every item cites the transcript source. Then `sources`; `unknowns`;
   **`footer: "Draft — not sent"`**; `meta` `{skill: "sales-call-debrief",
-  skill_version: "1.1.0", generated_at: <now>}`.
+  skill_version: "1.1.1", generated_at: <now>}`.
   `severity: info`, or `action_needed` when next steps are owned by our side.
 
 ## Output contract
@@ -247,7 +250,7 @@ discarded, however good its content. Check each line before returning:
 
 | Field | Limit |
 |---|---|
-| `key_points` | 3-5 entries, 200 characters each |
+| `key_points` | 1-5 entries (3-5 unless step 8 allows fewer), 200 characters each |
 | `summary`, `report.summary` | 600 characters (the same text) |
 | `focus_findings` | 8 entries; `finding` 300 characters |
 | `pains`, `objections` | 10 entries each; `text` and `response` 300 characters |

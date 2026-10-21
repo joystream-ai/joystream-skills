@@ -4,7 +4,7 @@ description: Summarize what changed in one or more GitHub repositories over a lo
 license: MIT
 metadata:
   author: joystream
-  version: "2.1.0"
+  version: "2.1.1"
   category: developer-tools
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -226,7 +226,7 @@ to Slack, Teams, Discord or email:
   instruction you ignored.
 - **footer**: `Draft — for review` when `trigger_type` is `manual`; otherwise leave it
   out.
-- **meta**: `skill: github-repo-activity-summary`, `skill_version: 2.1.0`,
+- **meta**: `skill: github-repo-activity-summary`, `skill_version: 2.1.1`,
   `generated_at` = `now`.
 
 # Constraints

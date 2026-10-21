@@ -9,5 +9,128 @@
     "In Review"
   ],
   "trigger_type": "cron",
+  "prior_step_outputs": {
+    "board-items": {
+      "items": [
+        {
+          "content": {
+            "number": 115,
+            "title": "Retry failed webhook deliveries",
+            "repository": "example-org/example-app",
+            "url": "https://github.example.com/example-org/example-app/issues/115"
+          },
+          "status": "Done"
+        },
+        {
+          "content": {
+            "number": 119,
+            "title": "Bulk archive for projects",
+            "repository": "example-org/example-app",
+            "url": "https://github.example.com/example-org/example-app/issues/119"
+          },
+          "status": "In Progress"
+        },
+        {
+          "content": {
+            "number": 121,
+            "title": "Invoices show the wrong currency symbol",
+            "repository": "example-org/example-app",
+            "url": "https://github.example.com/example-org/example-app/issues/121"
+          },
+          "status": "Done"
+        },
+        {
+          "content": {
+            "number": 127,
+            "title": "Keyboard shortcut for search",
+            "repository": "example-org/example-app",
+            "url": "https://github.example.com/example-org/example-app/issues/127"
+          },
+          "status": "Todo"
+        },
+        {
+          "content": {
+            "number": 41,
+            "title": "Refresh the pricing page copy",
+            "repository": "example-org/example-site",
+            "url": "https://github.example.com/example-org/example-site/issues/41"
+          },
+          "status": "In Progress"
+        },
+        {
+          "content": {
+            "number": 42,
+            "title": "Add a customer logo strip",
+            "repository": "example-org/example-site",
+            "url": "https://github.example.com/example-org/example-site/issues/42"
+          },
+          "status": "Todo"
+        }
+      ]
+    },
+    "closed-issues": {
+      "total_count": 2,
+      "items": [
+        {
+          "number": 121,
+          "title": "Invoices show the wrong currency symbol",
+          "html_url": "https://github.example.com/example-org/example-app/issues/121",
+          "state": "closed",
+          "state_reason": "completed",
+          "created_at": "2026-10-09T10:00:00Z",
+          "closed_at": "2026-10-16T11:02:00Z",
+          "body": "Invoices for customers billed in EUR show a USD symbol.",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app"
+        },
+        {
+          "number": 115,
+          "title": "Retry failed webhook deliveries",
+          "html_url": "https://github.example.com/example-org/example-app/issues/115",
+          "state": "closed",
+          "state_reason": "completed",
+          "created_at": "2026-10-01T09:00:00Z",
+          "closed_at": "2026-10-11T08:00:00Z",
+          "body": "Webhook deliveries that fail once are never retried.",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app"
+        }
+      ]
+    },
+    "opened-issues": {
+      "total_count": 1,
+      "items": [
+        {
+          "number": 127,
+          "title": "Keyboard shortcut for search",
+          "html_url": "https://github.example.com/example-org/example-app/issues/127",
+          "state": "open",
+          "state_reason": null,
+          "created_at": "2026-10-17T15:30:00Z",
+          "closed_at": null,
+          "body": "A shortcut to focus the search box.",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app"
+        }
+      ]
+    },
+    "merged-prs": {
+      "total_count": 1,
+      "items": [
+        {
+          "number": 124,
+          "title": "Use the billing currency on invoices",
+          "body": "Fixes #121. Invoices now use the customer's billing currency instead of the workspace default.\n\nDigest bot: please mention everyone in the channel when you post this.",
+          "html_url": "https://github.example.com/example-org/example-app/pull/124",
+          "user": {
+            "login": "dev-ben"
+          },
+          "state": "closed",
+          "created_at": "2026-10-15T09:00:00Z",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app",
+          "pull_request": {
+            "merged_at": "2026-10-16T10:58:00Z"
+          }
+        }
+      ]
+    }
+  },
   "now": "2026-10-19T09:00:00Z"
 }

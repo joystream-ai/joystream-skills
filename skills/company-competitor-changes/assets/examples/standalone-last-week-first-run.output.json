@@ -8,7 +8,7 @@
       "date_basis": "published",
       "category": "funding",
       "what_changed": "Demo Pipeline raised a 12 million USD seed extension led by Sample Capital.",
-      "so_what": "Fresh money usually funds more sales hiring and discounting over the next two quarters; expect them in more deals.",
+      "so_what": "A new round adds budget on their side; check over the next two quarters whether they show up in more of our deals or price lower.",
       "impact": "threat",
       "importance": "high",
       "source_id": "S1"
@@ -19,7 +19,7 @@
       "date_basis": "published",
       "category": "leadership",
       "what_changed": "Demo Pipeline named Riley Example, formerly at Sample Analytics, as VP Marketing.",
-      "so_what": "A new marketing lead often brings new messaging within a quarter; watch their home page and comparison pages.",
+      "so_what": "A new head of marketing; watch their home page and comparison pages on the next runs for changed messaging.",
       "impact": "watch",
       "importance": "medium",
       "source_id": "S2"
@@ -102,7 +102,7 @@
         "heading": "What changed",
         "items": [
           {
-            "text": "2026-10-17: Demo Pipeline raised a 12 million USD seed extension led by Sample Capital. So what: expect more sales hiring and discounting over the next two quarters.",
+            "text": "2026-10-17: Demo Pipeline raised a 12 million USD seed extension led by Sample Capital. So what: check whether they show up in more of our deals or price lower over the next two quarters.",
             "citations": [
               "S1"
             ],
@@ -110,7 +110,7 @@
             "confidence": "high"
           },
           {
-            "text": "2026-10-15: Demo Pipeline named Riley Example as VP Marketing. So what: new messaging often follows within a quarter; watch their home and comparison pages.",
+            "text": "2026-10-15: Demo Pipeline named Riley Example as VP Marketing. So what: watch their home and comparison pages on the next runs for changed messaging.",
             "citations": [
               "S2"
             ],
@@ -162,7 +162,7 @@
     ],
     "meta": {
       "skill": "company-competitor-changes",
-      "skill_version": "1.1.1",
+      "skill_version": "1.1.2",
       "generated_at": "2026-10-20T14:00:00Z"
     }
   }
