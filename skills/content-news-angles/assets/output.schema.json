@@ -1,0 +1,395 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "worth_posting",
+    "reason",
+    "story_angles",
+    "source_text",
+    "angles",
+    "skipped",
+    "sheet_values",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "worth_posting": {
+      "type": "boolean",
+      "description": "True when at least one story was picked. False is a first-class result."
+    },
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300,
+      "description": "Why these stories, or why nothing."
+    },
+    "story_angles": {
+      "type": "array",
+      "maxItems": 3,
+      "description": "Best first, one per picked angle, in the shape content-social-post-draft reads. Empty when worth_posting is false.",
+      "items": {
+        "type": "object",
+        "required": [
+          "angle",
+          "kind",
+          "evidence_refs"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "angle": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "news_take"
+            ]
+          },
+          "evidence_refs": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            },
+            "description": "Ids in report.sources."
+          }
+        }
+      }
+    },
+    "source_text": {
+      "type": "string",
+      "maxLength": 1500,
+      "description": "The facts behind the picked stories in plain sentences, each ending with its source id. Empty when worth_posting is false."
+    },
+    "angles": {
+      "type": "array",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "topic_key",
+          "headline",
+          "source_id",
+          "published_at",
+          "why_timely",
+          "pov_belief",
+          "take",
+          "hook",
+          "outline",
+          "caution"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^A[0-9]+$"
+          },
+          "topic_key": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(-[a-z0-9]+){2,7}$",
+            "description": "Stable slug of the event: 3-8 lower-case words joined by hyphens."
+          },
+          "headline": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^S[0-9]+$"
+          },
+          "published_at": {
+            "type": "string",
+            "minLength": 1
+          },
+          "why_timely": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "pov_belief": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "description": "An exact excerpt of point_of_view (one belief, at most 200 characters), copied character for character."
+          },
+          "take": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "hook": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 210
+          },
+          "outline": {
+            "type": "array",
+            "minItems": 3,
+            "maxItems": 3,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "caution": {
+            "type": "string",
+            "maxLength": 200
+          }
+        }
+      }
+    },
+    "skipped": {
+      "type": "object",
+      "required": [
+        "stale",
+        "undated",
+        "generic",
+        "off_pov",
+        "avoided",
+        "already_covered"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "stale": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "undated": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generic": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "off_pov": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "avoided": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "already_covered": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "sheet_values": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "minItems": 1,
+      "maxItems": 3,
+      "items": {
+        "type": "array",
+        "minItems": 5,
+        "maxItems": 5,
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "One row per angle for the covered-topics store: covered_at, topic_key, headline, url, angle. No header. null when no angle was picked."
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft — not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    }
+  }
+}

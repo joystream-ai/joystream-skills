@@ -1,0 +1,107 @@
+{
+  "targets": [
+    {
+      "company": "Lumen Payroll",
+      "item_key": "domain:lumenpayroll.example",
+      "status": "paths_found",
+      "paths": [
+        {
+          "via_name": "Riley Sample",
+          "via_title": "Chief Financial Officer",
+          "path_type": "inside",
+          "strength": "strong",
+          "why": "Connected since 2022 and met on 2026-09-02; CFO there, senior to the Controller you want to reach.",
+          "evidence": [
+            "googlesheets:row/6",
+            "googlecalendar:event/evt0902a"
+          ],
+          "connected_on": "2022-03-14",
+          "last_met": "2026-09-02"
+        },
+        {
+          "via_name": "Casey Placeholder",
+          "via_title": "Software Engineer",
+          "path_type": "inside",
+          "strength": "weak",
+          "why": "Connected since 2019; works there outside finance.",
+          "evidence": [
+            "googlesheets:row/9"
+          ],
+          "connected_on": "2019-11-05",
+          "last_met": null
+        }
+      ]
+    },
+    {
+      "company": "Harbor Analytics",
+      "item_key": "domain:harboranalytics.example",
+      "status": "no_path",
+      "paths": []
+    }
+  ],
+  "counts": {
+    "targets": 2,
+    "with_paths": 1,
+    "connections_read": 8,
+    "events_read": 14
+  },
+  "report": {
+    "title": "Warm paths: 1 of 2 targets",
+    "summary": "Riley Sample, CFO at Lumen Payroll, is a strong path to the Controller: connected since 2022 and met on 2026-09-02. No path to Harbor Analytics in your data.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Lumen Payroll",
+        "items": [
+          {
+            "text": "Riley Sample, Chief Financial Officer: inside, strong. Connected since 2022 and met on 2026-09-02; CFO there, senior to the Controller you want to reach.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "strong"
+          },
+          {
+            "text": "Casey Placeholder, Software Engineer: inside, weak. Connected since 2019; works there outside finance.",
+            "citations": [
+              "S3"
+            ],
+            "label": "weak"
+          }
+        ]
+      },
+      {
+        "heading": "No path found",
+        "items": [
+          {
+            "text": "Harbor Analytics: no connection or meeting in your data.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "googlesheets:row/6"
+      },
+      {
+        "id": "S2",
+        "record_ref": "googlecalendar:event/evt0902a"
+      },
+      {
+        "id": "S3",
+        "record_ref": "googlesheets:row/9"
+      }
+    ],
+    "unknowns": [
+      "Second-degree connections are not in this data.",
+      "A connection at Harborview Foods was not matched to Harbor Analytics: the names differ."
+    ],
+    "meta": {
+      "skill": "person-warm-paths",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "inputs": [
+    {
+      "kind": "performance",
+      "label": "read-performance"
+    },
+    {
+      "kind": "market",
+      "label": "read-market"
+    },
+    {
+      "kind": "customer",
+      "label": "read-customer-digest"
+    },
+    {
+      "kind": "customer",
+      "label": "read-insight-store"
+    }
+  ],
+  "pillars": [
+    "Finance operations",
+    "Automation without the hype"
+  ],
+  "platforms": [
+    "linkedin"
+  ],
+  "slots": 1,
+  "plan_days": 7,
+  "lookback_days": 14,
+  "now": "2026-10-16T09:00:00Z"
+}

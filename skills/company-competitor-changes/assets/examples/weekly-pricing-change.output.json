@@ -4,6 +4,7 @@
   "changes": [
     {
       "date": "2026-10-19",
+      "days_ago": 0,
       "date_basis": "observed",
       "category": "pricing",
       "what_changed": "The Team plan moved from a flat 299 USD per month to 49 USD per seat per month, and the free tier dropped from 3 agents to 1.",
@@ -14,6 +15,7 @@
     },
     {
       "date": "2026-10-15",
+      "days_ago": 4,
       "date_basis": "published",
       "category": "launch",
       "what_changed": "Sample Automate launched Agent Studio, a chat interface for building agents, in public beta.",
@@ -24,6 +26,7 @@
     },
     {
       "date": "2026-10-14",
+      "days_ago": 5,
       "date_basis": "published",
       "category": "customer",
       "what_changed": "Sample Automate published a case study with Example Payroll, a 120-person B2B startup, on automating lead routing.",
@@ -205,7 +208,7 @@
     ],
     "meta": {
       "skill": "company-competitor-changes",
-      "skill_version": "1.0.1",
+      "skill_version": "1.1.0",
       "generated_at": "2026-10-19T08:00:00Z"
     }
   }

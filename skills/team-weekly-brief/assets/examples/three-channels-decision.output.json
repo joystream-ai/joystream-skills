@@ -1,0 +1,232 @@
+{
+  "highlights": [
+    {
+      "text": "Two new accounts moved to proposal stage this week; one asks for a security review before signing.",
+      "area": "Pipeline",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "text": "Pricing for the new team plan needs a decision before Thursday's launch post.",
+      "area": "Product",
+      "source_ids": [
+        "S3"
+      ]
+    },
+    {
+      "text": "The weekly prospecting run failed twice on Tuesday and posted no list that day.",
+      "area": "Pipeline",
+      "source_ids": [
+        "S4"
+      ]
+    }
+  ],
+  "by_area": [
+    {
+      "area": "Pipeline",
+      "status": "active",
+      "message_count": 3,
+      "items": [
+        {
+          "text": "Two new accounts moved to proposal stage this week; one asks for a security review before signing.",
+          "source_ids": [
+            "S1",
+            "S2"
+          ]
+        },
+        {
+          "text": "The weekly prospecting run failed twice on Tuesday and posted no list that day.",
+          "source_ids": [
+            "S4"
+          ]
+        }
+      ]
+    },
+    {
+      "area": "Content",
+      "status": "quiet",
+      "message_count": 0,
+      "items": []
+    },
+    {
+      "area": "Product",
+      "status": "active",
+      "message_count": 2,
+      "items": [
+        {
+          "text": "Pricing for the new team plan needs a decision before Thursday's launch post.",
+          "source_ids": [
+            "S3"
+          ]
+        },
+        {
+          "text": "Bulk export shipped on Monday.",
+          "source_ids": [
+            "S5"
+          ]
+        }
+      ]
+    }
+  ],
+  "decisions_needed": [
+    {
+      "text": "Approve the team plan price (two options proposed) before Thursday's launch post.",
+      "area": "Product",
+      "source_ids": [
+        "S3"
+      ]
+    }
+  ],
+  "risks": [
+    {
+      "text": "A proposal-stage account is waiting on a security review; no owner is named.",
+      "area": "Pipeline",
+      "source_ids": [
+        "S2"
+      ]
+    },
+    {
+      "text": "The prospecting run failed twice on Tuesday.",
+      "area": "Pipeline",
+      "source_ids": [
+        "S4"
+      ]
+    }
+  ],
+  "quiet_areas": [
+    "Content"
+  ],
+  "report": {
+    "title": "Weekly brief: 2026-10-09–2026-10-16",
+    "summary": "Two accounts reached proposal stage, one waiting on a security review. The team plan price needs your decision before Thursday's launch post. The prospecting run failed twice on Tuesday.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Highlights",
+        "items": [
+          {
+            "text": "Two new accounts moved to proposal stage this week; one asks for a security review before signing.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "label": "Pipeline"
+          },
+          {
+            "text": "Pricing for the new team plan needs a decision before Thursday's launch post.",
+            "citations": [
+              "S3"
+            ],
+            "label": "Product"
+          },
+          {
+            "text": "The weekly prospecting run failed twice on Tuesday and posted no list that day.",
+            "citations": [
+              "S4"
+            ],
+            "label": "Pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "Decisions needed",
+        "items": [
+          {
+            "text": "Approve the team plan price (two options proposed) before Thursday's launch post.",
+            "citations": [
+              "S3"
+            ],
+            "label": "Product"
+          }
+        ]
+      },
+      {
+        "heading": "Risks",
+        "items": [
+          {
+            "text": "A proposal-stage account is waiting on a security review; no owner is named.",
+            "citations": [
+              "S2"
+            ],
+            "label": "Pipeline"
+          },
+          {
+            "text": "The prospecting run failed twice on Tuesday.",
+            "citations": [
+              "S4"
+            ],
+            "label": "Pipeline"
+          }
+        ]
+      },
+      {
+        "heading": "Pipeline",
+        "items": [
+          {
+            "text": "Two new accounts moved to proposal stage; one asks for a security review before signing.",
+            "citations": [
+              "S1",
+              "S2"
+            ]
+          },
+          {
+            "text": "The prospecting run failed twice on Tuesday.",
+            "citations": [
+              "S4"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Product",
+        "items": [
+          {
+            "text": "Team plan pricing awaits a decision.",
+            "citations": [
+              "S3"
+            ]
+          },
+          {
+            "text": "Bulk export shipped on Monday.",
+            "citations": [
+              "S5"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "slack:message/1791712800.000100"
+      },
+      {
+        "id": "S2",
+        "record_ref": "slack:message/1791883800.000200"
+      },
+      {
+        "id": "S3",
+        "record_ref": "slack:message/1791993900.000300"
+      },
+      {
+        "id": "S4",
+        "record_ref": "slack:message/1791883800.000400"
+      },
+      {
+        "id": "S5",
+        "record_ref": "slack:message/1791792000.000500"
+      }
+    ],
+    "unknowns": [
+      "Quiet this week: Content.",
+      "2 messages older than 7 days were left out."
+    ],
+    "meta": {
+      "skill": "team-weekly-brief",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-16T09:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "window_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 31,
+      "default": 7,
+      "description": "The week is [now - window_days, now]."
+    },
+    "trend_days": {
+      "type": "integer",
+      "minimum": 7,
+      "maximum": 365,
+      "default": 90,
+      "description": "Insight rows with a call_date in [now - trend_days, now] count toward how often a theme comes up."
+    },
+    "product_context": {
+      "type": "string",
+      "maxLength": 1500,
+      "description": "Optional: what the product does and for whom, so links are judged against the real product."
+    },
+    "max_pains": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 10,
+      "default": 5,
+      "description": "How many top pains to report and link."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}
