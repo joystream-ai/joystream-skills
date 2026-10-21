@@ -48,7 +48,7 @@
     },
     "now": {
       "type": "string",
-      "description": "Current time, ISO 8601, used only for report.meta. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+      "description": "Current time, ISO 8601, for report.meta and the recency rule (months_ago). Optional: on JoyStream the template binds it to the run start time. Never guessed."
     }
   }
 }

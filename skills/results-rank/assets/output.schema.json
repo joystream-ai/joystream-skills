@@ -12,7 +12,7 @@
   "properties": {
     "ranked": {
       "type": "array",
-      "maxItems": 25,
+      "maxItems": 100,
       "description": "Every branch with status ok or no_evidence, in rank order. Values are copied from each branch's item_result, never changed.",
       "items": {
         "type": "object",
@@ -32,6 +32,12 @@
           "item_label": {
             "type": "string",
             "maxLength": 120
+          },
+          "item_key": {
+            "type": "string",
+            "maxLength": 200,
+            "pattern": "^[a-z_]+:[^@\\s]+$",
+            "description": "The branch's item_result.item_key copied unchanged, so a later run or a store can join on it. Left out when the key holds an email address (contains @) or the branch gave none."
           },
           "status": {
             "type": "string",
@@ -79,7 +85,7 @@
     },
     "failed": {
       "type": "array",
-      "maxItems": 25,
+      "maxItems": 100,
       "description": "Branches that errored or returned nothing, named by their slot's item.",
       "items": {
         "type": "object",

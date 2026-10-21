@@ -1,7 +1,7 @@
 {
   "seed": {
-    "name": "Northwind Freight",
-    "domain": "northwind.example"
+    "name": "Fernhill Freight",
+    "domain": "fernhill.example"
   },
   "why_good_customer": "Signed in six weeks, right after they hired their first RevOps lead. They were reconciling carrier invoices in spreadsheets, and their finance team had just doubled after a Series B. They now use us across three regional offices.",
   "constraints": "North America only. No agencies or consultancies.",

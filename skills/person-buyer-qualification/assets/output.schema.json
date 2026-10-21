@@ -182,6 +182,57 @@
       ],
       "description": "Absent only for a skipped slot."
     },
+    "rubric_used": {
+      "type": "array",
+      "maxItems": 8,
+      "description": "The rubric the score came from (given or derived), each criterion with its status. Left out for a skipped slot.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "criterion",
+          "kind",
+          "weight",
+          "status",
+          "source_ids"
+        ],
+        "properties": {
+          "criterion": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "must_have",
+              "nice_to_have",
+              "exclusion"
+            ]
+          },
+          "weight": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 3
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "met",
+              "not_met",
+              "unknown"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^S[0-9]+$"
+            }
+          }
+        }
+      }
+    },
     "suggested_angle": {
       "type": "string",
       "maxLength": 300,

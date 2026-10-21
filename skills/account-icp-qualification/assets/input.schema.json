@@ -71,7 +71,7 @@
     "rubric": {
       "type": "array",
       "maxItems": 12,
-      "description": "Optional scoring criteria that replace splitting the ICP. Each criterion is met, not met or unknown from cited evidence; an exclusion met gives 0, a must-have not met caps the score at 1, otherwise the score is 5 x met weight / total weight.",
+      "description": "Optional scoring criteria. When absent, the skill derives a rubric from the ICP text and reports it in rubric_used. Each criterion is met, not met or unknown from cited evidence; an exclusion met gives 0, a must-have not met caps the score at 1, otherwise the score is 5 x met weight / total weight.",
       "items": {
         "type": "object",
         "required": [

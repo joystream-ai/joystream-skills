@@ -1,8 +1,8 @@
 {
   "seed": {
-    "name": "Northwind Freight",
-    "domain": "northwind.example",
-    "item_key": "domain:northwind.example"
+    "name": "Fernhill Freight",
+    "domain": "fernhill.example",
+    "item_key": "domain:fernhill.example"
   },
   "status": "ok",
   "traits": [
@@ -264,8 +264,8 @@
   ],
   "icp_text": "Fit: B2B logistics or freight software or services companies with 100-500 employees, headquartered in North America.\nBehavior: hired or is hiring its first revenue operations or billing operations person in the last 12 months; runs three or more regional offices.\nPain: reconciles invoices or billing across many counterparties by hand or in spreadsheets; staff complain about invoice disputes eating finance time.\nTiming: raised a Series A or later round in the last 12 months.\nConstraints: North America only; no agencies or consultancies.\nSame industry alone is not a fit.",
   "report": {
-    "title": "Lookalike profile: Northwind Freight",
-    "summary": "Northwind Freight bought right after its first RevOps hire, while reconciling carrier invoices in spreadsheets and growing finance after a Series B. Lookalikes are weighted on those behavior, pain and timing signals; logistics industry and size count for little.",
+    "title": "Lookalike profile: Fernhill Freight",
+    "summary": "Fernhill Freight bought right after its first RevOps hire, while reconciling carrier invoices in spreadsheets and growing finance after a Series B. Lookalikes are weighted on those behavior, pain and timing signals; logistics industry and size count for little.",
     "severity": "info",
     "sections": [
       {
@@ -453,21 +453,21 @@
       },
       {
         "id": "S2",
-        "url": "https://northwind.example/about",
-        "title": "About Northwind Freight",
+        "url": "https://fernhill.example/about",
+        "title": "About Fernhill Freight",
         "provider": "tavily"
       },
       {
         "id": "S3",
         "url": "https://jobs.example.net/listing/7781",
-        "title": "Revenue Operations Manager (first hire) - Northwind Freight",
+        "title": "Revenue Operations Manager (first hire) - Fernhill Freight",
         "published_at": "2026-03-04",
         "provider": "tavily"
       },
       {
         "id": "S4",
-        "url": "https://news.example.org/2026/02/10/northwind-freight-series-b",
-        "title": "Northwind Freight raises Series B",
+        "url": "https://news.example.org/2026/02/10/fernhill-freight-series-b",
+        "title": "Fernhill Freight raises Series B",
         "published_at": "2026-02-10",
         "provider": "brave"
       },
@@ -479,11 +479,12 @@
       }
     ],
     "unknowns": [
-      "The community post is one person's account; its pain trait is low confidence."
+      "The community post is one person's account; its pain trait is low confidence.",
+      "Public signals: 12 of 15; fit: 3 of 15."
     ],
     "meta": {
       "skill": "account-lookalike-profile",
-      "skill_version": "1.1.2",
+      "skill_version": "1.2.0",
       "generated_at": "2026-10-20T09:00:00Z"
     }
   }

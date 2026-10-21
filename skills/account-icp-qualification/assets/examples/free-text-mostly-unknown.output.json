@@ -1,0 +1,135 @@
+{
+  "verdict": "Research",
+  "fit_score": 1,
+  "fit_reasons": [
+    "Headquartered in Lyon, inside Europe."
+  ],
+  "why_now": [],
+  "rubric_used": {
+    "origin": "derived",
+    "criteria": [
+      {
+        "criterion": "Fit: sells software to hospital procurement teams",
+        "kind": "must_have",
+        "weight": 3,
+        "public_signal": true,
+        "result": "unknown"
+      },
+      {
+        "criterion": "Size: 100-1000 employees",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "unknown"
+      },
+      {
+        "criterion": "Geography: based in Europe",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "met"
+      },
+      {
+        "criterion": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true,
+        "result": "unknown"
+      },
+      {
+        "criterion": "Consultancy",
+        "kind": "exclusion",
+        "weight": 1,
+        "public_signal": true,
+        "result": "unknown"
+      }
+    ]
+  },
+  "dated_events": [],
+  "evidence": [
+    {
+      "claim": "The contact page gives a Lyon, France office address.",
+      "source_id": "S1"
+    }
+  ],
+  "confidence": "low",
+  "item_result": {
+    "item": {
+      "i": 2,
+      "item_key": "domain:quillmed.example",
+      "label": "Quillmed (quillmed.example)",
+      "query": "Quillmed quillmed.example hospital procurement software customers"
+    },
+    "item_key": "domain:quillmed.example",
+    "item_label": "Quillmed (quillmed.example)",
+    "status": "ok",
+    "verdict": "Research",
+    "score": 1,
+    "score_scale": "0-5",
+    "headline": "Headquartered in Lyon, inside Europe; what it sells and to whom is not stated.",
+    "source_ids": [
+      "S1"
+    ]
+  },
+  "report": {
+    "title": "Quillmed — ICP fit",
+    "summary": "Research, 1 of 5 on a rubric derived from the ICP (5 × 1 ÷ 7): only the region is confirmed. The score is low because the product, buyer, size and timing are unknown, not because anything contradicts the ICP, so it is Research, not Reject.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Fit",
+        "items": [
+          {
+            "text": "Headquartered in Lyon, inside Europe.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "met"
+          }
+        ]
+      },
+      {
+        "heading": "Unknown criteria",
+        "items": [
+          {
+            "text": "Fit: no source says what Quillmed sells or to whom.",
+            "citations": [],
+            "label": "unknown · must-have"
+          },
+          {
+            "text": "Size: no source states a headcount.",
+            "citations": [],
+            "label": "unknown"
+          },
+          {
+            "text": "Timing: no dated hiring, funding, launch or leadership event in the evidence.",
+            "citations": [],
+            "label": "unknown"
+          },
+          {
+            "text": "Consultancy: no source says how revenue is earned.",
+            "citations": [],
+            "label": "unknown · exclusion"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://quillmed.example/contact",
+        "title": "Contact Quillmed",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "The search returned the contact page only; the homepage extract failed (https://quillmed.example/, timeout)."
+    ],
+    "meta": {
+      "skill": "account-icp-qualification",
+      "skill_version": "1.4.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

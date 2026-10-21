@@ -1,7 +1,7 @@
 {
   "people": [
     {
-      "person_key": "name_company:priya-example@northwind-ledger",
+      "person_key": "name_company:priya-example@larkspur-ledger",
       "name": "Priya Example",
       "title": "Vice President, Marketing",
       "target_role": "VP Marketing",
@@ -10,13 +10,13 @@
       "months_ago": 0,
       "date_basis": "page_live",
       "freshness": "current",
-      "confidence": "high",
+      "confidence": "medium",
       "source_ids": [
         "S1"
       ]
     },
     {
-      "person_key": "name_company:sam-sample@northwind-ledger",
+      "person_key": "name_company:sam-sample@larkspur-ledger",
       "name": "Sam Sample",
       "title": "Chief Financial Officer",
       "target_role": "CFO",
@@ -33,7 +33,7 @@
       ]
     },
     {
-      "person_key": "name_company:lee-placeholder@northwind-ledger",
+      "person_key": "name_company:lee-placeholder@larkspur-ledger",
       "name": "Lee Placeholder",
       "title": "Head of Demand Generation",
       "target_role": "Head of Demand Generation",
@@ -77,11 +77,11 @@
   "coverage_score": 2,
   "item_result": {
     "item": {
-      "name": "Northwind Ledger",
-      "domain": "northwind-ledger.example"
+      "name": "Larkspur Ledger",
+      "domain": "larkspur-ledger.example"
     },
-    "item_key": "domain:northwind-ledger.example",
-    "item_label": "Northwind Ledger (northwind-ledger.example)",
+    "item_key": "domain:larkspur-ledger.example",
+    "item_label": "Larkspur Ledger (larkspur-ledger.example)",
     "status": "ok",
     "verdict": "Partial",
     "score": 2,
@@ -92,7 +92,7 @@
     ]
   },
   "report": {
-    "title": "Northwind Ledger: people in target roles",
+    "title": "Larkspur Ledger: people in target roles",
     "summary": "2 of 4 roles found: Priya Example (VP Marketing) and Sam Sample (CFO), both on the company's live team page. Head of Demand Generation is possibly stale (last seen June 2025); no Head of Revenue Operations was found.",
     "severity": "attention",
     "sections": [
@@ -100,11 +100,11 @@
         "heading": "Found",
         "items": [
           {
-            "text": "Priya Example, Vice President, Marketing (company team page, seen 2026-10-20).",
+            "text": "Priya Example, Vice President, Marketing (company team page, seen 2026-10-20; no dated source confirms the title).",
             "citations": [
               "S1"
             ],
-            "confidence": "high",
+            "confidence": "medium",
             "label": "VP Marketing"
           },
           {
@@ -136,7 +136,7 @@
         "heading": "Not found",
         "items": [
           {
-            "text": "Head of Revenue Operations: no source names a holder at Northwind Ledger.",
+            "text": "Head of Revenue Operations: no source names a holder at Larkspur Ledger.",
             "citations": []
           }
         ]
@@ -145,14 +145,14 @@
     "sources": [
       {
         "id": "S1",
-        "url": "https://northwind-ledger.example/about/team",
-        "title": "Our team | Northwind Ledger",
+        "url": "https://larkspur-ledger.example/about/team",
+        "title": "Our team | Larkspur Ledger",
         "provider": "firecrawl"
       },
       {
         "id": "S2",
-        "url": "https://news.example.com/2025/03/northwind-ledger-appoints-cfo",
-        "title": "Northwind Ledger appoints Sam Sample as CFO",
+        "url": "https://news.example.com/2025/03/larkspur-ledger-appoints-cfo",
+        "title": "Larkspur Ledger appoints Sam Sample as CFO",
         "published_at": "2025-03-04",
         "provider": "tavily"
       },
@@ -171,7 +171,7 @@
     ],
     "meta": {
       "skill": "person-role-finder",
-      "skill_version": "1.1.0",
+      "skill_version": "1.2.0",
       "generated_at": "2026-10-20T09:00:00Z"
     }
   }

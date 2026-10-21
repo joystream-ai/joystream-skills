@@ -11,7 +11,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -45,8 +45,8 @@ Input data holds only small values the agent passes in:
   `list-prepare`, `{i, item_key, label, query}`; `null` means the slot is empty. When
   given, take the name and company from `name` and `company` if present, else from the
   slot's `label` (`Jo Example (acme.example)`: the company is the part in brackets).
-- **now** (string, ISO 8601, optional): the current time, used only for `report.meta`.
-  If absent, use the run start time stated in your instructions; never guess one.
+- **now** (string, ISO 8601, optional): the current time, for `report.meta` and the
+  recency rule (step 8). If absent, use the run start time stated in your instructions; never guess one.
 
 The evidence is not an input field. It is the output of the steps this one depends on.
 
@@ -141,14 +141,27 @@ record has a public one, such as a company website):
    bio page, or `name_company_role`. `medium`: `name_company` or `name_role` on a
    third-party page. `low`: anything else that still passed the check. An API record
    (enrichment) is `medium` at most.
-5. **Topics.** From kept sources only, up to 6 professional topics the person writes or
+5. **Date the kept sources.** Each kept source's date is the date it states (article,
+   episode, talk or post date), else none; never a crawl or fetch date. Compute and write
+   `months_ago` = (year of `now` − year of the date) × 12 + (month of `now` − month of
+   the date), so `2024-11-20` is 23 months before a `now` in `2026-10`; do this for every
+   dated source, never estimate it.
+6. **Topics.** From kept sources only, up to 6 professional topics the person writes or
    speaks about, each citing the sources that show it (`pricing for usage-based SaaS`,
-   not `data`).
-6. **Stated views.** Up to 6 views the person stated themselves, in their own post,
+   not `data`). `published_at` = the newest date among its cited sources, with that
+   source's `months_ago`; both `null` when none is dated.
+7. **Stated views.** Up to 6 views the person stated themselves, in their own post,
    talk, interview or quote, as a short quote or close paraphrase that stays true to
-   the source, citing it. A view someone else attributes to them, or a view on politics,
-   religion, health or private life, is left out.
-7. **Verdict.** `match_score` 0 to 3: 3 when `profile_url` matched or two or more kept
+   the source, citing it, with that source's `published_at` and `months_ago`. A view
+   someone else attributes to them, or a view on politics, religion, health or private
+   life, is left out.
+8. **Recency.** People change jobs and minds. A topic or view whose `months_ago` is over
+   24 is left out and counted in `unknowns` (`Left out N topics or views older than 24
+   months.`); its source may still count for identity. Undated topics and views are kept
+   after the dated ones and say `undated` in their report item. Never call a topic or
+   view current or recent unless its `months_ago` says so. Without `now`, write
+   `months_ago: null` for all, apply no recency rule, and say so in `unknowns`.
+9. **Verdict.** `match_score` 0 to 3: 3 when `profile_url` matched or two or more kept
    sources are `high`; 2 with one `high` or two `medium`; 1 with only weaker matches;
    0 with none. `Match` for 2 or 3, `Uncertain` for 1, `No match` for 0.
 
@@ -157,10 +170,11 @@ record has a public one, such as a company website):
 Return the fields of `assets/output.schema.json` as your result:
 
 - `identity_matches[]`: `{source_id, match_basis, confidence}`, one per kept source.
-- `topics[]`: `{topic, source_ids[]}`.
-- `stated_views[]`: `{view, source_id}`.
+- `topics[]`: `{topic, source_ids[], published_at, months_ago}` (step 6).
+- `stated_views[]`: `{view, source_id, published_at, months_ago}` (step 7).
+  `published_at` is `YYYY-MM-DD` or `YYYY-MM` as the source states it, or `null`.
 - `rejected_count`: sources rejected by the identity check.
-- `verdict` and `match_score` (see step 7); omitted for a skipped slot.
+- `verdict` and `match_score` (see step 9); omitted for a skipped slot.
 - `item_result`: `item` = the input slot unchanged (standalone: `{name, company, role}`;
   `null` when skipped); `item_key` = the slot's `item_key` copied exactly, even when it
   holds an email (standalone: `profile_url:<profile_url>` when given, else
@@ -172,11 +186,12 @@ Return the fields of `assets/output.schema.json` as your result:
   behind it.
 - `report`: title `<name> (<company>): public profile`; summary = who they are
   professionally and what they focus on, in plain text; `severity: attention` for
-  `Uncertain`, else `info`; sections `Identity` (one item per kept source, `label` =
+  `Uncertain` and `No match` (the reader should not act on this profile as is), `info`
+  for `Match` and for a skipped slot; sections `Identity` (one item per kept source, `label` =
   its confidence), `Topics`, `Stated views`, each item citing its sources; only kept
   sources in `sources`; `unknowns` with `Rejected N sources about other people named
   <name>.` when N > 0 and each failed fetch; `meta` with
-  `skill: person-public-profile`, `skill_version: 1.0.0`, `generated_at` = `now`.
+  `skill: person-public-profile`, `skill_version: 1.1.0`, `generated_at` = `now`.
 
 A skipped slot returns empty lists, `rejected_count: 0`, the skipped `item_result`
 (headline `Empty slot.`, `source_ids: []`) and a report titled `Empty slot` with an
@@ -207,7 +222,7 @@ Many results share the name. Keep only those that pass step 3; a large
 
 ## No source passes the identity check
 `status: no_evidence`, verdict `No match`, `match_score: 0`, empty topics and views,
-and the rejected count in `unknowns`. Never build a profile from name-only matches.
+`severity: attention`, and the rejected count in `unknowns`. Never build a profile from name-only matches.
 
 ## The person changed jobs
 A source that ties the name to a former employer and the same role can be kept only

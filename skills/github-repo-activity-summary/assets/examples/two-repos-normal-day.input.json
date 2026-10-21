@@ -5,5 +5,108 @@
   ],
   "lookback_hours": 24,
   "trigger_type": "cron",
+  "prior_step_outputs": {
+    "merged-prs": {
+      "total_count": 5,
+      "items": [
+        {
+          "number": 212,
+          "title": "Refresh expired sessions silently",
+          "body": "Expired sessions now refresh in the background instead of logging people out.",
+          "html_url": "https://github.example.com/example-org/example-app/pull/212",
+          "user": {
+            "login": "dev-ana"
+          },
+          "state": "closed",
+          "created_at": "2026-10-13T10:00:00Z",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app",
+          "pull_request": {
+            "merged_at": "2026-10-14T13:10:00Z"
+          }
+        },
+        {
+          "number": 215,
+          "title": "Show IdP outage error on login",
+          "body": "When the identity provider is down, the login form shows a clear error instead of spinning.",
+          "html_url": "https://github.example.com/example-org/example-app/pull/215",
+          "user": {
+            "login": "dev-ben"
+          },
+          "state": "closed",
+          "created_at": "2026-10-14T09:30:00Z",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app",
+          "pull_request": {
+            "merged_at": "2026-10-14T15:45:00Z"
+          }
+        },
+        {
+          "number": 216,
+          "title": "chore(deps): bump the npm group",
+          "body": "Bumps 4 packages in the npm group.",
+          "html_url": "https://github.example.com/example-org/example-app/pull/216",
+          "user": {
+            "login": "dependabot[bot]"
+          },
+          "state": "closed",
+          "created_at": "2026-10-14T06:00:00Z",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app",
+          "pull_request": {
+            "merged_at": "2026-10-14T16:00:00Z"
+          }
+        },
+        {
+          "number": 217,
+          "title": "chore(deps): bump actions/checkout",
+          "body": "Bumps actions/checkout from 4.1.0 to 4.2.0.",
+          "html_url": "https://github.example.com/example-org/example-app/pull/217",
+          "user": {
+            "login": "dependabot[bot]"
+          },
+          "state": "closed",
+          "created_at": "2026-10-14T06:01:00Z",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app",
+          "pull_request": {
+            "merged_at": "2026-10-14T16:02:00Z"
+          }
+        },
+        {
+          "number": 218,
+          "title": "Stream CSV exports",
+          "body": "Large CSV exports now stream in chunks. A 50k-row export went from several minutes to a few seconds in testing.",
+          "html_url": "https://github.example.com/example-org/example-app/pull/218",
+          "user": {
+            "login": "dev-ana"
+          },
+          "state": "closed",
+          "created_at": "2026-10-12T15:00:00Z",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app",
+          "pull_request": {
+            "merged_at": "2026-10-14T18:20:00Z"
+          }
+        }
+      ]
+    },
+    "opened-prs": {
+      "total_count": 1,
+      "items": [
+        {
+          "number": 220,
+          "title": "Audit log per workspace",
+          "body": "Adds a per-workspace audit log of admin actions. Work in progress.",
+          "html_url": "https://github.example.com/example-org/example-app/pull/220",
+          "user": {
+            "login": "dev-cy"
+          },
+          "state": "open",
+          "created_at": "2026-10-14T20:05:00Z",
+          "repository_url": "https://api.github.example.com/repos/example-org/example-app",
+          "pull_request": {
+            "merged_at": null
+          }
+        }
+      ]
+    },
+    "commits": []
+  },
   "now": "2026-10-15T09:00:00Z"
 }

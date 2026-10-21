@@ -1,11 +1,58 @@
 {
   "verdict": "Research",
-  "fit_score": 3,
+  "fit_score": 2,
   "fit_reasons": [
     "B2B SaaS that sells shipment tracking to operations teams.",
     "Offices in Toronto, inside the target regions."
   ],
   "why_now": [],
+  "rubric_used": {
+    "origin": "derived",
+    "criteria": [
+      {
+        "criterion": "Fit: sells a B2B SaaS product to operations or finance teams",
+        "kind": "must_have",
+        "weight": 3,
+        "public_signal": true,
+        "result": "met"
+      },
+      {
+        "criterion": "Size: 50-500 employees",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "unknown"
+      },
+      {
+        "criterion": "Geography: based in Europe or North America",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "met"
+      },
+      {
+        "criterion": "Buyer: a VP or Head of Operations owns the purchase (team page or job post)",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true,
+        "result": "unknown"
+      },
+      {
+        "criterion": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true,
+        "result": "unknown"
+      },
+      {
+        "criterion": "Agency or consultancy",
+        "kind": "exclusion",
+        "weight": 1,
+        "public_signal": true,
+        "result": "unknown"
+      }
+    ]
+  },
   "evidence": [
     {
       "claim": "Sample Logistics sells a shipment-tracking subscription to operations teams at mid-size retailers.",
@@ -31,7 +78,7 @@
     "item_label": "Sample Logistics (example.org)",
     "status": "ok",
     "verdict": "Research",
-    "score": 3,
+    "score": 2,
     "score_scale": "0-5",
     "headline": "B2B SaaS that sells shipment tracking to operations teams.",
     "source_ids": [
@@ -40,7 +87,7 @@
   },
   "report": {
     "title": "Sample Logistics — ICP fit",
-    "summary": "Research, 3 of 5: a B2B SaaS selling shipment tracking to operations teams from Toronto, but no source states its headcount or who buys it.",
+    "summary": "Research, 2 of 5 on a rubric derived from the ICP (5 × 4 ÷ 9): a B2B SaaS selling shipment tracking to operations teams from Toronto, but no source states its headcount, its buyer or a recent event.",
     "severity": "info",
     "sections": [
       {
@@ -76,6 +123,11 @@
             "text": "Buyer: no source says whether a VP or Head of Operations buys it.",
             "citations": [],
             "label": "unknown"
+          },
+          {
+            "text": "Timing: no dated hiring, funding, launch or leadership event in the evidence.",
+            "citations": [],
+            "label": "unknown"
           }
         ]
       }
@@ -100,7 +152,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.3.0",
+      "skill_version": "1.4.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

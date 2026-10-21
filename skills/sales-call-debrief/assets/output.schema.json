@@ -21,12 +21,12 @@
         "minLength": 1,
         "maxLength": 200
       },
-      "description": "Three to five skimmable bullets; each restates a pain, objection or next step."
+      "description": "Three to five skimmable bullets (fewer only when the call has fewer than three pains, objections and next steps); each restates a pain, objection or next step."
     },
     "summary": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 900,
+      "maxLength": 600,
       "description": "At most five sentences; no fact absent from the transcript."
     },
     "pains": {

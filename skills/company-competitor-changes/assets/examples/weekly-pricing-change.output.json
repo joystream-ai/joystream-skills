@@ -19,7 +19,7 @@
       "date_basis": "published",
       "category": "launch",
       "what_changed": "Sample Automate launched Agent Studio, a chat interface for building agents, in public beta.",
-      "so_what": "Chat-built agents were our clearest difference; expect prospects to ask how we compare, so publish a side-by-side on time-to-first-agent.",
+      "so_what": "It overlaps chat-built agents, our clearest difference; prospects comparing the two need a side-by-side on time-to-first-agent.",
       "impact": "threat",
       "importance": "high",
       "source_id": "S2"
@@ -30,7 +30,7 @@
       "date_basis": "published",
       "category": "customer",
       "what_changed": "Sample Automate published a case study with Example Payroll, a 120-person B2B startup, on automating lead routing.",
-      "so_what": "They are winning our exact segment with lead routing; check whether lead routing is in our template gallery.",
+      "so_what": "The customer is in our segment and the use case is lead routing; check whether lead routing is in our template gallery.",
       "impact": "watch",
       "importance": "medium",
       "source_id": "S3"
@@ -132,7 +132,7 @@
   ],
   "report": {
     "title": "Sample Automate: what changed, last 7 days",
-    "summary": "Major: Sample Automate moved its Team plan to per-seat pricing (49 USD per seat, was 299 USD flat), which makes our flat price cheaper for most teams, and launched Agent Studio, a chat agent builder that targets our main difference.",
+    "summary": "Major: Sample Automate moved its Team plan to per-seat pricing (49 USD per seat, was 299 USD flat), which makes our flat price cheaper for most teams, and launched Agent Studio, a chat agent builder that overlaps our main difference.",
     "severity": "attention",
     "sections": [
       {
@@ -147,7 +147,7 @@
             "confidence": "medium"
           },
           {
-            "text": "2026-10-15: Sample Automate launched Agent Studio, a chat interface for building agents, in public beta. So what: chat-built agents were our clearest difference; publish a side-by-side on time-to-first-agent.",
+            "text": "2026-10-15: Sample Automate launched Agent Studio, a chat interface for building agents, in public beta. So what: it overlaps chat-built agents, our clearest difference; publish a side-by-side on time-to-first-agent.",
             "citations": [
               "S2"
             ],
@@ -155,7 +155,7 @@
             "confidence": "high"
           },
           {
-            "text": "2026-10-14: Case study with Example Payroll, a 120-person B2B startup, on automating lead routing. So what: they are winning our segment with lead routing; check our template gallery.",
+            "text": "2026-10-14: Case study with Example Payroll, a 120-person B2B startup, on automating lead routing. So what: a customer in our segment on lead routing; check our template gallery.",
             "citations": [
               "S3"
             ],
@@ -203,12 +203,12 @@
       "Dropped 1 undated item.",
       "Dropped 2 items outside the 7-day window.",
       "Dropped 1 generic item.",
-      "Dropped 3 items not relevant to our positioning (minor changelog fixes).",
+      "Dropped 3 items not relevant to our positioning (changelog bug fixes and minor tweaks).",
       "Dropped 1 item already reported on 2026-10-12."
     ],
     "meta": {
       "skill": "company-competitor-changes",
-      "skill_version": "1.1.1",
+      "skill_version": "1.1.2",
       "generated_at": "2026-10-19T08:00:00Z"
     }
   }

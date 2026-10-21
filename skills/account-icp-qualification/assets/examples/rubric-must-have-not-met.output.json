@@ -9,6 +9,39 @@
   "why_now": [
     "Raised a $30M Series B on 2026-09-18."
   ],
+  "rubric_used": {
+    "origin": "given",
+    "criteria": [
+      {
+        "criterion": "Sells to finance teams",
+        "kind": "must_have",
+        "weight": 3,
+        "public_signal": true,
+        "result": "not_met"
+      },
+      {
+        "criterion": "50-500 employees",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": false,
+        "result": "met"
+      },
+      {
+        "criterion": "Headquartered in Europe or North America",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "met"
+      },
+      {
+        "criterion": "Agency or consultancy",
+        "kind": "exclusion",
+        "weight": 1,
+        "public_signal": true,
+        "result": "unknown"
+      }
+    ]
+  },
   "evidence": [
     {
       "claim": "Example Analytics sells a usage-analytics product to operations teams at software companies.",
@@ -125,7 +158,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.3.0",
+      "skill_version": "1.4.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

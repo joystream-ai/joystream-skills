@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.2.0"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -207,10 +207,12 @@ record's evidence date. Contact fields: `email`, `work_email`, `email_status`,
    `months_ago` > `stale_after_months`; `undated` (and `months_ago: null`) when there is
    no date or no `now`. Never call a title current, recent or new unless its
    `months_ago` says so.
-8. **Confidence.** `high`: `current`, and the company's own page or press release names
-   them in the role, or two independent sources agree. `medium`: `current` from one
-   third-party source (speaker list, podcast, news) or one record. `low`:
-   `possibly_stale`, `undated` or `adjacent`. A record alone is `medium` at most.
+8. **Confidence.** `high`: `current`, and a **dated** source (`published` or `event`:
+   the company's own press release, a news item, a speaker list) names them in the role,
+   alone or agreeing with the live team page or another source. A live team page alone
+   (`page_live` and no dated source agreeing) is `medium` at most: a team page can lag a
+   departure for months. `medium`: `current` from one source of any kind, or one record.
+   `low`: `possibly_stale`, `undated` or `adjacent`. A record alone is `medium` at most.
 9. **Choose per role.** Up to `max_people_per_role`, ordered `exact` > `synonym` >
    `adjacent`, then `current` > `undated` > `possibly_stale`, then confidence, then newest.
    One person may fill two roles (a `CMO` asked for as `CMO` and `Head of Marketing`).
@@ -272,7 +274,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `severity: info` for `Found`, else `attention`. `sources` = only sources cited by kept
   or excluded people; `unknowns` with `Rejected N candidates (same name at another
   company, or no company link).` when N > 0, each failed fetch, and missing roles' reasons
-  when known; `meta` `{skill: "person-role-finder", skill_version: "1.1.0",
+  when known; `meta` `{skill: "person-role-finder", skill_version: "1.2.0",
   generated_at: <now>}`.
 
 A skipped slot returns empty lists, `rejected_count: 0`, `contacts: []`, the skipped
@@ -302,9 +304,12 @@ A skipped slot returns empty lists, `rejected_count: 0`, `contacts: []`, the ski
 The team page (live) still lists Jo as VP Sales, but a press release dated after it
 names a new VP Sales, or a news item says Jo joined another company: exclude Jo
 (`superseded` or `left_company`), and keep the new holder. If only the live team page
-says Jo is there, and a dated third-party page says Jo left, the newer dated source wins
-only when its date is later than the page's own last-updated date; otherwise
-`ambiguous`.
+says Jo is there, and a dated third-party page says Jo left: the `page_live` date (`now`)
+never counts here, because a live page only shows what was last published. Use the
+page's own stated last-updated date. The dated departure wins (exclude Jo) when it is
+later than that date, or when the page states no last-updated date; when the page's
+last-updated date is later, Jo stays as a holder with `confidence: low` and the
+conflict in `unknowns`; the same month on both is `ambiguous`.
 
 ## Same-name person
 A podcast features `Jo Example, VP Marketing at Other Co`. Different employer, no link

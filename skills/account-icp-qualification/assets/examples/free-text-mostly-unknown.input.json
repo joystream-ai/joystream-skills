@@ -1,0 +1,10 @@
+{
+  "icp": "B2B software companies with 100-1000 employees that sell to hospital procurement teams in Europe. Exclude consultancies.",
+  "item": {
+    "i": 2,
+    "item_key": "domain:quillmed.example",
+    "label": "Quillmed (quillmed.example)",
+    "query": "Quillmed quillmed.example hospital procurement software customers"
+  },
+  "now": "2026-10-12T09:00:00Z"
+}

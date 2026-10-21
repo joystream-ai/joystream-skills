@@ -3,6 +3,7 @@
     {
       "rank": 1,
       "item_label": "Orbit Ledger (orbit.example)",
+      "item_key": "domain:orbit.example",
       "status": "ok",
       "verdict": "Major",
       "score": 13,
@@ -76,7 +77,7 @@
     "unknowns": [],
     "meta": {
       "skill": "results-rank",
-      "skill_version": "1.3.1",
+      "skill_version": "1.4.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }
