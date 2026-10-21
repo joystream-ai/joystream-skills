@@ -1,0 +1,20 @@
+{
+  "saved": false,
+  "format": "csv",
+  "error": "invalid_csv",
+  "report": {
+    "title": "File not saved",
+    "summary": "accounts.csv was not saved: the table's rows have different column counts. Nothing was changed in the run's files.",
+    "severity": "attention",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "rows have different column counts: [2, 3]"
+    ],
+    "meta": {
+      "skill": "content-file-save",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-20T23:40:04Z"
+    }
+  }
+}
