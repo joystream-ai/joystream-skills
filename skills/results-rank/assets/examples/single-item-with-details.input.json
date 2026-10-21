@@ -1,0 +1,142 @@
+{
+  "top_n": 5,
+  "item_kind": "competitor",
+  "rank_by": [
+    {
+      "field": "verdict",
+      "order": [
+        "Major",
+        "Minor",
+        "Quiet",
+        "Unknown"
+      ]
+    },
+    {
+      "field": "score",
+      "direction": "desc"
+    }
+  ],
+  "title": "Competitor changes",
+  "item_details": 3,
+  "show_score": false,
+  "now": "2026-10-12T09:00:00Z",
+  "branches": {
+    "branches": [
+      {
+        "item": {
+          "index": 0,
+          "item": {
+            "name": "Orbit Ledger",
+            "domain": "orbit.example",
+            "pages": [
+              "https://orbit.example/pricing"
+            ]
+          },
+          "item_key": "domain:orbit.example",
+          "query": "Orbit Ledger orbit.example pricing, launch, release"
+        },
+        "outputs": {
+          "changes": {
+            "item_result": {
+              "item": {
+                "index": 0,
+                "item": {
+                  "name": "Orbit Ledger",
+                  "domain": "orbit.example",
+                  "pages": [
+                    "https://orbit.example/pricing"
+                  ]
+                },
+                "item_key": "domain:orbit.example",
+                "query": "Orbit Ledger orbit.example pricing, launch, release"
+              },
+              "item_key": "domain:orbit.example",
+              "item_label": "Orbit Ledger (orbit.example)",
+              "status": "ok",
+              "verdict": "Major",
+              "score": 13,
+              "score_scale": "0-45",
+              "headline": "Added a usage-based plan and launched an approvals module for finance teams.",
+              "source_ids": [
+                "S1",
+                "S2",
+                "S3"
+              ]
+            },
+            "report": {
+              "title": "Orbit Ledger: what changed, last 7 days",
+              "summary": "Major: Orbit Ledger added a usage-based plan and launched an approvals module aimed at finance teams.",
+              "severity": "attention",
+              "sections": [
+                {
+                  "heading": "What changed",
+                  "items": [
+                    {
+                      "text": "2026-10-12 (observed): pricing page adds a usage-based Growth plan from $400/month. So what: undercuts our entry price for small teams.",
+                      "citations": [
+                        "S1"
+                      ],
+                      "label": "pricing"
+                    },
+                    {
+                      "text": "2026-10-09: launched an approvals module for finance teams. So what: overlaps our approval flows; check feature depth.",
+                      "citations": [
+                        "S2"
+                      ],
+                      "label": "launch"
+                    },
+                    {
+                      "text": "2026-10-07: hired a VP Partnerships from a payments company. So what: watch for new channel partners.",
+                      "citations": [
+                        "S3"
+                      ],
+                      "label": "leadership"
+                    }
+                  ]
+                },
+                {
+                  "heading": "Tracked pages",
+                  "items": [
+                    {
+                      "text": "pricing: changed",
+                      "citations": [
+                        "S1"
+                      ],
+                      "label": "pricing"
+                    }
+                  ]
+                }
+              ],
+              "sources": [
+                {
+                  "id": "S1",
+                  "url": "https://orbit.example/pricing",
+                  "title": "Orbit Ledger pricing",
+                  "provider": "tavily"
+                },
+                {
+                  "id": "S2",
+                  "url": "https://news.example.com/orbit-approvals",
+                  "title": "Orbit Ledger launches approvals",
+                  "published_at": "2026-10-09",
+                  "provider": "tavily"
+                },
+                {
+                  "id": "S3",
+                  "url": "https://news.example.com/orbit-vp-partnerships",
+                  "title": "Orbit Ledger names VP Partnerships",
+                  "published_at": "2026-10-07",
+                  "provider": "tavily"
+                }
+              ],
+              "unknowns": []
+            }
+          }
+        },
+        "status": "ok"
+      }
+    ],
+    "cut": [],
+    "cut_count": 0
+  }
+}
