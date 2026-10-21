@@ -35,6 +35,7 @@
         "additionalProperties": false,
         "required": [
           "date",
+          "days_ago",
           "date_basis",
           "category",
           "what_changed",
@@ -48,6 +49,11 @@
             "type": "string",
             "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$",
             "description": "YYYY-MM-DD inside [now - lookback_days, now]."
+          },
+          "days_ago": {
+            "type": "integer",
+            "minimum": 0,
+            "description": "Calendar days from date to now's date, computed (step 5); at most lookback_days."
           },
           "date_basis": {
             "type": "string",

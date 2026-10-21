@@ -1,0 +1,76 @@
+{
+  "triggers": [],
+  "verdict": "Quiet",
+  "trigger_count": 0,
+  "dropped": {
+    "undated": 0,
+    "out_of_window": 0,
+    "generic": 1,
+    "other_entity": 0,
+    "already_reported": 2
+  },
+  "item_result": {
+    "item": {
+      "index": 2,
+      "item": {
+        "name": "Harborline Freight",
+        "domain": "harborline.example"
+      },
+      "item_key": "domain:harborline.example",
+      "query": "Harborline Freight harborline.example funding, acquisition, launch, appoints, partnership",
+      "queries": [
+        "Harborline Freight hiring"
+      ]
+    },
+    "item_key": "domain:harborline.example",
+    "item_label": "Harborline Freight (harborline.example)",
+    "status": "ok",
+    "verdict": "Quiet",
+    "score": 0,
+    "score_scale": "0-10",
+    "headline": "Nothing new since 2026-10-19.",
+    "source_ids": []
+  },
+  "report": {
+    "title": "Harborline Freight: trigger events, last 30 days",
+    "summary": "Quiet: nothing new since 2026-10-19.",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "Dropped 2 events already reported on 2026-10-19.",
+      "Dropped 1 generic item."
+    ],
+    "meta": {
+      "skill": "account-trigger-events",
+      "skill_version": "1.2.0",
+      "generated_at": "2026-10-20T07:00:00Z"
+    }
+  },
+  "state_out": {
+    "entries": [
+      {
+        "item_key": "domain:harborline.example",
+        "fingerprint": "https://harborline.example/news/jo-example-joins-as-coo https://news.example.net/harborline-series-b",
+        "observed_at": "2026-10-20T07:00:00Z",
+        "data": {
+          "reported": [
+            {
+              "d": "2026-10-14",
+              "c": "leadership",
+              "s": "new-coo-jo-example",
+              "u": "https://harborline.example/news/jo-example-joins-as-coo"
+            },
+            {
+              "d": "2026-10-02",
+              "c": "funding",
+              "s": "series-b-raise",
+              "u": "https://news.example.net/harborline-series-b"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "state_sheet_values": null
+}

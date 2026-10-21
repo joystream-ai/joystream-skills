@@ -1,0 +1,35 @@
+{
+  "period": {
+    "from": "2026-10-14",
+    "to": "2026-10-21",
+    "posts": 0
+  },
+  "baseline": {
+    "posts": 0,
+    "median": null
+  },
+  "posts": [],
+  "top": [],
+  "bottom": [],
+  "patterns": [],
+  "recommendations": [],
+  "trend": {
+    "direction": "unknown",
+    "note": "No posts in the store yet."
+  },
+  "report": {
+    "title": "Content performance: 2026-10-14–2026-10-21",
+    "summary": "No post metrics to review yet.",
+    "severity": "attention",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "The metrics store returned only a header row; add a row per post and capture to start the review."
+    ],
+    "meta": {
+      "skill": "content-performance-review",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-21T09:00:00Z"
+    }
+  }
+}

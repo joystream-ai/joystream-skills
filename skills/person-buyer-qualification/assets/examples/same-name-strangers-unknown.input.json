@@ -1,0 +1,14 @@
+{
+  "item": {
+    "i": 1,
+    "item_key": "name_company:alex-placeholder@example-analytics",
+    "label": "Alex Placeholder (Example Analytics)",
+    "query": "\"Alex Placeholder\" Example Analytics"
+  },
+  "problem": "Data pipelines break silently; usually owned by the head of data engineering.",
+  "owner_roles": [
+    "Head of Data Engineering",
+    "VP Data"
+  ],
+  "now": "2026-10-12T09:00:00Z"
+}

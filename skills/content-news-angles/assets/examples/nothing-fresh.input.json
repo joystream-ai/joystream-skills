@@ -1,0 +1,9 @@
+{
+  "point_of_view": "I run a small operations team and write about how teams work.\n- Four-day weeks work when teams cut meetings first, not hours.\n- Most data-retention rules are cheaper to follow than to fight: delete what you do not need.\n- Tools should earn their seat: if a new tool does not remove a meeting or a spreadsheet, it is overhead.",
+  "topics": [
+    "data retention rules"
+  ],
+  "max_angles": 2,
+  "freshness_hours": 24,
+  "now": "2026-10-21T08:00:00Z"
+}

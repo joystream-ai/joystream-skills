@@ -1,0 +1,12 @@
+{
+  "targets": [
+    {
+      "company": "Example Analytics",
+      "domain": "exampleanalytics.example"
+    }
+  ],
+  "own_domains": [
+    "yourcompany.example"
+  ],
+  "now": "2026-10-12T09:00:00Z"
+}

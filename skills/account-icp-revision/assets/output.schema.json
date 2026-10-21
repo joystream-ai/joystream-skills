@@ -1,0 +1,423 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "current",
+    "proposal",
+    "evidence_summary",
+    "sheet_values",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "current": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "required": [
+        "version",
+        "effective_at",
+        "icp_text"
+      ],
+      "additionalProperties": false,
+      "description": "The newest active ICP row; null when there is none.",
+      "properties": {
+        "version": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "effective_at": {
+          "type": "string",
+          "maxLength": 40
+        },
+        "icp_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 6000
+        }
+      }
+    },
+    "proposal": {
+      "type": "object",
+      "required": [
+        "change_type",
+        "proposed_version",
+        "proposed_icp_text",
+        "changes",
+        "rationale"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "change_type": {
+          "type": "string",
+          "enum": [
+            "revise",
+            "none"
+          ]
+        },
+        "proposed_version": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 40
+        },
+        "proposed_icp_text": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "maxLength": 6000
+        },
+        "changes": {
+          "type": "array",
+          "maxItems": 5,
+          "items": {
+            "type": "object",
+            "required": [
+              "kind",
+              "criterion",
+              "from",
+              "to",
+              "evidence",
+              "source_ids",
+              "confidence"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "add",
+                  "remove",
+                  "tighten",
+                  "loosen",
+                  "reweight"
+                ]
+              },
+              "criterion": {
+                "type": "string",
+                "enum": [
+                  "industry",
+                  "size",
+                  "buyer",
+                  "geography",
+                  "business_model",
+                  "signals",
+                  "exclusions"
+                ]
+              },
+              "from": {
+                "type": "string",
+                "maxLength": 400,
+                "description": "Current wording; empty for an add."
+              },
+              "to": {
+                "type": "string",
+                "maxLength": 400,
+                "description": "Proposed wording; empty for a remove."
+              },
+              "evidence": {
+                "type": "object",
+                "required": [
+                  "accepted",
+                  "rejected",
+                  "insight_rows",
+                  "messages"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "accepted": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "rejected": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "insight_rows": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "messages": {
+                    "type": "integer",
+                    "minimum": 0
+                  }
+                }
+              },
+              "source_ids": {
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^S[0-9]+$"
+                },
+                "minItems": 1
+              },
+              "confidence": {
+                "type": "string",
+                "enum": [
+                  "high",
+                  "medium"
+                ]
+              }
+            }
+          }
+        },
+        "rationale": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 600
+        }
+      }
+    },
+    "evidence_summary": {
+      "type": "object",
+      "required": [
+        "outcomes_decided",
+        "accepted",
+        "rejected",
+        "undecided",
+        "insight_rows",
+        "messages"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "outcomes_decided": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "accepted": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "undecided": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "insight_rows": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "messages": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "sheet_values": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "minItems": 5,
+        "maxItems": 5
+      },
+      "description": "One row for the approval-gated write: version, status (active), effective_at (YYYY-MM-DD), icp_text, rationale. null when no change is proposed."
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft — not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    }
+  }
+}

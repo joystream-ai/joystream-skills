@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "platform": "linkedin",
+      "approved_text": "We cut our weekly reporting from four hours to twenty minutes.\n\nThe trick was not a new tool. It was deciding which three numbers the team actually reads, and dropping the other nineteen.\n\nWhat would you drop first?"
+    },
+    {
+      "platform": "x",
+      "approved_text": "We cut weekly reporting from 4 hours to 20 minutes by deciding which 3 numbers the team reads and dropping the rest. Write-up: https://blog.example.com/three-numbers"
+    }
+  ],
+  "now": "2026-10-21T15:04:00Z"
+}

@@ -1,6 +1,9 @@
 {
   "name": "joystream-skills",
-  "owner": { "name": "JoyStream", "url": "https://joystream.ai" },
+  "owner": {
+    "name": "JoyStream",
+    "url": "https://joystream.ai"
+  },
   "plugins": [
     {
       "name": "github-reports",
@@ -48,8 +51,19 @@
       ]
     },
     {
+      "name": "content-operations",
+      "description": "Around the drafts: pick timely news where the author has a point of view, plan next week's content from performance, market and customer input, record what an approved post published, and review what worked over time. Judgments only; nothing is posted.",
+      "source": "./",
+      "skills": [
+        "./skills/content-news-angles",
+        "./skills/content-editorial-plan",
+        "./skills/content-publish-receipt",
+        "./skills/content-performance-review"
+      ]
+    },
+    {
       "name": "gtm-research",
-      "description": "Go-to-market research judgments over evidence the agent already fetched: account discovery, lookalikes of your best customers, ICP qualification, pre-call briefs, company profiles, trigger events, who holds a role, and public profiles of people, each cited or marked unknown.",
+      "description": "Go-to-market research judgments over evidence the agent already fetched: account discovery, lookalikes of your best customers, ICP qualification, pre-call briefs, company profiles, trigger events (with no repeats between runs), who holds a role, public profiles of people, whether a person owns the problem you solve, warm paths through your own network, and ICP revisions proposed from real outcomes for a person to approve, each cited or marked unknown.",
       "source": "./",
       "skills": [
         "./skills/account-icp-qualification",
@@ -59,7 +73,10 @@
         "./skills/person-public-profile",
         "./skills/account-discovery-candidates",
         "./skills/account-lookalike-profile",
-        "./skills/person-role-finder"
+        "./skills/person-role-finder",
+        "./skills/person-buyer-qualification",
+        "./skills/person-warm-paths",
+        "./skills/account-icp-revision"
       ]
     },
     {
@@ -68,6 +85,15 @@
       "source": "./",
       "skills": [
         "./skills/company-competitor-changes"
+      ]
+    },
+    {
+      "name": "weekly-intelligence",
+      "description": "Weekly reads across what other agents and teams posted: a product report that links customer pains, competitor moves and shipped work, and one brief for a leader from many channels.",
+      "source": "./",
+      "skills": [
+        "./skills/product-weekly-intelligence",
+        "./skills/team-weekly-brief"
       ]
     },
     {

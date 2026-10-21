@@ -19,20 +19,60 @@
         "object",
         "null"
       ],
+      "description": "The one company bound to this branch: a list-prepare slot {i, item_key, label, query} (fixed branches), a list-prepare accepted entry {index, item: {name, domain, ...}, item_key, query, queries?} (a for_each branch; the company is item.item), or a plain {name, domain?}. item_key is always top-level and copied unchanged into item_result.item_key. null = empty slot.",
       "additionalProperties": true,
-      "description": "In a fan-out agent: this branch's list-prepare slot {i, item_key, label, query}. null = empty slot.",
       "properties": {
-        "i": {
-          "type": "integer"
+        "name": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "domain": {
+          "type": "string",
+          "maxLength": 253
         },
         "item_key": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 200,
+          "description": "The stable identity key list-prepare gave this item; copied unchanged into item_result.item_key."
         },
         "label": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 120
+        },
+        "i": {
+          "type": "integer",
+          "minimum": 0
         },
         "query": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 300
+        },
+        "index": {
+          "type": "integer",
+          "minimum": 0,
+          "description": "The accepted entry's slot index (for_each item)."
+        },
+        "item": {
+          "type": "object",
+          "additionalProperties": true,
+          "description": "In a list-prepare accepted entry: the company record as given, e.g. {name, domain}.",
+          "properties": {
+            "name": {
+              "type": "string",
+              "maxLength": 200
+            },
+            "domain": {
+              "type": "string",
+              "maxLength": 253
+            }
+          }
+        },
+        "queries": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Per-term queries of an accepted entry (list-prepare query_terms)."
         }
       }
     },
@@ -76,6 +116,11 @@
           }
         }
       }
+    },
+    "track_state": {
+      "type": "boolean",
+      "default": false,
+      "description": "true for a scheduled watch: compare with the previous run's saved state (from a state read step), leave out events already reported, and return state_out and state_sheet_values."
     }
   }
 }

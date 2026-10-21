@@ -1,0 +1,240 @@
+{
+  "pains": [
+    {
+      "theme": "Manual ticket triage",
+      "calls_in_window": 2,
+      "calls_in_trend": 5,
+      "example_quote": "Every morning someone spends the first hour just tagging and assigning what came in overnight.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "theme": "No SLA visibility",
+      "calls_in_window": 1,
+      "calls_in_trend": 4,
+      "example_quote": "We only find out we missed a response target when the customer complains.",
+      "source_ids": [
+        "S3"
+      ]
+    },
+    {
+      "theme": "Slow search across old tickets",
+      "calls_in_window": 0,
+      "calls_in_trend": 3,
+      "example_quote": "Finding a ticket from last year takes minutes, so people just ask the team in chat.",
+      "source_ids": [
+        "S4"
+      ]
+    }
+  ],
+  "competitor_moves": [
+    {
+      "competitor": "Quillfield Desk",
+      "what_changed": "Launched SLA breach dashboards with alerts before a response target is missed.",
+      "date": "2026-10-14",
+      "source_ids": [
+        "S5"
+      ]
+    },
+    {
+      "competitor": "Harborline Support",
+      "what_changed": "Raised its Pro plan price from $29 to $35 per agent per month.",
+      "date": "2026-10-13",
+      "source_ids": [
+        "S5"
+      ]
+    }
+  ],
+  "shipped": [
+    {
+      "title": "v3.8.0",
+      "kind": "release",
+      "date": "2026-10-16",
+      "url": "https://git.example.com/example-org/example-desk/releases/tag/v3.8.0",
+      "source_ids": [
+        "S7"
+      ]
+    },
+    {
+      "title": "Auto-route new tickets by topic and language",
+      "kind": "pr",
+      "date": "2026-10-15",
+      "url": "https://git.example.com/example-org/example-desk/pull/412",
+      "source_ids": [
+        "S6"
+      ]
+    }
+  ],
+  "links": [
+    {
+      "pain_theme": "Manual ticket triage",
+      "status": "addressed",
+      "shipped_refs": [
+        "S6",
+        "S7"
+      ],
+      "competitor_refs": [],
+      "reason": "The pull request routes and assigns new tickets automatically by topic and language, the hand-tagging customers described; v3.8.0 ships it.",
+      "confidence": "high"
+    },
+    {
+      "pain_theme": "No SLA visibility",
+      "status": "competitor_moved",
+      "shipped_refs": [],
+      "competitor_refs": [
+        "S5"
+      ],
+      "reason": "Nothing shipped this week touches response targets, and Quillfield Desk launched SLA breach dashboards with early alerts.",
+      "confidence": "high"
+    },
+    {
+      "pain_theme": "Slow search across old tickets",
+      "status": "gap",
+      "shipped_refs": [],
+      "competitor_refs": [],
+      "reason": "No shipped work or competitor move this week mentions search.",
+      "confidence": "high"
+    }
+  ],
+  "report": {
+    "title": "Product intelligence: 2026-10-12–2026-10-19",
+    "summary": "Manual ticket triage, the top pain this week, was addressed by auto-routing in v3.8.0. Quillfield Desk launched SLA breach dashboards while we shipped nothing on SLA visibility. Slow search remains an open gap from 3 calls.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Top pains",
+        "items": [
+          {
+            "text": "Manual ticket triage: 2 calls this week, 5 in 90 days. \"Every morning someone spends the first hour just tagging and assigning what came in overnight.\"",
+            "citations": [
+              "S1",
+              "S2"
+            ]
+          },
+          {
+            "text": "No SLA visibility: 1 call this week, 4 in 90 days. \"We only find out we missed a response target when the customer complains.\"",
+            "citations": [
+              "S3"
+            ]
+          },
+          {
+            "text": "Slow search across old tickets: 0 calls this week, 3 in 90 days. \"Finding a ticket from last year takes minutes, so people just ask the team in chat.\"",
+            "citations": [
+              "S4"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "What shipped against them",
+        "items": [
+          {
+            "text": "Manual ticket triage: addressed. The pull request routes and assigns new tickets automatically by topic and language, the hand-tagging customers described; v3.8.0 ships it.",
+            "citations": [
+              "S6",
+              "S7",
+              "S1",
+              "S2"
+            ],
+            "label": "addressed",
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Competitor moves",
+        "items": [
+          {
+            "text": "Quillfield Desk: Launched SLA breach dashboards with alerts before a response target is missed.",
+            "citations": [
+              "S5"
+            ]
+          },
+          {
+            "text": "Harborline Support: Raised its Pro plan price from $29 to $35 per agent per month.",
+            "citations": [
+              "S5"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Gaps",
+        "items": [
+          {
+            "text": "No SLA visibility: competitor_moved. Nothing shipped this week touches response targets, and Quillfield Desk launched SLA breach dashboards with early alerts.",
+            "citations": [
+              "S5",
+              "S3"
+            ],
+            "label": "competitor_moved",
+            "confidence": "high"
+          },
+          {
+            "text": "Slow search across old tickets: gap. No shipped work or competitor move this week mentions search.",
+            "citations": [
+              "S4"
+            ],
+            "label": "gap",
+            "confidence": "high"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "googlesheets:row/15",
+        "title": "Insight: Manual ticket triage",
+        "published_at": "2026-10-16"
+      },
+      {
+        "id": "S2",
+        "record_ref": "googlesheets:row/13",
+        "title": "Insight: Manual ticket triage",
+        "published_at": "2026-10-13"
+      },
+      {
+        "id": "S3",
+        "record_ref": "googlesheets:row/14",
+        "title": "Insight: No SLA visibility",
+        "published_at": "2026-10-14"
+      },
+      {
+        "id": "S4",
+        "record_ref": "googlesheets:row/9",
+        "title": "Insight: Slow search across old tickets",
+        "published_at": "2026-09-22"
+      },
+      {
+        "id": "S5",
+        "record_ref": "slack:message/1792141200.000200",
+        "title": "Competitor digest"
+      },
+      {
+        "id": "S6",
+        "url": "https://git.example.com/example-org/example-desk/pull/412",
+        "title": "Auto-route new tickets by topic and language",
+        "published_at": "2026-10-15",
+        "provider": "github"
+      },
+      {
+        "id": "S7",
+        "url": "https://git.example.com/example-org/example-desk/releases/tag/v3.8.0",
+        "title": "v3.8.0",
+        "published_at": "2026-10-16",
+        "provider": "github"
+      }
+    ],
+    "unknowns": [
+      "Skipped 3 dependency, CI or chore changes."
+    ],
+    "meta": {
+      "skill": "product-weekly-intelligence",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-19T08:00:00Z"
+    }
+  }
+}

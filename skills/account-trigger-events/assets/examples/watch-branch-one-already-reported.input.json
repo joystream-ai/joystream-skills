@@ -1,0 +1,12 @@
+{
+  "item": {
+    "i": 2,
+    "item_key": "domain:harborline.example",
+    "label": "Harborline Freight (harborline.example)",
+    "query": "Harborline Freight harborline.example funding hiring launch leadership"
+  },
+  "lookback_days": 30,
+  "track_state": true,
+  "context": "We sell workflow automation to operations teams.",
+  "now": "2026-10-19T07:00:00Z"
+}

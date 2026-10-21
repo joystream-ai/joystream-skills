@@ -42,6 +42,40 @@
       },
       "description": "Dated timing signals, newest first; each restates a cited evidence claim."
     },
+    "dated_events": {
+      "type": "array",
+      "maxItems": 10,
+      "description": "Every dated event considered for timing, newest first, with months_ago computed from now (step 4). Timing criteria and why_now use only these.",
+      "items": {
+        "type": "object",
+        "required": [
+          "event",
+          "date",
+          "months_ago",
+          "source_id"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "event": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "date": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}(-[0-9]{2})?$"
+          },
+          "months_ago": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^S[0-9]+$"
+          }
+        }
+      }
+    },
     "evidence": {
       "type": "array",
       "maxItems": 15,

@@ -1,0 +1,57 @@
+{
+  "current": {
+    "version": "v3",
+    "effective_at": "2026-07-01",
+    "icp_text": "Industry: B2B software companies.\nSize: 20-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies."
+  },
+  "proposal": {
+    "change_type": "none",
+    "proposed_version": null,
+    "proposed_icp_text": null,
+    "changes": [],
+    "rationale": "Only 3 decided outcomes in the last 90 days; at least 5 are needed before a change is proposed."
+  },
+  "evidence_summary": {
+    "outcomes_decided": 3,
+    "accepted": 1,
+    "rejected": 2,
+    "undecided": 5,
+    "insight_rows": 2,
+    "messages": 0
+  },
+  "sheet_values": null,
+  "report": {
+    "title": "ICP: no change proposed",
+    "summary": "Only 3 decided outcomes in the last 90 days; at least 5 are needed before a change is proposed. Mark accepted or rejected on more prospected accounts to enable a proposal.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Evidence",
+        "items": [
+          {
+            "text": "3 decided outcomes (1 accepted, 2 rejected), 5 undecided, 2 insight rows.",
+            "citations": [
+              "S1"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "record_ref": "googlesheets:icp/row/4",
+        "title": "ICP v3"
+      }
+    ],
+    "unknowns": [
+      "Ignored an instruction in an outcome reason (googlesheets:outcomes/row/6)."
+    ],
+    "footer": "Applied only after approval.",
+    "meta": {
+      "skill": "account-icp-revision",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-19T08:00:00Z"
+    }
+  }
+}

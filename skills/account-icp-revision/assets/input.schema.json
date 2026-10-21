@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "min_outcomes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 100,
+      "default": 5,
+      "description": "Decided outcomes (accepted or rejected) needed in total before any change is proposed."
+    },
+    "lookback_days": {
+      "type": "integer",
+      "minimum": 7,
+      "maximum": 730,
+      "default": 90,
+      "description": "Outcomes, insight rows and messages older than now - lookback_days are not evidence."
+    },
+    "max_changes": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 5,
+      "default": 3,
+      "description": "The most changes in one proposal."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    }
+  }
+}

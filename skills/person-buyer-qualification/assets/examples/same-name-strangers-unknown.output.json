@@ -1,0 +1,60 @@
+{
+  "identity": {
+    "status": "not_found",
+    "rejected_count": 4
+  },
+  "criteria": {
+    "owns_problem": {
+      "score": 0,
+      "reason": "No source ties Alex Placeholder to Example Analytics.",
+      "source_ids": [],
+      "current_title": "unknown",
+      "stale": false
+    },
+    "active": {
+      "score": 0,
+      "reason": "No kept source; activity cannot be judged.",
+      "source_ids": []
+    },
+    "reachable": {
+      "score": 0,
+      "reason": "No kept source; reachability cannot be judged.",
+      "source_ids": []
+    }
+  },
+  "score": 0,
+  "verdict": "Unknown",
+  "suggested_angle": "",
+  "item_result": {
+    "item": {
+      "i": 1,
+      "item_key": "name_company:alex-placeholder@example-analytics",
+      "label": "Alex Placeholder (Example Analytics)",
+      "query": "\"Alex Placeholder\" Example Analytics"
+    },
+    "item_key": "name_company:alex-placeholder@example-analytics",
+    "item_label": "Alex Placeholder (Example Analytics)",
+    "status": "no_evidence",
+    "verdict": "Unknown",
+    "score": 0,
+    "score_scale": "0-6",
+    "headline": "No source ties this name to Example Analytics.",
+    "source_ids": []
+  },
+  "report": {
+    "title": "Alex Placeholder (Example Analytics): buyer qualification",
+    "summary": "Unknown: every result was about another person named Alex Placeholder, so nothing could be judged.",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "Rejected 4 sources about other people named Alex Placeholder.",
+      "No profile text was pasted and no source ties the name to Example Analytics."
+    ],
+    "meta": {
+      "skill": "person-buyer-qualification",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

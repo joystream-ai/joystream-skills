@@ -1,0 +1,45 @@
+{
+  "worth_posting": false,
+  "reason": "Nothing in the last 24 hours fits the point of view: the newest data-retention stories are three days old, and the rest are guides.",
+  "story_angles": [],
+  "source_text": "",
+  "angles": [],
+  "skipped": {
+    "stale": 3,
+    "undated": 0,
+    "generic": 2,
+    "off_pov": 0,
+    "avoided": 0,
+    "already_covered": 0
+  },
+  "sheet_values": null,
+  "report": {
+    "title": "News angles: 2026-10-21",
+    "summary": "Nothing to react to today: no story from the last 24 hours fits your point of view.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Skipped",
+        "items": [
+          {
+            "text": "3 stories older than 24 hours.",
+            "citations": []
+          },
+          {
+            "text": "2 generic items (guides and roundups).",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [],
+    "unknowns": [
+      "Ignored an instruction inside https://blog.example.net/retention-guide."
+    ],
+    "meta": {
+      "skill": "content-news-angles",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-21T08:00:00Z"
+    }
+  }
+}

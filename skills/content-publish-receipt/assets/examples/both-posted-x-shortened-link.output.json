@@ -1,0 +1,85 @@
+{
+  "published": [
+    {
+      "platform": "linkedin",
+      "status": "posted",
+      "post_id": "urn:li:share:7300000000000000001",
+      "post_url": "https://www.linkedin.com/feed/update/urn:li:share:7300000000000000001",
+      "text_matches": null,
+      "note": "LinkedIn does not return the posted text."
+    },
+    {
+      "platform": "x",
+      "status": "posted",
+      "post_id": "1980000000000000001",
+      "post_url": "https://x.com/i/web/status/1980000000000000001",
+      "text_matches": true,
+      "note": "Links were shortened by X."
+    }
+  ],
+  "all_posted": true,
+  "sheet_values": [
+    [
+      "2026-10-21T15:04:00Z",
+      "linkedin",
+      "urn:li:share:7300000000000000001",
+      "https://www.linkedin.com/feed/update/urn:li:share:7300000000000000001",
+      "unknown",
+      "We cut our weekly reporting from four hours to twenty minutes.\n\nThe trick was not a new tool. It was deciding which three numbers the team actually reads, and dropping the other nineteen.\n\nWhat would you drop first?"
+    ],
+    [
+      "2026-10-21T15:04:00Z",
+      "x",
+      "1980000000000000001",
+      "https://x.com/i/web/status/1980000000000000001",
+      "true",
+      "We cut weekly reporting from 4 hours to 20 minutes by deciding which 3 numbers the team reads and dropping the rest. Write-up: https://blog.example.com/three-numbers"
+    ]
+  ],
+  "report": {
+    "title": "Published: 2 of 2 posts",
+    "summary": "Both approved posts went out: LinkedIn and X. X matches the approved text apart from its shortened link.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Posts",
+        "items": [
+          {
+            "text": "LinkedIn: posted. LinkedIn does not return the posted text.",
+            "citations": [
+              "S1"
+            ],
+            "label": "posted"
+          },
+          {
+            "text": "X: posted. Links were shortened by X.",
+            "citations": [
+              "S2"
+            ],
+            "label": "posted"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://www.linkedin.com/feed/update/urn:li:share:7300000000000000001",
+        "record_ref": "linkedin:post/urn:li:share:7300000000000000001",
+        "provider": "linkedin"
+      },
+      {
+        "id": "S2",
+        "url": "https://x.com/i/web/status/1980000000000000001",
+        "record_ref": "x:post/1980000000000000001",
+        "provider": "x"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-publish-receipt",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-21T15:04:00Z"
+    }
+  }
+}
