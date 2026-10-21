@@ -1,0 +1,27 @@
+{
+  "icp": "B2B SaaS companies with 50-500 employees selling to operations teams; timing matters.",
+  "item": {
+    "i": 0,
+    "item_key": "domain:example.net",
+    "label": "Harbor Metrics (example.net)",
+    "query": "Harbor Metrics example.net company overview, size, funding, hiring, recent news"
+  },
+  "now": "2026-10-12T09:00:00Z",
+  "rubric": [
+    {
+      "criterion": "Sells to operations teams at software companies",
+      "kind": "nice_to_have",
+      "weight": 2
+    },
+    {
+      "criterion": "50-500 employees",
+      "kind": "must_have",
+      "weight": 1
+    },
+    {
+      "criterion": "Timing: raised funding or launched a product in the last 12 months",
+      "kind": "nice_to_have",
+      "weight": 2
+    }
+  ]
+}

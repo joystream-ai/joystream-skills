@@ -10,6 +10,20 @@
     "Raised a $30M Series B on 2026-09-18.",
     "Opened four sales roles in Berlin on 2026-10-01."
   ],
+  "dated_events": [
+    {
+      "event": "Opened four sales roles in Berlin",
+      "date": "2026-10-01",
+      "months_ago": 0,
+      "source_id": "S4"
+    },
+    {
+      "event": "Raised a $30M Series B led by Example Ventures",
+      "date": "2026-09-18",
+      "months_ago": 1,
+      "source_id": "S3"
+    }
+  ],
   "evidence": [
     {
       "claim": "Example Analytics sells a usage-analytics product to operations teams at software companies.",
@@ -143,7 +157,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.2.0",
+      "skill_version": "1.3.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }
