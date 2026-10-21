@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.1.0"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -169,8 +169,11 @@ empty sheet or a failed read: a **first run** for this competitor.
    changelog page holds many entries; judge each entry as its own item.
 5. **Date every item.** Use the date the evidence states for the event, else its
    published date. A relative date counts only when the evidence says what it is relative
-   to. No date: drop as `undated`. Before `now − lookback_days` or after `now`: drop as
-   `out_of_window`.
+   to. No date: drop as `undated`. Then compute and write `days_ago` = the number of
+   calendar days from that date to `now`'s date (`2026-10-09` is 12 days before a `now`
+   on `2026-10-21`); do the subtraction for every item, never estimate it. Keep an item
+   only when `0 ≤ days_ago ≤ lookback_days`; otherwise drop it as `out_of_window`, however
+   important it looks. An `observed` change is dated `now` (`days_ago: 0`).
 6. **Keep only real changes.** One specific thing this competitor did, in one category:
 
    | Category | Counts | Does not count |
@@ -207,7 +210,7 @@ empty sheet or a failed read: a **first run** for this competitor.
      the newest entry) and `data.home` (the main headline). A new headline is a
      `positioning` change, `date_basis: observed`. Dated changelog entries in the window
      are already items (step 5); the comparison only catches entries with no date.
-9. **Write each change**: `date`, `date_basis` (`published` from the evidence, `observed`
+9. **Write each change**: `date`, `days_ago` (step 5), `date_basis` (`published` from the evidence, `observed`
    from a page comparison), `category`, `what_changed` (one plain sentence, as the source
    says it), `so_what` (one sentence on what it means for us, from `our_positioning` and
    `watch`: who it threatens, what opening it creates, what to check; it adds no new
@@ -228,8 +231,8 @@ Return the fields of `assets/output.schema.json` as your result:
 - `company`, `item_key`: the competitor's name and key. `item_key` is `item.item_key`
   copied unchanged; standalone: `domain:<domain>` in lower case without `www.`, else
   `name:<company in lower case, spaces as ->`. The previous entry is the one with this key.
-- `changes[]`: `{date, date_basis, category, what_changed, so_what, impact, importance,
-  source_id}`, ordered as in step 10.
+- `changes[]`: `{date, days_ago, date_basis, category, what_changed, so_what, impact,
+  importance, source_id}`, ordered as in step 10.
 - `tracked_pages`: `{pricing, changelog, home}`, each `changed`, `unchanged`,
   `baseline` (first time seen), `unavailable` (not extracted or the fetch failed).
 - `verdict`, `change_count`, `change_score`.
@@ -271,8 +274,10 @@ A skipped slot returns `changes: []`, counts 0, all pages `unavailable`, the ski
 # Constraints
 
 - **Dated, in the window, sourced, with a so-what.** Every change has a `YYYY-MM-DD` date
-  inside `[now − lookback_days, now]`, cites the source that states it, and has a
-  `so_what`. An `observed` date is `now`'s date and its source is the compared page.
+  and a computed `days_ago` from 0 to `lookback_days`, cites the source that states it,
+  and has a `so_what`. An `observed` date is `now`'s date (`days_ago: 0`) and its source
+  is the compared page. A change from before the window is never reported, not even as
+  context.
 - **No repeats across runs.** Nothing in the previous `reported` list is reported again,
   and every change reported now is in `state_out.data.reported`.
 - **Every dropped item is counted** in `dropped` and in `report.unknowns`.
