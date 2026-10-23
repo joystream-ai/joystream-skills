@@ -1,0 +1,125 @@
+{
+  "status": "needs_answer",
+  "next_question": {
+    "field": "trigger",
+    "text": "What usually happens at a company right before they start looking for something like Example Postmortem?",
+    "why": "The site says who you sell to and what hurts, but not what makes it urgent now.",
+    "example_answer": "They pass about 40 engineers and on-call becomes a formal rotation, or they have an outage customers notice."
+  },
+  "icp_markdown": null,
+  "version": null,
+  "coverage": {
+    "segment": true,
+    "buyer": false,
+    "pain": true,
+    "trigger": false,
+    "channel": false,
+    "disqualifier": false,
+    "questions_asked": 0,
+    "questions_left": 10
+  },
+  "changes": [],
+  "requires_approval": false,
+  "report": {
+    "title": "ICP interview: question 1",
+    "summary": "What usually happens at a company right before they start looking for something like Example Postmortem? Your site already says you sell to platform engineering teams at Series A to C SaaS companies who lose hours to postmortems.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Already answered by the website",
+        "items": [
+          {
+            "text": "Segment: B2B SaaS companies at Series A to Series C with a platform engineering team.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          },
+          {
+            "text": "Pain: engineers lose hours writing incident postmortems by hand.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          },
+          {
+            "text": "Nice-to-have: already uses PagerDuty or Datadog (the integrations the pricing page lists).",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          }
+        ]
+      },
+      {
+        "heading": "Set aside as too vague",
+        "items": [
+          {
+            "text": "\"innovative infra companies\" (segment): no category, size or stage a BDR could check.",
+            "citations": [
+              "S3"
+            ],
+            "label": "vague"
+          },
+          {
+            "text": "\"really care about reliability\" (pain): every infra buyer says this; it names no problem.",
+            "citations": [
+              "S3"
+            ],
+            "label": "vague"
+          }
+        ]
+      },
+      {
+        "heading": "Open gaps",
+        "items": [
+          {
+            "text": "Buying triggers: what makes it urgent now.",
+            "citations": []
+          },
+          {
+            "text": "Buyer: the site names platform engineering teams but not who signs off on the spend.",
+            "citations": []
+          },
+          {
+            "text": "Reachable channels.",
+            "citations": []
+          },
+          {
+            "text": "Disqualifiers.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Postmortem: incident analytics for platform teams",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/pricing",
+        "title": "Pricing",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "input:founder_notes",
+        "title": "founder_notes",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "account-icp-definition",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-23T09:00:00Z"
+    }
+  }
+}

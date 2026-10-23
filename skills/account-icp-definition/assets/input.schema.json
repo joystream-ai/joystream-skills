@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [],
+  "additionalProperties": true,
+  "properties": {
+    "company": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "The founder's own company. url decides which extracted pages count as the company's site.",
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "url": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "The company's website, e.g. https://example.com."
+        }
+      }
+    },
+    "founder_notes": {
+      "type": "string",
+      "maxLength": 2000,
+      "description": "The founder's own first description of who they sell to, in their words."
+    },
+    "answers": {
+      "type": "array",
+      "maxItems": 24,
+      "description": "The interview so far, in order. field is the next_question.field the question was asked for.",
+      "items": {
+        "type": "object",
+        "required": [
+          "field",
+          "answer"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "field": {
+            "type": "string",
+            "enum": [
+              "segment",
+              "buyer",
+              "pain",
+              "trigger",
+              "channel",
+              "disqualifier"
+            ]
+          },
+          "question": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "answer": {
+            "type": "string",
+            "maxLength": 1200,
+            "description": "The founder's reply, as typed. skip, don't know or empty leaves the field unresolved."
+          }
+        }
+      }
+    },
+    "won_examples": {
+      "type": "array",
+      "maxItems": 10,
+      "description": "Companies the founder won, typed in chat (no CRM).",
+      "items": {
+        "$ref": "#/$defs/example_company"
+      }
+    },
+    "lost_examples": {
+      "type": "array",
+      "maxItems": 10,
+      "description": "Companies the founder lost or that never bought, typed in chat (no CRM).",
+      "items": {
+        "$ref": "#/$defs/example_company"
+      }
+    },
+    "current_icp": {
+      "type": "string",
+      "maxLength": 3000,
+      "description": "The current ICP document in this skill's markdown format, when updating an existing one."
+    },
+    "max_questions": {
+      "type": "integer",
+      "minimum": 3,
+      "maximum": 20,
+      "default": 10,
+      "description": "The most questions in one interview, follow-ups included."
+    },
+    "now": {
+      "type": "string",
+      "description": "Current time, ISO 8601, for the changelog date. Optional: without it the skill uses the run start time from its instructions. Never guessed."
+    }
+  },
+  "$defs": {
+    "example_company": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 200
+        },
+        "note": {
+          "type": "string",
+          "maxLength": 300,
+          "description": "The founder's short reason, e.g. signed two weeks after an outage."
+        }
+      }
+    }
+  }
+}

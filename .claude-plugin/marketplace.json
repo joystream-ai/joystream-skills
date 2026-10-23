@@ -76,6 +76,7 @@
         "./skills/person-role-finder",
         "./skills/person-buyer-qualification",
         "./skills/person-warm-paths",
+        "./skills/account-icp-definition",
         "./skills/account-icp-revision"
       ]
     },

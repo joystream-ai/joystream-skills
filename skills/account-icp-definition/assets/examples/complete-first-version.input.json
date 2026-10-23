@@ -1,0 +1,47 @@
+{
+  "company": {
+    "name": "Example Postmortem",
+    "url": "https://example.com"
+  },
+  "founder_notes": "We sell to innovative infra companies that really care about reliability.",
+  "answers": [
+    {
+      "field": "trigger",
+      "question": "What usually happens at a company right before they start looking for something like Example Postmortem?",
+      "answer": "They have an outage that customers notice, and then the CTO asks for better postmortems. Also when engineering passes about 30 people and on-call turns into a real rotation."
+    },
+    {
+      "field": "buyer",
+      "question": "Your site says you sell to platform engineering teams. Who signs off on the spend?",
+      "answer": "The Head of Platform or the VP Engineering. Below about 50 engineers it's the CTO."
+    },
+    {
+      "field": "channel",
+      "question": "Where can you actually reach these buyers?",
+      "answer": "Honestly, everywhere. They're very online."
+    },
+    {
+      "field": "channel",
+      "question": "\"Very online\" is hard to target. Name one or two places where they actually respond.",
+      "answer": "The platform engineering Slack community, and SREcon speakers. I think LinkedIn works too."
+    },
+    {
+      "field": "disqualifier",
+      "question": "Which companies look like a fit but never buy?",
+      "answer": "Teams under 15 engineers, they have no on-call. And anyone already paying for a dedicated incident-management platform."
+    }
+  ],
+  "won_examples": [
+    {
+      "name": "Example Freight",
+      "note": "signed two weeks after a customer-facing outage"
+    }
+  ],
+  "lost_examples": [
+    {
+      "name": "Example Studio",
+      "note": "12 engineers, no on-call rotation"
+    }
+  ],
+  "now": "2026-10-23T09:00:00Z"
+}

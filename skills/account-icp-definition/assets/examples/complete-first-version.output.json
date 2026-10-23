@@ -1,0 +1,124 @@
+{
+  "status": "ready",
+  "next_question": null,
+  "icp_markdown": "# ICP: Series A-C SaaS with a platform engineering team\n*v1 — SaaS teams with 15+ engineers on call, buying after an outage customers noticed*\n\n## Must-have\n- B2B SaaS company at Series A to Series C (confidence: inferred; source: website)\n- 15 or more engineers, with an on-call rotation (confidence: validated; source: founder, lost examples)\n- Buyer: Head of Platform or VP Engineering holds the budget; below about 50 engineers, the CTO (confidence: validated; source: founder)\n\n## Nice-to-have\n- Already uses PagerDuty or Datadog (confidence: inferred; source: website)\n- Reachable via: the platform engineering Slack community and SREcon speakers (confidence: validated; source: founder)\n- Reachable via: LinkedIn (confidence: needs validation; source: founder)\n\n## Disqualifiers\n- Fewer than 15 engineers, or no on-call rotation (confidence: validated; source: founder, lost examples)\n- Already pays for a dedicated incident-management platform (confidence: validated; source: founder)\n\n## Top pains (ranked)\n1. Engineers lose hours writing incident postmortems by hand (confidence: inferred; source: website)\n\n## Buying triggers\n- An outage customers noticed, after which the CTO asks for better postmortems (confidence: validated; source: founder, won examples)\n- Engineering passes about 30 people and on-call becomes a formal rotation (confidence: validated; source: founder)\n\n## Changelog\n- v1 (2026-10-23): first version, because of the website and a five-answer interview\n",
+  "version": "v1",
+  "coverage": {
+    "segment": true,
+    "buyer": true,
+    "pain": true,
+    "trigger": true,
+    "channel": true,
+    "disqualifier": true,
+    "questions_asked": 5,
+    "questions_left": 5
+  },
+  "changes": [],
+  "requires_approval": false,
+  "report": {
+    "title": "ICP v1: Series A-C SaaS with a platform engineering team",
+    "summary": "B2B SaaS companies at Series A to C with 15 or more engineers on call, bought by the Head of Platform or VP Engineering after an outage customers noticed. Ready to hand to a BDR.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Already answered by the website",
+        "items": [
+          {
+            "text": "Segment: B2B SaaS companies at Series A to Series C with a platform engineering team.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          },
+          {
+            "text": "Pain: engineers lose hours writing incident postmortems by hand.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          },
+          {
+            "text": "Nice-to-have: already uses PagerDuty or Datadog.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          }
+        ]
+      },
+      {
+        "heading": "Set aside as too vague",
+        "items": [
+          {
+            "text": "\"innovative infra companies\" (segment): no category, size or stage a BDR could check.",
+            "citations": [
+              "S3"
+            ],
+            "label": "vague"
+          },
+          {
+            "text": "\"really care about reliability\" (pain): names no problem.",
+            "citations": [
+              "S3"
+            ],
+            "label": "vague"
+          },
+          {
+            "text": "\"everywhere, they're very online\" (channel): replaced by the follow-up answer.",
+            "citations": [
+              "S4"
+            ],
+            "label": "vague"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Postmortem: incident analytics for platform teams",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/pricing",
+        "title": "Pricing",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "input:founder_notes",
+        "title": "founder_notes",
+        "provider": "input"
+      },
+      {
+        "id": "S4",
+        "url": "input:answers",
+        "title": "answers",
+        "provider": "input"
+      },
+      {
+        "id": "S5",
+        "url": "input:won_examples",
+        "title": "won_examples",
+        "provider": "input"
+      },
+      {
+        "id": "S6",
+        "url": "input:lost_examples",
+        "title": "lost_examples",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "account-icp-definition",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-23T09:00:00Z"
+    }
+  }
+}
