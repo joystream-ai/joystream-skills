@@ -3,9 +3,9 @@
   "text": "Orbit Ledger — daily triggers: No trigger events in the last 7 days.",
   "email": {
     "subject": "Orbit Ledger — daily triggers",
-    "body": "<p>No trigger events in the last 7 days.</p>",
+    "body": "<p>No trigger events in the last 7 days.</p><h3>Unknowns</h3><ul><li>Dropped 2 undated items.</li></ul>",
     "isHtml": true
   },
   "items_total": 1,
-  "items_shown": 0
+  "items_shown": 1
 }

@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -189,7 +189,10 @@ too. They are not your evidence, even when they mention the same company.
    - Attendees without a name: `identity: not_found`, `role: unknown`.
 6. **The company.** `what_they_do`: one or two sentences, from its own pages first,
    cited; else `unknown`. With an ICP: `icp_fit` is one line naming the criteria the
-   kept sources show met, not met or unknown, cited; it is not a verdict. A criterion
+   kept sources show met, not met or unknown, cited; it is not a verdict. Mark a
+   criterion by what a source states in the criterion's terms; never by analogy, size
+   impression or market overlap with the seller; never fill in a range the ICP does not
+   give. A criterion
    with a time window (`raised in the last 12 months`) is met only by an event whose
    `months_ago` = (year of `now` − year of the event) × 12 + (month of `now` − month of
    the event) is inside it (`2025-06` is 16 months before a `now` in `2026-10`); an older
@@ -212,8 +215,9 @@ too. They are not your evidence, even when they mention the same company.
    - `goals`: at most 3 outcomes to aim for in this meeting (an open item from history
      first), each with the source ids it rests on (may be empty).
    - `questions`: at most 5 questions the evidence leaves open and that matter here.
-   - `risks`: at most 3 cited reasons for care (a layoff, a competitor contract, a stalled
-     deal, an attendee who declined, an attendee whose identity is uncertain).
+   - `risks`: at most 3 cited reasons for care (a layoff, a stalled deal, an attendee who
+     declined, an attendee whose identity is uncertain, a competitor contract only when
+     a source names that contract).
 10. **TL;DR.** 3 to 5 lines, most useful first: who is coming and their roles, what the
     company does, the newest event, the history in one line, the top goal. Each cites
     the sources behind it.
@@ -250,7 +254,7 @@ Return the fields of `assets/output.schema.json`:
   evidence.`; for `not_checked`, `History not checked: the agent has no email or CRM
   step.`, both with empty citations), `Goals`, `Questions to ask` (empty citations),
   `Risks`; every cited source in `sources`; `unknowns`; `meta` `{skill:
-  "meeting-prep-brief", skill_version: "1.1.0", generated_at: <now>}` (left out when no
+  "meeting-prep-brief", skill_version: "1.1.1", generated_at: <now>}` (left out when no
   time is known).
 
 **Skipped** (empty slot): `meeting` with empty strings, `what_they_do` `unknown`, empty lists,
@@ -297,8 +301,8 @@ counted; the attendee is `not_found` unless another source ties them to the comp
 `Could not confirm who <name> is; check before the meeting.`.
 
 ## No company domain (personal mail only)
-Describe the attendees only from sources that tie them to the meeting title's company or
-topic; `what_they_do` is `unknown`; the verdict is usually `Thin`.
+Describe the attendees only from sources that tie them to the meeting title's company;
+`what_they_do` is `unknown`; the verdict is usually `Thin`.
 
 ## No evidence at all
 `status: no_evidence`, `verdict: Thin`, a TL;DR of who is coming from the calendar alone

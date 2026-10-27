@@ -22,7 +22,7 @@
         "public_signal": false
       },
       {
-        "criterion": "Buyer: finance or operations owns the problem or is being hired for it",
+        "criterion": "Buyer: finance or operations",
         "kind": "nice_to_have",
         "weight": 2,
         "public_signal": true
@@ -68,9 +68,9 @@
       "why": "This run's directory filter is exhausted; hotels are an untried part of the ICP."
     },
     {
-      "query": "\"month-end close\" restaurant group finance team manual",
+      "query": "\"Show HN\" software for restaurants OR hotels",
       "target": "community",
-      "why": "Finance-buyer pain phrasing finds operators that directories miss."
+      "why": "Launch posts name the vendor and what it sells, which directories may miss."
     },
     {
       "query": "hospitality software sponsors exhibitors 2026 conference",
@@ -143,7 +143,7 @@
             "label": "web"
           },
           {
-            "text": "\"month-end close\" restaurant group finance team manual",
+            "text": "\"Show HN\" software for restaurants OR hotels",
             "citations": [],
             "label": "community"
           },
@@ -172,7 +172,7 @@
     "unknowns": [],
     "meta": {
       "skill": "account-discovery-candidates",
-      "skill_version": "1.2.0",
+      "skill_version": "1.2.1",
       "generated_at": "2026-10-27T09:00:00Z"
     }
   }

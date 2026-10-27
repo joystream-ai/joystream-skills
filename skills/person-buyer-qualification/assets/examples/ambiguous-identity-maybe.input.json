@@ -1,0 +1,13 @@
+{
+  "name": "Sam Example",
+  "company": "Example Logistics",
+  "role": "VP Finance",
+  "problem": "Month-end close takes too long for multi-entity companies; usually owned by the controller or VP Finance.",
+  "owner_roles": [
+    "Controller",
+    "VP Finance",
+    "Head of Accounting"
+  ],
+  "active_within_days": 180,
+  "now": "2026-10-12T09:00:00Z"
+}

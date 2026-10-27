@@ -2,7 +2,7 @@
   "slots": [
     {
       "i": 0,
-      "item_key": "email:jo@orbit.example",
+      "item_key": "name_company:jo-rivera|orbit-ledger",
       "label": "Jo Rivera (Orbit Ledger)",
       "query": "Jo Rivera Orbit Ledger Head of Finance public role, recent talks or posts"
     },
@@ -24,7 +24,7 @@
         "role": "Head of Finance",
         "email": "Jo@Orbit.example"
       },
-      "item_key": "email:jo@orbit.example",
+      "item_key": "name_company:jo-rivera|orbit-ledger",
       "query": "Jo Rivera Orbit Ledger Head of Finance public role, recent talks or posts"
     },
     {

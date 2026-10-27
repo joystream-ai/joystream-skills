@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.1"
+  version: "1.1.2"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -158,7 +158,8 @@ Every report item about the call cites it.
    their cost in time, money or risk when stated), objections (reasons not to buy or to
    wait, and how our side answered, if they did), commitments (someone says they will do
    something, or agrees when asked), and one or two quotes that best show each pain or
-   objection.
+   objection. Pains and objections come from customer-side speakers; our side's
+   suggestions are not pains unless the customer agrees in words.
 4. **Merge** the sections in transcript order: one entry per pain or objection (keep the
    first mention, add later detail), commitments in the order they were made. Keep every
    topic that came up; never drop a section because it is long or similar to another.
@@ -187,7 +188,10 @@ Every report item about the call cites it.
 9. **Focus topics** (only when `focus` is given), in the order given: one finding per
    topic from what was said, with the quotes that show it, or `Not discussed.` with no
    quotes. A topic about ICP fit compares what the customer said with the ICP line given
-   and says `fits`, `does not fit` or `unclear`, with the reason.
+   and says `fits`, `does not fit` or `unclear`, with the reason. Judge each criterion
+   by what the customer said in the criterion's terms; never by analogy, size
+   impression or market overlap with the seller; never fill in a range the ICP does not
+   give.
 10. **Follow-up email** from our side to the customer attendees (see Output), unless
     `include_follow_up_email` is false.
 11. **Check the output contract** (below) before returning: one JSON object, every
@@ -225,7 +229,7 @@ Return the fields of `assets/output.schema.json` as your result:
   characters), `Follow-up email` (only when included; `body_md` = subject and body, and
   `items: []`). Every item cites the transcript source. Then `sources`; `unknowns`;
   **`footer: "Draft — not sent"`**; `meta` `{skill: "sales-call-debrief",
-  skill_version: "1.1.1", generated_at: <now>}`.
+  skill_version: "1.1.2", generated_at: <now>}`.
   `severity: info`, or `action_needed` when next steps are owned by our side.
 
 ## Output contract
