@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.6.0"
+  version: "1.6.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -190,7 +190,9 @@ never take a fact or a url from them. A step output that ends in a cut marker
    Nice-to-have → `nice_to_have` 1 (skip `Reachable via:`); Disqualifiers and Anti-ICP →
    `exclusion`; Top pains → one `Pain: public evidence of <pain 1>` (`nice_to_have` 2);
    Buying triggers → one `Timing: <triggers, joined by "or"> in the last 12 months`
-   (`nice_to_have` 2). Skip `none yet`. Over 8 criteria: must-haves, exclusions, pain and
+   (`nice_to_have` 2). Skip `none yet`. A Must-have line worded as a tendency (`many`,
+   `often`, `commonly`, `usually`, `typically`, `some`) describes rather than requires:
+   map it to `nice_to_have` 1. Over 8 criteria: must-haves, exclusions, pain and
    timing first. This mapping is mechanical: the same ICP gives the same criteria, kinds
    and weights in every branch of a run, so add, merge, drop or reword nothing. Plain
    words derive a rubric in the same shape:
@@ -214,6 +216,15 @@ never take a fact or a url from them. A step output that ends in a cut marker
    12 months`, `past 6 months`) is `met` only by an event in `dated_events` whose
    `months_ago` is at most the window in months; an older event makes it `not met`
    (say the event and its date), and only undated evidence leaves it `unknown`.
+   - **Judge each criterion by its own words.** Never add a threshold, range or limit
+     the ICP does not state: an ICP with no upper size gives no size reason for
+     `not met`.
+   - **An `exclusion` is `met` only when a cited source shows the company is what it
+     names.** Being large, well-funded or similar in scale to what it names is not
+     enough: the exclusion stays `unknown`, and the doubt goes to `missing_info`.
+   - **The ICP describes the seller's customers.** A company that matches the segment is
+     a prospect, even when its business looks like the seller's own market or like the
+     seller's other customers. Whether it competes with the seller is never a criterion.
 5. **Score fit 0-5, always from the rubric (given or derived).** An `exclusion` that is
    met gives 0. A `must_have` that is not met gives at most 1. Otherwise the score is
    5 × (weight of the met criteria) ÷ (weight of all non-exclusion criteria), rounded
@@ -249,7 +260,12 @@ never take a fact or a url from them. A step output that ends in a cut marker
 12. **Missing information.** At most 5 `{item, why, how_to_check}` (one search or one
     discovery question), in order: unknown must-haves, other unknown criteria by weight,
     unknown warmth, a `null` problem hypothesis. Never fill a gap with a guess.
-13. **Build the output** (see Output).
+13. **Check before writing.** `item_result.score` equals `fit_score` and
+    `item_result.verdict` equals `verdict`. Every `not met` and every met exclusion
+    quotes the ICP criterion it judges and cites a source. No score or verdict was
+    lowered for a reason that is not a rubric criterion (size the ICP does not bound,
+    "a peer or competitor", "too big for them"). Fix what fails before writing.
+14. **Build the output** (see Output).
 
 # Output
 
@@ -285,7 +301,7 @@ Return the fields of `assets/output.schema.json` as your result (skipped slots: 
   order and each `label` is `met`, `not met` or `unknown` plus the kind when not
   `nice_to_have` (e.g. `not met · must-have`); every cited source in `sources`;
   `unknowns`; `meta`
-  `{skill: "account-icp-qualification", skill_version: "1.6.0", generated_at: <now>}`
+  `{skill: "account-icp-qualification", skill_version: "1.6.1", generated_at: <now>}`
   (leave `meta` out when no time is known). `severity: info`.
 
 # Constraints
@@ -334,6 +350,13 @@ exclusion is met.
 For example `uses our competitor internally`. It stays `unknown` with
 `No public evidence for "<criterion>".` in `unknowns` and an entry in `missing_info`;
 never infer it.
+
+## A target at a much larger scale than the ICP's examples
+The ICP names a segment and a buyer but no size limit, and this company is public, has
+thousands of employees or very large contracts. Judge the segment, buyer and exclusion
+criteria by their words; size is not a criterion. If the scale makes an exclusion
+plausible but no source shows the company is what the exclusion names, the exclusion is
+`unknown` and `missing_info` says what to check.
 
 ## A tempting fact in another branch's output
 Not yours (see "This branch's evidence only"). Leave it out even if it would change the
