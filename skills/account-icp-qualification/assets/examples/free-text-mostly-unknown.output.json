@@ -1,10 +1,43 @@
 {
   "verdict": "Research",
   "fit_score": 1,
+  "fit_tier": "Weak",
   "fit_reasons": [
     "Headquartered in Lyon, inside Europe."
   ],
   "why_now": [],
+  "warmth": {
+    "level": "unknown",
+    "signals": []
+  },
+  "problem_hypothesis": null,
+  "missing_info": [
+    {
+      "item": "Fit: sells software to hospital procurement teams",
+      "why": "A must-have with no source; the verdict cannot reach Pursue without it.",
+      "how_to_check": "Search \"Quillmed customers\" and read who the case studies name."
+    },
+    {
+      "item": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Quillmed funding OR hiring OR launch\" for the last 12 months."
+    },
+    {
+      "item": "Size: 100-1000 employees",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Quillmed number of employees\" or read its about page."
+    },
+    {
+      "item": "Consultancy",
+      "why": "An exclusion with no source; if it is met the score is 0.",
+      "how_to_check": "Read the Quillmed homepage: does it sell a product or services?"
+    },
+    {
+      "item": "Timing signals",
+      "why": "No dated event was found, so warmth is unknown.",
+      "how_to_check": "Search \"Quillmed\" news from the last 12 months."
+    }
+  ],
   "rubric_used": {
     "origin": "derived",
     "criteria": [
@@ -90,6 +123,16 @@
         ]
       },
       {
+        "heading": "Warmth",
+        "items": [
+          {
+            "text": "Unknown: no dated event in the evidence.",
+            "citations": [],
+            "label": "unknown"
+          }
+        ]
+      },
+      {
         "heading": "Unknown criteria",
         "items": [
           {
@@ -113,6 +156,36 @@
             "label": "unknown · exclusion"
           }
         ]
+      },
+      {
+        "heading": "Missing information",
+        "items": [
+          {
+            "text": "Fit: sells software to hospital procurement teams: Search \"Quillmed customers\" and read who the case studies name.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months: Search \"Quillmed funding OR hiring OR launch\" for the last 12 months.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Size: 100-1000 employees: Search \"Quillmed number of employees\" or read its about page.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Consultancy: Read the Quillmed homepage: does it sell a product or services?",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Timing signals: Search \"Quillmed\" news from the last 12 months.",
+            "citations": [],
+            "label": "missing"
+          }
+        ]
       }
     ],
     "sources": [
@@ -128,7 +201,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.4.0",
+      "skill_version": "1.5.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

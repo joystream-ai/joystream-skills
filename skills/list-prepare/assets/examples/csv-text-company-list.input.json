@@ -1,0 +1,12 @@
+{
+  "items_text": "Company,Website,Relationship\nGridline,https://www.gridline.example/,Met their CTO at a meetup\nKestrel Freight,kestrel.example,\n\"Orbit Ledger, Inc\",orbit.example,\n\nGridline,gridline.example,\n",
+  "item_kind": "company",
+  "identity_keys": [
+    "domain",
+    "name"
+  ],
+  "max_items": 5,
+  "slot_count": 5,
+  "query_hint": "company overview, products, customers, size, funding, hiring",
+  "now": "2026-10-20T09:00:00Z"
+}

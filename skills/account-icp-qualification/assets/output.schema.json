@@ -22,6 +22,15 @@
       "maximum": 5,
       "description": "ICP fit, 0-5. Absent when there is no evidence to judge."
     },
+    "fit_tier": {
+      "type": "string",
+      "enum": [
+        "Strong",
+        "Possible",
+        "Weak"
+      ],
+      "description": "Fit tier from fit_score: Strong 4-5, Possible 2-3, Weak 0-1. Absent when there is no score."
+    },
     "fit_reasons": {
       "type": "array",
       "maxItems": 5,
@@ -41,6 +50,133 @@
         "maxLength": 200
       },
       "description": "Dated timing signals, newest first; each restates a cited evidence claim."
+    },
+    "warmth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "level",
+        "signals"
+      ],
+      "description": "Timing, kept apart from fit: it never changes fit_score, fit_tier or verdict.",
+      "properties": {
+        "level": {
+          "type": "string",
+          "enum": [
+            "hot",
+            "warm",
+            "cold",
+            "unknown"
+          ],
+          "description": "hot: a relationship or prior-conversation signal from the item record, or 2+ signals at most 6 months old; warm: at least one signal; cold: dated events exist but none within 12 months; unknown: no now or no dated event."
+        },
+        "signals": {
+          "type": "array",
+          "maxItems": 6,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "signal",
+              "kind",
+              "source_id"
+            ],
+            "properties": {
+              "signal": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "kind": {
+                "type": "string",
+                "enum": [
+                  "hiring",
+                  "funding",
+                  "new_leader",
+                  "launch",
+                  "ai_initiative",
+                  "expansion",
+                  "acquisition",
+                  "incident",
+                  "other",
+                  "relationship",
+                  "prior_conversation"
+                ]
+              },
+              "date": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              },
+              "months_ago": {
+                "type": [
+                  "integer",
+                  "null"
+                ],
+                "minimum": 0
+              },
+              "source_id": {
+                "type": "string",
+                "description": "A source id from report.sources, or input:item for a relationship stated in the item record."
+              }
+            }
+          }
+        }
+      }
+    },
+    "problem_hypothesis": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "text",
+        "source_ids"
+      ],
+      "description": "The ICP pain this company most likely has, as a guess starting 'Likely: ', cited; null when no evidence supports any pain.",
+      "properties": {
+        "text": {
+          "type": "string",
+          "maxLength": 300,
+          "pattern": "^Likely: "
+        },
+        "source_ids": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "missing_info": {
+      "type": "array",
+      "maxItems": 5,
+      "description": "What a person would need to decide: unknown must-haves first, then other unknown criteria by weight, unknown warmth, a null problem hypothesis.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item",
+          "why",
+          "how_to_check"
+        ],
+        "properties": {
+          "item": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "why": {
+            "type": "string",
+            "maxLength": 200
+          },
+          "how_to_check": {
+            "type": "string",
+            "maxLength": 200
+          }
+        }
+      }
     },
     "rubric_used": {
       "type": "object",

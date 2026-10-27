@@ -1,11 +1,44 @@
 {
   "verdict": "Research",
   "fit_score": 2,
+  "fit_tier": "Possible",
   "fit_reasons": [
     "B2B SaaS that sells shipment tracking to operations teams.",
     "Offices in Toronto, inside the target regions."
   ],
   "why_now": [],
+  "warmth": {
+    "level": "unknown",
+    "signals": []
+  },
+  "problem_hypothesis": null,
+  "missing_info": [
+    {
+      "item": "Buyer: a VP or Head of Operations owns the purchase (team page or job post)",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Sample Logistics VP Operations\" or read its team page and job posts."
+    },
+    {
+      "item": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Sample Logistics funding OR hiring OR launch\" for the last 12 months."
+    },
+    {
+      "item": "Size: 50-500 employees",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Sample Logistics number of employees\" or read its about page."
+    },
+    {
+      "item": "Agency or consultancy",
+      "why": "An exclusion with no source; if it is met the score is 0.",
+      "how_to_check": "Read the Sample Logistics homepage: does it sell a product or services?"
+    },
+    {
+      "item": "Timing signals",
+      "why": "No dated event was found, so warmth is unknown.",
+      "how_to_check": "Search \"Sample Logistics\" news from the last 12 months."
+    }
+  ],
   "rubric_used": {
     "origin": "derived",
     "criteria": [
@@ -112,6 +145,16 @@
         ]
       },
       {
+        "heading": "Warmth",
+        "items": [
+          {
+            "text": "Unknown: no dated event in the evidence.",
+            "citations": [],
+            "label": "unknown"
+          }
+        ]
+      },
+      {
         "heading": "Unknown criteria",
         "items": [
           {
@@ -128,6 +171,36 @@
             "text": "Timing: no dated hiring, funding, launch or leadership event in the evidence.",
             "citations": [],
             "label": "unknown"
+          }
+        ]
+      },
+      {
+        "heading": "Missing information",
+        "items": [
+          {
+            "text": "Buyer: a VP or Head of Operations owns the purchase (team page or job post): Search \"Sample Logistics VP Operations\" or read its team page and job posts.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months: Search \"Sample Logistics funding OR hiring OR launch\" for the last 12 months.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Size: 50-500 employees: Search \"Sample Logistics number of employees\" or read its about page.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Agency or consultancy: Read the Sample Logistics homepage: does it sell a product or services?",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Timing signals: Search \"Sample Logistics\" news from the last 12 months.",
+            "citations": [],
+            "label": "missing"
           }
         ]
       }
@@ -152,7 +225,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.4.0",
+      "skill_version": "1.5.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

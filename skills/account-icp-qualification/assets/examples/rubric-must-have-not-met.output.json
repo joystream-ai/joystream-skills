@@ -1,6 +1,7 @@
 {
   "verdict": "Reject",
   "fit_score": 1,
+  "fit_tier": "Weak",
   "fit_reasons": [
     "Must-have not met: sells to operations teams, not finance teams.",
     "About 180 employees, inside the 50-500 range.",
@@ -8,6 +9,31 @@
   ],
   "why_now": [
     "Raised a $30M Series B on 2026-09-18."
+  ],
+  "warmth": {
+    "level": "warm",
+    "signals": [
+      {
+        "signal": "Raised a $30M Series B led by Example Ventures on 2026-09-18.",
+        "kind": "funding",
+        "date": "2026-09-18",
+        "months_ago": 1,
+        "source_id": "S3"
+      }
+    ]
+  },
+  "problem_hypothesis": null,
+  "missing_info": [
+    {
+      "item": "Agency or consultancy",
+      "why": "An exclusion with no source; if it is met the score is 0.",
+      "how_to_check": "Read the Example Analytics homepage: does it sell a product or services?"
+    },
+    {
+      "item": "Which problem the ICP solves for them",
+      "why": "The ICP names no pain to test against the evidence.",
+      "how_to_check": "Ask in discovery what made them look for a solution now."
+    }
   ],
   "rubric_used": {
     "origin": "given",
@@ -110,6 +136,18 @@
         ]
       },
       {
+        "heading": "Warmth",
+        "items": [
+          {
+            "text": "Raised a $30M Series B led by Example Ventures on 2026-09-18.",
+            "citations": [
+              "S3"
+            ],
+            "label": "funding"
+          }
+        ]
+      },
+      {
         "heading": "Why now",
         "items": [
           {
@@ -128,6 +166,21 @@
             "text": "Agency or consultancy: no source shows services revenue.",
             "citations": [],
             "label": "unknown · exclusion"
+          }
+        ]
+      },
+      {
+        "heading": "Missing information",
+        "items": [
+          {
+            "text": "Agency or consultancy: Read the Example Analytics homepage: does it sell a product or services?",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Which problem the ICP solves for them: Ask in discovery what made them look for a solution now.",
+            "citations": [],
+            "label": "missing"
           }
         ]
       }
@@ -158,8 +211,16 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.4.0",
+      "skill_version": "1.5.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
-  }
+  },
+  "dated_events": [
+    {
+      "event": "Raised a $30M Series B led by Example Ventures",
+      "date": "2026-09-18",
+      "months_ago": 1,
+      "source_id": "S3"
+    }
+  ]
 }

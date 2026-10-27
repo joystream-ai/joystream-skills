@@ -5,6 +5,7 @@
     "status",
     "next_question",
     "icp_markdown",
+    "icp_json",
     "version",
     "coverage",
     "changes",
@@ -71,6 +72,121 @@
       ],
       "maxLength": 3000,
       "description": "The ICP document (Must-have, Nice-to-have, Disqualifiers, Top pains (ranked), Buying triggers, Changelog); null with needs_answer."
+    },
+    "icp_json": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "icp_version",
+        "segments",
+        "anti_icp"
+      ],
+      "description": "The same ICP as icp_markdown in the shared contract (icp_version, segments[], anti_icp[]); null with needs_answer.",
+      "properties": {
+        "icp_version": {
+          "type": "string",
+          "pattern": "^v[0-9]+$"
+        },
+        "segments": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "must_have",
+              "nice_to_have",
+              "disqualifiers",
+              "top_pains",
+              "triggers",
+              "buyers",
+              "confidence"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "maxLength": 60
+              },
+              "must_have": {
+                "type": "array",
+                "maxItems": 6,
+                "items": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "description": "Must-have lines without their tags."
+              },
+              "nice_to_have": {
+                "type": "array",
+                "maxItems": 6,
+                "items": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "description": "Nice-to-have lines without their tags."
+              },
+              "disqualifiers": {
+                "type": "array",
+                "maxItems": 6,
+                "items": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "description": "Disqualifier lines without their tags."
+              },
+              "top_pains": {
+                "type": "array",
+                "maxItems": 5,
+                "items": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "description": "Pains, ranked."
+              },
+              "triggers": {
+                "type": "array",
+                "maxItems": 6,
+                "items": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "description": "Buying trigger lines without their tags."
+              },
+              "buyers": {
+                "type": "array",
+                "maxItems": 3,
+                "items": {
+                  "type": "string",
+                  "maxLength": 160
+                },
+                "description": "The Buyer: lines without the prefix."
+              },
+              "confidence": {
+                "type": "string",
+                "enum": [
+                  "hypothesis",
+                  "partial",
+                  "validated"
+                ]
+              }
+            }
+          }
+        },
+        "anti_icp": {
+          "type": "array",
+          "maxItems": 4,
+          "items": {
+            "type": "string",
+            "maxLength": 160
+          },
+          "description": "Who not to pursue and why: the Anti-ICP lines without their tags."
+        }
+      }
     },
     "version": {
       "type": [
@@ -151,6 +267,7 @@
               "must_have",
               "nice_to_have",
               "disqualifiers",
+              "anti_icp",
               "top_pains",
               "buying_triggers"
             ]

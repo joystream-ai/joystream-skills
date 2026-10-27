@@ -1,0 +1,329 @@
+{
+  "verdict": "Pursue",
+  "fit_score": 4,
+  "fit_tier": "Strong",
+  "fit_reasons": [
+    "Sells a billing API to marketplaces and runs it on its own Kubernetes clusters.",
+    "Hiring a Senior SRE who reports to the Head of Platform Engineering.",
+    "Hiring for SRE on 2026-09-22 and published an outage postmortem on 2026-08-05.",
+    "Employee count is unknown: no source states it."
+  ],
+  "why_now": [
+    "Posted a Senior SRE role on 2026-09-22.",
+    "Published a postmortem of a 3-hour API outage on 2026-08-05."
+  ],
+  "warmth": {
+    "level": "hot",
+    "signals": [
+      {
+        "signal": "Met their CTO at a meetup in September 2026; they asked for a demo.",
+        "kind": "relationship",
+        "date": null,
+        "months_ago": null,
+        "source_id": "input:item"
+      },
+      {
+        "signal": "Posted a Senior SRE role on 2026-09-22.",
+        "kind": "hiring",
+        "date": "2026-09-22",
+        "months_ago": 1,
+        "source_id": "S3"
+      },
+      {
+        "signal": "Published a postmortem of a 3-hour API outage on 2026-08-05.",
+        "kind": "incident",
+        "date": "2026-08-05",
+        "months_ago": 2,
+        "source_id": "S4"
+      }
+    ]
+  },
+  "problem_hypothesis": {
+    "text": "Likely: on-call load from noisy Kubernetes alerts. They moved to self-managed clusters and say pages tripled, and the new SRE role is to cut alert noise.",
+    "source_ids": [
+      "S2",
+      "S3"
+    ]
+  },
+  "missing_info": [
+    {
+      "item": "200-2,000 employees",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Gridline number of employees\" or read its about page."
+    }
+  ],
+  "rubric_used": {
+    "origin": "derived",
+    "criteria": [
+      {
+        "criterion": "B2B SaaS that runs its own Kubernetes clusters",
+        "kind": "must_have",
+        "weight": 3,
+        "public_signal": true,
+        "result": "met"
+      },
+      {
+        "criterion": "Buyer: VP or Head of Platform Engineering",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "met"
+      },
+      {
+        "criterion": "200-2,000 employees",
+        "kind": "nice_to_have",
+        "weight": 1,
+        "public_signal": false,
+        "result": "unknown"
+      },
+      {
+        "criterion": "Runs only on a fully managed PaaS, no own clusters",
+        "kind": "exclusion",
+        "weight": 1,
+        "public_signal": true,
+        "result": "not_met"
+      },
+      {
+        "criterion": "Web agencies building client sites: no platform team, never buy",
+        "kind": "exclusion",
+        "weight": 1,
+        "public_signal": true,
+        "result": "not_met"
+      },
+      {
+        "criterion": "Timing: Hiring an SRE or platform engineer or A public outage postmortem in the last 12 months",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true,
+        "result": "met"
+      }
+    ]
+  },
+  "dated_events": [
+    {
+      "event": "Posted a Senior SRE role on the Platform team",
+      "date": "2026-09-22",
+      "months_ago": 1,
+      "source_id": "S3"
+    },
+    {
+      "event": "Published a postmortem of a 3-hour API outage",
+      "date": "2026-08-05",
+      "months_ago": 2,
+      "source_id": "S4"
+    }
+  ],
+  "evidence": [
+    {
+      "claim": "Gridline sells a billing API to online marketplaces.",
+      "source_id": "S1"
+    },
+    {
+      "claim": "Gridline moved to self-managed Kubernetes clusters in three regions, and on-call pages tripled during the move.",
+      "source_id": "S2"
+    },
+    {
+      "claim": "The Senior SRE role reports to the Head of Platform Engineering and is to reduce alert noise.",
+      "source_id": "S3"
+    },
+    {
+      "claim": "Gridline published a postmortem of a 3-hour API outage on 2026-08-05.",
+      "source_id": "S4"
+    }
+  ],
+  "confidence": "high",
+  "item_result": {
+    "item": {
+      "name": "Gridline",
+      "domain": "gridline.example",
+      "relationship": "Met their CTO at a meetup in September 2026; they asked for a demo."
+    },
+    "item_key": "domain:gridline.example",
+    "item_label": "Gridline (gridline.example)",
+    "status": "ok",
+    "verdict": "Pursue",
+    "score": 4,
+    "score_scale": "0-5",
+    "headline": "Sells a billing API to marketplaces and runs it on its own Kubernetes clusters.",
+    "source_ids": [
+      "S1",
+      "S2"
+    ]
+  },
+  "report": {
+    "title": "Gridline — ICP fit",
+    "summary": "Pursue, 4 of 5 on a rubric mapped from the ICP document: a B2B SaaS running its own Kubernetes clusters, hiring an SRE under the Head of Platform Engineering (5 × 6 ÷ 7 = 4.29 → 4). Warmth is hot.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Fit",
+        "items": [
+          {
+            "text": "Sells a billing API to marketplaces and runs it on its own Kubernetes clusters.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "met · must-have"
+          },
+          {
+            "text": "The Senior SRE role reports to the Head of Platform Engineering.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high",
+            "label": "met"
+          },
+          {
+            "text": "Employee count: no source states it.",
+            "citations": [],
+            "label": "unknown"
+          },
+          {
+            "text": "Not on a fully managed PaaS: it runs its own clusters.",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "high",
+            "label": "not met · exclusion"
+          },
+          {
+            "text": "Not a web agency: it sells a billing API product.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "high",
+            "label": "not met · exclusion"
+          },
+          {
+            "text": "Hiring for SRE on 2026-09-22 and an outage postmortem on 2026-08-05.",
+            "citations": [
+              "S3",
+              "S4"
+            ],
+            "confidence": "high",
+            "label": "met"
+          }
+        ]
+      },
+      {
+        "heading": "Warmth",
+        "items": [
+          {
+            "text": "Met their CTO at a meetup in September 2026; they asked for a demo.",
+            "citations": [
+              "input:item"
+            ],
+            "label": "relationship"
+          },
+          {
+            "text": "Posted a Senior SRE role on 2026-09-22.",
+            "citations": [
+              "S3"
+            ],
+            "label": "hiring"
+          },
+          {
+            "text": "Published a postmortem of a 3-hour API outage on 2026-08-05.",
+            "citations": [
+              "S4"
+            ],
+            "label": "incident"
+          }
+        ]
+      },
+      {
+        "heading": "Problem hypothesis",
+        "items": [
+          {
+            "text": "Likely: on-call load from noisy Kubernetes alerts. They moved to self-managed clusters and say pages tripled, and the new SRE role is to cut alert noise.",
+            "citations": [
+              "S2",
+              "S3"
+            ],
+            "confidence": "medium",
+            "label": "hypothesis"
+          }
+        ]
+      },
+      {
+        "heading": "Why now",
+        "items": [
+          {
+            "text": "Posted a Senior SRE role on 2026-09-22.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high"
+          },
+          {
+            "text": "Published a postmortem of a 3-hour API outage on 2026-08-05.",
+            "citations": [
+              "S4"
+            ],
+            "confidence": "high"
+          }
+        ]
+      },
+      {
+        "heading": "Unknown criteria",
+        "items": [
+          {
+            "text": "200-2,000 employees: no source states the headcount.",
+            "citations": [],
+            "label": "unknown"
+          }
+        ]
+      },
+      {
+        "heading": "Missing information",
+        "items": [
+          {
+            "text": "200-2,000 employees: Search \"Gridline number of employees\" or read its about page.",
+            "citations": [],
+            "label": "missing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://gridline.example/",
+        "title": "Gridline — billing APIs for marketplaces",
+        "provider": "exa"
+      },
+      {
+        "id": "S2",
+        "url": "https://gridline.example/blog/kubernetes-migration",
+        "title": "Why we moved to our own Kubernetes clusters",
+        "published_at": "2026-03-10",
+        "provider": "exa"
+      },
+      {
+        "id": "S3",
+        "url": "https://gridline.example/careers/senior-sre",
+        "title": "Senior SRE, Platform team",
+        "published_at": "2026-09-22",
+        "provider": "exa"
+      },
+      {
+        "id": "S4",
+        "url": "https://news.example.com/gridline-outage-postmortem",
+        "title": "Gridline publishes postmortem of 3-hour API outage",
+        "published_at": "2026-08-05",
+        "provider": "exa"
+      }
+    ],
+    "unknowns": [
+      "Headcount: no source states the number of employees.",
+      "The Reachable via line describes a channel, so it is not scored."
+    ],
+    "meta": {
+      "skill": "account-icp-qualification",
+      "skill_version": "1.5.0",
+      "generated_at": "2026-10-20T09:00:00Z"
+    }
+  }
+}

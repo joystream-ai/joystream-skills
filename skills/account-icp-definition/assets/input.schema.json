@@ -22,8 +22,13 @@
     },
     "founder_notes": {
       "type": "string",
-      "maxLength": 2000,
-      "description": "The founder's own first description of who they sell to, in their words."
+      "maxLength": 6000,
+      "description": "The founder's own words, typed or pasted: who they sell to, and often the interview so far as 'Q: ...' / 'A: ...' lines, which count as earlier answers."
+    },
+    "founder_docs": {
+      "type": "string",
+      "maxLength": 20000,
+      "description": "The founder's existing material as text (positioning, pitch, an old ICP draft, call notes), often an uploaded file. Read before any question; 'Q: ...' / 'A: ...' line pairs count as earlier interview answers."
     },
     "answers": {
       "type": "array",
