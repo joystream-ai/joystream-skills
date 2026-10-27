@@ -2,7 +2,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "required": [
-    "status",
     "next_question",
     "icp_markdown",
     "icp_json",
@@ -21,7 +20,7 @@
         "ready",
         "incomplete"
       ],
-      "description": "needs_answer: ask next_question and call again. ready: every required field resolved. incomplete: the interview ended with gaps."
+      "description": "needs_answer: ask next_question and call again. ready: every required field resolved. incomplete: the interview ended with gaps. Expected, but not required: on JoyStream the model's result envelope also has a top-level status, and the model can drop this one. next_question set means needs_answer; icp_markdown set means ready or incomplete."
     },
     "next_question": {
       "type": [

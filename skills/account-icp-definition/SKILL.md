@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -219,7 +219,9 @@ record has a public one, such as a company website):
 
 Return the fields of `assets/output.schema.json` as your result:
 
-- `status`: `needs_answer`, `ready` or `incomplete`.
+- `status`: `needs_answer`, `ready` or `incomplete`. Always return it, inside your
+  result object next to the other fields. Consumers do not depend on it: `next_question`
+  set means `needs_answer`, `icp_markdown` set means `ready` or `incomplete`.
 - `next_question`: with `needs_answer`, `{field, text, why, example_answer}` (`text` ≤ 300
   characters, a single question); else `null`.
 - `icp_markdown`: with `ready` or `incomplete`, the document, at most 3,000 characters,
@@ -296,7 +298,7 @@ Return the fields of `assets/output.schema.json` as your result:
   - `sources`: every cited page and input. `unknowns`: conflicts, off-domain pages,
     failed fetches, example names with no note, an unreadable version.
   - `footer`: `Saved only after approval.` when `requires_approval` is true.
-  - `meta`: `{skill: "account-icp-definition", skill_version: "1.1.0", generated_at:
+  - `meta`: `{skill: "account-icp-definition", skill_version: "1.1.1", generated_at:
     <now>}`.
 
 # Constraints
