@@ -1,0 +1,9 @@
+{
+  "company": {
+    "name": "Example Postmortem",
+    "url": "https://example.com"
+  },
+  "founder_notes": "We sell to innovative infra companies that really care about reliability.\n\nQ: What usually happens at a company right before they start looking for something like Example Postmortem?\nA: They have an outage that customers notice, and then the CTO asks for better postmortems.",
+  "answers": [],
+  "now": "2026-10-24T09:00:00Z"
+}

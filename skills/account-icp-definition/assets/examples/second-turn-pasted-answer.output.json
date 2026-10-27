@@ -1,0 +1,135 @@
+{
+  "status": "needs_answer",
+  "next_question": {
+    "field": "buyer",
+    "text": "Your site says you sell to platform engineering teams. Who signs off on the spend?",
+    "why": "You named the trigger; the budget holder is the last gap before the document can be used for targeting.",
+    "example_answer": "The Head of Platform at 50+ engineers; below that, the CTO."
+  },
+  "icp_markdown": null,
+  "icp_json": null,
+  "version": null,
+  "coverage": {
+    "segment": true,
+    "buyer": false,
+    "pain": true,
+    "trigger": true,
+    "channel": false,
+    "disqualifier": false,
+    "questions_asked": 1,
+    "questions_left": 9
+  },
+  "changes": [],
+  "requires_approval": false,
+  "report": {
+    "title": "ICP interview: question 2",
+    "summary": "Your site says you sell to platform engineering teams. Who signs off on the spend? Already known: Series A to C SaaS with a platform team, postmortems written by hand, and a customer-noticed outage as the trigger.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Already answered by the website",
+        "items": [
+          {
+            "text": "Segment: B2B SaaS companies at Series A to Series C with a platform engineering team.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          },
+          {
+            "text": "Pain: engineers lose hours writing incident postmortems by hand.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          },
+          {
+            "text": "Nice-to-have: already uses PagerDuty or Datadog (the integrations the pricing page lists).",
+            "citations": [
+              "S2"
+            ],
+            "confidence": "medium",
+            "label": "inferred"
+          }
+        ]
+      },
+      {
+        "heading": "Already answered by you",
+        "items": [
+          {
+            "text": "Trigger: an outage customers notice, after which the CTO asks for better postmortems.",
+            "citations": [
+              "S3"
+            ],
+            "confidence": "high",
+            "label": "validated"
+          }
+        ]
+      },
+      {
+        "heading": "Set aside as too vague",
+        "items": [
+          {
+            "text": "\"innovative infra companies\" (segment): no category, size or stage a BDR could check.",
+            "citations": [
+              "S3"
+            ],
+            "label": "vague"
+          },
+          {
+            "text": "\"really care about reliability\" (pain): every infra buyer says this; it names no problem.",
+            "citations": [
+              "S3"
+            ],
+            "label": "vague"
+          }
+        ]
+      },
+      {
+        "heading": "Open gaps",
+        "items": [
+          {
+            "text": "Buyer: the site names platform engineering teams but not who signs off on the spend.",
+            "citations": []
+          },
+          {
+            "text": "Reachable channels.",
+            "citations": []
+          },
+          {
+            "text": "Disqualifiers.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Postmortem: incident analytics for platform teams",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://example.com/pricing",
+        "title": "Pricing",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "input:founder_notes",
+        "title": "founder_notes",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "account-icp-definition",
+      "skill_version": "1.1.0",
+      "generated_at": "2026-10-24T09:00:00Z"
+    }
+  }
+}

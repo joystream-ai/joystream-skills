@@ -2,7 +2,6 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "required": [
-    "items",
     "item_kind",
     "identity_keys",
     "max_items",
@@ -18,6 +17,11 @@
         "type": "object"
       },
       "description": "The list to prepare, as the agent's user gave it. Items may have any fields, e.g. {name, domain} or {name, company, role, email}."
+    },
+    "items_text": {
+      "type": "string",
+      "maxLength": 50000,
+      "description": "The list as text, used only when items is absent or empty: a CSV export with a header row, or one item per line (Name, domain / Name (domain) / a domain / a name). Parsed into items, in order, at most 50."
     },
     "item_kind": {
       "type": "string",

@@ -1,0 +1,75 @@
+{
+  "slots": [
+    {
+      "i": 0,
+      "item_key": "domain:gridline.example",
+      "label": "Gridline (gridline.example)",
+      "query": "Gridline gridline.example company overview, products, customers, size, funding, hiring"
+    },
+    {
+      "i": 1,
+      "item_key": "domain:kestrel.example",
+      "label": "Kestrel Freight (kestrel.example)",
+      "query": "Kestrel Freight kestrel.example company overview, products, customers, size, funding, hiring"
+    },
+    {
+      "i": 2,
+      "item_key": "domain:orbit.example",
+      "label": "Orbit Ledger, Inc (orbit.example)",
+      "query": "Orbit Ledger, Inc orbit.example company overview, products, customers, size, funding, hiring"
+    },
+    null,
+    null
+  ],
+  "accepted_count": 3,
+  "accepted": [
+    {
+      "index": 0,
+      "item": {
+        "company": "Gridline",
+        "website": "https://www.gridline.example/",
+        "relationship": "Met their CTO at a meetup",
+        "domain": "https://www.gridline.example/",
+        "name": "Gridline"
+      },
+      "item_key": "domain:gridline.example",
+      "query": "Gridline gridline.example company overview, products, customers, size, funding, hiring"
+    },
+    {
+      "index": 1,
+      "item": {
+        "company": "Kestrel Freight",
+        "website": "kestrel.example",
+        "relationship": "",
+        "domain": "kestrel.example",
+        "name": "Kestrel Freight"
+      },
+      "item_key": "domain:kestrel.example",
+      "query": "Kestrel Freight kestrel.example company overview, products, customers, size, funding, hiring"
+    },
+    {
+      "index": 2,
+      "item": {
+        "company": "Orbit Ledger, Inc",
+        "website": "orbit.example",
+        "relationship": "",
+        "domain": "orbit.example",
+        "name": "Orbit Ledger, Inc"
+      },
+      "item_key": "domain:orbit.example",
+      "query": "Orbit Ledger, Inc orbit.example company overview, products, customers, size, funding, hiring"
+    }
+  ],
+  "dropped": [
+    {
+      "item": {
+        "company": "Gridline",
+        "website": "gridline.example",
+        "relationship": "",
+        "domain": "gridline.example",
+        "name": "Gridline"
+      },
+      "reason": "duplicate"
+    }
+  ]
+}
