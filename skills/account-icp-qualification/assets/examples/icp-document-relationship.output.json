@@ -4,6 +4,7 @@
   "fit_tier": "Strong",
   "fit_reasons": [
     "Sells a billing API to marketplaces and runs it on its own Kubernetes clusters.",
+    "Public evidence of the top pain: on-call pages tripled and the new SRE role is to cut alert noise.",
     "Hiring a Senior SRE who reports to the Head of Platform Engineering.",
     "Hiring for SRE on 2026-09-22 and published an outage postmortem on 2026-08-05.",
     "Employee count is unknown: no source states it."
@@ -18,6 +19,7 @@
       {
         "signal": "Met their CTO at a meetup in September 2026; they asked for a demo.",
         "kind": "relationship",
+        "matches_trigger": false,
         "date": null,
         "months_ago": null,
         "source_id": "input:item"
@@ -25,6 +27,7 @@
       {
         "signal": "Posted a Senior SRE role on 2026-09-22.",
         "kind": "hiring",
+        "matches_trigger": true,
         "date": "2026-09-22",
         "months_ago": 1,
         "source_id": "S3"
@@ -32,6 +35,7 @@
       {
         "signal": "Published a postmortem of a 3-hour API outage on 2026-08-05.",
         "kind": "incident",
+        "matches_trigger": true,
         "date": "2026-08-05",
         "months_ago": 2,
         "source_id": "S4"
@@ -89,6 +93,13 @@
         "weight": 1,
         "public_signal": true,
         "result": "not_met"
+      },
+      {
+        "criterion": "Pain: public evidence of On-call load from noisy Kubernetes alerts",
+        "kind": "nice_to_have",
+        "weight": 2,
+        "public_signal": true,
+        "result": "met"
       },
       {
         "criterion": "Timing: Hiring an SRE or platform engineer or A public outage postmortem in the last 12 months",
@@ -152,7 +163,7 @@
   },
   "report": {
     "title": "Gridline — ICP fit",
-    "summary": "Pursue, 4 of 5 on a rubric mapped from the ICP document: a B2B SaaS running its own Kubernetes clusters, hiring an SRE under the Head of Platform Engineering (5 × 6 ÷ 7 = 4.29 → 4). Warmth is hot.",
+    "summary": "Pursue, 4 of 5 on a rubric mapped from the ICP document: a B2B SaaS running its own Kubernetes clusters, hiring an SRE under the Head of Platform Engineering (5 × 8 ÷ 9 = 4.44 → 4). Warmth is hot.",
     "severity": "info",
     "sections": [
       {
@@ -195,6 +206,15 @@
             ],
             "confidence": "high",
             "label": "not met · exclusion"
+          },
+          {
+            "text": "Pain: on-call pages tripled after the move to self-managed clusters, and the SRE role is to cut alert noise.",
+            "citations": [
+              "S2",
+              "S3"
+            ],
+            "confidence": "high",
+            "label": "met"
           },
           {
             "text": "Hiring for SRE on 2026-09-22 and an outage postmortem on 2026-08-05.",
@@ -322,7 +342,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.5.0",
+      "skill_version": "1.6.0",
       "generated_at": "2026-10-20T09:00:00Z"
     }
   }

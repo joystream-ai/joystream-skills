@@ -68,7 +68,7 @@
             "cold",
             "unknown"
           ],
-          "description": "hot: a relationship or prior-conversation signal from the item record, or 2+ signals at most 6 months old; warm: at least one signal; cold: dated events exist but none within 12 months; unknown: no now or no dated event."
+          "description": "hot: a relationship or prior-conversation signal from the item record, or a signal matching an ICP buying trigger at most 6 months old; warm: any other signal; cold: dated events exist but none within 12 months; unknown: no now or no dated event."
         },
         "signals": {
           "type": "array",
@@ -101,6 +101,10 @@
                   "relationship",
                   "prior_conversation"
                 ]
+              },
+              "matches_trigger": {
+                "type": "boolean",
+                "description": "True only when the event is one the ICP names as a buying trigger."
               },
               "date": {
                 "type": [
