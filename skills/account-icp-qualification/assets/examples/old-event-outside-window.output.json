@@ -1,12 +1,25 @@
 {
   "verdict": "Research",
   "fit_score": 3,
+  "fit_tier": "Possible",
   "fit_reasons": [
     "Sells a reporting product to operations teams at software companies.",
     "About 120 employees, inside the 50-500 range.",
     "Timing not met: its Series A was in 2025-06, 16 months before now, outside the 12-month window."
   ],
   "why_now": [],
+  "warmth": {
+    "level": "cold",
+    "signals": []
+  },
+  "problem_hypothesis": null,
+  "missing_info": [
+    {
+      "item": "Which problem the ICP solves for them",
+      "why": "The ICP names no pain to test against the evidence.",
+      "how_to_check": "Ask in discovery what made them look for a solution now."
+    }
+  ],
   "rubric_used": {
     "origin": "given",
     "criteria": [
@@ -106,6 +119,28 @@
             "label": "not met"
           }
         ]
+      },
+      {
+        "heading": "Warmth",
+        "items": [
+          {
+            "text": "Cold: the only dated event (Raised a $12M Series A, 2025-06) is 16 months old.",
+            "citations": [
+              "S3"
+            ],
+            "label": "cold"
+          }
+        ]
+      },
+      {
+        "heading": "Missing information",
+        "items": [
+          {
+            "text": "Which problem the ICP solves for them: Ask in discovery what made them look for a solution now.",
+            "citations": [],
+            "label": "missing"
+          }
+        ]
       }
     ],
     "sources": [
@@ -132,7 +167,7 @@
     "unknowns": [],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.4.0",
+      "skill_version": "1.5.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

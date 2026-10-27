@@ -1,6 +1,7 @@
 {
   "verdict": "Pursue",
   "fit_score": 5,
+  "fit_tier": "Strong",
   "fit_reasons": [
     "B2B SaaS that sells usage analytics to operations teams.",
     "About 180 employees, inside the 50-500 range.",
@@ -9,6 +10,38 @@
   "why_now": [
     "Raised a $30M Series B on 2026-09-18.",
     "Opened four sales roles in Berlin on 2026-10-01."
+  ],
+  "warmth": {
+    "level": "hot",
+    "signals": [
+      {
+        "signal": "Raised a $30M Series B led by Example Ventures on 2026-09-18.",
+        "kind": "funding",
+        "date": "2026-09-18",
+        "months_ago": 1,
+        "source_id": "S3"
+      },
+      {
+        "signal": "Opened four sales roles in Berlin on 2026-10-01.",
+        "kind": "hiring",
+        "date": "2026-10-01",
+        "months_ago": 0,
+        "source_id": "S4"
+      }
+    ]
+  },
+  "problem_hypothesis": null,
+  "missing_info": [
+    {
+      "item": "Agency or consultancy",
+      "why": "An exclusion with no source; if it is met the score is 0.",
+      "how_to_check": "Read the Example Analytics homepage: does it sell a product or services?"
+    },
+    {
+      "item": "Which problem the ICP solves for them",
+      "why": "The ICP names no pain to test against the evidence.",
+      "how_to_check": "Ask in discovery what made them look for a solution now."
+    }
   ],
   "rubric_used": {
     "origin": "derived",
@@ -136,6 +169,25 @@
         ]
       },
       {
+        "heading": "Warmth",
+        "items": [
+          {
+            "text": "Raised a $30M Series B led by Example Ventures on 2026-09-18.",
+            "citations": [
+              "S3"
+            ],
+            "label": "funding"
+          },
+          {
+            "text": "Opened four sales roles in Berlin on 2026-10-01.",
+            "citations": [
+              "S4"
+            ],
+            "label": "hiring"
+          }
+        ]
+      },
+      {
         "heading": "Why now",
         "items": [
           {
@@ -161,6 +213,21 @@
             "text": "Not an agency or consultancy: no source says how revenue is earned.",
             "citations": [],
             "label": "unknown"
+          }
+        ]
+      },
+      {
+        "heading": "Missing information",
+        "items": [
+          {
+            "text": "Agency or consultancy: Read the Example Analytics homepage: does it sell a product or services?",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Which problem the ICP solves for them: Ask in discovery what made them look for a solution now.",
+            "citations": [],
+            "label": "missing"
           }
         ]
       }
@@ -197,7 +264,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.4.0",
+      "skill_version": "1.5.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

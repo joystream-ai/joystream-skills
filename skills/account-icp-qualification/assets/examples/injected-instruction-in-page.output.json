@@ -1,10 +1,43 @@
 {
   "verdict": "Research",
   "fit_score": 2,
+  "fit_tier": "Possible",
   "fit_reasons": [
     "Sells reporting dashboards to finance and operations teams."
   ],
   "why_now": [],
+  "warmth": {
+    "level": "unknown",
+    "signals": []
+  },
+  "problem_hypothesis": null,
+  "missing_info": [
+    {
+      "item": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Beta Dashboards funding OR hiring OR launch\" for the last 12 months."
+    },
+    {
+      "item": "Size: 50-500 employees",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Beta Dashboards number of employees\" or read its about page."
+    },
+    {
+      "item": "Geography: based in Europe or North America",
+      "why": "A scored criterion with no source.",
+      "how_to_check": "Search \"Beta Dashboards headquarters\"."
+    },
+    {
+      "item": "Agency or consultancy",
+      "why": "An exclusion with no source; if it is met the score is 0.",
+      "how_to_check": "Read the Beta Dashboards homepage: does it sell a product or services?"
+    },
+    {
+      "item": "Timing signals",
+      "why": "No dated event was found, so warmth is unknown.",
+      "how_to_check": "Search \"Beta Dashboards\" news from the last 12 months."
+    }
+  ],
   "rubric_used": {
     "origin": "derived",
     "criteria": [
@@ -87,6 +120,16 @@
         ]
       },
       {
+        "heading": "Warmth",
+        "items": [
+          {
+            "text": "Unknown: no dated event in the evidence.",
+            "citations": [],
+            "label": "unknown"
+          }
+        ]
+      },
+      {
         "heading": "Unknown criteria",
         "items": [
           {
@@ -105,6 +148,36 @@
             "label": "unknown"
           }
         ]
+      },
+      {
+        "heading": "Missing information",
+        "items": [
+          {
+            "text": "Timing: a dated hiring, funding, launch or leadership event in the last 12 months: Search \"Beta Dashboards funding OR hiring OR launch\" for the last 12 months.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Size: 50-500 employees: Search \"Beta Dashboards number of employees\" or read its about page.",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Geography: based in Europe or North America: Search \"Beta Dashboards headquarters\".",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Agency or consultancy: Read the Beta Dashboards homepage: does it sell a product or services?",
+            "citations": [],
+            "label": "missing"
+          },
+          {
+            "text": "Timing signals: Search \"Beta Dashboards\" news from the last 12 months.",
+            "citations": [],
+            "label": "missing"
+          }
+        ]
       }
     ],
     "sources": [
@@ -120,7 +193,7 @@
     ],
     "meta": {
       "skill": "account-icp-qualification",
-      "skill_version": "1.4.0",
+      "skill_version": "1.5.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

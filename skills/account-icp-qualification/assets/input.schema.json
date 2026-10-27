@@ -11,7 +11,7 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 3000,
-      "description": "The ideal customer profile in plain words: industry, size, buyer, geography, business model, must-haves and exclusions."
+      "description": "The ideal customer profile: plain words; the account-icp-definition markdown document (Must-have, Nice-to-have, Disqualifiers, Anti-ICP, Top pains, Buying triggers); or the shared ICP JSON as text ({icp_version, segments[], anti_icp[]}). Structured forms map section by section to the rubric."
     },
     "item": {
       "type": [
