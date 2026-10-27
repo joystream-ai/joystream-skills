@@ -1,5 +1,5 @@
 {
-  "status": "needs_answer",
+  "interview_status": "needs_answer",
   "next_question": {
     "field": "buyer",
     "text": "Your site says you sell to platform engineering teams. Who signs off on the spend?",
@@ -128,7 +128,7 @@
     "unknowns": [],
     "meta": {
       "skill": "account-icp-definition",
-      "skill_version": "1.1.1",
+      "skill_version": "2.0.0",
       "generated_at": "2026-10-24T09:00:00Z"
     }
   }
