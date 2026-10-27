@@ -1,0 +1,84 @@
+{
+  "interview_status": "ready",
+  "next_question": null,
+  "icp_markdown": "# ICP: Regional GPU cloud providers\n*v1 — Clouds renting NVIDIA GPUs by the hour whose customers report stalled or slow jobs*\n\n## Must-have\n- Regional cloud provider that rents out NVIDIA GPUs by the hour (confidence: validated; source: founder)\n- Buyer: the CTO under 50 people; above that, the VP of Infrastructure (confidence: validated; source: founder)\n\n## Nice-to-have\n- none yet\n\n## Disqualifiers\n- AWS-style hyperscalers (confidence: validated; source: founder)\n\n## Anti-ICP\n- none yet\n\n## Top pains (ranked)\n1. Customers' GPU jobs stall or run slow, and the provider can't see why (confidence: validated; source: founder, website)\n\n## Buying triggers\n- A wave of customer complaints (confidence: validated; source: founder)\n- A newly hired VP of Infrastructure (confidence: validated; source: founder)\n\n## Changelog\n- v1 (2026-10-27): first version, because of the website and a four-answer interview\n",
+  "icp_json": {
+    "icp_version": "v1",
+    "segments": [
+      {
+        "name": "Regional GPU cloud providers",
+        "must_have": [
+          "Regional cloud provider that rents out NVIDIA GPUs by the hour",
+          "Buyer: the CTO under 50 people; above that, the VP of Infrastructure"
+        ],
+        "nice_to_have": [],
+        "disqualifiers": [
+          "AWS-style hyperscalers"
+        ],
+        "top_pains": [
+          "Customers' GPU jobs stall or run slow, and the provider can't see why"
+        ],
+        "triggers": [
+          "A wave of customer complaints",
+          "A newly hired VP of Infrastructure"
+        ],
+        "buyers": [
+          "the CTO under 50 people; above that, the VP of Infrastructure"
+        ],
+        "confidence": "validated"
+      }
+    ],
+    "anti_icp": []
+  },
+  "version": "v1",
+  "coverage": {
+    "segment": true,
+    "buyer": true,
+    "pain": true,
+    "trigger": true,
+    "channel": false,
+    "disqualifier": true,
+    "questions_asked": 4,
+    "questions_left": 0
+  },
+  "changes": [],
+  "requires_approval": false,
+  "report": {
+    "title": "ICP v1: Regional GPU cloud providers",
+    "summary": "Regional clouds renting NVIDIA GPUs by the hour, bought by the CTO under 50 people or the VP of Infrastructure above, after customer complaints or a new VP of Infrastructure. Ready to hand to a BDR.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Open gaps",
+        "items": [
+          {
+            "text": "channel: where these buyers can be reached was not asked; the four-question budget was used.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://example.com/",
+        "title": "Example Fleetwatch: see why GPU jobs stall",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "input:founder_notes",
+        "title": "founder_notes",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [
+      "Seller credential, not a customer criterion: member of the Example Startup Program (S1)."
+    ],
+    "meta": {
+      "skill": "account-icp-definition",
+      "skill_version": "2.0.2",
+      "generated_at": "2026-10-27T09:00:00Z"
+    }
+  }
+}

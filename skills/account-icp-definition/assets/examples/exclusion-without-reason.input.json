@@ -1,0 +1,9 @@
+{
+  "company": {
+    "name": "Example Fleetwatch",
+    "url": "https://example.com"
+  },
+  "founder_notes": "Q: Who do you want to sell to?\nA: Regional GPU cloud providers that rent out NVIDIA GPUs by the hour, not AWS-style hyperscalers.\nQ: What's their problem?\nA: Their customers complain that GPU jobs stall or run slow, and they can't see why.\nQ: What makes them start looking now?\nA: A wave of customer complaints, or a newly hired VP of Infrastructure.\nQ: Who signs the cheque?\nA: The CTO under 50 people; above that, the VP of Infrastructure.",
+  "max_questions": 4,
+  "now": "2026-10-27T09:00:00Z"
+}
