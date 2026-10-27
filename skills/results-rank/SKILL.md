@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.4.0"
+  version: "1.4.1"
   category: operations
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -155,6 +155,9 @@ failed branch is the one whose `item_key` no successful branch returned.
    address). It is never hashed or rewritten: a digest a model computes may be wrong,
    and a wrong key joins silently to the wrong row, which is worse than no key. `source_ids` are the branch's
    `item_result.source_ids` mapped to the new ids of step 4.
+   **Check the order** before going on: walk `ranked` from the top and confirm each item
+   sorts at or after the one before it, key by key (inside one verdict group with
+   `score desc`, a 1 never follows a 0). Fix any pair that is out of order.
 
 4. **Renumber sources.** Walk the ranked items in rank order, and inside each branch its
    `report.sources` in their order. Give each distinct source a new id `S1`, `S2`, … and
@@ -229,7 +232,7 @@ Return the fields of `assets/output.schema.json`:
   - `unknowns`: only what the ranking could not settle (an ignored `rank_by` key, sources
     dropped at the cap) and each headline withheld because it reads as an instruction.
     Empty otherwise.
-  - `meta`: `{skill: "results-rank", skill_version: "1.4.0", generated_at: <now>}`.
+  - `meta`: `{skill: "results-rank", skill_version: "1.4.1", generated_at: <now>}`.
 
 # Constraints
 

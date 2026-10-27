@@ -1,29 +1,31 @@
 {
   "interview_status": "ready",
   "next_question": null,
-  "icp_markdown": "# ICP: Regional GPU cloud providers\n*v1 — Clouds renting NVIDIA GPUs by the hour whose customers report stalled or slow jobs*\n\n## Must-have\n- Regional cloud provider that rents out NVIDIA GPUs by the hour (confidence: validated; source: founder)\n- Buyer: the CTO under 50 people; above that, the VP of Infrastructure (confidence: validated; source: founder)\n\n## Nice-to-have\n- none yet\n\n## Disqualifiers\n- AWS-style hyperscalers (confidence: validated; source: founder)\n\n## Anti-ICP\n- none yet\n\n## Top pains (ranked)\n1. Customers' GPU jobs stall or run slow, and the provider can't see why (confidence: validated; source: founder, website)\n\n## Buying triggers\n- A wave of customer complaints (confidence: validated; source: founder)\n- A newly hired VP of Infrastructure (confidence: validated; source: founder)\n\n## Changelog\n- v1 (2026-10-27): first version, because of the website and a four-answer interview\n",
+  "icp_markdown": "# ICP: Independent dental clinics, 2-10 chairs\n*v1 — Independent dental clinics losing front-desk hours to missed appointments*\n\n## Must-have\n- Independent dental clinic with 2 to 10 chairs (confidence: validated; source: founder)\n- Buyer: the owner dentist; where there is one, the practice manager (confidence: validated; source: founder)\n\n## Nice-to-have\n- Family-owned (confidence: validated; source: founder)\n\n## Disqualifiers\n- Hospital groups (confidence: validated; source: founder)\n\n## Anti-ICP\n- none yet\n\n## Top pains (ranked)\n1. Patients miss appointments and the front desk spends hours on reminder calls (confidence: validated; source: founder, website)\n\n## Buying triggers\n- The clinic opens a second location (confidence: validated; source: founder)\n- The clinic loses its front-desk manager (confidence: validated; source: founder)\n\n## Changelog\n- v1 (2026-10-27): first version, because of the website and a four-answer interview\n",
   "icp_json": {
     "icp_version": "v1",
     "segments": [
       {
-        "name": "Regional GPU cloud providers",
+        "name": "Independent dental clinics, 2-10 chairs",
         "must_have": [
-          "Regional cloud provider that rents out NVIDIA GPUs by the hour",
-          "Buyer: the CTO under 50 people; above that, the VP of Infrastructure"
+          "Independent dental clinic with 2 to 10 chairs",
+          "Buyer: the owner dentist; where there is one, the practice manager"
         ],
-        "nice_to_have": [],
+        "nice_to_have": [
+          "Family-owned"
+        ],
         "disqualifiers": [
-          "AWS-style hyperscalers"
+          "Hospital groups"
         ],
         "top_pains": [
-          "Customers' GPU jobs stall or run slow, and the provider can't see why"
+          "Patients miss appointments and the front desk spends hours on reminder calls"
         ],
         "triggers": [
-          "A wave of customer complaints",
-          "A newly hired VP of Infrastructure"
+          "The clinic opens a second location",
+          "The clinic loses its front-desk manager"
         ],
         "buyers": [
-          "the CTO under 50 people; above that, the VP of Infrastructure"
+          "the owner dentist; where there is one, the practice manager"
         ],
         "confidence": "validated"
       }
@@ -44,8 +46,8 @@
   "changes": [],
   "requires_approval": false,
   "report": {
-    "title": "ICP v1: Regional GPU cloud providers",
-    "summary": "Regional clouds renting NVIDIA GPUs by the hour, bought by the CTO under 50 people or the VP of Infrastructure above, after customer complaints or a new VP of Infrastructure. Ready to hand to a BDR.",
+    "title": "ICP v1: Independent dental clinics, 2-10 chairs",
+    "summary": "Independent dental clinics with 2 to 10 chairs, bought by the owner dentist or practice manager when the clinic opens a second location or loses its front-desk manager. Ready to hand to a BDR.",
     "severity": "info",
     "sections": [
       {
@@ -62,7 +64,7 @@
       {
         "id": "S1",
         "url": "https://example.com/",
-        "title": "Example Fleetwatch: see why GPU jobs stall",
+        "title": "Example Chairtime: fewer missed appointments",
         "provider": "tavily"
       },
       {
@@ -73,11 +75,12 @@
       }
     ],
     "unknowns": [
-      "Seller credential, not a customer criterion: member of the Example Startup Program (S1)."
+      "Seller credential, not a customer criterion: member of the Example Startup Program (S1).",
+      "Anti-ICP line for hospital groups omitted: the founder gave no reason."
     ],
     "meta": {
       "skill": "account-icp-definition",
-      "skill_version": "2.0.2",
+      "skill_version": "2.0.3",
       "generated_at": "2026-10-27T09:00:00Z"
     }
   }
