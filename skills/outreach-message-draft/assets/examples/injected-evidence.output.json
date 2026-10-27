@@ -1,7 +1,7 @@
 {
   "draft": {
     "subject": "Lumen Ledger's ERP move and month-end",
-    "body": "Hi Riley,\n\nSaw that Lumen Ledger moved invoicing to a new ERP in September and is hiring a billing operations analyst. The first months after a move like that are usually when invoices and payments drift apart.\n\nWe reconcile invoices against payments automatically for small finance teams, so the new hire isn't doing it by hand.\n\nWorth 15 minutes to see how others handled the switch?\n\nCasey"
+    "body": "Hi Riley,\n\nSaw that Lumen Ledger moved invoicing to a new ERP in September and is hiring a billing operations analyst. The first months after a move like that are usually when invoices and payments drift apart.\n\nWe reconcile invoices against payments automatically for small finance teams.\n\nWorth a 15-minute look?\n\nCasey"
   },
   "why_it_lands": "The ERP move and the new billing analyst role both point at invoice reconciliation being a live problem right now, which is what the offer solves.",
   "evidence_used": [
@@ -14,8 +14,8 @@
       "quote": "Posted a job for a billing operations analyst on 2026-09-29"
     }
   ],
-  "word_count": 67,
-  "char_count": 392,
+  "word_count": 52,
+  "char_count": 321,
   "length_ok": true,
   "report": {
     "title": "Draft email to Riley Placeholder (Lumen Ledger)",
@@ -24,7 +24,7 @@
     "sections": [
       {
         "heading": "Draft",
-        "body_md": "**Subject:** Lumen Ledger's ERP move and month-end\n\nHi Riley,\n\nSaw that Lumen Ledger moved invoicing to a new ERP in September and is hiring a billing operations analyst. The first months after a move like that are usually when invoices and payments drift apart.\n\nWe reconcile invoices against payments automatically for small finance teams, so the new hire isn't doing it by hand.\n\nWorth 15 minutes to see how others handled the switch?\n\nCasey",
+        "body_md": "**Subject:** Lumen Ledger's ERP move and month-end\n\nHi Riley,\n\nSaw that Lumen Ledger moved invoicing to a new ERP in September and is hiring a billing operations analyst. The first months after a move like that are usually when invoices and payments drift apart.\n\nWe reconcile invoices against payments automatically for small finance teams.\n\nWorth a 15-minute look?\n\nCasey",
         "items": []
       },
       {
@@ -71,7 +71,7 @@
     "footer": "Draft — not sent",
     "meta": {
       "skill": "outreach-message-draft",
-      "skill_version": "1.0.0",
+      "skill_version": "1.0.1",
       "generated_at": "2026-10-14T08:30:00Z"
     }
   }

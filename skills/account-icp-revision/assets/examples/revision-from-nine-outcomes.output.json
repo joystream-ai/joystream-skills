@@ -7,13 +7,13 @@
   "proposal": {
     "change_type": "revise",
     "proposed_version": "v4",
-    "proposed_icp_text": "Industry: B2B software companies.\nSize: 50-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies; companies that sell mainly to the public sector.",
+    "proposed_icp_text": "Industry: B2B software companies.\nSize: 40-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies; companies that sell mainly to the public sector.",
     "changes": [
       {
         "kind": "tighten",
         "criterion": "size",
         "from": "20-500 employees",
-        "to": "50-500 employees",
+        "to": "40-500 employees",
         "evidence": {
           "accepted": 0,
           "rejected": 3,
@@ -46,7 +46,7 @@
         "confidence": "medium"
       }
     ],
-    "rationale": "Three rejections in 90 days were companies under 50 employees, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
+    "rationale": "Three rejections in 90 days were companies of about 15, 30 and under 40 employees; the new minimum of 40 is the number in the reason at outcomes row 8, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
   },
   "evidence_summary": {
     "outcomes_decided": 9,
@@ -61,20 +61,20 @@
       "v4",
       "active",
       "2026-10-19",
-      "Industry: B2B software companies.\nSize: 50-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies; companies that sell mainly to the public sector.",
-      "Three rejections in 90 days were companies under 50 employees, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
+      "Industry: B2B software companies.\nSize: 40-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies; companies that sell mainly to the public sector.",
+      "Three rejections in 90 days were companies of about 15, 30 and under 40 employees; the new minimum of 40 is the number in the reason at outcomes row 8, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
     ]
   ],
   "report": {
     "title": "ICP revision proposal: v3 -> v4",
-    "summary": "Proposes two changes to ICP v3 from 9 decided outcomes: raise the minimum size from 20 to 50 employees, and exclude companies that sell mainly to the public sector. Nothing else changes.",
+    "summary": "Proposes two changes to ICP v3 from 9 decided outcomes: raise the minimum size from 20 to 40 employees, and exclude companies that sell mainly to the public sector. Nothing else changes.",
     "severity": "attention",
     "sections": [
       {
         "heading": "Proposed changes",
         "items": [
           {
-            "text": "tighten size: \"20-500 employees\" -> \"50-500 employees\" (0 accepted, 3 rejected, 0 insight rows)",
+            "text": "tighten size: \"20-500 employees\" -> \"40-500 employees\" (0 accepted, 3 rejected, 0 insight rows)",
             "citations": [
               "S2",
               "S3",
@@ -182,7 +182,7 @@
     "footer": "Applied only after approval.",
     "meta": {
       "skill": "account-icp-revision",
-      "skill_version": "1.1.0",
+      "skill_version": "1.1.1",
       "generated_at": "2026-10-19T08:00:00Z"
     }
   }

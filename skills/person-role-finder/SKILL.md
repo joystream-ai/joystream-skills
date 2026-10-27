@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.0"
+  version: "1.2.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -185,7 +185,8 @@ record's evidence date. Contact fields: `email`, `work_email`, `email_status`,
    `of`, `&`, commas and word order. Then compare function and level with each target:
    - `exact`: same function and level (`Vice President, Marketing` for `VP Marketing`).
    - `synonym`: same job in other words (`Head of Growth Marketing` for `Head of Demand
-     Generation`, `Chief Revenue Officer` for `Head of Sales` at a small company,
+     Generation`, `Chief Revenue Officer` for `Head of Sales` only when the
+     source shows no separate sales head,
      `RevOps` for `Revenue Operations`). Interim or acting titles keep their prefix.
    - `adjacent`: same function, one level up or down (Director or CMO for `VP
      Marketing`). Only when `allow_adjacent` is true and the role has no `exact` or
@@ -211,7 +212,8 @@ record's evidence date. Contact fields: `email`, `work_email`, `email_status`,
    the company's own press release, a news item, a speaker list) names them in the role,
    alone or agreeing with the live team page or another source. A live team page alone
    (`page_live` and no dated source agreeing) is `medium` at most: a team page can lag a
-   departure for months. `medium`: `current` from one source of any kind, or one record.
+   departure for months. `medium`: `current` from one source without a `published` or `event` date (a live
+   team page or one record).
    `low`: `possibly_stale`, `undated` or `adjacent`. A record alone is `medium` at most.
 9. **Choose per role.** Up to `max_people_per_role`, ordered `exact` > `synonym` >
    `adjacent`, then `current` > `undated` > `possibly_stale`, then confidence, then newest.
@@ -222,6 +224,8 @@ record's evidence date. Contact fields: `email`, `work_email`, `email_status`,
 11. **Contact details** (only if `include_contact_details` is true; see below).
 12. **Verdict.** `coverage_score` = roles with status `found`. `Found` when every role is
     `found`; `Partial` when at least one role has any holder; `Not found` when none.
+    Set `item_result.verdict` and `item_result.score` equal to `verdict` and
+    `coverage_score` now.
 
 # Contact details
 
@@ -274,7 +278,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `severity: info` for `Found`, else `attention`. `sources` = only sources cited by kept
   or excluded people; `unknowns` with `Rejected N candidates (same name at another
   company, or no company link).` when N > 0, each failed fetch, and missing roles' reasons
-  when known; `meta` `{skill: "person-role-finder", skill_version: "1.2.0",
+  when known; `meta` `{skill: "person-role-finder", skill_version: "1.2.1",
   generated_at: <now>}`.
 
 A skipped slot returns empty lists, `rejected_count: 0`, `contacts: []`, the skipped

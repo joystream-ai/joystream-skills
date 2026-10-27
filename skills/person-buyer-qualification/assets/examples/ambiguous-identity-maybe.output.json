@@ -1,0 +1,177 @@
+{
+  "identity": {
+    "status": "ambiguous",
+    "rejected_count": 0
+  },
+  "criteria": {
+    "owns_problem": {
+      "score": 2,
+      "reason": "A speaker page dated 2026-09-03 lists Sam Example as VP Finance, a role on the owner list, but names no employer.",
+      "source_ids": [
+        "S1"
+      ],
+      "current_title": "VP Finance",
+      "title_months_ago": 1,
+      "stale": false
+    },
+    "active": {
+      "score": 2,
+      "reason": "Spoke on a close-automation panel on 2026-09-03 and wrote a post on 2026-07-20, both inside the 180-day window.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ],
+      "latest_activity_date": "2026-09-03",
+      "latest_activity_days_ago": 39
+    },
+    "reachable": {
+      "score": 2,
+      "reason": "Speaks at finance events and writes a public blog; the latest appearance is inside the window.",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    }
+  },
+  "score": 6,
+  "verdict": "Maybe",
+  "rubric_used": [
+    {
+      "criterion": "current title owns the problem (dated, cited)",
+      "kind": "must_have",
+      "weight": 3,
+      "status": "met",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "criterion": "cited public activity inside the window",
+      "kind": "nice_to_have",
+      "weight": 2,
+      "status": "met",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "criterion": "cited activity about the problem itself",
+      "kind": "nice_to_have",
+      "weight": 1,
+      "status": "met",
+      "source_ids": [
+        "S1",
+        "S2"
+      ]
+    },
+    {
+      "criterion": "left the company or works in another function",
+      "kind": "exclusion",
+      "weight": 1,
+      "status": "not_met",
+      "source_ids": []
+    }
+  ],
+  "suggested_angle": "Sam Example has spoken about shortening the close by automating reconciliations, which is the problem we solve.",
+  "item_result": {
+    "item": {
+      "name": "Sam Example",
+      "company": "Example Logistics",
+      "role": "VP Finance"
+    },
+    "item_key": "name_company:sam-example@example-logistics",
+    "item_label": "Sam Example (Example Logistics)",
+    "status": "ok",
+    "verdict": "Maybe",
+    "score": 6,
+    "score_scale": "0-6",
+    "headline": "VP Finance; strong evidence, but no source ties them to Example Logistics",
+    "source_ids": [
+      "S1",
+      "S2"
+    ]
+  },
+  "report": {
+    "title": "Sam Example (Example Logistics): buyer qualification",
+    "summary": "Maybe, 6/6: the evidence is strong, but every source ties Sam Example to the role VP Finance and none to Example Logistics, so it may be another person.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Owns the problem",
+        "items": [
+          {
+            "text": "Listed as VP Finance on a close-automation speaker page; no employer named.",
+            "citations": [
+              "S1"
+            ],
+            "confidence": "medium",
+            "label": "2/2"
+          }
+        ]
+      },
+      {
+        "heading": "Active",
+        "items": [
+          {
+            "text": "Panelist on close automation on 2026-09-03; blog post on reconciliations on 2026-07-20.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "confidence": "medium",
+            "label": "2/2"
+          }
+        ]
+      },
+      {
+        "heading": "Reachable",
+        "items": [
+          {
+            "text": "Speaks at finance events and writes a public blog.",
+            "citations": [
+              "S1",
+              "S2"
+            ],
+            "confidence": "medium",
+            "label": "2/2"
+          }
+        ]
+      },
+      {
+        "heading": "Suggested angle",
+        "items": [
+          {
+            "text": "Once identity is confirmed, open with reconciliation automation: Sam Example has written about it publicly.",
+            "citations": [
+              "S2"
+            ],
+            "label": "angle"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://events.example.com/finance-close-forum/speakers/sam-example",
+        "published_at": "2026-09-03",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://blog.example.net/sam-example/faster-reconciliations",
+        "published_at": "2026-07-20",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Identity not confirmed against Example Logistics."
+    ],
+    "meta": {
+      "skill": "person-buyer-qualification",
+      "skill_version": "1.2.1",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

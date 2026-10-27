@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.0"
+  version: "1.2.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -148,7 +148,9 @@ never cited.
 
 1. **Get the rubric.** With a `rubric`, its entries are the criteria (`origin: given`).
    Else derive one from the ICP (`icp`, else the ICP document; `origin: derived`): one
-   checkable criterion per stated requirement; what to avoid is an `exclusion`;
+   checkable criterion per stated requirement, in the ICP's own words: never add a
+   range, threshold, qualifier or exclusion it does not state; what to avoid is an
+   `exclusion`;
    `must_have` (weight 3) only for the core of the fit (what they sell, to whom); others
    `nice_to_have`, weight 1 for firmographics, 2 for signals; at least half of the
    non-exclusion weight on public signals (what a company states it sells and to whom,
@@ -182,6 +184,11 @@ never cited.
    - `met`: a source states it (a directory blurb saying `payroll software for
      restaurants` meets an industry criterion). `contradicted`: a source states the
      opposite. Otherwise unknown.
+   - **Judge each criterion by its words, never by likeness.** An exclusion is met only
+     when a source states the excluded attribute. Size, market or being the seller's
+     competitor is never inferred from fame, a logo or a similar product. A source
+     showing the company is a different kind of business than the must-have names (a
+     restaurant group, not a vendor to restaurants) makes the must-have `contradicted`.
    - An exclusion `met` → drop as `icp_exclusion`. A must-have `contradicted` → drop as
      `not_a_fit`.
    - **Rubric score** = 5 × met weight ÷ non-exclusion weight, rounded half up (unknown
@@ -216,10 +223,14 @@ never cited.
 10. **Next queries** when fewer than `count` candidates are returned and
     `max_next_queries` > 0: up to that many searches that should surface more, each
     `{query, target, why}`, from the rubric and from what worked in this run. Prefer
-    behavior and pain phrasing (`"hiring first revenue operations" B2B SaaS`), with one
+    behavior and pain phrasing (`"hiring first <buyer role>" <segment>`), with one
     community query when the ICP names a pain. Never repeat a query already run (a
     search output's `query` field). Otherwise `[]`.
-11. **State** (see Output) and **report** (see Output).
+11. **Check before writing.** Each candidate's `fit_strength` follows its
+    `rubric_score` (3-5 `strong`, 1-2 `plausible`), and no candidate's source shows it is
+    a different kind of business than the must-have. `returned + already_seen +
+    excluded + not_a_fit + over_limit = mentioned`. Fix what fails before writing.
+12. **State** (see Output) and **report** (see Output).
 
 # Output
 
@@ -261,7 +272,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `Suggested next searches` (one item per next query, no citations, `label` = target) when
   any, and `Skipped` (one item each for the non-zero counts, no citations, e.g. `12
   already returned in earlier runs`); every cited source in `sources`; `unknowns`;
-  `meta` `{skill: "account-discovery-candidates", skill_version: "1.2.0",
+  `meta` `{skill: "account-discovery-candidates", skill_version: "1.2.1",
   generated_at: <now>}`.
 
 # Constraints

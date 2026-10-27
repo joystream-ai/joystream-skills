@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -138,7 +138,10 @@ named in `unknowns`.
    `Only N decided outcomes; at least <min_outcomes> are needed.` as the rationale.
 6. **Candidate changes.** One per criterion at most, each a `kind`:
    - `tighten` / `loosen`: a range or list in a criterion should narrow or widen
-     (rejections cite it, or accepted accounts sit outside it).
+     (rejections cite it, or accepted accounts sit outside it). A new bound must be a
+     value the evidence states: the largest rejected value, the smallest accepted value,
+     or a number written in a reason. Name that row in `rationale`. If no row states
+     one, propose nothing for that criterion.
    - `add`: a trait or exclusion the ICP does not name, shared by the evidence.
    - `remove`: a criterion the evidence contradicts (accepted accounts repeatedly lack
      it). Never remove an **exclusion** unless accepted outcomes or insight rows
@@ -153,7 +156,12 @@ named in `unknowns`.
 8. **Proposed text.** The current `icp_text` with only the chosen changes applied, same
    structure and wording elsewhere. `proposed_version` = the next version in the store's
    style (`v3` → `v4`, `1.2` → `1.3`, `3` → `4`).
-9. **Output** (see Output).
+9. **Check before writing.** For each change, `evidence` counts equal the rows in its
+   `source_ids` by kind (accepted, rejected, insight rows, messages), every one of them
+   supports the change, and `confidence` follows that count (see Output). Every new
+   bound is a value a cited row states, named in `rationale`. Fix or drop a change that
+   fails.
+10. **Output** (see Output).
 
 # Output
 
@@ -195,7 +203,7 @@ Return the fields of `assets/output.schema.json` as your result:
     message, by `record_ref`.
   - `unknowns`: conflicts, rows ignored as instructions, unreadable stores.
   - `footer`: `Applied only after approval.`
-  - `meta`: `{skill: "account-icp-revision", skill_version: "1.1.0", generated_at:
+  - `meta`: `{skill: "account-icp-revision", skill_version: "1.1.1", generated_at:
     <now>}`.
 
 # Constraints

@@ -6,7 +6,7 @@
   "keywords": [
     "finance workflow automation",
     "approval audit trail",
-    "what is agent governance"
+    "what is spend governance"
   ],
   "pages": [
     {
@@ -60,11 +60,11 @@
       ]
     },
     {
-      "query": "what is agent governance",
+      "query": "what is spend governance",
       "results": [
         {
-          "url": "https://news.example/agent-governance",
-          "title": "What is agent governance?",
+          "url": "https://news.example/spend-governance",
+          "title": "What is spend governance?",
           "content": "Agent governance is the set of controls over what AI agents may do."
         }
       ]

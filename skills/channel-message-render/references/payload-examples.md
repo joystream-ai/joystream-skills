@@ -102,7 +102,8 @@ report, the full output of the task-skill step this one depends on:
 ```
 
 `teams-action-needed` renders the same report with `severity: action_needed` and a new
-summary; `email-empty-report` renders a report with no sections and one unknowns line;
+summary; `email-empty-report` renders a report with no sections, the summary `No trigger events
+in the last 7 days.` and one unknowns line (`Dropped 2 undated items.`), which is shown;
 `slack-injected-mentions` renders a report whose text carries `@channel`, `@here`,
 `<!channel>` and a user mention.
 

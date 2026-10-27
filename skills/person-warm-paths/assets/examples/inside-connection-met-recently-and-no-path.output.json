@@ -98,11 +98,12 @@
     ],
     "unknowns": [
       "Second-degree connections are not in this data.",
+      "Connection companies and titles are as of the export.",
       "A connection at Harborview Foods was not matched to Harbor Analytics: the names differ."
     ],
     "meta": {
       "skill": "person-warm-paths",
-      "skill_version": "1.1.0",
+      "skill_version": "1.1.1",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

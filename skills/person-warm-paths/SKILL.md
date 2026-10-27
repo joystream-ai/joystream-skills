@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -120,7 +120,9 @@ The evidence is the output of the steps that ran before this one, shown in full 
 4. **Match calendar attendees.** An attendee belongs to a target when their email
    domain equals the target's domain or ends with `.<domain>`. Attendees on
    `own_domains` are ignored. Without a target domain, attendees cannot be matched:
-   say so in `unknowns`.
+   say so in `unknowns`. Skip, for a meeting path, an event the user declined (the
+   user's own attendee entry, `self: true`, has `responseStatus: declined`) and an event
+   with more than 10 person attendees (a webinar or all-hands is not a meeting).
 5. **Build paths.** For each matched person:
    - `direct`: they are one of the target's `people` (full name match, and company when
      both sides have one). The user is connected to them or has met them.
@@ -141,6 +143,7 @@ The evidence is the output of the steps that ran before this one, shown in full 
    - `weak`: any other `inside` connection.
    Write `why` as one sentence from the data (`Connected since 2021; VP Finance there,
    senior to the Controller you want to reach.`), never a claim the data does not make.
+   A connection's company and title are as of the export, never called current.
 7. **Order and cap.** Per target: strength, then `direct` before `met` before
    `inside`, then the most recent date. Keep `max_paths_per_target`; count the rest in
    `unknowns`.
@@ -167,9 +170,10 @@ Return the fields of `assets/output.schema.json` as your result:
   <why>`, `label` = strength, `citations` = the source ids of its evidence; then a
   section `No path found` with one item per target without one (`citations: []`).
   `sources`: one per cited record, `{id, record_ref}` (never a url or email); `unknowns`
-  always includes `Second-degree connections are not in this data.`, plus unreadable
-  sources, unmatched attendees for lack of a domain, and paths over the cap; `meta`
-  with `skill: person-warm-paths`, `skill_version: 1.1.0`, `generated_at` = `now`.
+  always includes `Second-degree connections are not in this data.`, and, when
+  connections were read, `Connection companies and titles are as of the export.`, plus
+  unreadable sources, unmatched attendees for lack of a domain, and paths over the cap;
+  `meta` with `skill: person-warm-paths`, `skill_version: 1.1.1`, `generated_at` = `now`.
 
 # Constraints
 

@@ -1,6 +1,6 @@
 {
   "overall_score": 52,
-  "verdict": "Clear on its core keyword, but blocks GPTBot and says nothing about agent governance.",
+  "verdict": "Clear on its core keyword, but blocks GPTBot and says nothing about spend governance.",
   "site_files": {
     "robots_txt": "present",
     "llms_txt": "missing",
@@ -53,7 +53,7 @@
   "gaps": [
     "robots.txt disallows GPTBot (User-agent: GPTBot / Disallow: /).",
     "No llms.txt: the request returned 404 Not Found.",
-    "\"what is agent governance\" is absent from every page read.",
+    "\"what is spend governance\" is absent from every page read.",
     "No FAQ and no dated content."
   ],
   "recommendations": [
@@ -69,7 +69,7 @@
     },
     {
       "priority": 3,
-      "action": "Add an explainer page answering \"what is agent governance\" and link it from the homepage.",
+      "action": "Add an explainer page answering \"what is spend governance\" and link it from the homepage.",
       "effort": "project"
     },
     {
@@ -108,8 +108,8 @@
       "kind": "third_party"
     },
     {
-      "url": "https://news.example/agent-governance",
-      "title": "What is agent governance?",
+      "url": "https://news.example/spend-governance",
+      "title": "What is spend governance?",
       "kind": "third_party"
     }
   ],
@@ -134,7 +134,7 @@
       ]
     },
     {
-      "keyword": "what is agent governance",
+      "keyword": "what is spend governance",
       "on_site": "absent",
       "in_search": "not_ranking",
       "note": "No page read uses the term; a news explainer answers it instead.",
@@ -167,17 +167,17 @@
           "keywords": {
             "finance workflow automation": "answered",
             "approval audit trail": "mentioned",
-            "what is agent governance": "absent"
+            "what is spend governance": "absent"
           }
         }
       }
     ]
   },
-  "report_markdown": "# AEO/GEO audit: rival.example\n2026-10-20 · Overall **52/100** — Clear on its core keyword, but blocks GPTBot and says nothing about agent governance.\n\n| Category | Score | Finding |\n|---|---|---|\n| AI crawler access | 5/10 | GPTBot disallowed (`User-agent: GPTBot` / `Disallow: /`); sitemap declared. |\n| llms.txt | 3/10 | Missing (404). |\n| Answerability | 7/10 | Quotable definition, one question heading, no FAQ. |\n| Metadata | 6/10 | Specific titles; descriptions and structured data not visible. |\n| External authority | 5/10 | One independent comparison names it. |\n| Depth & freshness | 5/10 | Two core pages, nothing dated. |\n\n## Strengths\n- Quotable definition: \"Rival Flow is a workflow automation platform for finance teams.\"\n- Answers and ranks for \"finance workflow automation\".\n- Named in an independent comparison of finance automation tools.\n\n## Gaps\n- robots.txt disallows GPTBot.\n- No llms.txt (404).\n- \"what is agent governance\" is absent from every page read.\n- No FAQ and no dated content.\n\n## Keywords\n| Keyword | On site | In search | Note |\n|---|---|---|---|\n| finance workflow automation | answered | ranks | Homepage question heading; homepage is the top result. |\n| approval audit trail | mentioned | not ranking | /security mentions the CSV export, no answer. |\n| what is agent governance | absent | not ranking | A news explainer answers it instead. |\n\n## Fix first (ranked)\n1. Remove the GPTBot disallow rule (quick fix).\n2. Publish /llms.txt (quick fix).\n3. Add an explainer answering \"what is agent governance\" (project).\n4. Add an audit-trail question heading to /security (quick fix).\n\n## What this audit could not verify\n- Meta descriptions, canonical tags and JSON-LD.\n- Only the homepage and /security were read.\n\n## Pages audited\n- https://rival.example/ (present) · https://rival.example/robots.txt (present) · https://rival.example/llms.txt (missing) · https://rival.example/sitemap.xml (present) · https://rival.example/security (present)\n\n## Sources\n- https://rival.example/ · https://rival.example/robots.txt · https://rival.example/security · https://review.example/finance-automation-tools · https://news.example/audit-trails · https://news.example/agent-governance\n",
-  "summary_markdown": "*AEO/GEO audit — rival.example: 52/100*\nClear on its core keyword, but blocks GPTBot and says nothing about agent governance.\nStrengths: quotable definition · ranks for its category keyword · one independent comparison\nGaps: GPTBot blocked · no llms.txt · agent governance absent\nKeywords: 1 answered · 1 mentioned · 1 absent\nFull report available from the run.",
+  "report_markdown": "# AEO/GEO audit: rival.example\n2026-10-20 · Overall **52/100** — Clear on its core keyword, but blocks GPTBot and says nothing about spend governance.\n\n| Category | Score | Finding |\n|---|---|---|\n| AI crawler access | 5/10 | GPTBot disallowed (`User-agent: GPTBot` / `Disallow: /`); sitemap declared. |\n| llms.txt | 3/10 | Missing (404). |\n| Answerability | 7/10 | Quotable definition, one question heading, no FAQ. |\n| Metadata | 6/10 | Specific titles; descriptions and structured data not visible. |\n| External authority | 5/10 | One independent comparison names it. |\n| Depth & freshness | 5/10 | Two core pages, nothing dated. |\n\n## Strengths\n- Quotable definition: \"Rival Flow is a workflow automation platform for finance teams.\"\n- Answers and ranks for \"finance workflow automation\".\n- Named in an independent comparison of finance automation tools.\n\n## Gaps\n- robots.txt disallows GPTBot.\n- No llms.txt (404).\n- \"what is spend governance\" is absent from every page read.\n- No FAQ and no dated content.\n\n## Keywords\n| Keyword | On site | In search | Note |\n|---|---|---|---|\n| finance workflow automation | answered | ranks | Homepage question heading; homepage is the top result. |\n| approval audit trail | mentioned | not ranking | /security mentions the CSV export, no answer. |\n| what is spend governance | absent | not ranking | A news explainer answers it instead. |\n\n## Fix first (ranked)\n1. Remove the GPTBot disallow rule (quick fix).\n2. Publish /llms.txt (quick fix).\n3. Add an explainer answering \"what is spend governance\" (project).\n4. Add an audit-trail question heading to /security (quick fix).\n\n## What this audit could not verify\n- Meta descriptions, canonical tags and JSON-LD.\n- Only the homepage and /security were read.\n\n## Pages audited\n- https://rival.example/ (present) · https://rival.example/robots.txt (present) · https://rival.example/llms.txt (missing) · https://rival.example/sitemap.xml (present) · https://rival.example/security (present)\n\n## Sources\n- https://rival.example/ · https://rival.example/robots.txt · https://rival.example/security · https://review.example/finance-automation-tools · https://news.example/audit-trails · https://news.example/spend-governance\n",
+  "summary_markdown": "*AEO/GEO audit — rival.example: 52/100*\nClear on its core keyword, but blocks GPTBot and says nothing about spend governance.\nStrengths: quotable definition · ranks for its category keyword · one independent comparison\nGaps: GPTBot blocked · no llms.txt · spend governance absent\nKeywords: 1 answered · 1 mentioned · 1 absent\nFull report available from the run.",
   "report": {
     "title": "AEO/GEO audit: rival.example",
-    "summary": "52/100. Clear on its core keyword, but blocks GPTBot and says nothing about agent governance.",
+    "summary": "52/100. Clear on its core keyword, but blocks GPTBot and says nothing about spend governance.",
     "severity": "info",
     "sections": [
       {
@@ -257,7 +257,7 @@
             "confidence": "high"
           },
           {
-            "text": "\"what is agent governance\" is absent from every page read; a news explainer answers it instead.",
+            "text": "\"what is spend governance\" is absent from every page read; a news explainer answers it instead.",
             "citations": [
               "S6"
             ],
@@ -284,7 +284,7 @@
             "label": "mentioned"
           },
           {
-            "text": "what is agent governance: no page read uses the term.",
+            "text": "what is spend governance: no page read uses the term.",
             "citations": [
               "S6"
             ],
@@ -306,7 +306,7 @@
             "label": "quick_fix"
           },
           {
-            "text": "Add an explainer page answering \"what is agent governance\".",
+            "text": "Add an explainer page answering \"what is spend governance\".",
             "citations": [],
             "label": "project"
           },
@@ -345,8 +345,8 @@
       },
       {
         "id": "S6",
-        "url": "https://news.example/agent-governance",
-        "title": "What is agent governance?"
+        "url": "https://news.example/spend-governance",
+        "title": "What is spend governance?"
       }
     ],
     "unknowns": [
@@ -356,7 +356,7 @@
     ],
     "meta": {
       "skill": "website-aeo-geo-audit",
-      "skill_version": "1.2.0",
+      "skill_version": "1.2.1",
       "generated_at": "2026-10-20"
     }
   }

@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.0"
+  version: "1.2.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -180,11 +180,16 @@ absent.
 8. **ICP fit** (only when there is an ICP; see Inputs). Split the ICP into its
    criteria (industry, size, buyer, geography, business model, must-haves, exclusions)
    and mark each `met`, `not met` or `unknown`, citing the source for met and not met.
+   Mark a criterion by what a source states in the criterion's terms; never by analogy,
+   size impression or market overlap with the seller; never fill in a range the ICP does
+   not give; never infer size or industry from the company's name.
    A criterion with a time window (`raised in the last 12 months`) is `met` only by an
    event whose computed age is inside it: `months_ago` = (year of `now` − year of the
    event) × 12 + (month of `now` − month of the event), so `2025-06` is 16 months before a
    `now` in `2026-10`; an older event makes it `not met` (give its date), and only
-   undated evidence leaves it `unknown`. Overall `fit`: `strong` when every important criterion is met; `partial` when some
+   undated evidence leaves it `unknown`. The important criteria are the must-haves and
+   exclusions the ICP marks as required; if it marks none, every criterion is
+   important. Overall `fit`: `strong` when every important criterion is met; `partial` when some
    are met and none of the important ones is contradicted; `weak` when an important
    criterion is not met or an exclusion applies; `unclear` when most are unknown. For a
    scored Pursue / Research / Reject verdict, the agent adds `account-icp-qualification`.
@@ -239,7 +244,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `unknown`), `Recent events` (each item `label` = its category), `Likely problem owner`
   (`label: guess`), `Angles` (`label: angle`), `Open questions` (empty `citations`,
   `label: question`); every cited source in `sources`; `unknowns`; `meta`
-  `{skill: "account-research-brief", skill_version: "1.2.0", generated_at: <now>}` (leave
+  `{skill: "account-research-brief", skill_version: "1.2.1", generated_at: <now>}` (leave
   `meta` out when no time is known). `severity: info`, or `attention` when the evidence
   was too thin to brief.
 
@@ -281,7 +286,7 @@ days.` in the summary and `brief_text`.
 
 ## ICP given, but the evidence says nothing about most criteria
 `fit: unclear`, each criterion `unknown`, and the open questions name the missing facts
-(e.g. `Headcount not stated.`). Never infer size or industry from the company's name.
+(e.g. `Headcount not stated.`).
 
 ## A person is given but not found
 Do not research or describe the person. Use the role for the owner guess only when a

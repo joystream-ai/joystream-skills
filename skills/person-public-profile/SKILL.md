@@ -11,7 +11,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -136,10 +136,13 @@ record has a public one, such as a company website):
    The name alone is never enough, however rare it looks. A source that ties the name to
    a different employer, field or place is another person: reject it. When a source is
    ambiguous (a past employer, an old title), reject it unless another kept source
-   confirms the same history. Count every rejected source in `rejected_count`.
+   confirms the same history. Count every rejected source in `rejected_count`. A
+   `name_role` match alone is weak (another person can hold the same title): it is
+   `low` in step 4, and `Match` needs at least one `name_company`,
+   `name_company_role` or `profile_url` source.
 4. **Rate each kept source.** `high`: `profile_url`, the person's own byline, talk or
-   bio page, or `name_company_role`. `medium`: `name_company` or `name_role` on a
-   third-party page. `low`: anything else that still passed the check. An API record
+   bio page, or `name_company_role`. `medium`: `name_company` on a third-party page.
+   `low`: `name_role`, and anything else that still passed the check. An API record
    (enrichment) is `medium` at most.
 5. **Date the kept sources.** Each kept source's date is the date it states (article,
    episode, talk or post date), else none; never a crawl or fetch date. Compute and write
@@ -163,7 +166,10 @@ record has a public one, such as a company website):
    `months_ago: null` for all, apply no recency rule, and say so in `unknowns`.
 9. **Verdict.** `match_score` 0 to 3: 3 when `profile_url` matched or two or more kept
    sources are `high`; 2 with one `high` or two `medium`; 1 with only weaker matches;
-   0 with none. `Match` for 2 or 3, `Uncertain` for 1, `No match` for 0.
+   0 with none. `Match` for 2 or 3, `Uncertain` for 1, `No match` for 0. With no kept
+   `name_company`, `name_company_role` or `profile_url` source, the verdict is at most
+   `Uncertain` (`match_score` at most 1). Set `item_result.verdict` and
+   `item_result.score` from `verdict` and `match_score` now.
 
 # Output
 
@@ -191,7 +197,7 @@ Return the fields of `assets/output.schema.json` as your result:
   its confidence), `Topics`, `Stated views`, each item citing its sources; only kept
   sources in `sources`; `unknowns` with `Rejected N sources about other people named
   <name>.` when N > 0 and each failed fetch; `meta` with
-  `skill: person-public-profile`, `skill_version: 1.1.0`, `generated_at` = `now`.
+  `skill: person-public-profile`, `skill_version: 1.1.1`, `generated_at` = `now`.
 
 A skipped slot returns empty lists, `rejected_count: 0`, the skipped `item_result`
 (headline `Empty slot.`, `source_ids: []`) and a report titled `Empty slot` with an
