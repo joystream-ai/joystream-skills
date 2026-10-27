@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "2.0.0"
+  version: "2.0.1"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -163,7 +163,8 @@ record has a public one, such as a company website):
      Must-have lines.
    - `buyer`: the title that holds the budget, and who signs at which size. Becomes a
      Must-have line starting `Buyer:`. A site that names a team but not who pays leaves
-     it unresolved.
+     it unresolved, and so does a role the founder names only as a trigger ("they hired
+     a VP of SRE"): that is a trigger line, not a buyer.
    - `pain`: what hurts enough to pay to fix. Becomes Top pains.
    - `trigger`: an observable event that makes it urgent now (a hire, a funding round, a
      headcount threshold, an incident, a deadline). Becomes Buying triggers.
@@ -299,14 +300,16 @@ Return the fields of `assets/output.schema.json` as your result:
   - `sources`: every cited page and input. `unknowns`: conflicts, off-domain pages,
     failed fetches, example names with no note, an unreadable version.
   - `footer`: `Saved only after approval.` when `requires_approval` is true.
-  - `meta`: `{skill: "account-icp-definition", skill_version: "2.0.0", generated_at:
+  - `meta`: `{skill: "account-icp-definition", skill_version: "2.0.1", generated_at:
     <now>}`.
 
 # Constraints
 
 - **Never invent a customer.** Every line in the document comes from an answer, the
   founder's notes, an example note, the site or `current_icp`. Nothing from general
-  knowledge of what such companies usually buy.
+  knowledge of what such companies usually buy, and no detail added to a line the
+  source does not state (an extra title, a reason). An Anti-ICP `<why>` is the reason
+  the source gives; with none, the line stays a Disqualifier only.
 - **One question per call**, and never a question the site or an earlier answer already
   answers.
 - **Every line passes the specificity gate** and carries `confidence` and `source`. A
