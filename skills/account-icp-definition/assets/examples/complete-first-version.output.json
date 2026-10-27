@@ -1,5 +1,5 @@
 {
-  "status": "ready",
+  "interview_status": "ready",
   "next_question": null,
   "icp_markdown": "# ICP: Series A-C SaaS with a platform engineering team\n*v1 — SaaS teams with 15+ engineers on call, buying after an outage customers noticed*\n\n## Must-have\n- B2B SaaS company at Series A to Series C (confidence: inferred; source: website)\n- 15 or more engineers, with an on-call rotation (confidence: validated; source: founder, lost examples)\n- Buyer: Head of Platform or VP Engineering holds the budget; below about 50 engineers, the CTO (confidence: validated; source: founder)\n\n## Nice-to-have\n- Already uses PagerDuty or Datadog (confidence: inferred; source: website)\n- Reachable via: the platform engineering Slack community and SREcon speakers (confidence: validated; source: founder)\n- Reachable via: LinkedIn (confidence: needs validation; source: founder)\n\n## Disqualifiers\n- Fewer than 15 engineers, or no on-call rotation (confidence: validated; source: founder, lost examples)\n- Already pays for a dedicated incident-management platform (confidence: validated; source: founder)\n\n## Anti-ICP\n- Engineering teams under 15 people — they have no on-call rotation (confidence: validated; source: founder, lost examples)\n\n## Top pains (ranked)\n1. Engineers lose hours writing incident postmortems by hand (confidence: inferred; source: website)\n\n## Buying triggers\n- An outage customers noticed, after which the CTO asks for better postmortems (confidence: validated; source: founder, won examples)\n- Engineering passes about 30 people and on-call becomes a formal rotation (confidence: validated; source: founder)\n\n## Changelog\n- v1 (2026-10-23): first version, because of the website and a five-answer interview\n",
   "icp_json": {
@@ -167,7 +167,7 @@
     "unknowns": [],
     "meta": {
       "skill": "account-icp-definition",
-      "skill_version": "1.1.1",
+      "skill_version": "2.0.0",
       "generated_at": "2026-10-23T09:00:00Z"
     }
   }
