@@ -17,7 +17,8 @@ and never posts anything):
   Cloud IPs are often refused; any non-200 answer is a skipped source, never an error.
 
 Writes every kept post to /tmp/posts.json, the same posts split into pages of at most
-~40 KB (/tmp/posts-1.json, ...) so each page can be read whole, and prints one compact
+~40 KB (/tmp/posts-1.json, ...) so each page can be read whole, what finalize.py needs
+to /tmp/search-summary.json, and prints one compact
 JSON summary on stdout. Exits 1 (with a JSON summary holding `error`) only when the
 inputs are unusable or every Hacker News request failed. Standard library only.
 """
@@ -113,9 +114,13 @@ def settings(inputs: dict) -> dict:
     max_posts = inputs.get("max_posts", 30)
     if isinstance(max_posts, bool) or not isinstance(max_posts, int) or not 1 <= max_posts <= MAX_POSTS:
         raise InputError(f"max_posts must be an integer from 1 to {MAX_POSTS}")
+    must_include = inputs.get("must_include") or ""
+    if not isinstance(must_include, str) or len(must_include) > 100:
+        raise InputError("must_include must be a string of at most 100 characters")
     now = parse_now(inputs.get("now"))
     return {
         "queries": queries,
+        "must_include": [w.lower() for w in must_include.split()],
         "tags": list(dict.fromkeys(tags)),
         "since_days": since_days,
         "max_posts": max_posts,
@@ -241,14 +246,19 @@ def reddit_post(child: dict, query: str) -> dict | None:
 
 
 def search_hn(query: str, cfg: dict, unknowns: list[str]) -> tuple[list[dict], bool]:
-    """(posts, ok). Retries once with every word optional when the strict query finds nothing."""
+    """(posts, ok). When the strict query finds nothing, retries once with its words
+    optional, except the must_include words (a company name), which stay required."""
     base = {
         "query": query,
         "tags": "(" + ",".join(cfg["tags"]) + ")",
         "numericFilters": f"created_at_i>{cfg['cutoff']}",
         "hitsPerPage": str(cfg["max_posts"]),
     }
-    for attempt, extra in enumerate(({}, {"optionalWords": query})):
+    anchor = cfg["must_include"]
+    if anchor and not all(w in query.lower().split() for w in anchor):
+        base["query"] = query = " ".join(anchor) + " " + query
+    optional = [w for w in query.split() if w.lower() not in anchor]
+    for attempt, extra in enumerate(({}, {"optionalWords": " ".join(optional)})):
         url = HN_SEARCH + "?" + urllib.parse.urlencode({**base, **extra})
         status, body = fetch_json(url)
         if status != 200 or not isinstance(body, dict) or not isinstance(body.get("hits"), list):
@@ -256,9 +266,10 @@ def search_hn(query: str, cfg: dict, unknowns: list[str]) -> tuple[list[dict], b
             unknowns.append(f"Hacker News search for {query!r} failed ({why}).")
             return [], False
         hits = body["hits"]
-        if hits or attempt == 1 or len(query.split()) < 2:
+        if hits or attempt == 1 or len(optional) < (1 if anchor else 2):
             if attempt == 1 and hits:
-                unknowns.append(f"Hacker News found nothing with every word of {query!r}; used the closest matches instead.")
+                kept = f" (still requiring {' '.join(anchor)!r})" if anchor else ""
+                unknowns.append(f"Hacker News found nothing with every word of {query!r}; used the closest matches{kept} instead.")
             return [p for p in (hn_post(h, query) for h in hits if isinstance(h, dict)) if p], True
     return [], True
 
@@ -345,6 +356,10 @@ def collect(inputs: dict, out_dir: Path) -> tuple[int, dict]:
     found = sum(len(lst) for lst in hn_lists + reddit_lists)
     if not posts:
         unknowns.append("No posts matched any query in the window.")
+    (out_dir / "search-summary.json").write_text(
+        json.dumps({"queries": cfg["queries"], "since_days": cfg["since_days"], "unknowns": unknowns}, ensure_ascii=False) + "\n",
+        encoding="utf-8",
+    )
     return 0, {
         "posts_file": str(out_dir / "posts.json"),
         "pages": pages,
@@ -374,6 +389,10 @@ def main(argv: list[str] | None = None) -> int:
         code, summary = collect(load_inputs(args.input), Path(args.out_dir))
     except InputError as exc:
         code, summary = 1, {"error": "invalid_input", "detail": str(exc)}
+    if code:
+        out_dir = Path(args.out_dir)
+        out_dir.mkdir(parents=True, exist_ok=True)
+        (out_dir / "search-summary.json").write_text(json.dumps(summary, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"search: {summary.get('kept', 0)} posts kept", file=sys.stderr)
     print(json.dumps(summary, ensure_ascii=False, separators=(",", ":")))
     return code

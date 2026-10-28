@@ -13,7 +13,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: sales
   joystream-skill-kind: sandbox
   joystream-input-schema: assets/input.schema.json
@@ -35,8 +35,10 @@ Two uses:
   monitoring`), often with `tags: ["ask_hn", "comment"]`, to find people asking for
   recommendations now.
 - **Per-company community evidence**: one branch per company with the query
-  `<company> <problem words>`; `account-icp-qualification` reads this skill's `posts`
-  as community evidence (one person's account, never proof of size or industry).
+  `<company> <problem words>` and `must_include: <company>`, so a search that matches
+  nothing falls back to posts that still name the company, never to posts about anyone;
+  `account-icp-qualification` reads this skill's `posts` as community evidence (one
+  person's account, never proof of size or industry).
 
 This skill's script makes read-only requests to free, keyless public search APIs (Hacker
 News search, and Reddit search when asked) and writes scratch files in `/tmp`. It never
@@ -52,6 +54,10 @@ Input data holds only small values the agent passes in (see `assets/input.schema
   `ask_hn`, `show_hn`.
 - **max_posts** (integer, optional, default 30, at most 60): posts kept across queries.
 - **include_reddit** (boolean, optional, default false): also try Reddit's public search.
+- **must_include** (string, optional): words every post must still contain when a
+  query finds nothing and the search retries with its other words optional, usually
+  the company name in a per-company branch. Without it the retry makes every word
+  optional.
 - **product** (string, optional): what the seller sells, in plain words. Without it,
   judge buying and pain against the category the queries describe.
 - **now** (string, ISO 8601, optional): the run's current time.
@@ -63,8 +69,8 @@ gives the company name for the query). After it, a judge such as
 `account-icp-qualification`, or `channel-message-render` and a delivery step, uses the
 result. On JoyStream this step runs in the sandbox, so **the agent needs the
 `code_execution` capability**. The skill folder is at
-`/workspace/skill/community-buyer-signals`; `scripts/search.py` needs only Python 3 and
-outbound internet.
+`/workspace/skill/community-buyer-signals`; `scripts/search.py` and `scripts/finalize.py`
+need only Python 3, and search.py outbound internet.
 
 # Reasoning Flow
 
@@ -79,7 +85,7 @@ outbound internet.
    the posts `S1`, `S2`, …, writes them to `/tmp/posts.json` and to pages
    `/tmp/posts-1.json`, `/tmp/posts-2.json`, … (each small enough to read whole), and
    prints a JSON summary (`kept`, `pages`, `unknowns`, a preview). If it exits non-zero,
-   go to Edge Cases.
+   or `kept` is 0, skip to step 4 with an empty scores file (`{}`).
 2. **Read every page** listed in the summary's `pages`, with `sandbox_read_file` (all
    pages in the same turn). Each post has `post_id`, `source_id`, `source`, `kind`,
    `url`, `title`, `author`, `published_at`, `text`.
@@ -96,13 +102,29 @@ outbound internet.
      "I'm the founder of", a link to their own product)? A vendor post is never a buyer.
    Use 0.8 or more only when the post says so plainly; 0.5 when it is implied; 0.2 or
    less when there is nothing for it.
-4. **Pick the buyers**: posts with `buying.p` ≥ 0.6 and `vendor.p` < 0.5, by
-   `buying.p` descending (ties in file order).
-5. **Build the report** (see Output) and return.
+4. **Write the scores and finalize.** Write one JSON object with `sandbox_write_file` to
+   `/tmp/scores.json`, keyed by each post's `source_id`, holding only your answers:
+   `{"S1": {"buying": {"p": 0.8, "quote": "…"}, "pain": {"p": 0.1, "quote": ""},
+   "vendor": {"p": 0.0, "quote": ""}}, …}`, one entry per post. Then run, in one
+   `sandbox_run`:
+
+   ```
+   python3 /workspace/skill/community-buyer-signals/scripts/finalize.py --scores /tmp/scores.json
+   ```
+
+   It copies every post's fields from the posts file, removes any quote that is not
+   copied exactly from its post (and cuts one short before a contact detail), picks the
+   buyers (`buying.p` ≥ 0.6 and `vendor.p` < 0.5, by `buying.p` descending) and writes
+   the report with fixed wording and lengths.
+5. **Return its JSON unchanged.** finalize.py prints one JSON object (also saved at
+   `/tmp/community-buyer-signals.json`) that matches `assets/output.schema.json`. Return
+   exactly those fields as your result: do not re-score, reword, shorten or add to it,
+   and do not read the file back to check. It always exits 0; anything it could not do
+   is in `report.unknowns`.
 
 # Output
 
-Return the fields of `assets/output.schema.json`:
+finalize.py builds the fields of `assets/output.schema.json`:
 
 - `posts[]`: every post in the posts file, in file order, `{post_id, source_id, source,
   kind, url, title, published_at, author, buying, pain, vendor}` (the first eight copied
@@ -125,7 +147,7 @@ Return the fields of `assets/output.schema.json`:
     provider}` with `provider` `hn` or `reddit`.
   - `unknowns`: the script's `unknowns` (failed or skipped sources), plus any page you
     could not read.
-  - `meta`: `{skill: "community-buyer-signals", skill_version: "1.0.0", generated_at:
+  - `meta`: `{skill: "community-buyer-signals", skill_version: "1.1.0", generated_at:
     <now>}` when `now` is given; otherwise leave it out.
 
 # Constraints
@@ -147,14 +169,14 @@ Return the fields of `assets/output.schema.json`:
 # Edge Cases
 
 ## The script exits non-zero
-`error: invalid_input`: return `posts: []`, `buyers: []`, `scored_count: 0` and a
-report (`severity: attention`) whose summary and `unknowns` give the script's `detail`.
-`error: hn_unavailable`: the same, with the summary `Hacker News search was not
-reachable; nothing was scored.` Never retry with different queries.
+Write `{}` to `/tmp/scores.json` and run finalize.py: it returns empty lists and a
+report (`severity: attention`) whose `unknowns` give the script's error and `detail`.
+Never retry with different queries.
 
 ## No posts matched
-`kept` is 0: return empty lists, the summary `No Hacker News posts matched <queries> in
-the last <since_days> days.`, and the script's `unknowns`.
+`kept` is 0: write `{}` and run finalize.py; it returns empty lists, the summary `No
+Hacker News posts matched <queries> in the last <since_days> days.` and the script's
+`unknowns`.
 
 ## Reddit was refused
 Expected from cloud IPs. Score the Hacker News posts; the script's note goes to

@@ -223,3 +223,103 @@ def test_examples_match_the_schemas() -> None:
         assert {p["source_id"] for p in result["posts"]} == ids
         assert all(b in result["posts"] for b in result["buyers"])
         assert all(b["buying"]["p"] >= 0.6 and b["vendor"]["p"] < 0.5 for b in result["buyers"])
+
+
+def test_must_include_keeps_the_company_required_in_the_retry(tmp_path, monkeypatch) -> None:
+    http = FakeHttp({("Lambda GPU outage complaints", False): [], ("Lambda GPU outage complaints", True): [hn_hit(8)]})
+    inputs = {"queries": ["Lambda GPU outage complaints"], "must_include": "Lambda", "now": NOW}
+    _, summary = run(tmp_path, inputs, http, monkeypatch)
+    assert [c[1].get("optionalWords") for c in http.calls] == [None, "GPU outage complaints"]
+    assert summary["kept"] == 1
+    assert any("still requiring 'lambda'" in u for u in summary["unknowns"])
+
+
+def test_must_include_missing_from_the_query_is_added_to_it(tmp_path, monkeypatch) -> None:
+    http = FakeHttp()
+    run(tmp_path, {"queries": ["GPU outage"], "must_include": "Together AI", "now": NOW}, http, monkeypatch)
+    assert http.calls[0][1]["query"] == "together ai GPU outage"
+    assert http.calls[1][1]["optionalWords"] == "GPU outage"
+
+
+def test_no_retry_when_only_required_words_remain(tmp_path, monkeypatch) -> None:
+    http = FakeHttp()
+    run(tmp_path, {"queries": ["Lambda"], "must_include": "Lambda", "now": NOW}, http, monkeypatch)
+    assert len(http.calls) == 1
+
+
+# --------------------------------------------------------------------------- finalize
+
+FINALIZE = SKILL / "scripts" / "finalize.py"
+
+
+def load_finalize():
+    spec = importlib.util.spec_from_file_location("community_finalize", FINALIZE)
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+def finalize(tmp_path: Path, inputs: dict, scores: dict, monkeypatch) -> dict:
+    monkeypatch.setenv("INPUT_JSON", json.dumps(inputs))
+    monkeypatch.delenv("INPUT_JSON_PATH", raising=False)
+    (tmp_path / "scores.json").write_text(json.dumps(scores))
+    module = load_finalize()
+    assert module.main(["--scores", str(tmp_path / "scores.json"), "--dir", str(tmp_path), "--out", str(tmp_path / "out.json")]) == 0
+    result = json.loads((tmp_path / "out.json").read_text())
+    jsonschema.validate(result, OUTPUT_SCHEMA)
+    return result
+
+
+def collected(tmp_path: Path, monkeypatch, hits: list[dict], **inputs) -> dict:
+    inputs = {"queries": ["gpu monitoring"], "now": NOW, **inputs}
+    run(tmp_path, inputs, FakeHttp({"gpu monitoring": hits}), monkeypatch)
+    return inputs
+
+
+def test_finalize_builds_a_valid_output_from_scores(tmp_path, monkeypatch) -> None:
+    inputs = collected(tmp_path, monkeypatch, [hn_hit(1, "comment"), hn_hit(2), hn_hit(3, created_at_i=None, created_at=None)],
+                       product="GPU monitoring")
+    scores = {
+        "S1": {"buying": {"p": 0.9, "quote": "We need & want alerts"}, "pain": {"p": 0.7, "quote": "want alerts"}, "vendor": {"p": 0, "quote": ""}},
+        "S2": {"buying": {"p": 0.1, "quote": "ignored below 0.2"}, "pain": {"p": 0.65, "quote": "Story 2"}, "vendor": {"p": 0.2, "quote": ""}},
+        "S3": {"buying": {"p": 1.7, "quote": ""}, "pain": {"p": 0, "quote": ""}, "vendor": {"p": 0.9, "quote": "Story 3"}},
+    }
+    result = finalize(tmp_path, inputs, scores, monkeypatch)
+    assert [b["source_id"] for b in result["buyers"]] == ["S1"]
+    assert result["posts"][1]["buying"] == {"p": 0.1, "quote": ""}
+    assert result["posts"][2]["buying"]["p"] == 1.0  # clamped; a vendor is never a buyer
+    assert result["report"]["summary"] == "Scored 3 Hacker News posts from the last 365 days: 1 look like buyers, 2 describe the pain, 1 are vendors."
+    assert [s["heading"] for s in result["report"]["sections"]] == ["Buyers", "Pain"]
+    assert result["report"]["severity"] == "attention"
+    assert "published_at" not in result["report"]["sources"][2]
+    assert result["report"]["meta"]["generated_at"] == NOW
+
+
+def test_finalize_drops_quotes_not_in_the_post_and_names_unscored_posts(tmp_path, monkeypatch) -> None:
+    inputs = collected(tmp_path, monkeypatch, [hn_hit(1), hn_hit(2)])
+    result = finalize(tmp_path, inputs, {"S1": {"buying": {"p": 0.8, "quote": "words the post never said"}}}, monkeypatch)
+    assert result["posts"][0]["buying"] == {"p": 0.8, "quote": ""}
+    assert any("S2" in u for u in result["report"]["unknowns"])
+    assert any("1 quote(s)" in u for u in result["report"]["unknowns"])
+
+
+def test_finalize_cuts_a_quote_before_a_contact_detail(tmp_path, monkeypatch) -> None:
+    inputs = collected(tmp_path, monkeypatch, [hn_hit(1, story_text="Looking for a tool, mail me at a@b.co today")])
+    result = finalize(tmp_path, inputs, {"S1": {"buying": {"p": 0.7, "quote": "Looking for a tool, mail me at a@b.co today"}}}, monkeypatch)
+    assert result["posts"][0]["buying"]["quote"] == "Looking for a tool, mail me at"
+
+
+def test_finalize_reports_no_posts_and_search_errors(tmp_path, monkeypatch) -> None:
+    inputs = collected(tmp_path, monkeypatch, [])
+    result = finalize(tmp_path, inputs, {}, monkeypatch)
+    assert result["scored_count"] == 0
+    assert result["report"]["summary"] == "No Hacker News posts matched gpu monitoring in the last 365 days."
+
+    failed = tmp_path / "failed"
+    module = load()
+    monkeypatch.setattr(module, "fetch_json", FakeHttp(hn_status=500))
+    monkeypatch.setenv("INPUT_JSON", json.dumps({"queries": ["x y"], "now": NOW}))
+    assert module.main(["--out-dir", str(failed)]) == 1
+    result = finalize(failed, {"queries": ["x y"], "now": NOW}, {}, monkeypatch)
+    assert result["report"]["summary"] == "Hacker News search was not reachable; nothing was scored."
+    assert result["report"]["severity"] == "attention"
