@@ -69,6 +69,9 @@ both), a title, a published date when the item states one, and its text.
 | Firecrawl search | `data.web[]`, `data.news[]` (older: `data[]`) | `url` | `title` | `date` | `markdown`, else `description`, else `snippet` |
 | SerpAPI Google / News | `organic_results[]`, `news_results[]` | `link` | `title` | `date` | `snippet` |
 | Perplexity search | `results[]` | `url` | `title` | `date`, else `last_updated` | `snippet` |
+| Hacker News search (Algolia) | `hits[]` | `https://news.ycombinator.com/item?id=<objectID>` (not `url`) | `title`, else `story_title` | `created_at` | `comment_text`, else `story_text` (HTML) |
+| Reddit search JSON | `data.children[].data` | `https://www.reddit.com` + `permalink` | `title` | `created_utc` (epoch) | `selftext` |
+| community-buyer-signals | `posts[]` | `url` | `title` | `published_at` | `buying`, `pain` quotes; `vendor.p` ≥ 0.5 is promotion |
 | GitHub | issues, pulls, releases | `html_url` | `title`, or `name` for releases | `published_at`, `merged_at`, `closed_at`, `created_at` | `body` |
 | Pasted text | the input field itself | `input:<field>` | the field name | none | the text |
 

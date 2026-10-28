@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "queries"
+  ],
+  "additionalProperties": true,
+  "properties": {
+    "queries": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 5,
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200
+      },
+      "description": "Search phrases, 1-5. Discovery: what a buyer would write ('recommend a GPU monitoring tool'). Per company: '<company> <problem words>'."
+    },
+    "since_days": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3650,
+      "default": 365,
+      "description": "Only posts newer than now minus this many days."
+    },
+    "tags": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 4,
+      "default": [
+        "story",
+        "comment"
+      ],
+      "items": {
+        "type": "string",
+        "enum": [
+          "story",
+          "comment",
+          "ask_hn",
+          "show_hn"
+        ]
+      },
+      "description": "Hacker News item types to search (any of them matches). ask_hn finds people asking for recommendations."
+    },
+    "max_posts": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 60,
+      "default": 30,
+      "description": "Most posts kept across all queries (and the per-query hit count)."
+    },
+    "include_reddit": {
+      "type": "boolean",
+      "default": false,
+      "description": "Also try Reddit's public search JSON; refused from many cloud IPs, then noted as skipped."
+    },
+    "product": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "What the seller sells, in plain words. The buying and pain questions are asked about it."
+    },
+    "now": {
+      "type": "string",
+      "description": "The run's current time, ISO 8601; sets the window and report.meta. Never guessed."
+    }
+  }
+}

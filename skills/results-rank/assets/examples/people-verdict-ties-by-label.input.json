@@ -11,5 +11,182 @@
       ]
     }
   ],
-  "now": "2026-10-12T09:00:00Z"
+  "now": "2026-10-12T09:00:00Z",
+  "steps": {
+    "prepare": {
+      "slots": [
+        {
+          "i": 0,
+          "item_key": "email:priya.demo@exampleanalytics.example",
+          "label": "Priya Demo (Example Analytics)",
+          "query": "Priya Demo overview"
+        },
+        {
+          "i": 1,
+          "item_key": "email:sam.sample@lumenpayroll.example",
+          "label": "Sam Sample (Lumen Payroll)",
+          "query": "Sam Sample overview"
+        },
+        {
+          "i": 2,
+          "item_key": "email:jo.rivera@orbitledger.example",
+          "label": "Jo Rivera (Orbit Ledger)",
+          "query": "Jo Rivera overview"
+        },
+        {
+          "i": 3,
+          "item_key": "email:ada.placeholder@quillbooks.example",
+          "label": "Ada Placeholder (Quill Books)",
+          "query": "Ada Placeholder overview"
+        },
+        null
+      ],
+      "accepted_count": 4
+    },
+    "judge-1": {
+      "item_result": {
+        "item": {
+          "i": 0,
+          "item_key": "email:priya.demo@exampleanalytics.example",
+          "label": "Priya Demo (Example Analytics)",
+          "query": "Priya Demo overview"
+        },
+        "item_key": "email:priya.demo@exampleanalytics.example",
+        "item_label": "Priya Demo (Example Analytics)",
+        "status": "ok",
+        "verdict": "Hot",
+        "score": 5,
+        "score_scale": "0-5",
+        "headline": "VP Finance; owns the reconciliation budget.",
+        "source_ids": [
+          "S1",
+          "S2"
+        ]
+      },
+      "report": {
+        "title": "Priya Demo (Example Analytics)",
+        "summary": "VP Finance; owns the reconciliation budget.",
+        "severity": "info",
+        "sections": [],
+        "sources": [
+          {
+            "id": "S1",
+            "url": "https://example.org/team",
+            "title": "Example Analytics — Team",
+            "provider": "tavily"
+          },
+          {
+            "id": "S2",
+            "record_ref": "apollo:person/7c1e",
+            "title": "Priya Demo",
+            "provider": "apollo"
+          }
+        ],
+        "unknowns": []
+      }
+    },
+    "judge-2": {
+      "item_result": {
+        "item": {
+          "i": 1,
+          "item_key": "email:sam.sample@lumenpayroll.example",
+          "label": "Sam Sample (Lumen Payroll)",
+          "query": "Sam Sample overview"
+        },
+        "item_key": "email:sam.sample@lumenpayroll.example",
+        "item_label": "Sam Sample (Lumen Payroll)",
+        "status": "ok",
+        "verdict": "Warm",
+        "score": 3,
+        "score_scale": "0-5",
+        "headline": "Controller; role in tooling decisions unclear.",
+        "source_ids": [
+          "S1"
+        ]
+      },
+      "report": {
+        "title": "Sam Sample (Lumen Payroll)",
+        "summary": "Controller; role in tooling decisions unclear.",
+        "severity": "info",
+        "sections": [],
+        "sources": [
+          {
+            "id": "S1",
+            "url": "https://lumen.example/about",
+            "title": "About Lumen Payroll",
+            "provider": "tavily"
+          }
+        ],
+        "unknowns": []
+      }
+    },
+    "judge-3": {
+      "item_result": {
+        "item": {
+          "i": 2,
+          "item_key": "email:jo.rivera@orbitledger.example",
+          "label": "Jo Rivera (Orbit Ledger)",
+          "query": "Jo Rivera overview"
+        },
+        "item_key": "email:jo.rivera@orbitledger.example",
+        "item_label": "Jo Rivera (Orbit Ledger)",
+        "status": "ok",
+        "verdict": "Hot",
+        "score": 4,
+        "score_scale": "0-5",
+        "headline": "Head of Finance; spoke about month-end close automation in September.",
+        "source_ids": [
+          "S1"
+        ]
+      },
+      "report": {
+        "title": "Jo Rivera (Orbit Ledger)",
+        "summary": "Head of Finance; spoke about month-end close automation in September.",
+        "severity": "info",
+        "sections": [],
+        "sources": [
+          {
+            "id": "S1",
+            "url": "https://orbit.example/blog/month-end-close-talk",
+            "title": "Month-end close, automated",
+            "provider": "tavily"
+          }
+        ],
+        "unknowns": []
+      }
+    },
+    "judge-4": {
+      "item_result": {
+        "item": {
+          "i": 3,
+          "item_key": "email:ada.placeholder@quillbooks.example",
+          "label": "Ada Placeholder (Quill Books)",
+          "query": "Ada Placeholder overview"
+        },
+        "item_key": "email:ada.placeholder@quillbooks.example",
+        "item_label": "Ada Placeholder (Quill Books)",
+        "status": "no_evidence",
+        "headline": "No public profile found for this person at Quill Books.",
+        "source_ids": []
+      },
+      "report": {
+        "title": "Ada Placeholder (Quill Books)",
+        "summary": "No public profile found for this person at Quill Books.",
+        "severity": "info",
+        "sections": [],
+        "sources": [],
+        "unknowns": []
+      }
+    },
+    "judge-5": {
+      "item_result": {
+        "item": null,
+        "item_key": "",
+        "item_label": "",
+        "status": "skipped",
+        "headline": "",
+        "source_ids": []
+      }
+    }
+  }
 }

@@ -1,0 +1,155 @@
+{
+  "buyers": [
+    {
+      "post_id": "hn:99000101",
+      "source_id": "S1",
+      "source": "hn",
+      "kind": "ask_hn",
+      "url": "https://news.ycombinator.com/item?id=99000101",
+      "title": "Ask HN: How do you monitor a 64-GPU training cluster?",
+      "published_at": "2026-10-02T14:11:05Z",
+      "author": "example_mle",
+      "buying": {
+        "p": 0.85,
+        "quote": "We are evaluating tools this month and would pay for something that pages us before a node silently drops out."
+      },
+      "pain": {
+        "p": 0.8,
+        "quote": "Last week a bad NIC cost us two days of a training run before anyone noticed."
+      },
+      "vendor": {
+        "p": 0.05,
+        "quote": ""
+      }
+    }
+  ],
+  "posts": [
+    {
+      "post_id": "hn:99000101",
+      "source_id": "S1",
+      "source": "hn",
+      "kind": "ask_hn",
+      "url": "https://news.ycombinator.com/item?id=99000101",
+      "title": "Ask HN: How do you monitor a 64-GPU training cluster?",
+      "published_at": "2026-10-02T14:11:05Z",
+      "author": "example_mle",
+      "buying": {
+        "p": 0.85,
+        "quote": "We are evaluating tools this month and would pay for something that pages us before a node silently drops out."
+      },
+      "pain": {
+        "p": 0.8,
+        "quote": "Last week a bad NIC cost us two days of a training run before anyone noticed."
+      },
+      "vendor": {
+        "p": 0.05,
+        "quote": ""
+      }
+    },
+    {
+      "post_id": "hn:99000102",
+      "source_id": "S2",
+      "source": "hn",
+      "kind": "comment",
+      "url": "https://news.ycombinator.com/item?id=99000102",
+      "title": "Ask HN: How do you monitor a 64-GPU training cluster?",
+      "published_at": "2026-10-02T16:40:51Z",
+      "author": "example_founder",
+      "buying": {
+        "p": 0.05,
+        "quote": ""
+      },
+      "pain": {
+        "p": 0.1,
+        "quote": ""
+      },
+      "vendor": {
+        "p": 0.9,
+        "quote": "I'm the founder of Example GPU Watch, which does exactly this."
+      }
+    },
+    {
+      "post_id": "hn:99000103",
+      "source_id": "S3",
+      "source": "hn",
+      "kind": "comment",
+      "url": "https://news.ycombinator.com/item?id=99000103",
+      "title": "Ask HN: How do you monitor a 64-GPU training cluster?",
+      "published_at": "2026-10-03T08:02:17Z",
+      "author": "example_sre",
+      "buying": {
+        "p": 0.3,
+        "quote": "we never found anything better than our own scripts"
+      },
+      "pain": {
+        "p": 0.7,
+        "quote": "Xid errors show up in dmesg and nobody looks at dmesg."
+      },
+      "vendor": {
+        "p": 0.05,
+        "quote": ""
+      }
+    }
+  ],
+  "scored_count": 3,
+  "report": {
+    "title": "Community buyer signals for GPU cluster health monitoring and alerting for ML teams",
+    "summary": "Scored 3 Hacker News posts from the last 180 days: 1 looks like a buyer, 1 more describes the pain, 1 is a vendor.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Buyers",
+        "items": [
+          {
+            "text": "Ask HN: How do you monitor a 64-GPU training cluster? — \"We are evaluating tools this month and would pay for something that pages us before a node silently drops out.\"",
+            "citations": [
+              "S1"
+            ],
+            "label": "buyer"
+          }
+        ]
+      },
+      {
+        "heading": "Pain",
+        "items": [
+          {
+            "text": "Ask HN: How do you monitor a 64-GPU training cluster? — \"Xid errors show up in dmesg and nobody looks at dmesg.\"",
+            "citations": [
+              "S3"
+            ],
+            "label": "pain"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://news.ycombinator.com/item?id=99000101",
+        "title": "Ask HN: How do you monitor a 64-GPU training cluster?",
+        "published_at": "2026-10-02T14:11:05Z",
+        "provider": "hn"
+      },
+      {
+        "id": "S2",
+        "url": "https://news.ycombinator.com/item?id=99000102",
+        "title": "Ask HN: How do you monitor a 64-GPU training cluster?",
+        "published_at": "2026-10-02T16:40:51Z",
+        "provider": "hn"
+      },
+      {
+        "id": "S3",
+        "url": "https://news.ycombinator.com/item?id=99000103",
+        "title": "Ask HN: How do you monitor a 64-GPU training cluster?",
+        "published_at": "2026-10-03T08:02:17Z",
+        "provider": "hn"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "community-buyer-signals",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-28T09:00:00Z"
+    }
+  }
+}

@@ -1,0 +1,440 @@
+{
+  "top_n": 3,
+  "item_kind": "company",
+  "rank_by": [
+    {
+      "field": "verdict",
+      "order": [
+        "Pursue",
+        "Research",
+        "Reject"
+      ]
+    },
+    {
+      "field": "score",
+      "direction": "desc"
+    }
+  ],
+  "title": "Qualified companies",
+  "now": "2026-10-28T09:00:00Z",
+  "branches": {
+    "branches": [
+      {
+        "item": {
+          "index": 0,
+          "item": {
+            "name": "Cobalt Grid",
+            "domain": "cobalt.example"
+          },
+          "item_key": "domain:cobalt.example",
+          "query": "Cobalt Grid cobalt.example company overview, products, customers, size"
+        },
+        "status": "ok",
+        "outputs": {
+          "search": {
+            "query": "Cobalt Grid cobalt.example company overview, products, customers, size",
+            "results": [
+              {
+                "url": "https://cobalt.example/",
+                "title": "Cobalt Grid — utility monitoring",
+                "content": "..."
+              },
+              {
+                "url": "https://news.example.org/cobalt-series-b",
+                "title": "Cobalt Grid raises a Series B",
+                "content": "..."
+              }
+            ]
+          },
+          "judge": {
+            "fit_score": 2,
+            "fit_tier": "Possible",
+            "verdict": "Research",
+            "rubric_used": {
+              "origin": "given",
+              "criteria": [
+                {
+                  "criterion": "Sells software to finance teams",
+                  "kind": "must_have",
+                  "weight": 3,
+                  "public_signal": true,
+                  "result": "not_met"
+                },
+                {
+                  "criterion": "50-500 employees",
+                  "kind": "nice_to_have",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "Timing: a dated hiring, funding or launch event in the last 12 months",
+                  "kind": "nice_to_have",
+                  "weight": 2,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "Is a bank or lender",
+                  "kind": "exclusion",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "unknown"
+                }
+              ]
+            },
+            "item_result": {
+              "item": {
+                "index": 0,
+                "item": {
+                  "name": "Cobalt Grid",
+                  "domain": "cobalt.example"
+                },
+                "item_key": "domain:cobalt.example",
+                "query": "Cobalt Grid cobalt.example company overview, products, customers, size"
+              },
+              "item_key": "domain:cobalt.example",
+              "item_label": "Cobalt Grid (cobalt.example)",
+              "status": "ok",
+              "verdict": "Research",
+              "score": 2,
+              "score_scale": "0-5",
+              "headline": "Grid-monitoring software for utilities; does not sell to finance teams.",
+              "source_ids": [
+                "S1"
+              ]
+            },
+            "report": {
+              "title": "Cobalt Grid — ICP fit",
+              "summary": "Grid-monitoring software for utilities; does not sell to finance teams.",
+              "severity": "info",
+              "sections": [],
+              "sources": [
+                {
+                  "id": "S1",
+                  "url": "https://cobalt.example/",
+                  "title": "Cobalt Grid — utility monitoring",
+                  "provider": "tavily"
+                },
+                {
+                  "id": "S2",
+                  "url": "https://news.example.org/cobalt-series-b",
+                  "title": "Cobalt Grid raises a Series B",
+                  "provider": "tavily"
+                }
+              ],
+              "unknowns": []
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "index": 1,
+          "item": {
+            "name": "Delta Mesh",
+            "domain": "delta.example"
+          },
+          "item_key": "domain:delta.example",
+          "query": "Delta Mesh delta.example company overview, products, customers, size"
+        },
+        "status": "ok",
+        "outputs": {
+          "search": {
+            "query": "Delta Mesh delta.example company overview, products, customers, size",
+            "results": [
+              {
+                "url": "https://delta.example/about",
+                "title": "About Delta Mesh",
+                "content": "..."
+              }
+            ]
+          },
+          "judge": {
+            "fit_score": 0,
+            "fit_tier": "Weak",
+            "verdict": "Reject",
+            "rubric_used": {
+              "origin": "given",
+              "criteria": [
+                {
+                  "criterion": "Sells software to finance teams",
+                  "kind": "must_have",
+                  "weight": 3,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "50-500 employees",
+                  "kind": "nice_to_have",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "Timing: a dated hiring, funding or launch event in the last 12 months",
+                  "kind": "nice_to_have",
+                  "weight": 2,
+                  "public_signal": true,
+                  "result": "unknown"
+                },
+                {
+                  "criterion": "Is a bank or lender",
+                  "kind": "exclusion",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "met"
+                }
+              ]
+            },
+            "item_result": {
+              "item": {
+                "index": 1,
+                "item": {
+                  "name": "Delta Mesh",
+                  "domain": "delta.example"
+                },
+                "item_key": "domain:delta.example",
+                "query": "Delta Mesh delta.example company overview, products, customers, size"
+              },
+              "item_key": "domain:delta.example",
+              "item_label": "Delta Mesh (delta.example)",
+              "status": "ok",
+              "verdict": "Reject",
+              "score": 0,
+              "score_scale": "0-5",
+              "headline": "A regional lender; lenders are excluded by the ICP.",
+              "source_ids": [
+                "S1"
+              ]
+            },
+            "report": {
+              "title": "Delta Mesh — ICP fit",
+              "summary": "A regional lender; lenders are excluded by the ICP.",
+              "severity": "info",
+              "sections": [],
+              "sources": [
+                {
+                  "id": "S1",
+                  "url": "https://delta.example/about",
+                  "title": "About Delta Mesh",
+                  "provider": "tavily"
+                }
+              ],
+              "unknowns": []
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "index": 2,
+          "item": {
+            "name": "Ember Ops",
+            "domain": "ember.example"
+          },
+          "item_key": "domain:ember.example",
+          "query": "Ember Ops ember.example company overview, products, customers, size"
+        },
+        "status": "ok",
+        "outputs": {
+          "search": {
+            "query": "Ember Ops ember.example company overview, products, customers, size",
+            "results": [
+              {
+                "url": "https://ember.example/",
+                "title": "Ember Ops — month-end close",
+                "content": "..."
+              },
+              {
+                "url": "https://ember.example/careers",
+                "title": "Careers at Ember Ops",
+                "content": "..."
+              }
+            ]
+          },
+          "judge": {
+            "fit_score": 5,
+            "fit_tier": "Strong",
+            "verdict": "Pursue",
+            "rubric_used": {
+              "origin": "given",
+              "criteria": [
+                {
+                  "criterion": "Sells software to finance teams",
+                  "kind": "must_have",
+                  "weight": 3,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "50-500 employees",
+                  "kind": "nice_to_have",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "Timing: a dated hiring, funding or launch event in the last 12 months",
+                  "kind": "nice_to_have",
+                  "weight": 2,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "Is a bank or lender",
+                  "kind": "exclusion",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "unknown"
+                }
+              ]
+            },
+            "item_result": {
+              "item": {
+                "index": 2,
+                "item": {
+                  "name": "Ember Ops",
+                  "domain": "ember.example"
+                },
+                "item_key": "domain:ember.example",
+                "query": "Ember Ops ember.example company overview, products, customers, size"
+              },
+              "item_key": "domain:ember.example",
+              "item_label": "Ember Ops (ember.example)",
+              "status": "ok",
+              "verdict": "Pursue",
+              "score": 5,
+              "score_scale": "0-5",
+              "headline": "Close-management software for finance teams; hiring two finance engineers (2026-09).",
+              "source_ids": [
+                "S1"
+              ]
+            },
+            "report": {
+              "title": "Ember Ops — ICP fit",
+              "summary": "Close-management software for finance teams; hiring two finance engineers (2026-09).",
+              "severity": "info",
+              "sections": [],
+              "sources": [
+                {
+                  "id": "S1",
+                  "url": "https://ember.example/",
+                  "title": "Ember Ops — month-end close",
+                  "provider": "tavily"
+                },
+                {
+                  "id": "S2",
+                  "url": "https://ember.example/careers",
+                  "title": "Careers at Ember Ops",
+                  "provider": "tavily"
+                }
+              ],
+              "unknowns": []
+            }
+          }
+        }
+      },
+      {
+        "item": {
+          "index": 3,
+          "item": {
+            "name": "Fable Docs",
+            "domain": "fable.example"
+          },
+          "item_key": "domain:fable.example",
+          "query": "Fable Docs fable.example company overview, products, customers, size"
+        },
+        "status": "ok",
+        "outputs": {
+          "search": {
+            "query": "Fable Docs fable.example company overview, products, customers, size",
+            "results": [
+              {
+                "url": "https://fable.example/",
+                "title": "Fable Docs",
+                "content": "..."
+              }
+            ]
+          },
+          "judge": {
+            "fit_score": 3,
+            "fit_tier": "Possible",
+            "verdict": "Research",
+            "rubric_used": {
+              "origin": "given",
+              "criteria": [
+                {
+                  "criterion": "Sells software to finance teams",
+                  "kind": "must_have",
+                  "weight": 3,
+                  "public_signal": true,
+                  "result": "met"
+                },
+                {
+                  "criterion": "50-500 employees",
+                  "kind": "nice_to_have",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "unknown"
+                },
+                {
+                  "criterion": "Timing: a dated hiring, funding or launch event in the last 12 months",
+                  "kind": "nice_to_have",
+                  "weight": 2,
+                  "public_signal": true,
+                  "result": "unknown"
+                },
+                {
+                  "criterion": "Is a bank or lender",
+                  "kind": "exclusion",
+                  "weight": 1,
+                  "public_signal": true,
+                  "result": "unknown"
+                }
+              ]
+            },
+            "item_result": {
+              "item": {
+                "index": 3,
+                "item": {
+                  "name": "Fable Docs",
+                  "domain": "fable.example"
+                },
+                "item_key": "domain:fable.example",
+                "query": "Fable Docs fable.example company overview, products, customers, size"
+              },
+              "item_key": "domain:fable.example",
+              "item_label": "Fable Docs (fable.example)",
+              "status": "ok",
+              "verdict": "Research",
+              "score": 3,
+              "score_scale": "0-5",
+              "headline": "Invoice tooling for finance teams; size and timing unclear.",
+              "source_ids": [
+                "S1"
+              ]
+            },
+            "report": {
+              "title": "Fable Docs — ICP fit",
+              "summary": "Invoice tooling for finance teams; size and timing unclear.",
+              "severity": "info",
+              "sections": [],
+              "sources": [
+                {
+                  "id": "S1",
+                  "url": "https://fable.example/",
+                  "title": "Fable Docs",
+                  "provider": "tavily"
+                }
+              ],
+              "unknowns": []
+            }
+          }
+        }
+      }
+    ],
+    "cut": [],
+    "cut_count": 0
+  }
+}

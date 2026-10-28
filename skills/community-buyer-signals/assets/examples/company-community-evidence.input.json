@@ -1,0 +1,10 @@
+{
+  "queries": [
+    "Orbit Ledger month-end close"
+  ],
+  "since_days": 365,
+  "max_posts": 10,
+  "include_reddit": true,
+  "product": "month-end close automation for finance teams",
+  "now": "2026-10-28T09:00:00Z"
+}

@@ -13,7 +13,7 @@
     "ranked": {
       "type": "array",
       "maxItems": 100,
-      "description": "Every branch with status ok or no_evidence, in rank order. Values are copied from each branch's item_result, never changed.",
+      "description": "Every branch with status ok or no_evidence, in rank order. Values are copied from each branch's item_result, except score and verdict of a judge that reports a 0-5 rubric (rubric_used.criteria), which the script recomputes from that rubric and lists in corrections.",
       "items": {
         "type": "object",
         "required": [
@@ -111,6 +111,52 @@
             "type": "string",
             "minLength": 1,
             "maxLength": 200
+          }
+        }
+      }
+    },
+    "corrections": {
+      "type": "array",
+      "maxItems": 500,
+      "description": "Every value the script recomputed from a judge's own rubric (account-icp-qualification shape) because the judge's arithmetic did not follow it. Empty when every judge was consistent or reported no rubric.",
+      "items": {
+        "type": "object",
+        "required": [
+          "item_label",
+          "field",
+          "judge_value",
+          "computed_value"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "item_label": {
+            "type": "string",
+            "maxLength": 120
+          },
+          "field": {
+            "type": "string",
+            "enum": [
+              "item_result.score",
+              "fit_score",
+              "item_result.verdict",
+              "verdict",
+              "fit_tier"
+            ],
+            "description": "Which judge field was wrong."
+          },
+          "judge_value": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "description": "What the judge returned."
+          },
+          "computed_value": {
+            "type": [
+              "number",
+              "string"
+            ],
+            "description": "What the rubric formula gives; used in ranked."
           }
         }
       }

@@ -3,6 +3,7 @@
     {
       "rank": 1,
       "item_label": "Orbit Ledger (orbit.example)",
+      "item_key": "domain:orbit.example",
       "status": "ok",
       "verdict": "Pursue",
       "score": 5,
@@ -16,6 +17,7 @@
     {
       "rank": 2,
       "item_label": "Lumen Payroll (lumen.example)",
+      "item_key": "domain:lumen.example",
       "status": "ok",
       "verdict": "Pursue",
       "score": 4,
@@ -28,6 +30,7 @@
     {
       "rank": 3,
       "item_label": "Quill Books (quill.example)",
+      "item_key": "domain:quill.example",
       "status": "ok",
       "verdict": "Research",
       "score": 2,
@@ -47,6 +50,7 @@
       "reason": "search returned no results and the step could not proceed"
     }
   ],
+  "corrections": [],
   "report": {
     "title": "Qualified accounts",
     "summary": "Ranked 3 companies by score; showing the top 2. 1 failed, 0 skipped.",
@@ -117,7 +121,7 @@
     "unknowns": [],
     "meta": {
       "skill": "results-rank",
-      "skill_version": "1.4.1",
+      "skill_version": "1.5.0",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }
