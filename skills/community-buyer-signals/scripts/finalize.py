@@ -30,7 +30,7 @@ from pathlib import Path
 from typing import Any
 
 SKILL = "community-buyer-signals"
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 QUESTIONS = ("buying", "pain", "vendor")
 MAX_QUOTE = 300
 MAX_ITEMS = 25

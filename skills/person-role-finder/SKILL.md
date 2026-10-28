@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.1"
+  version: "1.2.2"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -194,6 +194,11 @@ record's evidence date. Contact fields: `email`, `work_email`, `email_status`,
    - `adjacent`: same function, one level up or down (Director or CMO for `VP
      Marketing`). Only when `allow_adjacent` is true and the role has no `exact` or
      `synonym` holder.
+   A source's own title line counts as a statement of the title: a profile or team page
+   titled `<name> - <title> at <company>` (`Dan W. - VP, Engineering at SFCompute`) is
+   matched on that title, even when its body text gives a vaguer one (`Engineering
+   Leadership`); keep the more specific title and cite the page. An abbreviated surname
+   is the same person only when the company matches.
    A different function never matches. Near functions need the source's own words:
    Product Marketing counts for `Demand Generation` only if the source describes
    pipeline or demand work.
@@ -281,7 +286,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `severity: info` for `Found`, else `attention`. `sources` = only sources cited by kept
   or excluded people; `unknowns` with `Rejected N candidates (same name at another
   company, or no company link).` when N > 0, each failed fetch, and missing roles' reasons
-  when known; `meta` `{skill: "person-role-finder", skill_version: "1.2.1",
+  when known; `meta` `{skill: "person-role-finder", skill_version: "1.2.2",
   generated_at: <now>}`.
 
 A skipped slot returns empty lists, `rejected_count: 0`, `contacts: []`, the skipped
