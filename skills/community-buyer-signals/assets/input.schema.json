@@ -55,6 +55,11 @@
       "default": false,
       "description": "Also try Reddit's public search JSON; refused from many cloud IPs, then noted as skipped."
     },
+    "must_include": {
+      "type": "string",
+      "maxLength": 100,
+      "description": "Words every post must still contain when a query finds nothing and the search retries with its other words optional; usually the company name in a per-company branch."
+    },
     "product": {
       "type": "string",
       "maxLength": 300,

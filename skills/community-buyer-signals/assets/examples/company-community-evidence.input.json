@@ -2,6 +2,7 @@
   "queries": [
     "Orbit Ledger month-end close"
   ],
+  "must_include": "Orbit Ledger",
   "since_days": 365,
   "max_posts": 10,
   "include_reddit": true,
