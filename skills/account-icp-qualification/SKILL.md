@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.6.2"
+  version: "1.6.3"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -264,7 +264,12 @@ never take a fact or a url from them. A step output that ends in a cut marker
 12. **Missing information.** At most 5 `{item, why, how_to_check}` (one search or one
     discovery question), in order: unknown must-haves, other unknown criteria by weight,
     unknown warmth, a `null` problem hypothesis. Never fill a gap with a guess.
-13. **Check before writing.** `item_result.score` equals `fit_score` and
+13. **Check before writing.** Recompute `fit_score` from `rubric_used` exactly as step 5
+    says (met weight ÷ non-exclusion weight × 5, with the exclusion and must-have caps)
+    and take the verdict that step 6 gives that score and those results. When your score
+    or verdict differs, the arithmetic wins: change the score or verdict, never a
+    criterion's result to fit them (a fan-out ranker recomputes from `rubric_used` and
+    lists every difference as a correction). `item_result.score` equals `fit_score` and
     `item_result.verdict` equals `verdict`. Every `not met` and every met exclusion
     quotes the ICP criterion it judges and cites a source. No score or verdict was
     lowered for a reason that is not a rubric criterion (size the ICP does not bound,
@@ -305,7 +310,7 @@ Return the fields of `assets/output.schema.json` as your result (skipped slots: 
   order and each `label` is `met`, `not met` or `unknown` plus the kind when not
   `nice_to_have` (e.g. `not met · must-have`); every cited source in `sources`;
   `unknowns`; `meta`
-  `{skill: "account-icp-qualification", skill_version: "1.6.2", generated_at: <now>}`
+  `{skill: "account-icp-qualification", skill_version: "1.6.3", generated_at: <now>}`
   (leave `meta` out when no time is known). `severity: info`.
 
 # Constraints

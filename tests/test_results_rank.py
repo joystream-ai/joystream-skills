@@ -275,3 +275,23 @@ def test_contact_details_never_reach_the_output(tmp_path: Path) -> None:
     text = json.dumps({k: v for k, v in result.items()})
     assert "@" not in text
     assert "item_key" not in result["ranked"][0]
+
+
+def test_a_failed_step_inside_a_judged_branch_is_named(tmp_path: Path) -> None:
+    """Key-people pilot 31ecec67: one of nine searches failed on a gateway error and the
+    report read "0 failed". The platform now passes the branch's step_errors."""
+    hurt = entry(judge("Voltage Park", "Research", 2), name="VoltagePark")
+    hurt["step_errors"] = {"search-role-1": "MCPCredentialError: Could not mint a gateway token"}
+    _, result = run(tmp_path, inputs([entry(judge("Acme", "Pursue", 4), name="Acme"), hurt]))
+
+    assert result["failed"] == [], "the branch itself was judged"
+    assert "1 step failed inside 1 company." in result["report"]["summary"]
+    [note] = [u for u in result["report"]["unknowns"] if "search-role-1" in u]
+    assert note.startswith("Voltage Park (voltagepark.example): step search-role-1 failed (MCPCredentialError")
+    assert note.endswith("judged without it.")
+
+
+def test_no_step_errors_no_note(tmp_path: Path) -> None:
+    _, result = run(tmp_path, inputs([entry(judge("Acme", "Pursue", 4), name="Acme")]))
+    assert "failed inside" not in result["report"]["summary"]
+    assert not [u for u in result["report"]["unknowns"] if "step " in u]

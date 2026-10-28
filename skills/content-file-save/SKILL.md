@@ -11,7 +11,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: operations
   joystream-skill-kind: sandbox
   joystream-input-schema: assets/input.schema.json
@@ -98,6 +98,9 @@ Return the fields of `assets/output.schema.json` as your result:
 
 - **The content is saved unchanged.** Never edit, summarize, translate, reorder or
   "improve" it, and never add a heading, footer or note to it.
+- **The scratch copy goes to `/tmp`, never `/workspace/out`.** Every file under
+  `/workspace/out` becomes one of the run's files, so a scratch copy there shows up as a
+  second, duplicate download.
 - **Save one file** per run of this step, and only under `/workspace/out/`. Never write,
   move or delete anything else there.
 - **Never invent** a path, size or checksum. Report only what the script printed.

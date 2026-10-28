@@ -13,7 +13,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: sales
   joystream-skill-kind: sandbox
   joystream-input-schema: assets/input.schema.json
@@ -35,7 +35,8 @@ Two uses:
   monitoring`), often with `tags: ["ask_hn", "comment"]`, to find people asking for
   recommendations now.
 - **Per-company community evidence**: one branch per company with the query
-  `<company> <problem words>` and `must_include: <company>`, so a search that matches
+  `<company> <problem words>` (one or two problem words, e.g. `outage`; a longer phrase
+  rarely matches) and `must_include: <company>`, so a search that matches
   nothing falls back to posts that still name the company, never to posts about anyone;
   `account-icp-qualification` reads this skill's `posts` as community evidence (one
   person's account, never proof of size or industry).
@@ -80,6 +81,9 @@ need only Python 3, and search.py outbound internet.
    python3 /workspace/skill/community-buyer-signals/scripts/search.py
    ```
 
+   Run it exactly so, with no `--out-dir`: its files and yours (`/tmp/scores.json`) stay
+   in `/tmp`, because every file under `/workspace/out` becomes one of the run's files.
+
    It reads the inputs from `INPUT_JSON` (or the file at `INPUT_JSON_PATH`), searches
    each query, strips HTML, caps each text at 6,000 characters, drops duplicates, numbers
    the posts `S1`, `S2`, …, writes them to `/tmp/posts.json` and to pages
@@ -118,7 +122,8 @@ need only Python 3, and search.py outbound internet.
    the report with fixed wording and lengths.
 5. **Return its JSON unchanged.** finalize.py prints one JSON object (also saved at
    `/tmp/community-buyer-signals.json`) that matches `assets/output.schema.json`. Return
-   exactly those fields as your result: do not re-score, reword, shorten or add to it,
+   exactly those fields as your result: do not re-score, reword, shorten or add to it
+   (the summary and unknowns included),
    and do not read the file back to check. It always exits 0; anything it could not do
    is in `report.unknowns`.
 
@@ -147,7 +152,7 @@ finalize.py builds the fields of `assets/output.schema.json`:
     provider}` with `provider` `hn` or `reddit`.
   - `unknowns`: the script's `unknowns` (failed or skipped sources), plus any page you
     could not read.
-  - `meta`: `{skill: "community-buyer-signals", skill_version: "1.1.0", generated_at:
+  - `meta`: `{skill: "community-buyer-signals", skill_version: "1.1.1", generated_at:
     <now>}` when `now` is given; otherwise leave it out.
 
 # Constraints

@@ -40,7 +40,7 @@ from pathlib import Path
 from typing import Any
 
 SKILL = "results-rank"
-VERSION = "1.5.0"
+VERSION = "1.6.0"
 DEFAULT_OUT = "/tmp/results-rank.json"
 
 MAX_RANKED = 100
@@ -264,6 +264,7 @@ class Branch:
         self.item_result: dict = {}
         self.label = ""
         self.reason = ""
+        self.step_errors: dict[str, str] = {}
 
 
 def classify(judge: dict | None, branch: Branch) -> None:
@@ -294,6 +295,12 @@ def v2_branches(entries: list, prepare: dict | None) -> list[Branch]:
         entry = entry if isinstance(entry, dict) else {}
         judge = find_judge(entry.get("outputs"))
         classify(judge, b)
+        if isinstance(entry.get("step_errors"), dict):
+            b.step_errors = {
+                cut(text(k), 80): cut(scrub(text(v)), 200)
+                for k, v in entry["step_errors"].items()
+                if text(v)
+            }
         if judge is None:
             if entry.get("status") == "skipped":
                 b.group = "skipped"
@@ -841,7 +848,19 @@ def build(inputs: dict, steps: list[tuple[str, Any]] | None, now_arg: str | None
     if cut_count:
         summary += f" {cut_count} not evaluated (over the limit)."
 
-    all_unknowns = unknowns + correction_notes + withheld
+    # A branch whose own judgment came back can still have lost a search on the way:
+    # name each failed step, so "0 failed" never reads as "nothing went wrong".
+    partial = [b for b in branches if b.step_errors and b.group != "failed"]
+    step_notes = []
+    for b in partial:
+        name = b.label or text(b.item_result.get("item_label")) or b.name
+        for ref, err in b.step_errors.items():
+            step_notes.append(cut(f"{cut(scrub(name), 120)}: step {ref} failed ({err}); judged without it.", 300))
+    if partial and n:
+        steps = sum(len(b.step_errors) for b in partial)
+        summary += f" {steps} step{'s' if steps != 1 else ''} failed inside {len(partial)} {plural(kind, len(partial))}."
+
+    all_unknowns = unknowns + step_notes + correction_notes + withheld
     if len(all_unknowns) > MAX_UNKNOWNS:
         extra_count = len(all_unknowns) - (MAX_UNKNOWNS - 1)
         all_unknowns = all_unknowns[: MAX_UNKNOWNS - 1] + [f"…and {extra_count} more notes (see corrections)."]
