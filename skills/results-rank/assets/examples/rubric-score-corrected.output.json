@@ -1,0 +1,175 @@
+{
+  "ranked": [
+    {
+      "rank": 1,
+      "item_label": "Ember Ops (ember.example)",
+      "item_key": "domain:ember.example",
+      "status": "ok",
+      "verdict": "Pursue",
+      "score": 5,
+      "score_scale": "0-5",
+      "headline": "Close-management software for finance teams; hiring two finance engineers (2026-09).",
+      "source_ids": [
+        "S1"
+      ]
+    },
+    {
+      "rank": 2,
+      "item_label": "Fable Docs (fable.example)",
+      "item_key": "domain:fable.example",
+      "status": "ok",
+      "verdict": "Research",
+      "score": 3,
+      "score_scale": "0-5",
+      "headline": "Invoice tooling for finance teams; size and timing unclear.",
+      "source_ids": [
+        "S3"
+      ]
+    },
+    {
+      "rank": 3,
+      "item_label": "Cobalt Grid (cobalt.example)",
+      "item_key": "domain:cobalt.example",
+      "status": "ok",
+      "verdict": "Reject",
+      "score": 1,
+      "score_scale": "0-5",
+      "headline": "Grid-monitoring software for utilities; does not sell to finance teams.",
+      "source_ids": [
+        "S4"
+      ]
+    },
+    {
+      "rank": 4,
+      "item_label": "Delta Mesh (delta.example)",
+      "item_key": "domain:delta.example",
+      "status": "ok",
+      "verdict": "Reject",
+      "score": 0,
+      "score_scale": "0-5",
+      "headline": "A regional lender; lenders are excluded by the ICP.",
+      "source_ids": [
+        "S6"
+      ]
+    }
+  ],
+  "shown": 3,
+  "skipped_count": 0,
+  "failed": [],
+  "corrections": [
+    {
+      "item_label": "Cobalt Grid (cobalt.example)",
+      "field": "item_result.score",
+      "judge_value": 2,
+      "computed_value": 1
+    },
+    {
+      "item_label": "Cobalt Grid (cobalt.example)",
+      "field": "fit_score",
+      "judge_value": 2,
+      "computed_value": 1
+    },
+    {
+      "item_label": "Cobalt Grid (cobalt.example)",
+      "field": "item_result.verdict",
+      "judge_value": "Research",
+      "computed_value": "Reject"
+    },
+    {
+      "item_label": "Cobalt Grid (cobalt.example)",
+      "field": "verdict",
+      "judge_value": "Research",
+      "computed_value": "Reject"
+    },
+    {
+      "item_label": "Cobalt Grid (cobalt.example)",
+      "field": "fit_tier",
+      "judge_value": "Possible",
+      "computed_value": "Weak"
+    }
+  ],
+  "report": {
+    "title": "Qualified companies",
+    "summary": "Ranked 4 companies by verdict, then score; showing the top 3. 0 failed, 0 skipped.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Top 3 of 4 companies",
+        "items": [
+          {
+            "text": "1. Ember Ops (ember.example) — Pursue, 5 (0-5): Close-management software for finance teams; hiring two finance engineers (2026-09).",
+            "citations": [
+              "S1"
+            ],
+            "label": "Pursue"
+          },
+          {
+            "text": "2. Fable Docs (fable.example) — Research, 3 (0-5): Invoice tooling for finance teams; size and timing unclear.",
+            "citations": [
+              "S3"
+            ],
+            "label": "Research"
+          },
+          {
+            "text": "3. Cobalt Grid (cobalt.example) — Reject, 1 (0-5): Grid-monitoring software for utilities; does not sell to finance teams.",
+            "citations": [
+              "S4"
+            ],
+            "label": "Reject"
+          },
+          {
+            "text": "…and 1 more: Delta Mesh (delta.example)",
+            "citations": [],
+            "label": "more"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://ember.example/",
+        "title": "Ember Ops — month-end close",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://ember.example/careers",
+        "title": "Careers at Ember Ops",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://fable.example/",
+        "title": "Fable Docs",
+        "provider": "tavily"
+      },
+      {
+        "id": "S4",
+        "url": "https://cobalt.example/",
+        "title": "Cobalt Grid — utility monitoring",
+        "provider": "tavily"
+      },
+      {
+        "id": "S5",
+        "url": "https://news.example.org/cobalt-series-b",
+        "title": "Cobalt Grid raises a Series B",
+        "provider": "tavily"
+      },
+      {
+        "id": "S6",
+        "url": "https://delta.example/about",
+        "title": "About Delta Mesh",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [
+      "Cobalt Grid (cobalt.example): the judge gave score 2, verdict Research, tier Possible, which its own rubric does not give (a must-have is not met); ranked with score 1, verdict Reject, tier Weak."
+    ],
+    "meta": {
+      "skill": "results-rank",
+      "skill_version": "1.5.0",
+      "generated_at": "2026-10-28T09:00:00Z"
+    }
+  }
+}

@@ -109,6 +109,14 @@
       ]
     },
     {
+      "name": "community-signals",
+      "description": "Find people on Hacker News (and Reddit, when reachable) asking for or struggling without a product like yours, scored for buying intent, pain and vendor promotion with the author's own words. Reads free public search APIs; never posts or contacts anyone.",
+      "source": "./",
+      "skills": [
+        "./skills/community-buyer-signals"
+      ]
+    },
+    {
       "name": "gtm-outreach",
       "description": "Outreach and follow-up drafts for founders and sellers: a first-touch email or LinkedIn DM from a brief, and a sales-call debrief with a follow-up email. Drafts only; nothing is sent.",
       "source": "./",

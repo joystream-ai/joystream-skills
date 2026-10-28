@@ -193,6 +193,14 @@
       ],
       "minimum": 0,
       "description": "Items past the for_each loop's limit that got no branch (bind steps.<loop>.output.cut_count). Overrides a cut_count inside branches; 0, null or absent: none."
+    },
+    "steps": {
+      "type": [
+        "object",
+        "array",
+        "null"
+      ],
+      "description": "v1 only, and only when no branches are bound: the prior step outputs as {<step id>: <output>} in dependency order (the prepare step and every judge branch). On JoyStream the model writes them to a file and passes --steps; examples give them inline."
     }
   }
 }

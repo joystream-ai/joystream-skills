@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.6.1"
+  version: "1.6.2"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -78,7 +78,8 @@ Before this skill, the agent runs (with whatever tools its platform offers):
 2. **Web search** for this slot's query (any provider), one call, the largest result count
    the tool allows. Optionally a **page extract** of the company's homepage, at most 8
    pages, each cut to about 12,000 characters, a **news search** for recent events, and
-   a **community search** (Hacker News, Reddit) for what users and staff say.
+   a **community search** (Hacker News, Reddit; e.g. `community-buyer-signals` with
+   `<company> <problem words>`) for what users and staff say.
 
 After it, `results-rank` combines the branches (in a list agent) and
 `channel-message-render` renders the report for the delivery step. On JoyStream, list this
@@ -110,6 +111,9 @@ both), a title, a published date when the item states one, and its text.
 | Firecrawl search | `data.web[]`, `data.news[]` (older: `data[]`) | `url` | `title` | `date` | `markdown`, else `description`, else `snippet` |
 | SerpAPI Google / News | `organic_results[]`, `news_results[]` | `link` | `title` | `date` | `snippet` |
 | Perplexity search | `results[]` | `url` | `title` | `date`, else `last_updated` | `snippet` |
+| Hacker News search (Algolia) | `hits[]` | `https://news.ycombinator.com/item?id=<objectID>` (not `url`) | `title`, else `story_title` | `created_at` | `comment_text`, else `story_text` (HTML) |
+| Reddit search JSON | `data.children[].data` | `https://www.reddit.com` + `permalink` | `title` | `created_utc` (epoch) | `selftext` |
+| community-buyer-signals | `posts[]` | `url` | `title` | `published_at` | `buying`, `pain` quotes; `vendor.p` ≥ 0.5 is promotion |
 | GitHub | issues, pulls, releases | `html_url` | `title`, or `name` for releases | `published_at`, `merged_at`, `closed_at`, `created_at` | `body` |
 | Pasted text | the input field itself | `input:<field>` | the field name | none | the text |
 
@@ -301,7 +305,7 @@ Return the fields of `assets/output.schema.json` as your result (skipped slots: 
   order and each `label` is `met`, `not met` or `unknown` plus the kind when not
   `nice_to_have` (e.g. `not met · must-have`); every cited source in `sources`;
   `unknowns`; `meta`
-  `{skill: "account-icp-qualification", skill_version: "1.6.1", generated_at: <now>}`
+  `{skill: "account-icp-qualification", skill_version: "1.6.2", generated_at: <now>}`
   (leave `meta` out when no time is known). `severity: info`.
 
 # Constraints

@@ -1,0 +1,14 @@
+{
+  "queries": [
+    "recommend GPU cluster monitoring",
+    "GPU node failures alerting"
+  ],
+  "tags": [
+    "ask_hn",
+    "comment"
+  ],
+  "since_days": 180,
+  "max_posts": 30,
+  "product": "GPU cluster health monitoring and alerting for ML teams",
+  "now": "2026-10-28T09:00:00Z"
+}

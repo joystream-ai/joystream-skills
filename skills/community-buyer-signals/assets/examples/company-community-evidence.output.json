@@ -1,0 +1,93 @@
+{
+  "buyers": [],
+  "posts": [
+    {
+      "post_id": "hn:99000201",
+      "source_id": "S1",
+      "source": "hn",
+      "kind": "comment",
+      "url": "https://news.ycombinator.com/item?id=99000201",
+      "title": "Show HN: An open-source reconciliation engine",
+      "published_at": "2026-06-19T10:21:44Z",
+      "author": "example_controller",
+      "buying": {
+        "p": 0.2,
+        "quote": "Curious whether this handles multi-entity."
+      },
+      "pain": {
+        "p": 0.65,
+        "quote": "At Orbit Ledger our month-end close still takes nine days, mostly spreadsheet reconciliations."
+      },
+      "vendor": {
+        "p": 0.05,
+        "quote": ""
+      }
+    },
+    {
+      "post_id": "hn:99000202",
+      "source_id": "S2",
+      "source": "hn",
+      "kind": "story",
+      "url": "https://news.ycombinator.com/item?id=99000202",
+      "title": "Orbit Ledger raises Series A for finance operations software",
+      "published_at": "2026-04-08T12:00:00Z",
+      "author": "example_news",
+      "buying": {
+        "p": 0.0,
+        "quote": ""
+      },
+      "pain": {
+        "p": 0.1,
+        "quote": ""
+      },
+      "vendor": {
+        "p": 0.3,
+        "quote": "Orbit Ledger raises Series A for finance operations software"
+      }
+    }
+  ],
+  "scored_count": 2,
+  "report": {
+    "title": "Community buyer signals for month-end close automation for finance teams",
+    "summary": "Scored 2 Hacker News posts from the last 365 days: none look like buyers, 1 describes the pain, none are vendors.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Pain",
+        "items": [
+          {
+            "text": "Show HN: An open-source reconciliation engine — \"At Orbit Ledger our month-end close still takes nine days, mostly spreadsheet reconciliations.\"",
+            "citations": [
+              "S1"
+            ],
+            "label": "pain"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://news.ycombinator.com/item?id=99000201",
+        "title": "Show HN: An open-source reconciliation engine",
+        "published_at": "2026-06-19T10:21:44Z",
+        "provider": "hn"
+      },
+      {
+        "id": "S2",
+        "url": "https://news.ycombinator.com/item?id=99000202",
+        "title": "Orbit Ledger raises Series A for finance operations software",
+        "published_at": "2026-04-08T12:00:00Z",
+        "provider": "hn"
+      }
+    ],
+    "unknowns": [
+      "Reddit search for 'Orbit Ledger month-end close' skipped (HTTP 403); Reddit often refuses cloud IPs."
+    ],
+    "meta": {
+      "skill": "community-buyer-signals",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-28T09:00:00Z"
+    }
+  }
+}

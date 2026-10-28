@@ -8,5 +8,152 @@
     }
   ],
   "title": "Qualified accounts",
-  "now": "2026-10-12T09:00:00Z"
+  "now": "2026-10-12T09:00:00Z",
+  "steps": {
+    "prepare": {
+      "slots": [
+        {
+          "i": 0,
+          "item_key": "domain:orbit.example",
+          "label": "Orbit Ledger (orbit.example)",
+          "query": "Orbit Ledger overview"
+        },
+        {
+          "i": 1,
+          "item_key": "domain:kestrel.example",
+          "label": "Kestrel Freight (kestrel.example)",
+          "query": "Kestrel Freight overview"
+        },
+        {
+          "i": 2,
+          "item_key": "domain:lumen.example",
+          "label": "Lumen Payroll (lumen.example)",
+          "query": "Lumen Payroll overview"
+        },
+        {
+          "i": 3,
+          "item_key": "domain:quill.example",
+          "label": "Quill Books (quill.example)",
+          "query": "Quill Books overview"
+        }
+      ],
+      "accepted_count": 4
+    },
+    "judge-1": {
+      "item_result": {
+        "item": {
+          "i": 0,
+          "item_key": "domain:orbit.example",
+          "label": "Orbit Ledger (orbit.example)",
+          "query": "Orbit Ledger overview"
+        },
+        "item_key": "domain:orbit.example",
+        "item_label": "Orbit Ledger (orbit.example)",
+        "status": "ok",
+        "verdict": "Pursue",
+        "score": 5,
+        "score_scale": "0-5",
+        "headline": "Finance-ops SaaS for mid-market teams; raised a Series A this quarter.",
+        "source_ids": [
+          "S1",
+          "S2"
+        ]
+      },
+      "report": {
+        "title": "Orbit Ledger (orbit.example)",
+        "summary": "Finance-ops SaaS for mid-market teams; raised a Series A this quarter.",
+        "severity": "info",
+        "sections": [],
+        "sources": [
+          {
+            "id": "S1",
+            "url": "https://orbit.example/",
+            "title": "Orbit Ledger — finance operations",
+            "provider": "tavily"
+          },
+          {
+            "id": "S2",
+            "url": "https://news.example.org/finance-saas-roundup",
+            "title": "Finance SaaS funding roundup",
+            "provider": "tavily"
+          }
+        ],
+        "unknowns": []
+      }
+    },
+    "judge-2": {
+      "status": "error",
+      "error": "search returned no results and the step could not proceed"
+    },
+    "judge-3": {
+      "item_result": {
+        "item": {
+          "i": 2,
+          "item_key": "domain:lumen.example",
+          "label": "Lumen Payroll (lumen.example)",
+          "query": "Lumen Payroll overview"
+        },
+        "item_key": "domain:lumen.example",
+        "item_label": "Lumen Payroll (lumen.example)",
+        "status": "ok",
+        "verdict": "Pursue",
+        "score": 4,
+        "score_scale": "0-5",
+        "headline": "Payroll platform for 50-500 employee companies; hiring finance engineers.",
+        "source_ids": [
+          "S1"
+        ]
+      },
+      "report": {
+        "title": "Lumen Payroll (lumen.example)",
+        "summary": "Payroll platform for 50-500 employee companies; hiring finance engineers.",
+        "severity": "info",
+        "sections": [],
+        "sources": [
+          {
+            "id": "S1",
+            "url": "https://lumen.example/",
+            "title": "Lumen Payroll",
+            "provider": "tavily"
+          }
+        ],
+        "unknowns": []
+      }
+    },
+    "judge-4": {
+      "item_result": {
+        "item": {
+          "i": 3,
+          "item_key": "domain:quill.example",
+          "label": "Quill Books (quill.example)",
+          "query": "Quill Books overview"
+        },
+        "item_key": "domain:quill.example",
+        "item_label": "Quill Books (quill.example)",
+        "status": "ok",
+        "verdict": "Research",
+        "score": 2,
+        "score_scale": "0-5",
+        "headline": "Bookkeeping tool; customer size unclear.",
+        "source_ids": [
+          "S1"
+        ]
+      },
+      "report": {
+        "title": "Quill Books (quill.example)",
+        "summary": "Bookkeeping tool; customer size unclear.",
+        "severity": "info",
+        "sections": [],
+        "sources": [
+          {
+            "id": "S1",
+            "url": "https://quill.example/",
+            "title": "Quill Books",
+            "provider": "tavily"
+          }
+        ],
+        "unknowns": []
+      }
+    }
+  }
 }

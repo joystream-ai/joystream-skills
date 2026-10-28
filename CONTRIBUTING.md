@@ -22,6 +22,11 @@ AGENT              which accounts, which channel, what schedule   ← the agent'
   extraction, GitHub reads and delivery are the agent's connector steps, before and after
   the skill. This is also what makes a skill provider-neutral: it never names a provider's
   tool.
+- **One exception: a sandbox collector.** A `sandbox` skill whose script collects public
+  data (e.g. `community-buyer-signals`) may fetch from a free, keyless public API. It
+  never needs, reads or asks for a credential, and never posts, replies or sends. Its
+  body says what it fetches in place of "performs no external operations". Every other
+  skill still never fetches.
 - **Earn your place above the tools.** A skill that only renames one service call is a
   tool, not a skill.
 - **One-off choices belong to the agent** (which repo, which channel, what time). Expose

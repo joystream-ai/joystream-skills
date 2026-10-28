@@ -1,0 +1,478 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "buyers",
+    "posts",
+    "scored_count",
+    "report"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "buyers": {
+      "type": "array",
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "required": [
+          "post_id",
+          "source_id",
+          "source",
+          "kind",
+          "url",
+          "title",
+          "buying",
+          "pain",
+          "vendor"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "post_id": {
+            "type": "string",
+            "pattern": "^(hn|reddit):\\S+$",
+            "description": "From the posts file, unchanged."
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^S[0-9]+$",
+            "description": "The post's id in report.sources."
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "hn",
+              "reddit"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "story",
+              "comment",
+              "ask_hn",
+              "show_hn"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The discussion url from the posts file (news.ycombinator.com/item?id=..., or the Reddit permalink)."
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "published_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "author": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "The public username, as in the posts file. Never an email or phone."
+          },
+          "buying": {
+            "type": "object",
+            "required": [
+              "p",
+              "quote"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "p": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Probability 0-1 that the answer is yes."
+              },
+              "quote": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Words copied exactly from the post that support the answer; empty when p < 0.2."
+              }
+            },
+            "description": "Is the author actively looking for a product like `product` now?"
+          },
+          "pain": {
+            "type": "object",
+            "required": [
+              "p",
+              "quote"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "p": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Probability 0-1 that the answer is yes."
+              },
+              "quote": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Words copied exactly from the post that support the answer; empty when p < 0.2."
+              }
+            },
+            "description": "Does the author describe a problem they have today that `product` addresses?"
+          },
+          "vendor": {
+            "type": "object",
+            "required": [
+              "p",
+              "quote"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "p": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Probability 0-1 that the answer is yes."
+              },
+              "quote": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Words copied exactly from the post that support the answer; empty when p < 0.2."
+              }
+            },
+            "description": "Is the author promoting or selling something?"
+          }
+        }
+      },
+      "description": "The posts with buying.p >= 0.6 and vendor.p < 0.5, buying.p descending."
+    },
+    "posts": {
+      "type": "array",
+      "maxItems": 60,
+      "items": {
+        "type": "object",
+        "required": [
+          "post_id",
+          "source_id",
+          "source",
+          "kind",
+          "url",
+          "title",
+          "buying",
+          "pain",
+          "vendor"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "post_id": {
+            "type": "string",
+            "pattern": "^(hn|reddit):\\S+$",
+            "description": "From the posts file, unchanged."
+          },
+          "source_id": {
+            "type": "string",
+            "pattern": "^S[0-9]+$",
+            "description": "The post's id in report.sources."
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "hn",
+              "reddit"
+            ]
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "story",
+              "comment",
+              "ask_hn",
+              "show_hn"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1,
+            "description": "The discussion url from the posts file (news.ycombinator.com/item?id=..., or the Reddit permalink)."
+          },
+          "title": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "published_at": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "author": {
+            "type": "string",
+            "maxLength": 60,
+            "description": "The public username, as in the posts file. Never an email or phone."
+          },
+          "buying": {
+            "type": "object",
+            "required": [
+              "p",
+              "quote"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "p": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Probability 0-1 that the answer is yes."
+              },
+              "quote": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Words copied exactly from the post that support the answer; empty when p < 0.2."
+              }
+            },
+            "description": "Is the author actively looking for a product like `product` now?"
+          },
+          "pain": {
+            "type": "object",
+            "required": [
+              "p",
+              "quote"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "p": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Probability 0-1 that the answer is yes."
+              },
+              "quote": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Words copied exactly from the post that support the answer; empty when p < 0.2."
+              }
+            },
+            "description": "Does the author describe a problem they have today that `product` addresses?"
+          },
+          "vendor": {
+            "type": "object",
+            "required": [
+              "p",
+              "quote"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "p": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1,
+                "description": "Probability 0-1 that the answer is yes."
+              },
+              "quote": {
+                "type": "string",
+                "maxLength": 300,
+                "description": "Words copied exactly from the post that support the answer; empty when p < 0.2."
+              }
+            },
+            "description": "Is the author promoting or selling something?"
+          }
+        }
+      },
+      "description": "Every post in the posts file, scored, in the file's order."
+    },
+    "scored_count": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "len(posts)."
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft — not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,5 +7,45 @@
       "direction": "desc"
     }
   ],
-  "now": "2026-10-12T09:00:00Z"
+  "now": "2026-10-12T09:00:00Z",
+  "steps": {
+    "prepare": {
+      "slots": [
+        null,
+        null,
+        null
+      ],
+      "accepted_count": 0
+    },
+    "judge-1": {
+      "item_result": {
+        "item": null,
+        "item_key": "",
+        "item_label": "",
+        "status": "skipped",
+        "headline": "",
+        "source_ids": []
+      }
+    },
+    "judge-2": {
+      "item_result": {
+        "item": null,
+        "item_key": "",
+        "item_label": "",
+        "status": "skipped",
+        "headline": "",
+        "source_ids": []
+      }
+    },
+    "judge-3": {
+      "item_result": {
+        "item": null,
+        "item_key": "",
+        "item_label": "",
+        "status": "skipped",
+        "headline": "",
+        "source_ids": []
+      }
+    }
+  }
 }
