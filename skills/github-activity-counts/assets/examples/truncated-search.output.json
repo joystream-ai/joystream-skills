@@ -1,0 +1,20 @@
+{
+  "status": "partial",
+  "repos": [
+    {
+      "repo": "octocat/hello-world",
+      "merged": 1,
+      "opened": null
+    }
+  ],
+  "totals": {
+    "merged": 1,
+    "opened": null
+  },
+  "complete": false,
+  "sentence": "At least 1 PR merged.",
+  "unknowns": [
+    "The merged pull request search returned fewer results than it found, so that count may be too low.",
+    "The opened pull request search could not be read, so there is no opened count."
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "repositories": "octocat/hello-world\noctocat/spoon-knife",
+  "now": "2026-10-15T09:00:00Z",
+  "lookback_hours": 168,
+  "merged": {
+    "merged-prs": {
+      "ok": true,
+      "data": {
+        "total_count": 3,
+        "items": [
+          {
+            "number": 1,
+            "title": "Change 1",
+            "state": "closed",
+            "repository_url": "https://api.github.com/repos/octocat/hello-world",
+            "pull_request": {
+              "merged_at": "2026-10-14T10:00:00Z"
+            }
+          },
+          {
+            "number": 2,
+            "title": "Change 2",
+            "state": "closed",
+            "repository_url": "https://api.github.com/repos/octocat/hello-world",
+            "pull_request": {
+              "merged_at": "2026-10-14T10:00:00Z"
+            }
+          },
+          {
+            "number": 3,
+            "title": "Change 3",
+            "state": "closed",
+            "repository_url": "https://api.github.com/repos/octocat/spoon-knife",
+            "pull_request": {
+              "merged_at": "2026-10-14T10:00:00Z"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "opened": {
+    "opened-prs": {
+      "ok": true,
+      "data": {
+        "total_count": 1,
+        "items": [
+          {
+            "number": 4,
+            "title": "Open 4",
+            "state": "open",
+            "created_at": "2026-10-14T10:00:00Z",
+            "repository_url": "https://api.github.com/repos/octocat/spoon-knife",
+            "pull_request": {
+              "merged_at": null
+            }
+          }
+        ]
+      }
+    }
+  }
+}
