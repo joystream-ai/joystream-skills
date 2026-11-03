@@ -68,6 +68,7 @@
       "source": "./",
       "skills": [
         "./skills/account-icp-qualification",
+        "./skills/account-icp-rubric",
         "./skills/account-research-brief",
         "./skills/account-trigger-events",
         "./skills/company-website-profile",
