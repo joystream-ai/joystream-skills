@@ -10,6 +10,7 @@
       "description": "Read-only GitHub digests: repo activity and project ticket movement, each usable on its own.",
       "source": "./",
       "skills": [
+        "./skills/github-activity-counts",
         "./skills/github-repo-activity-summary",
         "./skills/github-project-ticket-summary"
       ]

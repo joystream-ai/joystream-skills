@@ -1,0 +1,30 @@
+{
+  "repositories": "octocat/hello-world",
+  "now": "2026-10-15T09:00:00Z",
+  "lookback_hours": 168,
+  "merged": {
+    "merged-prs": {
+      "ok": true,
+      "data": {
+        "total_count": 150,
+        "items": [
+          {
+            "number": 1,
+            "title": "Change 1",
+            "state": "closed",
+            "repository_url": "https://api.github.com/repos/octocat/hello-world",
+            "pull_request": {
+              "merged_at": "2026-10-14T10:00:00Z"
+            }
+          }
+        ]
+      }
+    }
+  },
+  "opened": {
+    "opened-prs": {
+      "ok": false,
+      "error": "Validation Failed"
+    }
+  }
+}

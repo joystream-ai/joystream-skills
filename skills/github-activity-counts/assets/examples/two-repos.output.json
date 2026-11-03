@@ -1,0 +1,22 @@
+{
+  "status": "ok",
+  "repos": [
+    {
+      "repo": "octocat/hello-world",
+      "merged": 2,
+      "opened": 0
+    },
+    {
+      "repo": "octocat/spoon-knife",
+      "merged": 1,
+      "opened": 1
+    }
+  ],
+  "totals": {
+    "merged": 3,
+    "opened": 1
+  },
+  "complete": true,
+  "sentence": "3 PRs merged (2 in octocat/hello-world, 1 in octocat/spoon-knife) and 1 opened (0 in octocat/hello-world, 1 in octocat/spoon-knife).",
+  "unknowns": []
+}

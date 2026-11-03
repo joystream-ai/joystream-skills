@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["repositories", "merged"],
+  "additionalProperties": true,
+  "properties": {
+    "repositories": {
+      "description": "The repositories to report, as owner/repo; one per line when a string.",
+      "oneOf": [{"type": "string", "minLength": 3}, {"type": "array", "items": {"type": "string"}}]
+    },
+    "merged": {"type": "object", "description": "The raw output of the search for merged pull requests."},
+    "opened": {"type": "object", "description": "The raw output of the search for opened pull requests."},
+    "lookback_hours": {"type": "integer", "minimum": 1, "description": "The window, in hours."},
+    "now": {"type": "string", "description": "The run's start time, ISO 8601."}
+  }
+}
