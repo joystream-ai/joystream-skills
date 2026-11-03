@@ -1,0 +1,19 @@
+{
+  "status": "no_criteria",
+  "rubric": [],
+  "report": {
+    "title": "ICP criteria: 0",
+    "summary": "The ICP states nothing checkable, so no criteria were written.",
+    "severity": "attention",
+    "sections": [],
+    "sources": [],
+    "unknowns": [
+      "The ICP names no industry, size, buyer, geography, business model or signal."
+    ],
+    "meta": {
+      "skill": "account-icp-rubric",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

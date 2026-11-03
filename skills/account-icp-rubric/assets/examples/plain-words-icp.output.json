@@ -1,0 +1,78 @@
+{
+  "status": "ok",
+  "rubric": [
+    {
+      "criterion": "Sells route-planning software to businesses",
+      "kind": "must_have",
+      "weight": 3
+    },
+    {
+      "criterion": "Based in Canada",
+      "kind": "nice_to_have",
+      "weight": 1
+    },
+    {
+      "criterion": "50-300 employees",
+      "kind": "nice_to_have",
+      "weight": 1
+    },
+    {
+      "criterion": "Buyer is the Head of Fleet or equivalent",
+      "kind": "nice_to_have",
+      "weight": 1
+    },
+    {
+      "criterion": "Timing: hiring dispatchers or a recent funding round, in the last 12 months",
+      "kind": "nice_to_have",
+      "weight": 2
+    },
+    {
+      "criterion": "Is a consulting firm",
+      "kind": "exclusion",
+      "weight": 1
+    }
+  ],
+  "report": {
+    "title": "ICP criteria: 6",
+    "summary": "6 criteria from the ICP: 1 must-have, 4 nice-to-have and 1 exclusion.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Criteria",
+        "items": [
+          {
+            "text": "Sells route-planning software to businesses: must_have, weight 3",
+            "citations": []
+          },
+          {
+            "text": "Based in Canada: nice_to_have, weight 1",
+            "citations": []
+          },
+          {
+            "text": "50-300 employees: nice_to_have, weight 1",
+            "citations": []
+          },
+          {
+            "text": "Buyer is the Head of Fleet or equivalent: nice_to_have, weight 1",
+            "citations": []
+          },
+          {
+            "text": "Timing: hiring dispatchers or a recent funding round, in the last 12 months: nice_to_have, weight 2",
+            "citations": []
+          },
+          {
+            "text": "Is a consulting firm: exclusion, weight 1",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [],
+    "unknowns": [],
+    "meta": {
+      "skill": "account-icp-rubric",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-10-12T09:00:00Z"
+    }
+  }
+}

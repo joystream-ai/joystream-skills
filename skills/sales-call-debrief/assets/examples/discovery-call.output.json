@@ -92,7 +92,7 @@
   "report": {
     "title": "Call debrief — Harbor Clinics",
     "summary": "Casey Demo met Morgan Placeholder and Dana Sample of Harbor Clinics. Matching insurance remittances from four portals takes about two days per clinic across eleven clinics, and format changes break the spreadsheet. Objections were the HIPAA BAA requirement and per-clinic pricing. If legal approves the BAA, they will test two clinics in November, with a planning call on 2026-10-28.",
-    "severity": "action_needed",
+    "severity": "info",
     "sections": [
       {
         "heading": "Key points",
@@ -252,7 +252,7 @@
     "footer": "Draft — not sent",
     "meta": {
       "skill": "sales-call-debrief",
-      "skill_version": "1.1.4",
+      "skill_version": "1.1.5",
       "generated_at": "2026-10-14T16:00:00Z"
     }
   }

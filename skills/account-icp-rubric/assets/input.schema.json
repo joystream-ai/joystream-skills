@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "account-icp-rubric input",
+  "type": "object",
+  "required": [
+    "icp"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "icp": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 20000,
+      "description": "The ideal customer profile in plain words, or the account-icp-definition markdown document."
+    },
+    "now": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The current time, recorded in report.meta."
+    }
+  }
+}
