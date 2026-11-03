@@ -162,7 +162,7 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
     if not repos:
         return (
             {
-                "status": "error",
+                "outcome": "error",
                 "repos": [],
                 "totals": {"merged": None, "opened": None},
                 "complete": False,
@@ -203,7 +203,7 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
 
     complete = merged is not None and opened is not None and merged_complete and opened_complete
     output = {
-        "status": "ok" if complete else "partial",
+        "outcome": "ok" if complete else "partial",
         "repos": [
             {
                 "repo": repo,

@@ -1,5 +1,5 @@
 {
-  "status": "ok",
+  "outcome": "ok",
   "repos": [
     {
       "repo": "octocat/hello-world",

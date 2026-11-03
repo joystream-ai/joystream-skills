@@ -10,7 +10,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.0.1"
   category: developer-tools
   joystream-skill-kind: sandbox
   joystream-input-schema: assets/input.schema.json
@@ -47,8 +47,9 @@ capability**. The skill folder is at `/workspace/skill/github-activity-counts`, 
 # Reasoning Flow
 
 1. **Run the script, once.** The inputs are already in the sandbox (`INPUT_JSON`, or the
-   file at `INPUT_JSON_PATH` when they are over 64 KiB), so do not read the script, list
-   files or write the inputs to a file yourself. Your first and only `sandbox_run` is:
+   file at `INPUT_JSON_PATH` when they are over 64 KiB). Do not read or search the script,
+   list files, or write the inputs to a file yourself, and write nothing under
+   `/workspace/out`. Your first and only `sandbox_run` is:
 
    ```
    python3 /workspace/skill/github-activity-counts/scripts/count.py
@@ -56,7 +57,8 @@ capability**. The skill folder is at `/workspace/skill/github-activity-counts`, 
 
 2. **Return its JSON unchanged.** The script prints one JSON object on stdout (also saved
    at `/tmp/github-activity-counts.json`) that matches `assets/output.schema.json`. Return
-   exactly those fields. Do not recount, reword or add to them.
+   exactly those fields, even when a count looks wrong. Do not recount, reword, rerun or
+   add to them.
 3. **If the script exits non-zero**, it still prints a valid output object that says what
    was wrong with the input. Return that object. Never count by hand.
 
@@ -76,7 +78,7 @@ capability**. The skill folder is at `/workspace/skill/github-activity-counts`, 
 
 The fields of `assets/output.schema.json`:
 
-- `status`: `ok`, `partial` (a search failed or was incomplete) or `error` (bad input).
+- `outcome`: `ok`, `partial` (a search failed or was incomplete) or `error` (bad input).
 - `repos[]`: `{repo, merged, opened}`, in `repositories` order.
 - `totals`: `{merged, opened}`, each the sum of `repos[]`.
 - `complete`: false when any count may be too low.
@@ -96,7 +98,7 @@ The fields of `assets/output.schema.json`:
 The counts are zero and the sentence says `No PRs merged or opened.`
 
 ## A search failed
-`status` is `partial`, that search's counts are `null`, and `unknowns` names it.
+`outcome` is `partial`, that search's counts are `null`, and `unknowns` names it.
 
 # Examples
 
