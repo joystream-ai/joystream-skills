@@ -37,3 +37,4 @@ attendee with `self: true` is `dana@ourco.example`.
 | `c3review` | Pipeline review | you, three `ourco.example` colleagues | internal_only |
 | `d4vendor` | Vendor pitch | you (declined), one `vendor.example` attendee | declined |
 | `e5holiday` | Public holiday | all day | all_day (counted only) |
+| `f6home` | Home | all day, `eventType: workingLocation` | all_day (counted only, not not_a_meeting) |

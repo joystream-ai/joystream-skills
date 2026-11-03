@@ -29,7 +29,7 @@
     "status": "ok",
     "verdict": "Warm",
     "score": 1,
-    "score_scale": "0-10",
+    "score_scale": "trigger count",
     "headline": "Launched a self-serve plan for small teams on 2026-09-30.",
     "source_ids": [
       "S1"
@@ -70,7 +70,7 @@
     ],
     "meta": {
       "skill": "account-trigger-events",
-      "skill_version": "1.3.1",
+      "skill_version": "1.3.2",
       "generated_at": "2026-10-12T09:00:00Z"
     }
   }

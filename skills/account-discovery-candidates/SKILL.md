@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.1"
+  version: "1.2.2"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -192,6 +192,13 @@ never cited.
      competitor is never inferred from fame, a logo or a similar product. A source
      showing the company is a different kind of business than the must-have names (a
      restaurant group, not a vendor to restaurants) makes the must-have `contradicted`.
+   - **A buyer or operator is not a vendor.** When a must-have names what the company
+     sells, a source showing it only buys or adopts that kind of product (`selected a
+     warehouse system`), or runs the operation the product serves (warehouses, fulfilment,
+     freight), makes that must-have `contradicted`. If no source states what the company
+     is or sells, that must-have stays unknown and the company is `not_a_fit` with the
+     note `no source states what it sells`. Never reword the evidence toward the criterion:
+     `logistics operations` does not meet `logistics software`.
    - An exclusion `met` → drop as `icp_exclusion`. A must-have `contradicted` → drop as
      `not_a_fit`.
    - **Rubric score** = 5 × met weight ÷ non-exclusion weight, rounded half up (unknown
@@ -214,6 +221,7 @@ never cited.
    entry by `item_key`, by domain, or by name when either side has no domain).
 8. **Order and cap.** `strong` before `plausible`; then more distinct sources first;
    then the order of first mention. Return the first `count`; the rest are `over_limit`.
+   `count` is a ceiling, not a target: return fewer rather than relax a rule to reach it.
 9. **Write each candidate**: `fit_reason` names the criterion and what the source shows
    (`Payroll software for restaurant groups (directory listing); ICP: vertical SaaS for
    hospitality.`), at most 200 characters, plain text; `signal` is the kind of fact
@@ -231,7 +239,8 @@ never cited.
     search output's `query` field). Otherwise `[]`.
 11. **Check before writing.** Each candidate's `fit_strength` follows its
     `rubric_score` (3-5 `strong`, 1-2 `plausible`), and no candidate's source shows it is
-    a different kind of business than the must-have. `returned + already_seen +
+    a different kind of business than the must-have. No `fit_reason` rests on a timing
+    event past its window (`months_ago` over 12 when the signal has no window). `returned + already_seen +
     excluded + not_a_fit + over_limit = mentioned`. Fix what fails before writing.
 12. **State** (see Output) and **report** (see Output).
 
@@ -274,8 +283,10 @@ Return the fields of `assets/output.schema.json` as your result:
   `<name> (<domain>): <fit_reason>`, `citations: [source_id]`, `label` = `fit_strength`),
   `Suggested next searches` (one item per next query, no citations, `label` = target) when
   any, and `Skipped` (one item each for the non-zero counts, no citations, e.g. `12
-  already returned in earlier runs`); every cited source in `sources`; `unknowns`;
-  `meta` `{skill: "account-discovery-candidates", skill_version: "1.2.1",
+  already returned in earlier runs`); every cited source in `sources`; `unknowns`,
+  including one line per must-have left unknown on returned candidates (`Could not confirm
+  20-500 employees for 7 of 10 candidates.`);
+  `meta` `{skill: "account-discovery-candidates", skill_version: "1.2.2",
   generated_at: <now>}`.
 
 # Constraints

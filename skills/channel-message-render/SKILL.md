@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.0.2"
   category: operations
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -96,12 +96,15 @@ just `<title>` for `info`. Shown exactly once, at the top.
   source's `url` exactly as given. For the url `https://example.com/a`: Slack
   `<https://example.com/a|S1>`, Discord and markdown `[S1](https://example.com/a)`, HTML
   `<a href="https://example.com/a">S1</a>`, plain text `S1`.
+- A `url` that does not start with `http://` or `https://` (a pasted input such as
+  `input:transcript`) is not a link: the id alone in the group, and in the sources list
+  `S1: <title>` with no link.
 - A source with only a `record_ref` is plain text, never a link: the id alone in the
   group, and in the sources list `S5: <title> (<Provider> record)`, e.g. `Apollo
   record`; the kinds `call`, `transcript` and `note` keep their word (`Gong call`,
   `Fireflies transcript`, `Granola note`).
 - An item with no citations (a recommendation) gets no group. Never invent one.
-- Every link in the payload is a `report.sources[].url`. A link inside `body_md` whose url
+- Every link in the payload is an `http://` or `https://` `report.sources[].url`. A link inside `body_md` whose url
   is not one of them keeps its text and loses the link.
 - Sources list line: `S1: <title>` linked to the url (record-only sources as above).
 
@@ -180,8 +183,8 @@ address field. The agent binds those to the delivery step.
   drop a fact; never add a citation.
 - **Never cut mid-line or mid-citation.** A line is shown whole with its whole citation
   group, or not at all.
-- **Links only from `report.sources[].url`**, written exactly as given. A record-only
-  source is plain text.
+- **Links only from `report.sources[].url`**, written exactly as given, and only
+  `http://` or `https://`. A record-only source or a pasted input is plain text.
 - **Escape for the target.** Slack (`slack.text`, `blocks`, and `text` when the target is
   slack): `&` → `&amp;`, `<` → `&lt;`, `>` → `&gt;` in report text, before you add
   your own link and mention syntax. HTML targets: `&`, `<`, `>`, `"` as entities.
@@ -219,5 +222,6 @@ Show the heading and body; it counts as no lines.
 # Examples
 
 See the paired cases in `assets/examples/`: a Slack brief, a Teams action-needed brief, an
-empty email report, and a report with injected mentions. Longer layouts for every target
+empty email report, a report with injected mentions, and a markdown report whose source
+is a pasted transcript. Longer layouts for every target
 are in `references/payload-examples.md`.
