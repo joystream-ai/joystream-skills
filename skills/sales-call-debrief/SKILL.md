@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.2"
+  version: "1.1.3"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -227,12 +227,17 @@ Return the fields of `assets/output.schema.json` as your result:
 - `report`: title `Call debrief — <company>` (or `Call debrief`); `summary` = the summary;
   sections, in this order: `Key points` (one item per key point), `Who was there`
   (`body_md`: our side and their side by name, from `attendees` or the speakers, and
-  `items: []`), `Pains`, `Objections`, `Next steps` (next steps carry `label` = the
-  owner), `Focus` (only with `focus`; one item per topic, `label` the topic cut to 40
+  `items: []`), `Pains`, `Objections`, `Quotes` (only when `quotes` is not empty; one
+  item per quote, text `"<quote>" - <speaker>`, or `"<quote>"` with no `speaker`, the
+  quote's words unchanged; a quote that does not fit the 400-character item limit is left
+  out of this section and counted in `unknowns`), `Next steps` (one item per next step,
+  text `<owner>: <action>` plus ` (due: <due>)` when there is one and ` (tentative)` when
+  `tentative`, and `label` = the owner, because a renderer may show only the text),
+  `Focus` (only with `focus`; one item per topic, `label` the topic cut to 40
   characters), `Follow-up email` (only when included; `body_md` = subject and body, and
   `items: []`). Every item cites the transcript source. Then `sources`; `unknowns`;
   **`footer: "Draft — not sent"`**; `meta` `{skill: "sales-call-debrief",
-  skill_version: "1.1.2", generated_at: <now>}`.
+  skill_version: "1.1.3", generated_at: <now>}`.
   `severity: info`, or `action_needed` when next steps are owned by our side.
 
 ## Output contract

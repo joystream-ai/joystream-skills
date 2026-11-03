@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.3.1"
+  version: "1.3.2"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -194,7 +194,9 @@ it is the date in `already reported on <date>` and `nothing new since <date>`.
 
    Anything else (industry trend pieces, lists of companies, evergreen pages, awards,
    opinion) is dropped as `generic`. Two items about the same event are one trigger;
-   cite the most specific source and keep the earliest date.
+   cite the most specific source and keep the earliest date. All of a company's job posts
+   and hiring stories in the window are one `hiring` trigger, dated by the newest post,
+   however many roles they list: hiring alone is never 2 triggers.
 
    **With a `rubric`:** any specific, dated news event at this company may count, in
    the categories above or `news` (a specific event that fits none of them, such as a
@@ -250,8 +252,9 @@ Return the fields of `assets/output.schema.json` as your result:
   slot's `label`, else `<company> (<domain>)` (or `<company>` with no domain); `status` `ok`, `no_evidence` or
   `skipped`; `verdict` and `score` = the top-level `verdict` and `trigger_count` (with
   a rubric, `rubric_score`);
-  `score_scale: "0-10"`; `headline` = the strongest trigger in one line, or why there
-  is none; `source_ids` = the sources behind the headline.
+  `score_scale`: `"0-10"` with a rubric, else `"trigger count"` (the score is then a
+  count, not a mark out of 10); `headline` = the strongest trigger in one line of at most
+  200 characters (a longer one is cut off), or why there is none; `source_ids` = the sources behind the headline.
 - `report`: title `<company>: trigger events, last <lookback_days> days`; summary = the
   verdict and the strongest triggers in plain text; `severity: attention` for `Hot`,
   else `info`; one section `Triggers` with one item per trigger (text
@@ -263,7 +266,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `track_state` `First run for <company>: nothing reported before.`; with a
   rubric, the summary starts with `Rubric <rubric_score>/10` and each item's `label` is
   its first matched signal, cut to 40 characters; `meta` with `skill:
-  account-trigger-events`, `skill_version: 1.3.1`, `generated_at` = `now`.
+  account-trigger-events`, `skill_version: 1.3.2`, `generated_at` = `now`.
 - `state_out` (only with `track_state`): `entries` holds exactly one entry for this
   account (none when skipped): `item_key` as in `item_result`; `observed_at` = `now`;
   `data` = `{reported}`, this run's new triggers (`{d: date, c: category, s: a slug of

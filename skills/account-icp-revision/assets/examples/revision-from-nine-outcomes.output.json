@@ -46,7 +46,7 @@
         "confidence": "medium"
       }
     ],
-    "rationale": "Three rejections in 90 days were companies of about 15, 30 and under 40 employees; the new minimum of 40 is the number in the reason at outcomes row 8, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
+    "rationale": "Three rejections in 90 days were companies of about 25, 30 and under 40 employees; the new minimum of 40 is the number in the reason at outcomes row 8, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
   },
   "evidence_summary": {
     "outcomes_decided": 9,
@@ -62,7 +62,7 @@
       "active",
       "2026-10-19",
       "Industry: B2B software companies.\nSize: 40-500 employees.\nBuyer: Head of Operations or COO.\nGeography: North America and Europe.\nBusiness model: sells subscriptions.\nSignals: hiring operations roles; raised funding in the last 12 months.\nExclusions: agencies and consultancies; companies that sell mainly to the public sector.",
-      "Three rejections in 90 days were companies of about 15, 30 and under 40 employees; the new minimum of 40 is the number in the reason at outcomes row 8, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
+      "Three rejections in 90 days were companies of about 25, 30 and under 40 employees; the new minimum of 40 is the number in the reason at outcomes row 8, and all three accepted accounts have 80-300. Three more were rejected because they sell mainly to the public sector, with year-long procurement; the ICP does not exclude them yet."
     ]
   ],
   "report": {
@@ -135,7 +135,7 @@
       {
         "id": "S2",
         "record_ref": "googlesheets:outcomes/row/2",
-        "title": "Rejected: too small (about 15 people)"
+        "title": "Rejected: too small (about 25 people)"
       },
       {
         "id": "S3",
@@ -182,7 +182,7 @@
     "footer": "Applied only after approval.",
     "meta": {
       "skill": "account-icp-revision",
-      "skill_version": "1.1.1",
+      "skill_version": "1.1.2",
       "generated_at": "2026-10-19T08:00:00Z"
     }
   }
