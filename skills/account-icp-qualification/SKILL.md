@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.6.3"
+  version: "1.6.4"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -211,7 +211,11 @@ never take a fact or a url from them. A step output that ends in a cut marker
      leaders or expansions. When the ICP names no signal, add `Timing: a dated hiring,
      funding, launch or leadership event in the last 12 months` (`nice_to_have`,
      weight 2), and raise weights on public-signal criteria until the half holds;
-   - at most 8 criteria. Record it in `rubric_used`.
+   - at most 8 criteria. Record it in `rubric_used`;
+   - the rubric comes from the ICP's words alone, before any evidence, so every branch of
+     a run gets the same criteria, kinds and weights: size and geography stay
+     `nice_to_have` unless the ICP says must, only or required, whatever one company's
+     pages show.
    **Criteria.** For each rubric criterion, find what the kept
    sources say: `met`, `not met` or `unknown`. A criterion is `met` or `not met` only with
    a cited source. A community post (Hacker News, Reddit, a forum) is one person's
@@ -234,7 +238,8 @@ never take a fact or a url from them. A step output that ends in a cut marker
    5 × (weight of the met criteria) ÷ (weight of all non-exclusion criteria), rounded
    half up: with weights 3, 1, 1, 2 and only the 3 and the 1 met, 5 × 4 ÷ 7 = 2.86 → 3.
    An unknown criterion counts as not met for the score but never makes a verdict
-   `Reject`. Never round a score up because the company "seems" to fit.
+   `Reject`. Never round a score up because the company "seems" to fit, and never lower it
+   because of a doubt: write the number this sum gives, and put the doubt in `missing_info`.
 6. **Verdict.** `Pursue` for 4-5. `Research` for 2-3, or whenever the score rests mostly
    on unknowns. `Reject` for 0-1 only when a cited source shows a criterion not met or an
    exclusion met; a score of 0-1 with no cited not-met criterion and no cited exclusion
@@ -310,7 +315,7 @@ Return the fields of `assets/output.schema.json` as your result (skipped slots: 
   order and each `label` is `met`, `not met` or `unknown` plus the kind when not
   `nice_to_have` (e.g. `not met · must-have`); every cited source in `sources`;
   `unknowns`; `meta`
-  `{skill: "account-icp-qualification", skill_version: "1.6.3", generated_at: <now>}`
+  `{skill: "account-icp-qualification", skill_version: "1.6.4", generated_at: <now>}`
   (leave `meta` out when no time is known). `severity: info`.
 
 # Constraints

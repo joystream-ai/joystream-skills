@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.3.2"
+  version: "1.3.3"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -174,7 +174,8 @@ it is the date in `already reported on <date>` and `nothing new since <date>`.
    `unknowns`, and no verdict beyond `Unknown`. Items about a different company with the
    same name are dropped as `other_entity`.
 4. **Date every item.** Use the date the evidence states for the event, else its
-   published date. A relative date (`3 days ago`) counts only when the evidence says
+   published date. An article that recaps an earlier event carries the event's date: a CEO
+   named in May, in an article published in October, is dated May. A relative date (`3 days ago`) counts only when the evidence says
    what it is relative to. No date: drop it as `undated`.
 5. **Apply the window.** Compute and write `days_ago` = the number of calendar days
    from the item's date to `now`'s date (`2026-10-09` is 12 days before a `now` on
@@ -266,7 +267,7 @@ Return the fields of `assets/output.schema.json` as your result:
   `track_state` `First run for <company>: nothing reported before.`; with a
   rubric, the summary starts with `Rubric <rubric_score>/10` and each item's `label` is
   its first matched signal, cut to 40 characters; `meta` with `skill:
-  account-trigger-events`, `skill_version: 1.3.2`, `generated_at` = `now`.
+  account-trigger-events`, `skill_version: 1.3.3`, `generated_at` = `now`.
 - `state_out` (only with `track_state`): `entries` holds exactly one entry for this
   account (none when skipped): `item_key` as in `item_result`; `observed_at` = `now`;
   `data` = `{reported}`, this run's new triggers (`{d: date, c: category, s: a slug of
