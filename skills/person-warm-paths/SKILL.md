@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.2"
+  version: "1.1.3"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -125,7 +125,9 @@ The evidence is the output of the steps that ran before this one, shown in full 
    with more than 10 person attendees (a webinar or all-hands is not a meeting).
 5. **Build paths.** For each matched person:
    - `direct`: they are one of the target's `people` (full name match, and company when
-     both sides have one). The user is connected to them or has met them.
+     both sides have one). The user is connected to them or has met them. A title that
+     matches a target's `roles` is not `direct`: without a `people` name match it is
+     `inside`.
    - `inside`: a connection at the target company who is not a target person; they can
      introduce.
    - `met`: an attendee from the company the user met in an event (not already a
@@ -136,7 +138,7 @@ The evidence is the output of the steps that ran before this one, shown in full 
    (`null` when there is no `last_met` or no `now`). A meeting is recent only when
    `last_met_days_ago` ≤ `recent_days`.
    - `strong`: a recent meeting (`last_met_days_ago` ≤ `recent_days`); or a `direct`
-     connection who was also met.
+     connection who was also met. A path with no meeting in the data is never `strong`.
    - `medium`: a `direct` connection; an `inside` connection whose `Position` is in the
      same function as a target role or senior to it (e.g. `CFO` for a `Controller`
      target); a `met` path with `last_met_days_ago` > `recent_days`.
@@ -177,7 +179,7 @@ Return the fields of `assets/output.schema.json` as your result:
   unreadable sources, unmatched attendees for lack of a domain, and paths over the cap.
   When no attendee matched a target, say `No calendar attendee matched a target.` and no
   more;
-  `meta` with `skill: person-warm-paths`, `skill_version: 1.1.2`, `generated_at` = `now`.
+  `meta` with `skill: person-warm-paths`, `skill_version: 1.1.3`, `generated_at` = `now`.
 
 # Constraints
 

@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.3"
+  version: "1.1.4"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -180,7 +180,9 @@ Every report item about the call cites it.
    Operations)`). Asked but did not agree, nobody named,
    or a person who is not an attendee: `unassigned`. A step that was only floated and not
    agreed ("should I check back in January?" "maybe") is left out or listed once with
-   `tentative: true` and no `due`.
+   `tentative: true` and no `due`. A step agreed on a condition ("if that looks
+   reasonable, I will set up a meeting") keeps its owner and `due`, adds `tentative: true`,
+   and its action states the condition.
 7. **Summary** of at most five sentences: who met, the main pains, the main objections,
    what was agreed. If nothing was agreed, say `No next step was agreed.`
 8. **Key points:** three to five bullets a reader can skim in ten seconds: the biggest
@@ -237,7 +239,7 @@ Return the fields of `assets/output.schema.json` as your result:
   characters), `Follow-up email` (only when included; `body_md` = subject and body, and
   `items: []`). Every item cites the transcript source. Then `sources`; `unknowns`;
   **`footer: "Draft — not sent"`**; `meta` `{skill: "sales-call-debrief",
-  skill_version: "1.1.3", generated_at: <now>}`.
+  skill_version: "1.1.4", generated_at: <now>}`.
   `severity: info`, or `action_needed` when next steps are owned by our side.
 
 ## Output contract
@@ -282,6 +284,8 @@ was left out to fit, e.g. `3 further quotes about pricing were left out (limit 2
 
 # Constraints
 
+- **No guessed pronouns.** Refer to people by name or role in every field, unless the
+  transcript itself states the pronoun they use.
 - **Every quote is a verbatim substring of the transcript** after collapsing runs of
   whitespace to one space. A sentence you cannot copy exactly is paraphrased in a pain or
   objection, never put in `quotes`.

@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.2"
+  version: "1.2.3"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -280,13 +280,15 @@ Return the fields of `assets/output.schema.json` as your result:
   how many were already seen or excluded, and the strongest pattern (`Most came from the
   fintech directory filter.`); `severity: info`, or `attention` when nothing new was
   found or no ICP was given; sections `New candidates` (one item per candidate: text
-  `<name> (<domain>): <fit_reason>`, `citations: [source_id]`, `label` = `fit_strength`),
+  `<name> (<domain>): <fit_reason>`, or `<name>: <fit_reason>` when the candidate's own
+  `domain` is null, never another company's domain, `citations: [source_id]`, `label` =
+  `fit_strength`),
   `Suggested next searches` (one item per next query, no citations, `label` = target) when
   any, and `Skipped` (one item each for the non-zero counts, no citations, e.g. `12
   already returned in earlier runs`); every cited source in `sources`; `unknowns`,
   including one line per must-have left unknown on returned candidates (`Could not confirm
   20-500 employees for 7 of 10 candidates.`);
-  `meta` `{skill: "account-discovery-candidates", skill_version: "1.2.2",
+  `meta` `{skill: "account-discovery-candidates", skill_version: "1.2.3",
   generated_at: <now>}`.
 
 # Constraints
