@@ -1,5 +1,5 @@
 {
-  "status": "partial",
+  "outcome": "partial",
   "repos": [
     {
       "repo": "octocat/hello-world",

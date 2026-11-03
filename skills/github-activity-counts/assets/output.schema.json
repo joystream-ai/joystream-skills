@@ -1,34 +1,90 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
-  "required": ["status", "repos", "totals", "complete", "sentence", "unknowns"],
+  "required": [
+    "outcome",
+    "repos",
+    "totals",
+    "complete",
+    "sentence",
+    "unknowns"
+  ],
   "additionalProperties": false,
   "properties": {
-    "status": {"type": "string", "enum": ["ok", "partial", "error"]},
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "partial",
+        "error"
+      ]
+    },
     "repos": {
       "type": "array",
       "items": {
         "type": "object",
-        "required": ["repo", "merged", "opened"],
+        "required": [
+          "repo",
+          "merged",
+          "opened"
+        ],
         "additionalProperties": false,
         "properties": {
-          "repo": {"type": "string"},
-          "merged": {"type": ["integer", "null"], "minimum": 0},
-          "opened": {"type": ["integer", "null"], "minimum": 0}
+          "repo": {
+            "type": "string"
+          },
+          "merged": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "opened": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          }
         }
       }
     },
     "totals": {
       "type": "object",
-      "required": ["merged", "opened"],
+      "required": [
+        "merged",
+        "opened"
+      ],
       "additionalProperties": false,
       "properties": {
-        "merged": {"type": ["integer", "null"], "minimum": 0},
-        "opened": {"type": ["integer", "null"], "minimum": 0}
+        "merged": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "opened": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        }
       }
     },
-    "complete": {"type": "boolean"},
-    "sentence": {"type": "string"},
-    "unknowns": {"type": "array", "items": {"type": "string"}}
+    "complete": {
+      "type": "boolean"
+    },
+    "sentence": {
+      "type": "string"
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
   }
 }
