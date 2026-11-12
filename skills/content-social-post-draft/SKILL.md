@@ -199,7 +199,8 @@ record has a public one, such as a company website):
    sentences, never mid-word, until every limit holds.
 
 9. **Build the output** and return. For a stricter score of each draft, the agent can
-   add `content-ai-slop-check` after this step.
+   add `content-ai-slop-check` after this step; to see each tell marked in the draft
+   with a fix, `content-ai-slop-annotate`.
 
 # Output
 

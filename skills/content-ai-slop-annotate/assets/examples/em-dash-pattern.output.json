@@ -1,0 +1,38 @@
+{
+  "verdict": "minor",
+  "counts": {
+    "triplets": 1,
+    "transitions": 0,
+    "false_contrasts": 0,
+    "em_dashes": 3
+  },
+  "counts_line": "triplets 1 · transitions 0 · false contrasts 0 · em dashes 3",
+  "flagged": [
+    {
+      "category": 13,
+      "name": "em dash",
+      "count": 3
+    }
+  ],
+  "borderline": [
+    {
+      "category": 2,
+      "text": "Open Settings, turn on Offline mode, and pick the folders to keep.",
+      "reason": "below threshold (1 of 3)"
+    }
+  ],
+  "annotated_markdown": "## AI Slop Report\n\n**Verdict:** hits are isolated or minor\n**Counts:** triplets 1 · transitions 0 · false contrasts 0 · em dashes 3\n**Hits by category:** #13 em dash (3)\n**Borderline (not flagged):** \"Open Settings, turn on Offline mode, and pick the folders to keep.\" (#2, below threshold (1 of 3))\n\n**Legend**\n- `~~text~~ → **fix** *(#N name)*`: inline fix\n- `> **SLOP #N**`: paragraph-level note\n\n---\n\nSync now works offline. Edits you make ~~on a plane — or in a tunnel —~~ → **on a plane or in a tunnel** *(#13 em dash)* are saved on the device and sent when you ~~reconnect — no extra steps.~~ → **reconnect, with no extra steps.** *(#13 em dash)*\n\nSetup takes two minutes. Open Settings, turn on Offline mode, and pick the folders to keep.\n",
+  "report": {
+    "title": "AI slop check: hits are isolated or minor",
+    "summary": "Three em dashes in one sentence cross the threshold and are replaced; one list of three steps is borderline.",
+    "severity": "info",
+    "sections": [],
+    "sources": [],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-ai-slop-annotate",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-11-12T16:00:00Z"
+    }
+  }
+}
