@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "text": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 50000,
+      "description": "The one piece to check: a post, a blog draft, an email or a transcript-derived piece. Absent: the piece the step this one depends on produced."
+    }
+  }
+}
