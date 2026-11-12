@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.3"
+  version: "1.1.4"
   category: sales
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -168,7 +168,8 @@ Return the fields of `assets/output.schema.json` as your result:
 - `counts`: `{targets, with_paths, connections_read, events_read}` (rows that were
   people, and non-cancelled events).
 - `report`: title `Warm paths: <with_paths> of <targets> targets`; summary = the
-  strongest paths in one or two plain sentences; `severity: info` when at least one
+  strongest paths in one or two plain sentences, using each path's own `path_type` and
+  `strength` (an `inside` path is never called direct); `severity: info` when at least one
   target has a path, else `attention`; one section per target with paths (heading = the
   company), one item per path: text `<via_name>, <via_title>: <path_type>, <strength>.
   <why>`, `label` = strength, `citations` = the source ids of its evidence; then a
@@ -179,7 +180,7 @@ Return the fields of `assets/output.schema.json` as your result:
   unreadable sources, unmatched attendees for lack of a domain, and paths over the cap.
   When no attendee matched a target, say `No calendar attendee matched a target.` and no
   more;
-  `meta` with `skill: person-warm-paths`, `skill_version: 1.1.3`, `generated_at` = `now`.
+  `meta` with `skill: person-warm-paths`, `skill_version: 1.1.4`, `generated_at` = `now`.
 
 # Constraints
 
