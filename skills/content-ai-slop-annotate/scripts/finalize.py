@@ -53,6 +53,9 @@ STRICT_INTENSIFIERS = [
     if not needs_judgment
 ]
 SAFE_NAME = re.compile(r"[^A-Za-z0-9._-]+")
+# This skill's own scratch names: removed from the out dir even when not passed, because a
+# copy written there by mistake would otherwise ship as a second run file.
+SCRATCH_NAMES = ("content-ai-slop-annotate.md", "content-ai-slop-annotate.report.md")
 
 
 def split_report(annotated: str) -> tuple[str, str] | None:
@@ -183,7 +186,7 @@ def remove_scratch(paths: list[Path], out_dir: Path) -> list[str]:
     """Scratch files belong in /tmp; any found under the out dir would become run files."""
     removed = []
     out = out_dir.resolve()
-    for p in paths:
+    for p in [*paths, *(out_dir / name for name in SCRATCH_NAMES)]:
         rp = p.resolve()
         if rp.is_file() and out in rp.parents:
             rp.unlink()

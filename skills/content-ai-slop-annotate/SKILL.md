@@ -16,7 +16,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: marketing
   joystream-skill-kind: sandbox
   joystream-input-schema: assets/input.schema.json
@@ -123,23 +123,27 @@ instance is borderline: listed, never annotated inline.
 1. **Find the text.** Use `text`, else the piece from the step this one depends on. If
    there is none, or it is only whitespace, return `verdict: not_checked`,
    `error: empty_input` and stop.
-2. **Copy it exactly.** Write it, character for character, with `sandbox_write_file` to
-   `/tmp/content-ai-slop-annotate.md`. Never under `/workspace/out`: every file there
-   becomes a run file.
-3. **Run the pre-scan.** In a single `sandbox_run`:
+2. **Copy it and run the pre-scan** in a single `sandbox_run` with this `script`, the
+   text pasted character for character between the two marker lines:
 
    ```
+   cat > /tmp/content-ai-slop-annotate.md <<'SLOP_DRAFT_END'
+   <the text, exactly>
+   SLOP_DRAFT_END
    python3 /workspace/skill/content-ai-slop-annotate/scripts/prescan.py \
      --file /tmp/content-ai-slop-annotate.md
    ```
 
-   It prints one JSON object: `counts` and `counts_line`; `categories`, one entry per
+   Never use `sandbox_write_file` for this skill's files: it can only write under
+   `/workspace`, and a file under `/workspace/out` becomes a run file.
+
+   The pre-scan prints one JSON object: `counts` and `counts_line`; `categories`, one entry per
    counted category (1-5, 7-10, 12, 13) with its `threshold`, `count`, `decision` (`flag`,
    `borderline` or `none`) and `instances` (paragraph number, exact `text`,
    `needs_judgment`, and for #7 and #8 the paragraphs and sentence lengths); and
    `model_judged` (6 and 11). Exit code 2 means empty text. Any other failure: return
    `verdict: not_checked`, `error: prescan_failed`. Never judge the text by eye instead.
-4. **Apply its decisions, which are binding.**
+3. **Apply its decisions, which are binding.**
    - `flag`: annotate every instance inline. Drop none.
    - `borderline`: annotate none inline; add each to `borderline` with the reason "below
      threshold (<count> of <threshold>)".
@@ -148,28 +152,30 @@ instance is borderline: listed, never annotated inline.
      sources, a deliberate refrain doing rhetorical work, structure that does real
      organizing). Give the reason in one short clause. Nothing else may move.
    - Never flag a category or instance the pre-scan did not report, except 6 and 11.
-5. **Judge 6 and 11** from the text and the taxonomy. Flag only a clear case.
-6. **Write one fix per flagged instance**, a concrete rewrite of that exact text or
+4. **Judge 6 and 11** from the text and the taxonomy. Flag only a clear case.
+5. **Write one fix per flagged instance**, a concrete rewrite of that exact text or
    "cut: <reason>". Keep the writer's meaning. A fix contains no tell itself (no em dash,
    no list of three, no word from #4, no formulaic transition), invents no fact, number,
    name or source, and reads correctly with the words before and after it. Notes and
    reasons contain no em dash either.
-7. **Write the report** as under Output with `sandbox_write_file` to
-   `/tmp/content-ai-slop-annotate.report.md`.
-8. **Check and save it** in a single `sandbox_run` (add `--no-save` when `save_file` is
-   `false`):
+6. **Write the report and check it** in a single `sandbox_run` with this `script`, the
+   report (as under Output) between the marker lines, and `--no-save` added when
+   `save_file` is `false`:
 
    ```
+   cat > /tmp/content-ai-slop-annotate.report.md <<'SLOP_REPORT_END'
+   <the report>
+   SLOP_REPORT_END
    python3 /workspace/skill/content-ai-slop-annotate/scripts/finalize.py \
      --original /tmp/content-ai-slop-annotate.md \
      --annotated /tmp/content-ai-slop-annotate.report.md --name "<file_name>"
    ```
 
-   It prints `{ok, problems, saved}`. Each problem names a `check`: `text_changed` (the
+   `finalize.py` prints `{ok, problems, saved}`. Each problem names a `check`: `text_changed` (the
    text, annotations removed, is not the original), `fix_has_tell`, `label_format`,
    `counts_line`, `not_flagged` (a borderline category annotated inline) or `missing_flag`.
-   When `ok` is false, nothing is saved: correct exactly what each problem names, rewrite
-   the report file and run it again. After two corrections, run it once more with
+   When `ok` is false, nothing is saved: correct exactly what each problem names and run
+   the same script again with the corrected report. After two corrections, run it once more with
    `--accept`, which saves the report anyway; list the remaining problems in the report's
    `unknowns`.
 

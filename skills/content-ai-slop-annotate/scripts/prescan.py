@@ -25,7 +25,7 @@ import re
 import sys
 from pathlib import Path
 
-VERSION = "1.1.0"
+VERSION = "1.1.1"
 
 NAMES = {
     1: "false contrast",
