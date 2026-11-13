@@ -26,6 +26,7 @@
     }
   ],
   "annotated_markdown": "## AI Slop Report\n\n**Verdict:** hits are isolated or minor\n**Counts:** triplets 1 · transitions 1 · false contrasts 1 · em dashes 0\n**Hits by category:** none\n**Borderline (not flagged):** \"It is not just a feature, it is\" (#1, below threshold (1 of 2)); \"Teams can export faster, smarter, and with more confidence.\" (#2, below threshold (1 of 3)); \"Moreover,\" (#3, below threshold (1 of 2))\n\n**Legend**\n- `~~text~~ → **fix** *(#N name)*`: inline fix\n- `> **SLOP #N**`: paragraph-level note\n\n---\n\nOur new export button ships today for every workspace. It is not just a feature, it is a new way of working. Teams can export faster, smarter, and with more confidence. Moreover, the export runs in the background, so nothing blocks you.\n",
+  "problems": [],
   "report": {
     "title": "AI slop check: hits are isolated or minor",
     "summary": "Nothing crosses a threshold: one false contrast, one list of three and one formulaic transition are listed as borderline, and the text is unchanged.",
@@ -35,7 +36,7 @@
     "unknowns": [],
     "meta": {
       "skill": "content-ai-slop-annotate",
-      "skill_version": "1.0.0",
+      "skill_version": "1.1.0",
       "generated_at": "2026-11-12T16:00:00Z"
     }
   }

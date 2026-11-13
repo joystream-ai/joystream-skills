@@ -10,12 +10,13 @@ description: >-
   mechanical tells and applies the pattern thresholds, so the same draft gets the same
   flags every run; one triplet or one "Moreover" is borderline, not a tell. No score. Use
   when an agent should "annotate this draft for AI slop", "mark the AI tells in my post"
-  or "show me what sounds like AI and how to fix it". It never rewrites the whole piece,
-  saves, fetches, posts or sends.
+  or "show me what sounds like AI and how to fix it". A second script checks the fixes
+  and saves the report as one Markdown file. It never rewrites the whole piece, fetches,
+  posts or sends.
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.0"
+  version: "1.1.0"
   category: marketing
   joystream-skill-kind: sandbox
   joystream-input-schema: assets/input.schema.json
@@ -30,9 +31,9 @@ draft itself, so they can accept or reject each fix in a minute. Nothing is rewr
 them and there is no score: a list of marked spans is more useful than a number.
 
 This skill performs no external operations; the piece arrives in the `text` input or from
-the step this one depends on, and a later step saves or delivers the annotated Markdown.
-In the sandbox it writes one scratch file under `/tmp` and runs the bundled pre-scan
-script, which reads only that file and opens no network connection.
+the step this one depends on. In the sandbox it writes two scratch files under `/tmp`, runs
+the two bundled scripts, which open no network connection, and saves the annotated report
+as one file in `/workspace/out`. A later step may deliver it.
 
 Run it after any voice or style editing pass, not instead of one: fixing voice can add or
 remove tells.
@@ -42,16 +43,20 @@ remove tells.
 - **text** (string, optional, up to 50,000 characters): the one piece to check. Absent:
   the piece the step this one depends on produced (a draft's `text`, or a field such as
   `markdown`, `content` or `body`).
+- **file_name** (string, optional, default `Slop-check`): the report's file name, without
+  a folder or extension.
+- **save_file** (boolean, optional, default `true`): `false` checks and returns the report
+  in `annotated_markdown` without saving a file.
 
 # What this skill needs
 
 Before it, the agent supplies the piece: as the run's input, or from a drafting step listed
-as this step's dependency. After it, a step may save `annotated_markdown` as a file (on
-JoyStream, `content-file-save`) or deliver it.
+as this step's dependency. No save step is needed after it: the report is already a run
+file. A later step may deliver it.
 
 On JoyStream this step runs in the sandbox, so the agent needs the `code_execution`
 capability. The skill folder is at `/workspace/skill/content-ai-slop-annotate`, and
-`scripts/prescan.py` needs only Python 3.
+`scripts/prescan.py` and `scripts/finalize.py` need only Python 3.
 
 # The tell taxonomy
 
@@ -78,7 +83,10 @@ capability. The skill folder is at `/workspace/skill/content-ai-slop-annotate`, 
    is the tell, not every hedge. Fix: keep the claim, cut the retreat or name the one real
    exception.
 7. **Repeated openers.** Three or more consecutive paragraphs opening with the same shape
-   ("When X...", "When Y...", "When Z..."). Fix: vary or merge the openings.
+   ("When X...", "When Y...", "When Z..."). Fix: vary or merge the openings. Only a
+   narrative refrain ("We tried X. We tried Y. We tried Z.") that builds to a turn the
+   text then states can be judged deliberate; the pre-scan marks only those
+   `needs_judgment`.
 8. **Uniform cadence.** Every sentence of a paragraph within a few words of the same
    length, with no short punch. Report it for the paragraph, not a line. Fix: split one
    sentence short, or join two.
@@ -144,12 +152,30 @@ instance is borderline: listed, never annotated inline.
 6. **Write one fix per flagged instance**, a concrete rewrite of that exact text or
    "cut: <reason>". Keep the writer's meaning. A fix contains no tell itself (no em dash,
    no list of three, no word from #4, no formulaic transition), invents no fact, number,
-   name or source, and reads correctly with the words before and after it.
-7. **Build `annotated_markdown`** as under Output, then the other fields.
+   name or source, and reads correctly with the words before and after it. Notes and
+   reasons contain no em dash either.
+7. **Write the report** as under Output with `sandbox_write_file` to
+   `/tmp/content-ai-slop-annotate.report.md`.
+8. **Check and save it** in a single `sandbox_run` (add `--no-save` when `save_file` is
+   `false`):
+
+   ```
+   python3 /workspace/skill/content-ai-slop-annotate/scripts/finalize.py \
+     --original /tmp/content-ai-slop-annotate.md \
+     --annotated /tmp/content-ai-slop-annotate.report.md --name "<file_name>"
+   ```
+
+   It prints `{ok, problems, saved}`. Each problem names a `check`: `text_changed` (the
+   text, annotations removed, is not the original), `fix_has_tell`, `label_format`,
+   `counts_line`, `not_flagged` (a borderline category annotated inline) or `missing_flag`.
+   When `ok` is false, nothing is saved: correct exactly what each problem names, rewrite
+   the report file and run it again. After two corrections, run it once more with
+   `--accept`, which saves the report anyway; list the remaining problems in the report's
+   `unknowns`.
 
 # Output
 
-`annotated_markdown` starts with this header, a horizontal rule, then the whole piece:
+The report starts with this header, a horizontal rule, then the whole piece:
 
 ```
 ## AI Slop Report
@@ -175,6 +201,12 @@ instance is borderline: listed, never annotated inline.
 
 The other fields:
 
+- `file`: the script's `saved` (`path`, `file_name`, `bytes`, `sha256`), copied, never
+  invented. Absent when `save_file` is `false`.
+- `annotated_markdown`: the report, only when `save_file` is `false`. When it was saved,
+  leave it out: the file holds it.
+- `problems`: the `detail` of each problem left when `--accept` saved the report; empty
+  when the check passed.
 - `verdict`: `ai_leaning` when the flags show a pattern across the piece, `minor` when the
   flags are isolated or there are only borderline instances, `clean` when there are no
   flags and nothing borderline. It matches the header.
@@ -194,14 +226,16 @@ The other fields:
 - **Never rewrite the whole piece**, never produce an "all fixes applied" version, and never
   change a word that is not flagged.
 - **Never invent** a fact, number, study, source or quote, in a fix or anywhere else.
-- **No network, no saving.** Write only the scratch file in `/tmp`; save nothing under
-  `/workspace/out`.
+- **No network. One run file.** Write only the two scratch files, both under `/tmp`. The
+  only file under `/workspace/out` is the one `finalize.py` saves; never write there
+  yourself.
+- **Report only what the scripts printed**: the counts, the decisions and the saved file.
 
 # Edge Cases
 
 ## Empty text or no piece found
-Return `verdict: not_checked`, `error: empty_input`, empty `annotated_markdown`,
-`flagged` and `borderline` empty, zero counts, and a report saying which input was empty.
+Return `verdict: not_checked`, `error: empty_input`, no file, `flagged`, `borderline` and
+`problems` empty, zero counts, and a report saying which input was empty.
 
 ## The pre-scan fails
 Return `verdict: not_checked`, `error: prescan_failed`, and the script's error in the
@@ -214,12 +248,18 @@ trusting the check.
 
 ## A deliberate refrain
 "We tried X. We tried Y. We tried Z." flagged as #7 with `needs_judgment`: when the
-repetition is building to a point, move it to borderline with that reason.
+repetition builds to a turn the text then states, move it to borderline with that reason.
+A #7 run without `needs_judgment` ("When...", "This...") is always flagged.
+
+## The check keeps failing
+After two corrections, `--accept` saves the report with its problems listed, so the
+writer still gets a file and can see what to double-check.
 
 ## Very long pieces
 Annotate the whole piece; never sample or truncate it.
 
 # Examples
 
-See `assets/examples/`: `borderline-only` (one of each pattern, nothing flagged inline)
-and `em-dash-pattern` (a pattern that crosses its threshold).
+See `assets/examples/`: `borderline-only` (one of each pattern, nothing flagged inline,
+returned without saving) and `em-dash-pattern` (a pattern that crosses its threshold,
+checked and saved as a file).

@@ -25,7 +25,7 @@ import re
 import sys
 from pathlib import Path
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 NAMES = {
     1: "false contrast",
@@ -48,6 +48,9 @@ THRESHOLDS = {1: 2, 2: 3, 3: 2, 13: 3}
 # #7's threshold is the length of one run of matching openers, applied while finding runs,
 # so each run found is one flaggable instance.
 OPENER_RUN_MIN = 3
+# Only a run that repeats a narrative subject ("We tried X. We tried Y.") can be a refrain
+# building to a point; "When X / When Y / When Z" or "This means / This creates" is the tell.
+REFRAIN_OPENERS = {"i", "we", "you", "he", "she", "they", "our", "my"}
 MODEL_JUDGED = (6, 11)
 CADENCE_MIN_SENTENCES = 4
 CADENCE_MAX_SPREAD = 3
@@ -284,9 +287,10 @@ def find_opener_runs(paras: list[str]) -> list[dict]:
                 found.append(instance(
                     start + 1,
                     f'paragraphs {start + 1}-{i} all open with "{paras[start].split()[0]}"',
-                    needs_judgment=True,
+                    needs_judgment=words[start] in REFRAIN_OPENERS,
                     paragraphs=list(range(start + 1, i + 1)),
-                    note="a deliberate refrain doing rhetorical work is not a tell",
+                    **({"note": "a narrative refrain building to a stated turn is not a tell"}
+                       if words[start] in REFRAIN_OPENERS else {}),
                 ))
             start = i
     return found
