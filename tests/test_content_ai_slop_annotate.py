@@ -251,3 +251,12 @@ def test_scratch_files_left_in_the_out_dir_are_removed(tmp_path: Path) -> None:
     result = json.loads(proc.stdout)
     assert result["saved"]["file_name"] == "Slop-check-2.md"
     assert sorted(p.name for p in out.iterdir()) == ["Slop-check-2.md", "Slop-check.md"]
+
+
+def test_the_skills_own_scratch_names_are_removed_even_when_not_passed(tmp_path: Path) -> None:
+    out = tmp_path / "out"
+    out.mkdir()
+    (out / "content-ai-slop-annotate.md").write_text(EM_DASH_TEXT, encoding="utf-8")
+    code, result, _ = finalize(tmp_path, EM_DASH_TEXT, EM_DASH_REPORT)
+    assert code == 0
+    assert sorted(p.name for p in out.iterdir()) == ["Slop-check.md"]
