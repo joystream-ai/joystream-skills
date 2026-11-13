@@ -8,6 +8,18 @@
       "minLength": 1,
       "maxLength": 50000,
       "description": "The one piece to check: a post, a blog draft, an email or a transcript-derived piece. Absent: the piece the step this one depends on produced."
+    },
+    "file_name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 100,
+      "default": "Slop-check",
+      "description": "The report's file name, without a folder or extension."
+    },
+    "save_file": {
+      "type": "boolean",
+      "default": true,
+      "description": "false: check the report and return it in annotated_markdown without saving a file."
     }
   }
 }

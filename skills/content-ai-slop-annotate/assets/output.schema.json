@@ -7,7 +7,7 @@
     "counts_line",
     "flagged",
     "borderline",
-    "annotated_markdown",
+    "problems",
     "report"
   ],
   "additionalProperties": false,
@@ -116,7 +116,43 @@
     },
     "annotated_markdown": {
       "type": "string",
-      "description": "The whole piece annotated in place, under the AI Slop Report header. Empty only when verdict is not_checked."
+      "description": "The whole piece annotated in place, under the AI Slop Report header. Only when save_file is false; a saved report is in file."
+    },
+    "file": {
+      "type": "object",
+      "required": [
+        "path",
+        "file_name",
+        "bytes",
+        "sha256"
+      ],
+      "additionalProperties": false,
+      "description": "The saved report, as finalize.py printed it. Absent when save_file is false or nothing was checked.",
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "file_name": {
+          "type": "string"
+        },
+        "bytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "problems": {
+      "type": "array",
+      "maxItems": 50,
+      "items": {
+        "type": "string",
+        "maxLength": 400
+      },
+      "description": "Problems finalize.py still found when the report was saved with --accept; empty when the check passed."
     },
     "error": {
       "type": "string",
