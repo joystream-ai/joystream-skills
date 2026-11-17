@@ -10,7 +10,7 @@
   "flagged": [
     {
       "category": 13,
-      "name": "em dash",
+      "name": "em-dash habit",
       "count": 3
     }
   ],
@@ -18,26 +18,26 @@
     {
       "category": 2,
       "text": "Open Settings, turn on Offline mode, and pick the folders to keep.",
-      "reason": "below threshold (1 of 3)"
+      "reason": "A list of three, but three real setup steps."
     }
   ],
   "file": {
     "path": "/workspace/out/Slop-check.md",
     "file_name": "Slop-check.md",
-    "bytes": 762,
-    "sha256": "ae33bb2f5864df830428457648fbebb44c2031123a4bbafb02de6cb40431164f"
+    "bytes": 1250,
+    "sha256": "bfcf0af7a70671bdf0499ee45fcf6b886aa89605bbb03771bfc5c7b6d5fafb7e"
   },
   "problems": [],
   "report": {
-    "title": "AI slop check: hits are isolated or minor",
-    "summary": "Three em dashes in one sentence cross the threshold and are replaced; one list of three steps is borderline.",
+    "title": "AI slop check: 3 em dashes in one sentence read as AI-written",
+    "summary": "Three em dashes in one sentence are marked with fixes; a list of three real setup steps is left alone.",
     "severity": "info",
     "sections": [],
     "sources": [],
     "unknowns": [],
     "meta": {
       "skill": "content-ai-slop-annotate",
-      "skill_version": "1.1.1",
+      "skill_version": "1.2.0",
       "generated_at": "2026-11-12T16:00:00Z"
     }
   }

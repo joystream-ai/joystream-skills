@@ -1,0 +1,43 @@
+{
+  "verdict": "ai_leaning",
+  "counts": {
+    "triplets": 1,
+    "transitions": 1,
+    "false_contrasts": 1,
+    "em_dashes": 0
+  },
+  "counts_line": "triplets 1 · transitions 1 · false contrasts 1 · em dashes 0",
+  "flagged": [
+    {
+      "category": 1,
+      "name": "false contrast",
+      "count": 1
+    },
+    {
+      "category": 2,
+      "name": "rule of three",
+      "count": 1
+    },
+    {
+      "category": 3,
+      "name": "filler transition",
+      "count": 1
+    }
+  ],
+  "borderline": [],
+  "annotated_markdown": "## AI slop check\n\n**Result:** 3 phrases read as AI-written, one in each of the last three sentences. Each is marked in your draft below with a suggested fix.\n\n### What to change\n\n| # | Your text | Suggested fix | Why it reads as AI |\n| --- | --- | --- | --- |\n| 1 | \"It is not just a feature, it is a new way of working.\" | Cut it: the next two sentences say what changes | False contrast: nobody called it just a feature |\n| 2 | \"faster, smarter, and with more confidence\" | faster | Rule of three: three interchangeable benefits |\n| 3 | \"Moreover,\" | Cut it: the sentence stands on its own | Filler transition: it can go with nothing lost |\n\n### Your draft, marked up\n\nHow to read the marks: ~~struck-through text~~ is what to change, the **bold text** after the arrow is the suggested fix, and the pattern's name is in brackets. A note starting **SLOP** applies to the paragraph below it.\n\n---\n\nOur new export button ships today for every workspace. ~~It is not just a feature, it is a new way of working.~~ → **cut: the next two sentences say what changes** *(#1 false contrast)* Teams can export ~~faster, smarter, and with more confidence~~ → **faster** *(#2 rule of three)*. ~~Moreover,~~ → **cut: the sentence stands on its own** *(#3 filler transition)* the export runs in the background, so nothing blocks you.\n",
+  "problems": [],
+  "report": {
+    "title": "AI slop check: 3 phrases read as AI-written",
+    "summary": "One empty false contrast, one list of three interchangeable benefits and one filler transition are each marked with a fix, as the PRD's worked example requires.",
+    "severity": "attention",
+    "sections": [],
+    "sources": [],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-ai-slop-annotate",
+      "skill_version": "1.2.0",
+      "generated_at": "2026-11-12T16:00:00Z"
+    }
+  }
+}

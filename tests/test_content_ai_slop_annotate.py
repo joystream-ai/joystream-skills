@@ -1,6 +1,7 @@
 """content-ai-slop-annotate's scripts: the pre-scan counts the mechanical tells and applies
-the thresholds the same way every run (one instance of a pattern is borderline, a pattern is
-flagged), and finalize checks the model's annotated report against the draft before saving.
+the thresholds the same way every run (a pattern is flagged; one false contrast, list of
+three or transition is judged; one or two em dashes are borderline), and finalize checks
+the model's report, for the draft and for a person reading it, before saving.
 
 Run: uv run --with pytest --with pyyaml --with jsonschema pytest tests
 """
@@ -73,9 +74,30 @@ def test_clean_text_has_no_findings() -> None:
     assert result["counts_line"] == "triplets 0 · transitions 0 · false contrasts 0 · em dashes 0"
 
 
-def test_single_instances_stay_borderline() -> None:
+def test_single_instances_are_judged_and_em_dashes_stay_borderline() -> None:
     got = decisions(scan_fixture("T5-borderline.md"))
-    assert {k: got[k] for k in (1, 2, 3, 13)} == dict.fromkeys((1, 2, 3, 13), "borderline")
+    assert {k: got[k] for k in (1, 2, 3, 13)} == {1: "judge", 2: "judge", 3: "judge", 13: "borderline"}
+    judged = [c for c in scan_fixture("T5-borderline.md")["categories"] if c["decision"] == "judge"]
+    assert all(i["needs_judgment"] and i["note"] for c in judged for i in c["instances"])
+
+
+PRD_EXAMPLE = (
+    "It's not just about writing faster — it's about writing better. Moreover, teams need to "
+    "leverage AI tools to unlock their full potential, streamline workflows, and boost "
+    "productivity. In conclusion, AI is transforming how we write, and that's a good thing."
+)
+
+
+def test_the_prd_example_leaves_its_single_tells_to_judgement_not_borderline() -> None:
+    """AI Slop Check v2 PRD: each of these appears once and each is empty, so each is a hit."""
+    got = decisions(scan(PRD_EXAMPLE))
+    # "Moreover," and "In conclusion," are two transitions, so #3 crosses its threshold.
+    assert {k: got.get(k) for k in (1, 2, 3, 4)} == {1: "judge", 2: "judge", 3: "flag", 4: "flag"}
+
+
+def test_categories_carry_the_readers_names() -> None:
+    names = {c["id"]: c["name"] for c in scan(PRD_EXAMPLE)["categories"]}
+    assert names[3] == "filler transition" and names[4] == "inflated word"
 
 
 def test_a_narrative_refrain_is_flagged_but_left_to_judgement() -> None:
@@ -119,7 +141,7 @@ def test_reads_the_draft_from_a_file(tmp_path: Path) -> None:
     assert json.loads(proc.stdout)["counts"]["triplets"] == 4
 
 
-@pytest.mark.parametrize("case", ["borderline-only", "em-dash-pattern"])
+@pytest.mark.parametrize("case", ["single-empty-instances", "em-dash-pattern"])
 def test_examples_agree_with_the_script(case: str) -> None:
     """The documented outputs must be what the pre-scan actually decides for their input."""
     given = json.loads((EXAMPLES / f"{case}.input.json").read_text(encoding="utf-8"))
@@ -128,24 +150,29 @@ def test_examples_agree_with_the_script(case: str) -> None:
 
     assert shown["counts"] == result["counts"]
     assert shown["counts_line"] == result["counts_line"]
-    flagged = {c["id"]: c["count"] for c in result["categories"] if c["decision"] == "flag"}
-    assert {f["category"]: f["count"] for f in shown["flagged"]} == flagged
-    borderline = sorted(
+    by_id = {c["id"]: c for c in result["categories"]}
+    shown_flagged = {f["category"]: f["count"] for f in shown["flagged"]}
+    must = {c["id"]: c["count"] for c in result["categories"] if c["decision"] == "flag"}
+    assert must.items() <= shown_flagged.items()
+    for cat, count in shown_flagged.items():
+        assert by_id[cat]["decision"] in ("flag", "judge") and by_id[cat]["count"] == count
+    # Everything not flagged that the pre-scan found is listed as checked and left alone.
+    left = sorted(
         (c["id"], i["text"])
         for c in result["categories"]
-        if c["decision"] == "borderline"
+        if c["decision"] in ("borderline", "judge") and c["id"] not in shown_flagged
         for i in c["instances"]
     )
-    assert sorted((b["category"], b["text"]) for b in shown["borderline"]) == borderline
+    assert sorted((b["category"], b["text"]) for b in shown["borderline"]) == left
 
 
 # --- finalize.py -------------------------------------------------------------------------
 
 EM_DASH_TEXT = json.loads((EXAMPLES / "em-dash-pattern.input.json").read_text(encoding="utf-8"))["text"]
 EM_DASH_REPORT = (FIXTURES / "em-dash-pattern.report.md").read_text(encoding="utf-8")
-BORDERLINE_TEXT = json.loads((EXAMPLES / "borderline-only.input.json").read_text(encoding="utf-8"))["text"]
-BORDERLINE_REPORT = json.loads(
-    (EXAMPLES / "borderline-only.output.json").read_text(encoding="utf-8")
+SINGLES_TEXT = json.loads((EXAMPLES / "single-empty-instances.input.json").read_text(encoding="utf-8"))["text"]
+SINGLES_REPORT = json.loads(
+    (EXAMPLES / "single-empty-instances.output.json").read_text(encoding="utf-8")
 )["annotated_markdown"]
 
 
@@ -176,8 +203,8 @@ def test_a_correct_report_is_saved_exactly_as_the_example_says(tmp_path: Path) -
     assert (out / "Slop-check.md").read_text(encoding="utf-8") == EM_DASH_REPORT
 
 
-def test_borderline_only_report_passes_without_saving(tmp_path: Path) -> None:
-    code, result, out = finalize(tmp_path, BORDERLINE_TEXT, BORDERLINE_REPORT, "--no-save")
+def test_single_empty_instances_report_passes_without_saving(tmp_path: Path) -> None:
+    code, result, out = finalize(tmp_path, SINGLES_TEXT, SINGLES_REPORT, "--no-save")
     assert (code, result["problems"], result["saved"]) == (0, [], None)
     assert not out.exists()
 
@@ -197,7 +224,12 @@ def test_a_fix_containing_a_list_of_three_is_rejected(tmp_path: Path) -> None:
 
 
 def test_a_label_with_commentary_is_rejected(tmp_path: Path) -> None:
-    bad = EM_DASH_REPORT.replace("*(#13 em dash)*", "*(#13 em dash, three in one sentence)*", 1)
+    bad = EM_DASH_REPORT.replace("*(#13 em-dash habit)*", "*(#13 em-dash habit, three in one)*", 1)
+    assert checks(finalize(tmp_path, EM_DASH_TEXT, bad)[1]) == {"label_format"}
+
+
+def test_a_label_with_the_old_rulebook_name_is_rejected(tmp_path: Path) -> None:
+    bad = EM_DASH_REPORT.replace("*(#13 em-dash habit)*", "*(#13 em dash)*", 1)
     assert checks(finalize(tmp_path, EM_DASH_TEXT, bad)[1]) == {"label_format"}
 
 
@@ -212,21 +244,70 @@ def test_spacing_between_annotations_is_not_a_change(tmp_path: Path) -> None:
 
 
 def test_a_borderline_instance_annotated_inline_is_rejected(tmp_path: Path) -> None:
-    bad = BORDERLINE_REPORT.replace(
-        "Moreover, the export", "~~Moreover,~~ → **cut: the logic carries** *(#3 formulaic transition)* the export"
+    text = "The demo worked — barely. We shipped it on Friday."
+    report = (
+        "## AI slop check\n\n**Result:** 1 phrase reads as AI-written.\n\n### What to change\n\n"
+        "| # | Your text | Suggested fix | Why it reads as AI |\n| --- | --- | --- | --- |\n"
+        "| 1 | \"worked — barely.\" | worked, barely. | Em-dash habit |\n\n### Your draft, marked up\n\n"
+        "How to read the marks: struck text is what to change.\n\n---\n\n"
+        "The demo ~~worked — barely.~~ → **worked, barely.** *(#13 em-dash habit)* We shipped it on Friday.\n"
     )
-    assert checks(finalize(tmp_path, BORDERLINE_TEXT, bad, "--no-save")[1]) == {"not_flagged"}
+    assert checks(finalize(tmp_path, text, report, "--no-save")[1]) == {"not_flagged"}
+
+
+def test_a_judged_instance_may_be_flagged_or_left_alone(tmp_path: Path) -> None:
+    left = EM_DASH_REPORT  # leaves the concrete list of three alone
+    assert finalize(tmp_path, EM_DASH_TEXT, left, "--no-save")[1]["problems"] == []
+    assert finalize(tmp_path, SINGLES_TEXT, SINGLES_REPORT, "--no-save")[1]["problems"] == []
 
 
 def test_a_flagged_category_left_unannotated_is_rejected(tmp_path: Path) -> None:
     header, _, _ = EM_DASH_REPORT.partition("---\n")
     unannotated = f"{header}---\n\n{EM_DASH_TEXT}\n"
-    assert checks(finalize(tmp_path, EM_DASH_TEXT, unannotated)[1]) == {"missing_flag"}
+    # The header still lists two fixes, so the table check fails too.
+    assert checks(finalize(tmp_path, EM_DASH_TEXT, unannotated)[1]) == {"missing_flag", "report_format"}
 
 
-def test_a_wrong_counts_line_is_rejected(tmp_path: Path) -> None:
-    bad = EM_DASH_REPORT.replace("em dashes 3", "em dashes 2", 1)
-    assert checks(finalize(tmp_path, EM_DASH_TEXT, bad)[1]) == {"counts_line"}
+OLD_HEADER_REPORT = (
+    "## AI Slop Report\n\n**Verdict:** hits are isolated or minor\n"
+    "**Counts:** triplets 1 · transitions 0 · false contrasts 0 · em dashes 3\n"
+    "**Hits by category:** #13 em-dash habit (3)\n"
+    "**Borderline (not flagged):** \"Open Settings\" (#2, below threshold (1 of 3))\n\n"
+)
+
+
+def test_the_old_machine_header_is_rejected(tmp_path: Path) -> None:
+    """Harpreet's review (16 Nov): the old header read as made for machines."""
+    _, _, body = EM_DASH_REPORT.partition("\n---\n")
+    bad = OLD_HEADER_REPORT + "---\n" + body
+    result = finalize(tmp_path, EM_DASH_TEXT, bad, "--no-save")[1]
+    assert checks(result) == {"report_format"}
+    details = " ".join(p["detail"] for p in result["problems"])
+    assert "## AI slop check" in details and "old header" in details and "rulebook" in details
+
+
+def test_rulebook_words_in_a_reason_are_rejected(tmp_path: Path) -> None:
+    bad = EM_DASH_REPORT.replace("A list of three, but three real setup steps.", "Below threshold (1 of 3).")
+    assert checks(finalize(tmp_path, EM_DASH_TEXT, bad, "--no-save")[1]) == {"report_format"}
+
+
+def test_each_mark_needs_its_row_in_what_to_change(tmp_path: Path) -> None:
+    lines = EM_DASH_REPORT.splitlines(keepends=True)
+    bad = "".join(line for line in lines if not line.startswith("| 2 |"))
+    result = finalize(tmp_path, EM_DASH_TEXT, bad, "--no-save")[1]
+    assert checks(result) == {"report_format"}
+    assert "2 marks, 1 rows" in result["problems"][0]["detail"]
+
+
+def test_a_clean_draft_says_nothing_is_marked(tmp_path: Path) -> None:
+    text = (FIXTURES / "T4-clean.md").read_text(encoding="utf-8")
+    good = (
+        "## AI slop check\n\n**Result:** No AI slop found. Nothing to change.\n\n"
+        f"### Your draft, marked up\n\nNothing is marked.\n\n---\n\n{text}"
+    )
+    assert finalize(tmp_path, text, good, "--no-save")[1]["problems"] == []
+    with_guide = good.replace("Nothing is marked.", "How to read the marks: struck text is what to change.")
+    assert checks(finalize(tmp_path, text, with_guide, "--no-save")[1]) == {"report_format"}
 
 
 def test_accept_saves_a_report_that_still_has_problems(tmp_path: Path) -> None:

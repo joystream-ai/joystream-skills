@@ -8,7 +8,9 @@ pre-scan uses, so the rules are enforced by code rather than by asking twice:
 - fix_has_tell: no fix, note or reason may contain an em dash, a list of three, a word
   from #4 or a formulaic transition.
 - label_format: every inline label is "#N name" and nothing else.
-- counts_line: the header's Counts line is the pre-scan's.
+- report_format: the report a person reads: "## AI slop check", a plain Result line, one
+  "What to change" row per mark, the reading guide only when something is marked, and no
+  old header lines or rulebook words ("threshold", "1 of 2").
 - not_flagged / missing_flag: a category the pre-scan did not flag is never annotated
   inline (6 and 11 excepted), and every category it flagged is.
 
@@ -43,9 +45,23 @@ INLINE = re.compile(
     r"\*\((?P<label>#(?P<cat>\d+)[^)]*)\)\*",
     re.DOTALL,
 )
-NOTE_LINE = re.compile(r"^> \*\*SLOP #(?P<cat>\d+)\*\*(?P<text>.*)$", re.MULTILINE)
-NOTE_BLOCK = re.compile(r"^> \*\*SLOP #\d+\*\*.*\n(?:[ \t]*\n)?", re.MULTILINE)
+NOTE_LINE = re.compile(
+    r"^> \*\*SLOP #(?P<cat>\d+)(?P<label>[^*\n]*)\*\*(?P<text>.*)$", re.MULTILINE
+)
+NOTE_BLOCK = re.compile(r"^> \*\*SLOP #\d+[^*\n]*\*\*.*\n(?:[ \t]*\n)?", re.MULTILINE)
 LABEL = re.compile(r"^#(\d+) [a-z][a-z -]{1,38}$")
+TITLE = "## AI slop check"
+RESULT = "**Result:**"
+CHANGES = "### What to change"
+LEFT_ALONE = "### Checked and left alone"
+DRAFT = "### Your draft, marked up"
+GUIDE = "How to read the marks:"
+NOTHING_MARKED = "Nothing is marked."
+# The old header's lines and the rulebook's words: a reader who never saw the taxonomy
+# can't use them (Harpreet's review, 16 Nov: "it's made for machines").
+OLD_HEADER = ("**Verdict:**", "**Counts:**", "**Hits by category", "**Borderline", "**Legend**")
+JARGON = re.compile(r"\bthreshold\b|\(\d+ of \d+\)|\bborderline\b|\bguard\b", re.IGNORECASE)
+TABLE_ROW = re.compile(r"^\|\s*\d+\s*\|", re.MULTILINE)
 QUOTED = re.compile(r"\"[^\"]*\"|“[^”]*”")
 STRICT_INTENSIFIERS = [
     re.compile(rf"\b(?:{pattern})\b", re.IGNORECASE)
@@ -104,8 +120,6 @@ def check(original: str, annotated: str) -> list[dict]:
     header, body = parts
 
     scan = ps.prescan(original)
-    if f"**Counts:** {scan['counts_line']}" not in header:
-        problem("counts_line", f"the Counts line must be exactly: {scan['counts_line']}")
 
     restored, expected = normalized(strip_annotations(body)), normalized(original)
     if restored != expected:
@@ -126,36 +140,39 @@ def check(original: str, annotated: str) -> list[dict]:
     for m in INLINE.finditer(body):
         cat = int(m.group("cat"))
         inline_cats.add(cat)
-        if not LABEL.match(m.group("label")):
-            problem("label_format", 'a label must be "#N name" and nothing else', m.group("label"))
+        want = f"#{cat} {ps.NAMES.get(cat, '')}"
+        if not LABEL.match(m.group("label")) or m.group("label") != want:
+            problem("label_format", f'this label must be "{want}" and nothing else', m.group("label"))
         tells = tells_in(m.group("fix"))
         if tells:
             problem("fix_has_tell", "the fix contains " + "; ".join(tells), m.group("fix"))
 
     note_cats: set[int] = set()
     for m in NOTE_LINE.finditer(body):
-        note_cats.add(int(m.group("cat")))
+        cat = int(m.group("cat"))
+        note_cats.add(cat)
+        want = f", {ps.NAMES.get(cat, '')}:"
+        if m.group("label") != want:
+            problem("label_format", f'this note must open "> **SLOP #{cat}{want}**"', m.group(0))
         if ps.EM_DASH.search(m.group("text")):
             problem("fix_has_tell", "the note contains an em dash", m.group(0))
 
-    for line in header.splitlines():
-        if line.startswith(("**Verdict:**", "**Hits by category:**", "**Borderline")):
-            if ps.EM_DASH.search(QUOTED.sub("", line)):
-                problem("fix_has_tell", "the header contains an em dash outside a quote", line)
+    marks = len(list(INLINE.finditer(body))) + len(list(NOTE_LINE.finditer(body)))
+    report_format(header, marks, problem)
 
     flagged = {
         c["id"]
         for c in scan["categories"]
         if c["decision"] == "flag" and any(not i["needs_judgment"] for i in c["instances"])
     }
-    allowed_inline = {c["id"] for c in scan["categories"] if c["decision"] == "flag"} | set(
-        ps.MODEL_JUDGED
-    )
+    allowed_inline = {
+        c["id"] for c in scan["categories"] if c["decision"] in ("flag", "judge")
+    } | set(ps.MODEL_JUDGED)
     for cat in sorted(inline_cats - allowed_inline):
         problem(
             "not_flagged",
             f"#{cat} is annotated inline but the pre-scan did not flag it; list it under "
-            f"Borderline instead",
+            f"Checked and left alone instead",
         )
     for cat in sorted(flagged):
         present = note_cats if cat in BLOCK_CATEGORIES else inline_cats
@@ -163,6 +180,42 @@ def check(original: str, annotated: str) -> list[dict]:
             where = "a > **SLOP #N** note" if cat in BLOCK_CATEGORIES else "an inline fix"
             problem("missing_flag", f"the pre-scan flagged #{cat}; it needs {where}")
     return problems
+
+
+def report_format(header: str, marks: int, problem) -> None:
+    """The header a person reads: Result, What to change, Checked and left alone, the guide."""
+    lines = [line.rstrip() for line in header.splitlines()]
+    present = [line for line in lines if line.strip()]
+    if not present or present[0] != TITLE:
+        problem("report_format", f'the report must open with the line "{TITLE}"')
+    if not any(line.startswith(RESULT) for line in lines):
+        problem("report_format", f'the report needs a "{RESULT}" line in plain words')
+    if DRAFT not in lines:
+        problem("report_format", f'the line "{DRAFT}" must come just before the --- line')
+    for line in lines:
+        if line.startswith(OLD_HEADER):
+            problem("report_format", "the old header lines are gone; use the four sections", line)
+        if JARGON.search(QUOTED.sub("", line)):
+            problem("report_format", "say why in plain words, not the rulebook's", line)
+        if line.startswith((RESULT, "- ")) or TABLE_ROW.match(line):
+            if ps.EM_DASH.search(QUOTED.sub("", line)):
+                problem("fix_has_tell", "the report contains an em dash outside a quote", line)
+    rows = len(TABLE_ROW.findall(header))
+    if marks and CHANGES not in lines:
+        problem("report_format", f'the draft has {marks} marks but no "{CHANGES}" table')
+    elif rows != marks:
+        problem(
+            "report_format",
+            f'"{CHANGES}" needs one numbered row per mark: {marks} marks, {rows} rows',
+        )
+    if marks and not any(line.startswith(GUIDE) for line in lines):
+        problem("report_format", f'with marks in the draft, add the "{GUIDE}" line')
+    if not marks and NOTHING_MARKED not in lines:
+        problem("report_format", f'with nothing marked, write "{NOTHING_MARKED}" instead of the guide')
+    if not marks and CHANGES in lines:
+        problem("report_format", f'leave out "{CHANGES}" when nothing is marked')
+    if not marks and any(line.startswith(GUIDE) for line in lines):
+        problem("report_format", f'leave out "{GUIDE}" when nothing is marked')
 
 
 def save(annotated: str, name: str, out_dir: Path) -> dict:

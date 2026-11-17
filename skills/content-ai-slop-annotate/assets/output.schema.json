@@ -20,7 +20,7 @@
         "clean",
         "not_checked"
       ],
-      "description": "ai_leaning: reads as AI-written on balance. minor: the hits are isolated or minor, or only borderline. clean: no tells and nothing borderline. not_checked: no text, or the pre-scan failed."
+      "description": "ai_leaning: reads as AI-written on balance. minor: the marks are isolated, or nothing is marked but something was checked and left alone. clean: nothing marked and nothing left alone. not_checked: no text, or the pre-scan failed."
     },
     "counts": {
       "type": "object",
@@ -88,7 +88,7 @@
     "borderline": {
       "type": "array",
       "maxItems": 50,
-      "description": "Instances reported but not annotated inline: below their category's threshold, or a needs_judgment instance the text shows is not a tell.",
+      "description": "Instances checked and left alone, as the report's 'Checked and left alone' lists them: a judged instance that does real work, a borderline one, or a needs_judgment instance the text shows is not a tell. The reason is in plain words.",
       "items": {
         "type": "object",
         "required": [

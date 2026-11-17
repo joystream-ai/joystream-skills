@@ -5,7 +5,9 @@ Counts the mechanical tells (lists of three, formulaic transitions, false contra
 em dashes, fixed phrases, paragraph openers, sentence cadence, short-form scaffolding)
 and applies the pattern thresholds, so whether a pattern is flagged is decided the same
 way on every run. Judgement calls are left to whoever writes the fixes: categories 6 and
-11 entirely, and every instance marked needs_judgment.
+11 entirely, every instance marked needs_judgment, and a single false contrast, list of
+three or formulaic transition (decision "judge": a hit when it is empty, left alone when
+it does real work, as in the AI Slop Check v2 PRD's worked example).
 
 Standard library only. Reads the draft, prints one JSON object on stdout, writes nothing
 and opens no network connection.
@@ -25,26 +27,36 @@ import re
 import sys
 from pathlib import Path
 
-VERSION = "1.1.1"
+VERSION = "1.2.0"
 
+# The reader's names for the categories: the report uses these, never a bare number.
 NAMES = {
     1: "false contrast",
-    2: "rule-of-three",
-    3: "formulaic transition",
-    4: "empty intensifier",
+    2: "rule of three",
+    3: "filler transition",
+    4: "inflated word",
     5: "meta-commentary",
-    6: "manufactured balance",
-    7: "opener repetition",
-    8: "uniform cadence",
-    9: "pseudo-precision",
-    10: "over-structured short-form",
+    6: "hedging",
+    7: "repeated openers",
+    8: "flat rhythm",
+    9: "fake precision",
+    10: "too much structure",
     11: "summary ending",
-    12: "nominalization bloat",
-    13: "em-dash overuse",
+    12: "wordy phrasing",
+    13: "em-dash habit",
 }
 # Pattern categories need this many instances in the piece before any of them is
 # flagged; every other category flags a single instance (SKILL.md, "Thresholds").
 THRESHOLDS = {1: 2, 2: 3, 3: 2, 13: 3}
+# Below the threshold these are judged one by one, not waved through: an empty instance (no
+# real opposing claim, three interchangeable items, a transition cut with nothing lost) is a
+# hit even once. One or two em dashes stay ordinary punctuation.
+JUDGE_BELOW_THRESHOLD = {1, 2, 3}
+JUDGE_NOTE = {
+    1: "flag it when nobody in the piece holds the contrasted position; leave it when it does",
+    2: "flag it when the three items are abstract and interchangeable; leave it when they are concrete and distinct",
+    3: "flag it when it can be cut with nothing lost; leave it when it marks a real turn",
+}
 # #7's threshold is the length of one run of matching openers, applied while finding runs,
 # so each run found is one flaggable instance.
 OPENER_RUN_MIN = 3
@@ -327,7 +339,17 @@ def find_short_form_scaffolding(text: str) -> list[dict]:
 def decide(category: int, instances: list[dict]) -> dict:
     threshold = THRESHOLDS.get(category, 1)
     count = len(instances)
-    decision = "none" if count == 0 else "flag" if count >= threshold else "borderline"
+    if count == 0:
+        decision = "none"
+    elif count >= threshold:
+        decision = "flag"
+    elif category in JUDGE_BELOW_THRESHOLD:
+        decision = "judge"
+        for item in instances:
+            item["needs_judgment"] = True
+            item["note"] = JUDGE_NOTE[category]
+    else:
+        decision = "borderline"
     return {
         "id": category,
         "name": NAMES[category],
