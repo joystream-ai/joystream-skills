@@ -48,8 +48,7 @@
         "./skills/content-social-post-draft",
         "./skills/github-activity-post-worthiness",
         "./skills/content-voice-profile",
-        "./skills/content-ai-slop-check",
-        "./skills/content-ai-slop-annotate"
+        "./skills/content-ai-slop-check"
       ]
     },
     {
