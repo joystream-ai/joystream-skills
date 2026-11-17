@@ -1,0 +1,170 @@
+{
+  "worth_posting": true,
+  "reason": "One fresh story matches the approvals-first belief in our own post; a competitor's launch was left out.",
+  "story_angles": [
+    {
+      "angle": "Asking a person before an agent edits a record is not friction; it is what lets the team trust it with the next task.",
+      "kind": "news_take",
+      "evidence_refs": [
+        "S1"
+      ]
+    }
+  ],
+  "source_text": "An example retailer said on 2026-10-20 that its order-handling agents now wait for a person to approve any change to a customer record, after an agent issued refunds by mistake (S1).",
+  "angles": [
+    {
+      "id": "A1",
+      "topic_key": "retailer-adds-agent-approval-step",
+      "headline": "Retailer adds a human approval step to its order agents",
+      "source_id": "S1",
+      "published_at": "2026-10-20",
+      "hours_ago": 32,
+      "why_timely": "The retailer announced the change yesterday, 2026-10-20.",
+      "pov_belief": "Approvals before autonomy: an agent that changes records should ask a person first.",
+      "take": "Asking a person before an agent edits a record is not friction; it is what lets the team trust it with the next task.",
+      "hook": "An agent issued refunds by mistake. The fix was not a better model; it was a person who says yes first.",
+      "outline": [
+        "Claim: approval is what makes record-changing agents usable.",
+        "Evidence: the retailer added an approval step after mistaken refunds (S1).",
+        "Lesson: put the approval in before the first mistake, not after."
+      ],
+      "caution": "",
+      "outlet": "Example News",
+      "tldr": "An example retailer now has a person approve every customer-record change its order agents make, after mistaken refunds.",
+      "angle_type": "agree_and_extend",
+      "why_it_matters": "It is the approvals-first rule from our own post, adopted after a costly mistake.",
+      "our_page": {
+        "title": "Approvals first",
+        "url": "https://www.example.com/blog/approvals-first"
+      },
+      "image_url": "https://news.example.com/images/2026/10/approval-step.jpg"
+    }
+  ],
+  "skipped": {
+    "stale": 2,
+    "undated": 0,
+    "generic": 3,
+    "off_pov": 1,
+    "avoided": 1,
+    "already_covered": 0
+  },
+  "sheet_values": [
+    [
+      "2026-10-21T08:00:00Z",
+      "retailer-adds-agent-approval-step",
+      "Retailer adds a human approval step to its order agents",
+      "https://news.example.com/2026/10/20/retailer-adds-approval-step-to-agents",
+      "Asking a person before an agent edits a record is not friction; it is what lets the team trust it with the next task."
+    ]
+  ],
+  "left_out": [
+    {
+      "headline": "Example Automation Co launches an agent platform",
+      "reason": "naming competitors"
+    }
+  ],
+  "report": {
+    "title": "News angles: 2026-10-21",
+    "summary": "1 fresh story fits: a retailer added a human approval step to its agents. 1 competitor launch was left out.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Angles",
+        "items": [
+          {
+            "text": "Retailer adds a human approval step to its order agents: Asking a person before an agent edits a record is not friction; it is what lets the team trust it with the next task.",
+            "citations": [
+              "S1"
+            ],
+            "label": "workflow automation"
+          }
+        ]
+      },
+      {
+        "heading": "Skipped",
+        "items": [
+          {
+            "text": "1 story avoided (naming competitors).",
+            "citations": []
+          },
+          {
+            "text": "2 stories older than 48 hours.",
+            "citations": []
+          },
+          {
+            "text": "3 generic items.",
+            "citations": []
+          },
+          {
+            "text": "1 story with no link to our point of view.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://news.example.com/2026/10/20/retailer-adds-approval-step-to-agents",
+        "title": "Retailer adds a human approval step to its order agents",
+        "published_at": "2026-10-20",
+        "provider": "tavily"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-news-angles",
+      "skill_version": "1.2.0",
+      "generated_at": "2026-10-21T08:00:00Z"
+    }
+  },
+  "slack": {
+    "text": "Newsjacking Brief · 21 Oct: 1 story worth a take",
+    "blocks": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "Newsjacking Brief · Wednesday, 21 Oct 2026",
+          "emoji": true
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "1 story worth a take from the last 48h · 8 results scanned · reply with the numbers you want drafted"
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*How this brief works*\n• Topics: workflow automation\n• Only news from the last 48h that we have not suggested before\n• Every take is grounded in our own writing\n• Left out: layoffs, naming competitors\n• Card colors: red Contrarian · orange Myth vs reality · purple Prediction · green Agree and extend · blue Lesson from building · yellow Unpopular opinion\n• Reply with the story numbers you want drafted (e.g. 2, 5)"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "color": "#2EB67D",
+        "fallback": "1 · Retailer adds a human approval step to its order agents",
+        "title": "1 · Retailer adds a human approval step to its order agents",
+        "title_link": "https://news.example.com/2026/10/20/retailer-adds-approval-step-to-agents",
+        "thumb_url": "https://news.example.com/images/2026/10/approval-step.jpg",
+        "mrkdwn_in": [
+          "text"
+        ],
+        "text": "_Example News · 20 Oct · Agree and extend_\n\n*What happened*\nAn example retailer now has a person approve every customer-record change its order agents make, after mistaken refunds.\n\n*Why it matters to us*\nIt is the approvals-first rule from our own post, adopted after a costly mistake. See <https://www.example.com/blog/approvals-first|Approvals first>.\n\n*Our angle*\n_Asking a person before an agent edits a record is not friction; it is what lets the team trust it with the next task._"
+      },
+      {
+        "color": "#DDDDDD",
+        "fallback": "Left out today",
+        "mrkdwn_in": [
+          "text"
+        ],
+        "footer": "Next brief tomorrow 8:00 AM",
+        "text": "*Left out today*\n• Example Automation Co launches an agent platform — naming competitors\n8 results scanned · 0 already covered · 2 too old or undated"
+      }
+    ]
+  }
+}

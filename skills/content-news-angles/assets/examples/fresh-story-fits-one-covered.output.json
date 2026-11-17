@@ -28,7 +28,13 @@
         "Evidence: teams in the trial cut recurring meetings by about a third before shortening the week (S1).",
         "Lesson: audit your recurring meetings before you debate the calendar."
       ],
-      "caution": "Results come from one region's employers; avoid presenting them as universal."
+      "caution": "Results come from one region's employers; avoid presenting them as universal.",
+      "outlet": "Example News",
+      "tldr": "A six-month trial across 40 employers found teams that cut recurring meetings first kept the four-day week.",
+      "angle_type": "agree_and_extend",
+      "why_it_matters": "It backs the belief that four-day weeks work when teams cut meetings first, not hours.",
+      "our_page": null,
+      "image_url": null
     }
   ],
   "skipped": {
@@ -98,8 +104,15 @@
     "unknowns": [],
     "meta": {
       "skill": "content-news-angles",
-      "skill_version": "1.1.0",
+      "skill_version": "1.2.0",
       "generated_at": "2026-10-21T08:00:00Z"
     }
-  }
+  },
+  "left_out": [
+    {
+      "headline": "Regulator updates data-retention guidance for retailers",
+      "reason": "already covered last week"
+    }
+  ],
+  "slack": null
 }

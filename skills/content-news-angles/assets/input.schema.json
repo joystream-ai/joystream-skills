@@ -9,7 +9,7 @@
     "point_of_view": {
       "type": "string",
       "maxLength": 6000,
-      "description": "The author's stated beliefs, positions and the topics they own, written by the author. The only source of the author's views."
+      "description": "The author's stated beliefs, positions and the topics they own, written by the author. With own_urls, the author's own pages are a second source of their views."
     },
     "topics": {
       "type": "array",
@@ -34,9 +34,9 @@
     "max_angles": {
       "type": "integer",
       "minimum": 1,
-      "maximum": 3,
+      "maximum": 10,
       "default": 2,
-      "description": "The most stories to pick."
+      "description": "The most stories to pick (1-10)."
     },
     "freshness_hours": {
       "type": "integer",
@@ -48,6 +48,25 @@
     "now": {
       "type": "string",
       "description": "Current time, ISO 8601. Optional: on JoyStream the template binds it to the run start time. Never guessed."
+    },
+    "own_urls": {
+      "type": "array",
+      "maxItems": 15,
+      "items": {
+        "type": "string",
+        "pattern": "^https?://"
+      },
+      "description": "Optional: addresses of the author's own pages (website, positioning pages, blog posts) that an earlier step read. Those pages are the author's writing, never news: they ground the take and are linked as the page a story relates to."
+    },
+    "slack_brief": {
+      "type": "boolean",
+      "default": false,
+      "description": "When true, also return `slack`: the picks laid out as one Slack message with a card per story, for the agent's post step."
+    },
+    "brief_footer": {
+      "type": "string",
+      "maxLength": 150,
+      "description": "Optional closing line for the Slack brief, e.g. 'Next brief tomorrow 8:00 AM PT'."
     }
   }
 }
