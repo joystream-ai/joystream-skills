@@ -65,10 +65,13 @@ def test_report_reads_as_skill_md_says(path):
         marked = _section(report, "Every change, marked in your draft")
         assert GUIDE in marked
         assert len(MARK.findall(marked)) + len(NOTE.findall(marked)) == output["marks"]
-        assert "### Your draft\n" not in report
+        headings = re.findall(r"^### (.+)$", report, re.MULTILINE)
+        expected = ["Fix these first", "Your draft", "Every change, marked in your draft", "With the cuts made"]
+        assert headings[:4] == expected, "the clean copy comes after the marks it is built from"
+        assert report.count("### With the cuts made") == 1
     else:
         assert output["verdict"] == "ready_to_post"
-        for heading in ("Fix these first", "Before and after", "Every change, marked in your draft"):
+        for heading in ("Fix these first", "Every change, marked in your draft", "With the cuts made"):
             assert f"### {heading}" not in report
         assert "~~" not in report and GUIDE not in report
 
@@ -77,14 +80,11 @@ def test_report_reads_as_skill_md_says(path):
 def test_the_draft_comes_back_verbatim(path):
     output, draft = _load(path)
     report = output["report_markdown"]
+    assert _unquote(_section(report, "Your draft")) == draft.strip()
     if output["marks"]:
-        before = _section(report, "Before and after").split("**Your draft**", 1)[1].split("**With the cuts made**")[0]
-        assert _unquote(before) == draft.strip()
         marked = _section(report, "Every change, marked in your draft").split("\n---\n\n", 1)[1]
         unmarked = NOTE.sub("", MARK.sub(lambda m: m.group(1), marked))
         assert unmarked.strip() == draft.strip()
-    else:
-        assert _unquote(_section(report, "Your draft")) == draft.strip()
 
 
 @pytest.mark.parametrize("path", EXAMPLES, ids=lambda p: p.stem)
@@ -93,7 +93,7 @@ def test_fixes_and_clean_copy_invent_no_numbers(path):
     report = output["report_markdown"]
     draft_numbers = set(re.findall(r"\d+", draft))
     fixes = " ".join(fix for _, fix, _ in MARK.findall(report))
-    clean = _section(report, "Before and after").split("**With the cuts made**")[-1] if output["marks"] else ""
+    clean = _section(report, "With the cuts made")
     assert set(re.findall(r"\d+", fixes + clean)) <= draft_numbers
     assert "~~" not in clean
 
@@ -121,6 +121,6 @@ def test_clean_copy_is_built_from_the_marks(path):
         return "" if fix.lower().startswith("cut it") else fix
 
     expected = NOTE.sub("", MARK.sub(apply, marked))
-    clean = _unquote(_section(report, "Before and after").split("**With the cuts made**")[1])
+    clean = _unquote(_section(report, "With the cuts made"))
     assert _normalized(clean) == _normalized(expected)
     assert all(struck.strip() != fix.strip() for struck, fix, _ in MARK.findall(marked))

@@ -3,8 +3,8 @@ name: content-ai-slop-check
 description: >-
   Check one piece of writing (a social post, a blog draft, an email) for AI-writing tells
   and return a report a person can read and share: a verdict (ready to post, needs edits
-  or needs a rewrite), the few things to fix first, the draft before and after the safe
-  cuts, then every change marked in place with a concrete fix and a plain reason (false
+  or needs a rewrite), the few things to fix first, every change marked in place with a
+  concrete fix and a plain reason, then the draft with the safe cuts made (false
   contrast, rule of three, filler transition, inflated word, summary ending and eight
   more). No score, and no fix ever invents a fact. Use when an agent should "check this
   for AI slop", "does this sound like AI", "mark the AI tells in my post" or check drafts
@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "2.1.1"
+  version: "2.1.2"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -56,8 +56,9 @@ drafting step as a dependency. The run saves `report_markdown` as its file.
    left alone, with a plain reason.
 3. **Write a fix for each tell** (see **Fixes**).
 4. **Decide the verdict** (see **Verdict**) and pick what to fix first.
-5. **Write the clean copy** (see **Clean copy**), then the report exactly as **The
-   report** says, and nothing else.
+5. **Write the report** exactly as **The report** says, top to bottom, and nothing else.
+   Write the clean copy last, after the marked-up draft, by applying the marks you have
+   just written (see **Clean copy**). Write it once; never a note about how it was made.
 
 # The 13 patterns
 
@@ -188,15 +189,9 @@ parts in this order, each label on its own line:
 
 1. "<quoted words>": <why it matters to a reader>
 
-### Before and after
-
-**Your draft**
+### Your draft
 
 > <the draft, verbatim, every line quoted>
-
-**With the cuts made**
-
-> <the clean copy, every line quoted>
 
 ### Every change, marked in your draft
 
@@ -206,9 +201,13 @@ How to read the marks: ~~struck-through text~~ is what to change, the **bold tex
 
 <the whole draft, with the marks in place>
 
+### With the cuts made
+
+> <the clean copy, built from the marks above, every line quoted>
+
 ### Checked and left alone
 
-- "<quoted words>" <a plain reason it stays>
+- "<quoted words>": <a plain reason it stays>
 ```
 
 When nothing is marked: the verdict (`**Verdict:** Ready to post. No AI slop found;
@@ -252,7 +251,7 @@ Return the fields of `assets/output.schema.json`:
 Check it normally. Flat rhythm needs at least three sentences.
 
 ## A long piece (over about 1,500 words)
-Leave **Your draft** out of "Before and after"; the marked-up draft already shows it.
+Leave out **Your draft**; the marked-up draft already shows it.
 
 ## The voice profile asks for something on the list
 The profile wins: if it says `use em dashes freely`, em dashes are neither marked nor
