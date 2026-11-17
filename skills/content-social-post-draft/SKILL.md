@@ -198,9 +198,9 @@ record has a public one, such as a company website):
 8. **Measure.** `char_count` = characters in `text`. Recount after every edit; cut whole
    sentences, never mid-word, until every limit holds.
 
-9. **Build the output** and return. For a stricter score of each draft, the agent can
-   add `content-ai-slop-check` after this step; to see each tell marked in the draft
-   with a fix, `content-ai-slop-annotate`.
+9. **Build the output** and return. For a closer check of each draft, the agent can
+   add `content-ai-slop-check` after this step: it marks each AI-writing tell in the
+   draft with a fix.
 
 # Output
 
