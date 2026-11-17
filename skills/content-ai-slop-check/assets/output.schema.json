@@ -4,6 +4,7 @@
   "additionalProperties": false,
   "required": [
     "report_markdown",
+    "verdict",
     "marks",
     "left_alone"
   ],
@@ -12,12 +13,21 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 200000,
-      "description": "The report: result, what to change, checked and left alone, then the draft marked up in place."
+      "description": "The report: verdict, what to fix first, before and after, every change marked in the draft, and what was checked and left alone."
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "ready_to_post",
+        "needs_edits",
+        "needs_rewrite"
+      ],
+      "description": "Ready to post (nothing marked), needs edits, or needs a rewrite."
     },
     "marks": {
       "type": "integer",
       "minimum": 0,
-      "description": "Rows in What to change."
+      "description": "Marks in the marked-up draft: struck spans plus paragraph notes."
     },
     "left_alone": {
       "type": "integer",
