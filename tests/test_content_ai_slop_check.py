@@ -103,3 +103,24 @@ def test_prd_example_marks_each_single_empty_tell():
     patterns = [reason.split(":")[0] for _, _, reason in MARK.findall(output["report_markdown"])]
     assert patterns == ["false contrast", "filler transition", "inflated word", "rule of three", "summary ending"]
     assert output["verdict"] == "needs_rewrite"
+
+
+def _normalized(text: str) -> str:
+    text = re.sub(r"\s+([.,;:!?])", r"\1", re.sub(r"[ \t]+", " ", text))
+    return "\n".join(line.strip() for line in text.lower().splitlines()).strip()
+
+
+@pytest.mark.parametrize("path", [p for p in EXAMPLES if json.loads(p.read_text())["marks"]], ids=lambda p: p.stem)
+def test_clean_copy_is_built_from_the_marks(path):
+    output, _ = _load(path)
+    report = output["report_markdown"]
+    marked = _section(report, "Every change, marked in your draft").split("\n---\n\n", 1)[1]
+
+    def apply(mark: re.Match) -> str:
+        fix = mark.group(2)
+        return "" if fix.lower().startswith("cut it") else fix
+
+    expected = NOTE.sub("", MARK.sub(apply, marked))
+    clean = _unquote(_section(report, "Before and after").split("**With the cuts made**")[1])
+    assert _normalized(clean) == _normalized(expected)
+    assert all(struck.strip() != fix.strip() for struck, fix, _ in MARK.findall(marked))
