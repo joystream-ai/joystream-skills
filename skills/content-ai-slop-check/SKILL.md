@@ -12,7 +12,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "2.1.0"
+  version: "2.1.1"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -66,11 +66,11 @@ Use the pattern's name, never its number. Numbers only keep this list stable.
 | # | Name | It is a tell when | Leave it alone when |
 |---|---|---|---|
 | 1 | false contrast | "It's not just X, it's Y", "X wasn't the problem. Y was." and disguised forms, where X is a position nobody in the piece holds. Once is enough. | X is a real position the piece goes on to argue against. |
-| 2 | rule of three | three abstract, interchangeable items ("unlock their full potential, streamline workflows, and boost productivity"). Once is enough. | the three are concrete and distinct ("Monday, Wednesday and Friday"). |
+| 2 | rule of three | three abstract, interchangeable items, whether benefits, verbs or adjectives ("unlock their full potential, streamline workflows, and boost productivity", "fast, intuitive, and scalable"). Once is enough. | the three are concrete and distinct ("Monday, Wednesday and Friday"). |
 | 3 | filler transition | "Moreover", "Furthermore", "It's worth noting that", "Overall", "In summary", "At the end of the day" before a sentence that stands on its own. | it marks a real turn ("That said, the migration finished a day early."). |
 | 4 | inflated word | leverage, unlock, harness, elevate, foster, navigate, delve, dive into, unpack, underscore, testament to, robust, seamless, empower, game-changer, revolutionary, cutting-edge, paradigm shift, landscape, realm, tapestry, journey (as a metaphor). Every use. | the author's `allow` list or voice profile keeps it. |
 | 5 | meta-commentary | "Here's the thing.", "Let that sink in.", "Let's break this down.", "The bottom line is", a question used only as a transition. | it is a real question the next lines answer. |
-| 6 | hedging | a real claim followed at once by a retreat ("of course, your mileage may vary", "it depends on your use case"). The retreat is the tell. | the caveat names a specific case the claim does not cover. |
+| 6 | hedging | a real claim followed at once by a retreat ("of course, your mileage may vary", "it depends on your use case"). The retreat is the tell: strike the whole retreat, not only its opening words. | the caveat names a specific case the claim does not cover. |
 | 7 | repeated openers | three or more paragraphs in a row opening the same way by habit ("This means… This creates… This leads to…"). Mark the run. | two in a row, or a refrain repeated on purpose and building to a turn. |
 | 8 | flat rhythm | every sentence in a paragraph within two or three words of the same length, with no short one to land the point. | the lengths vary. |
 | 9 | fake precision | a number or "nearly every team" with no source, borrowing credibility ("73% of organizations"). | the piece names where the number comes from, or it is the author's own count. |
@@ -98,6 +98,10 @@ Each fix is one of three kinds:
 **Never invent a fact.** No number, name, product feature, audience or result that the
 draft does not state, not even as "for example". When a fix needs one, use `[add: …]`.
 
+Every fix changes something: never a fix that repeats the struck text. When two tells
+touch, or would get the same fix, make them one mark covering both, named after the
+pattern that matters more.
+
 # Verdict
 
 One of three, chosen by judgment, not by counting:
@@ -116,11 +120,17 @@ AI. One line each: the quoted words, then why it matters to a reader, in plain w
 
 # Clean copy
 
-The draft with every **cut** and **swap** applied, and each fix that needs the writer
-replaced by its `[add: …]`. Fix only capitals and punctuation where a cut joins two
-pieces. Keep the paragraph breaks and the draft's Markdown. Text that is not marked is
-copied character for character. This shows the writer what is left of their own; it is
-not a rewrite in your words.
+Build it from the marks and nothing else, going through them in order:
+
+- a **cut** (any fix starting `cut it`, including "cut it, or …") removes the struck text;
+- a **swap** replaces the struck text with the fix;
+- an `[add: …]` fix replaces the struck text with that `[add: …]`;
+- a paragraph note changes nothing.
+
+Every other word stays exactly as written, even a sentence you would rather cut: if it
+should go, it needs a mark. Then fix only capitals and spacing where a cut joins two
+pieces. Keep the paragraph breaks and the draft's Markdown. This shows the writer what is
+left of their own; it is not a rewrite in your words.
 
 # Reference example
 
@@ -146,7 +156,9 @@ Marked up:
 # Marks
 
 **Span-level** (all patterns except 7, 8 and 10): strike the exact text, bold the fix
-after an arrow, then the pattern's name and, when it helps, a few words on why:
+after an arrow, then the pattern's name and, when it helps, a few words on why. When a
+whole sentence goes, strike it with its full stop. Otherwise stop the strike before the
+punctuation that follows, and keep that punctuation after the mark:
 
 ```markdown
 ~~offending text~~ → **fix** *(inflated word)*
@@ -203,6 +215,10 @@ When nothing is marked: the verdict (`**Verdict:** Ready to post. No AI slop fou
 nothing to change.`), then "Checked and left alone" if there is anything in it, then
 `### Your draft` with the draft verbatim, every line quoted.
 
+- **Checked and left alone** lists only what looks like a tell and stays: a contrast, a
+  list of three, a linking word, repeated openers. Not ordinary punctuation, not plain
+  sentences. Give the reason in the writer's terms ("software is what they were selling
+  her"), never the rule's ("X is a real position", "within the range").
 - Leave "Checked and left alone" out when it is empty.
 - With several drafts, one report each, titled `## AI slop check: <draft id or
   platform>`, separated by a blank line.
