@@ -1,0 +1,18 @@
+{
+  "point_of_view": "We build tools that let operations teams run their own automations.\n- Approvals before autonomy: an agent that changes records should ask a person first.",
+  "topics": [
+    "workflow automation"
+  ],
+  "avoid": [
+    "layoffs",
+    "naming competitors"
+  ],
+  "max_angles": 3,
+  "freshness_hours": 48,
+  "now": "2026-10-21T08:00:00Z",
+  "own_urls": [
+    "https://www.example.com/blog/approvals-first"
+  ],
+  "slack_brief": true,
+  "brief_footer": "Next brief tomorrow 8:00 AM"
+}

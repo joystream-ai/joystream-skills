@@ -9,7 +9,9 @@
     "angles",
     "skipped",
     "sheet_values",
-    "report"
+    "report",
+    "left_out",
+    "slack"
   ],
   "additionalProperties": false,
   "properties": {
@@ -25,7 +27,7 @@
     },
     "story_angles": {
       "type": "array",
-      "maxItems": 3,
+      "maxItems": 10,
       "description": "Best first, one per picked angle, in the shape content-social-post-draft reads. Empty when worth_posting is false.",
       "items": {
         "type": "object",
@@ -66,7 +68,7 @@
     },
     "angles": {
       "type": "array",
-      "maxItems": 3,
+      "maxItems": 10,
       "items": {
         "type": "object",
         "required": [
@@ -81,7 +83,13 @@
           "take",
           "hook",
           "outline",
-          "caution"
+          "caution",
+          "outlet",
+          "tldr",
+          "angle_type",
+          "why_it_matters",
+          "our_page",
+          "image_url"
         ],
         "additionalProperties": false,
         "properties": {
@@ -146,6 +154,66 @@
           "caution": {
             "type": "string",
             "maxLength": 200
+          },
+          "outlet": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 80,
+            "description": "The publication, as the source names it or from its web address."
+          },
+          "tldr": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "One plain sentence: what happened."
+          },
+          "angle_type": {
+            "type": "string",
+            "enum": [
+              "contrarian",
+              "unpopular_opinion",
+              "myth_vs_reality",
+              "lesson_from_building",
+              "prediction",
+              "agree_and_extend"
+            ]
+          },
+          "why_it_matters": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300,
+            "description": "One sentence on how the story connects to the author's beliefs or own writing."
+          },
+          "our_page": {
+            "type": [
+              "object",
+              "null"
+            ],
+            "required": [
+              "title",
+              "url"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "url": {
+                "type": "string",
+                "pattern": "^https?://"
+              }
+            },
+            "description": "The author's own page the take builds on, from own_urls; null when the belief comes only from point_of_view."
+          },
+          "image_url": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "pattern": "^https://",
+            "description": "A photo for the story, copied from that search result's own images; null when it has none."
           }
         }
       }
@@ -194,7 +262,7 @@
         "null"
       ],
       "minItems": 1,
-      "maxItems": 3,
+      "maxItems": 10,
       "items": {
         "type": "array",
         "minItems": 5,
@@ -392,6 +460,188 @@
             "generated_at": {
               "type": "string",
               "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    },
+    "left_out": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "headline",
+          "reason"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "headline": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "reason": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 120
+          }
+        }
+      },
+      "description": "Up to five dropped stories a reader would recognise (avoided, already covered, stale), each with a short reason. The counts stay in skipped."
+    },
+    "slack": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "The Slack brief, present when slack_brief is true, else null. Bind text, blocks and attachments to the post step.",
+      "required": [
+        "text",
+        "blocks",
+        "attachments"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000,
+          "description": "Notification fallback, Slack mrkdwn (escaped)."
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "header",
+                  "section",
+                  "context",
+                  "divider"
+                ]
+              },
+              "text": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "text"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "plain_text",
+                      "mrkdwn"
+                    ]
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 3000
+                  },
+                  "emoji": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "elements": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "text"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "plain_text",
+                        "mrkdwn"
+                      ]
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 3000
+                    },
+                    "emoji": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "maxItems": 11,
+          "description": "One card per story, then one closing card. Empty when no story was picked.",
+          "items": {
+            "type": "object",
+            "required": [
+              "fallback",
+              "color",
+              "text",
+              "mrkdwn_in"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "fallback": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 250
+              },
+              "title_link": {
+                "type": "string",
+                "pattern": "^https?://"
+              },
+              "text": {
+                "type": "string",
+                "maxLength": 3000
+              },
+              "thumb_url": {
+                "type": "string",
+                "pattern": "^https://"
+              },
+              "footer": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "mrkdwn_in": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "text"
+                  ]
+                }
+              }
             }
           }
         }
