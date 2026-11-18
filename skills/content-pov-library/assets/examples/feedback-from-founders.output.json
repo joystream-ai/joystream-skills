@@ -1,99 +1,35 @@
 {
-  "markdown": "# Acme's point of view\n_25 Nov 2026 · 2 stances · 4 pages read · 1 question for the founders_\n\n> **Our worldview.** Agents last when someone owns them and when they earn trust run by run. We judge an agent on day thirty, not in the demo, and we widen what it may do only as its record of reviewed runs grows.\n\n## At a glance\n\n| # | Stance | Pillar | Strength |\n|---|---|---|---|\n| 1 | **Demos die without an owner** | Ownership | 🟢 Strong |\n| 2 | **Autonomy is earned, not switched on** | Governance | 🟢 Strong |\n\n---\n\n## 1. Demos die without an owner\n\n**Ownership** · 🟢 Strong · 2 sources · Angles: Contrarian\n\n> **Our stance.** Most agent demos die because nobody owns them after launch. An agent needs a named owner to reach day thirty.\n\nThe usual story is that demos fail because the model is not good enough yet. What we see is different: the agents that last are the ones a named person is accountable for after launch. Without an owner, nobody notices when a run fails, nobody updates the agent when the work changes, and the team quietly stops using it. Ownership, not model quality, decides whether an agent reaches day thirty.\n\n| Most people believe | We believe |\n|---|---|\n| Demos fail because the models are not good enough yet. | Demos fail because nobody owns the agent once the launch is over. |\n\n### Why we believe it\n\n1. **The agents that survive have owners**\n   > \"The agents that survive are the ones with a named owner after launch.\" — [Who owns the agent](https://acme.example.com/blog/who-owns-the-agent)\n2. **Working once is not the bar**\n   > \"A demo that works once is not an agent; an agent is the thing that still works on day thirty.\" — [Why demos die](https://acme.example.com/blog/why-demos-die)\n\n### Where we concede\n\nOur writing does not say where this stops applying.\n\n### Why a buyer should care\n\nA buyer comparing agent vendors should ask what happens in week four, not what happens in the demo.\n\n### Use it when\n\n- A company launches an agent with no word on who runs it afterwards.\n- A survey reports agent projects being abandoned.\n\n### Our words\n\n| Say | Never say |\n|---|---|\n| \"a named owner after launch\" | That model quality does not matter. |\n| \"still works on day thirty\" |  |\n\n### Open questions\n\n- [ ] Where does this stop applying? For example, agents the model cannot do well.\n- [ ] Which customer's agent survived because someone owned it?\n\n---\n\n## 2. Autonomy is earned, not switched on\n\n**Governance** · 🟢 Strong · 2 sources · Angles: Contrarian · Lesson from building\n\n> **Our stance.** Agents earn the right to act on their own by running under review first. Control comes before autonomy, not after.\n\nThe usual approach is to decide up front how much an agent may do, then add checks when something breaks. We do it the other way round. Every change an agent makes goes through review before it reaches production, and the record of reviewed runs is what tells a team it can trust the agent with more. Autonomy is the result of that record, not a setting someone picks on day one.\n\n| Most people believe | We believe |\n|---|---|\n| Give the agent full autonomy now and add guardrails when problems show up. | Start under review, and widen what the agent may do as its record of reviewed runs grows. |\n\n### Why we believe it\n\n1. **Autonomy comes from a track record**\n   > \"Autonomy is something an agent earns after it has run under review, not a setting you switch on.\" — [Approvals before autonomy](https://acme.example.com/blog/approvals-before-autonomy)\n2. **Review happens before production, every time**\n   > \"Every agent change goes through review before it reaches production.\" — [Platform](https://acme.example.com/platform)\n\n### Proof\n\n- **Reviewers see each change before it lands.** \"Reviewers see a short summary of each change and confirm it before it runs.\" — [Platform](https://acme.example.com/platform)\n\n### Where we concede\n\nOur writing does not say where this stops applying.\n\n### Why a buyer should care\n\nAn operations lead gets an agent they can expand step by step, with the reviewed runs to show why each step was safe.\n\n### Use it when\n\n- A vendor announces fully autonomous agents.\n- A company reports an agent that changed something nobody reviewed.\n\n### Our words\n\n| Say | Never say |\n|---|---|\n| \"earns after it has run under review\" | That a person must approve every action forever. |\n| \"not a setting you switch on\" | That review makes agents slow. |\n\n### Open questions\n\n- [ ] Where does this stop applying? For example, read-only agents.\n- [ ] Which customer widened an agent's scope after a run of reviews?\n\n---\n\n## Questions for the founders\n\n1. **Autonomy is earned, not switched on:** Our pages do not show we are the only platform that reviews every change. Can we back that claim, and with what?\n\n## How this was made\n\n- **Read:** 4 pages on acme.example.com.\n- **Feedback applied:** Stance 2: make it about ownership: demos die because nobody owns them after launch. → applied\n- **Feedback applied:** Stance 1: add that we are the only platform that does this. → not supported by our writing, kept as a question\n- **Left out:** 2 candidate stances (1 took no side, 1 duplicates).\n- Every quote is copied word for word from the linked page. Approve or correct the stances, then pass corrections back as `feedback` on the next run.\n",
+  "markdown": "# Acme's point of view\n_25 Nov 2026 · 2 stances · 4 pages read · 1 question for the founders_\n\n> **Our worldview.** Agents last when someone owns them and when they earn trust run by run. We judge an agent on day thirty, not in the demo, and we widen what it may do only as its record of reviewed runs grows.\n\n## At a glance\n\n| # | Stance | Pillar | Strength |\n|---|---|---|---|\n| 1 | **Demos die without an owner** | Ownership | 🟢 Strong |\n| 2 | **Autonomy is earned, not switched on** | Governance | 🟢 Strong |\n\n## Questions for the founders\n\n1. **Autonomy is earned, not switched on:** Our pages do not show we are the only platform that reviews every change. Can we back that claim, and with what?\n\n---\n\n## 1. Demos die without an owner\n\n**Ownership** · 🟢 Strong · 2 sources · Angles: Contrarian\n\n> **Our stance.** Most agent demos die because nobody owns them after launch. An agent needs a named owner to reach day thirty.\n\nThe usual story is that demos fail because the model is not good enough yet. What we see is different: the agents that last are the ones a named person is accountable for after launch. Without an owner, nobody notices a failed run and nobody updates the agent when the work changes.\n\n| Most people believe | We believe |\n|---|---|\n| Demos fail because the models are not good enough yet. | Demos fail because nobody owns the agent once the launch is over. |\n\n### Why we believe it\n\n1. **The agents that survive have owners**\n   > \"The agents that survive are the ones with a named owner after launch.\" [Who owns the agent](https://acme.example.com/blog/who-owns-the-agent)\n2. **Working once is not the bar**\n   > \"A demo that works once is not an agent; an agent is the thing that still works on day thirty.\" [Why demos die](https://acme.example.com/blog/why-demos-die)\n\n### Where we concede\n\nOur writing does not say where this stops applying.\n\n### Why a buyer should care\n\nA buyer comparing agent vendors should ask what happens in week four, not what happens in the demo.\n\n### Use it when\n\n- A company launches an agent with no word on who runs it afterwards.\n- A survey reports agent projects being abandoned.\n\n### Our words\n\n| Say | Never say |\n|---|---|\n| \"a named owner after launch\" | That model quality does not matter. |\n\n### Open questions\n\n- [ ] Where does this stop applying?\n- [ ] Which customer's agent survived because someone owned it?\n\n---\n\n## 2. Autonomy is earned, not switched on\n\n**Governance** · 🟢 Strong · 2 sources · Angles: Contrarian · Lesson from building\n\n> **Our stance.** Agents earn the right to act on their own by running under review first. Control comes before autonomy, not after.\n\nThe usual approach is to decide up front how much an agent may do, then add checks when something breaks. We do it the other way round. Every change an agent makes is reviewed before it reaches production, and that record of reviewed runs is what tells a team it can trust the agent with more.\n\n| Most people believe | We believe |\n|---|---|\n| Give the agent full autonomy now and add guardrails when problems show up. | Start under review, and widen what the agent may do as its record of reviewed runs grows. |\n\n### Why we believe it\n\n1. **Autonomy comes from a track record**\n   > \"Autonomy is something an agent earns after it has run under review, not a setting you switch on.\" [Approvals before autonomy](https://acme.example.com/blog/approvals-before-autonomy)\n2. **Review happens before production**\n   > \"Every agent change goes through review before it reaches production.\" [Platform](https://acme.example.com/platform)\n\n### Where we concede\n\nOur writing does not say where this stops applying.\n\n### Why a buyer should care\n\nAn operations lead gets an agent they can expand step by step, with the reviewed runs to show why each step was safe.\n\n### Use it when\n\n- A vendor announces fully autonomous agents.\n- A company reports an agent that changed something nobody reviewed.\n\n### Our words\n\n| Say | Never say |\n|---|---|\n| \"not a setting you switch on\" | \"approval queue\" (retired 10 Nov; reviews now happen in the change log) |\n|  | That a person must approve every action forever. |\n\n### Open questions\n\n- [ ] Where does this stop applying? For example, read-only agents.\n\n---\n\n## How this was made\n\n- **Read:** 4 pages on acme.example.com.\n- **Updates respected:** \"approval queue\" → reviews in the change log (10 Nov update)\n- **Feedback applied:** Stance 2: make it about ownership: demos die because nobody owns them after launch. → applied\n- **Feedback applied:** Stance 1: add that we are the only platform that does this. → not supported by our writing, asked as a question\n- **Left out:** 2 candidate stances (1 took no side, 1 duplicates).\n- Every quote is copied word for word from the linked page. Approve or correct the stances, then pass corrections back as `feedback` on the next run.\n",
   "worldview": "Agents last when someone owns them and when they earn trust run by run. We judge an agent on day thirty, not in the demo, and we widen what it may do only as its record of reviewed runs grows.",
   "stances": [
     {
       "n": 1,
       "headline": "Demos die without an owner",
+      "stance": "Most agent demos die because nobody owns them after launch. An agent needs a named owner to reach day thirty.",
       "pillar": "Ownership",
       "strength": "strong",
-      "stance": "Most agent demos die because nobody owns them after launch. An agent needs a named owner to reach day thirty.",
-      "argument": "The usual story is that demos fail because the model is not good enough yet. What we see is different: the agents that last are the ones a named person is accountable for after launch. Without an owner, nobody notices when a run fails, nobody updates the agent when the work changes, and the team quietly stops using it. Ownership, not model quality, decides whether an agent reaches day thirty.",
-      "common_belief": "Demos fail because the models are not good enough yet.",
-      "we_believe": "Demos fail because nobody owns the agent once the launch is over.",
-      "reasons": [
-        {
-          "point": "The agents that survive have owners",
-          "quote": "The agents that survive are the ones with a named owner after launch.",
-          "source_id": "S3"
-        },
-        {
-          "point": "Working once is not the bar",
-          "quote": "A demo that works once is not an agent; an agent is the thing that still works on day thirty.",
-          "source_id": "S4"
-        }
-      ],
-      "proof": [],
-      "concede": "Our writing does not say where this stops applying.",
-      "so_what": "A buyer comparing agent vendors should ask what happens in week four, not what happens in the demo.",
       "use_when": [
         "A company launches an agent with no word on who runs it afterwards.",
         "A survey reports agent projects being abandoned."
       ],
-      "angles": [
-        "contrarian"
-      ],
-      "say": [
-        "a named owner after launch",
-        "still works on day thirty"
-      ],
-      "never_say": [
-        "That model quality does not matter."
-      ],
-      "gaps": [
-        "Where does this stop applying? For example, agents the model cannot do well.",
-        "Which customer's agent survived because someone owned it?"
+      "source_ids": [
+        "S3",
+        "S4"
       ]
     },
     {
       "n": 2,
       "headline": "Autonomy is earned, not switched on",
+      "stance": "Agents earn the right to act on their own by running under review first. Control comes before autonomy, not after.",
       "pillar": "Governance",
       "strength": "strong",
-      "stance": "Agents earn the right to act on their own by running under review first. Control comes before autonomy, not after.",
-      "argument": "The usual approach is to decide up front how much an agent may do, then add checks when something breaks. We do it the other way round. Every change an agent makes goes through review before it reaches production, and the record of reviewed runs is what tells a team it can trust the agent with more. Autonomy is the result of that record, not a setting someone picks on day one.",
-      "common_belief": "Give the agent full autonomy now and add guardrails when problems show up.",
-      "we_believe": "Start under review, and widen what the agent may do as its record of reviewed runs grows.",
-      "reasons": [
-        {
-          "point": "Autonomy comes from a track record",
-          "quote": "Autonomy is something an agent earns after it has run under review, not a setting you switch on.",
-          "source_id": "S1"
-        },
-        {
-          "point": "Review happens before production, every time",
-          "quote": "Every agent change goes through review before it reaches production.",
-          "source_id": "S2"
-        }
-      ],
-      "proof": [
-        {
-          "point": "Reviewers see each change before it lands.",
-          "quote": "Reviewers see a short summary of each change and confirm it before it runs.",
-          "source_id": "S2"
-        }
-      ],
-      "concede": "Our writing does not say where this stops applying.",
-      "so_what": "An operations lead gets an agent they can expand step by step, with the reviewed runs to show why each step was safe.",
       "use_when": [
         "A vendor announces fully autonomous agents.",
         "A company reports an agent that changed something nobody reviewed."
       ],
-      "angles": [
-        "contrarian",
-        "lesson_from_building"
-      ],
-      "say": [
-        "earns after it has run under review",
-        "not a setting you switch on"
-      ],
-      "never_say": [
-        "That a person must approve every action forever.",
-        "That review makes agents slow."
-      ],
-      "gaps": [
-        "Where does this stop applying? For example, read-only agents.",
-        "Which customer widened an agent's scope after a run of reviews?"
+      "source_ids": [
+        "S1",
+        "S2"
       ]
     }
   ],
@@ -113,6 +49,7 @@
       "outcome": "not_supported"
     }
   ],
+  "pages_read": 4,
   "skipped": {
     "not_ours": 0,
     "not_a_side": 1,
@@ -123,7 +60,7 @@
   },
   "report": {
     "title": "Point of view: Acme",
-    "summary": "2 stances; the ownership stance rewritten from feedback, and an unsupported claim turned into a question.",
+    "summary": "2 stances from 4 pages; the ownership stance rewritten from feedback, and an unsupported claim asked as a question.",
     "severity": "info",
     "sections": [
       {
@@ -166,12 +103,6 @@
         "provider": "tavily"
       },
       {
-        "id": "S2",
-        "url": "https://acme.example.com/platform",
-        "title": "Platform",
-        "provider": "tavily"
-      },
-      {
         "id": "S3",
         "url": "https://acme.example.com/blog/who-owns-the-agent",
         "title": "Who owns the agent",
@@ -182,12 +113,18 @@
         "url": "https://acme.example.com/blog/why-demos-die",
         "title": "Why demos die",
         "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://acme.example.com/platform",
+        "title": "Platform",
+        "provider": "tavily"
       }
     ],
     "unknowns": [],
     "meta": {
       "skill": "content-pov-library",
-      "skill_version": "1.0.0",
+      "skill_version": "1.0.1",
       "generated_at": "2026-11-25T16:00:00Z"
     }
   }
