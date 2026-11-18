@@ -8,6 +8,7 @@
     "stances",
     "questions",
     "feedback_applied",
+    "pages_read",
     "skipped",
     "report"
   ],
@@ -16,18 +17,18 @@
       "type": "string",
       "minLength": 1,
       "maxLength": 30000,
-      "description": "The point-of-view document, GitHub-flavored Markdown: the run's readable result."
+      "description": "The point-of-view document, GitHub-flavored Markdown, at most 24,000 characters by the skill's own rule: the run's readable result."
     },
     "worldview": {
       "type": "string",
       "minLength": 0,
-      "maxLength": 700,
+      "maxLength": 500,
       "description": "The paragraph the stances add up to; empty when there are no stances."
     },
     "stances": {
       "type": "array",
       "minItems": 0,
-      "maxItems": 10,
+      "maxItems": 8,
       "items": {
         "type": "object",
         "additionalProperties": false,
@@ -37,34 +38,24 @@
           "stance",
           "pillar",
           "strength",
-          "argument",
-          "common_belief",
-          "we_believe",
-          "reasons",
-          "proof",
-          "concede",
-          "so_what",
           "use_when",
-          "angles",
-          "say",
-          "never_say",
-          "gaps"
+          "source_ids"
         ],
         "properties": {
           "n": {
             "type": "integer",
             "minimum": 1,
-            "maximum": 10
+            "maximum": 8
           },
           "headline": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 80
+            "maxLength": 60
           },
           "stance": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 300
+            "maxLength": 250
           },
           "pillar": {
             "type": "string",
@@ -78,152 +69,28 @@
               "emerging"
             ]
           },
-          "argument": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 900
-          },
-          "common_belief": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 300
-          },
-          "we_believe": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 300
-          },
-          "reasons": {
-            "type": "array",
-            "minItems": 2,
-            "maxItems": 4,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "point",
-                "quote",
-                "source_id"
-              ],
-              "properties": {
-                "point": {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 140
-                },
-                "quote": {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 300,
-                  "description": "Copied character for character from the company's own page or the notes."
-                },
-                "source_id": {
-                  "type": "string",
-                  "pattern": "^S[0-9]+$"
-                }
-              }
-            }
-          },
-          "proof": {
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 3,
-            "items": {
-              "type": "object",
-              "additionalProperties": false,
-              "required": [
-                "point",
-                "quote",
-                "source_id"
-              ],
-              "properties": {
-                "point": {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 140
-                },
-                "quote": {
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 300,
-                  "description": "Copied character for character from the company's own page or the notes."
-                },
-                "source_id": {
-                  "type": "string",
-                  "pattern": "^S[0-9]+$"
-                }
-              }
-            }
-          },
-          "concede": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 400
-          },
-          "so_what": {
-            "type": "string",
-            "minLength": 1,
-            "maxLength": 400
-          },
           "use_when": {
             "type": "array",
             "minItems": 1,
-            "maxItems": 4,
+            "maxItems": 3,
             "items": {
               "type": "string",
               "minLength": 1,
-              "maxLength": 200
+              "maxLength": 150
             }
           },
-          "angles": {
+          "source_ids": {
             "type": "array",
             "minItems": 1,
-            "maxItems": 3,
+            "maxItems": 6,
             "items": {
               "type": "string",
-              "enum": [
-                "contrarian",
-                "myth_vs_reality",
-                "prediction",
-                "agree_and_extend",
-                "lesson_from_building",
-                "unpopular_opinion"
-              ]
-            }
-          },
-          "say": {
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 5,
-            "items": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 80
-            }
-          },
-          "never_say": {
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 5,
-            "items": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 160
-            }
-          },
-          "gaps": {
-            "type": "array",
-            "minItems": 0,
-            "maxItems": 3,
-            "items": {
-              "type": "string",
-              "minLength": 1,
-              "maxLength": 200
+              "pattern": "^S[0-9]+$"
             }
           }
         }
       },
-      "description": "The stances, ranked, for agents that use them."
+      "description": "A short index of the stances, ranked, for agents that use them. The full detail is only in markdown."
     },
     "questions": {
       "type": "array",
@@ -249,7 +116,7 @@
           }
         }
       },
-      "description": "Questions for the founders where the writing takes no side. Never answered by the skill."
+      "description": "Questions for the founders: focus topics with no stance, retired wording still on a page, and unsupported feedback. Never answered by the skill."
     },
     "feedback_applied": {
       "type": "array",
@@ -279,6 +146,11 @@
         }
       },
       "description": "What happened to each feedback request; empty without feedback."
+    },
+    "pages_read": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "The company's distinct pages read by every step."
     },
     "skipped": {
       "type": "object",
