@@ -16,8 +16,8 @@
     "markdown": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 30000,
-      "description": "The point-of-view document, GitHub-flavored Markdown, at most 24,000 characters by the skill's own rule: the run's readable result."
+      "maxLength": 60000,
+      "description": "The point-of-view document, GitHub-flavored Markdown, every stance in full and ending with How this was made: the run's readable result."
     },
     "worldview": {
       "type": "string",
