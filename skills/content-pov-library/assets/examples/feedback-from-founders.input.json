@@ -1,0 +1,12 @@
+{
+  "company": "Acme",
+  "own_domains": [
+    "acme.example.com"
+  ],
+  "feedback": "Stance 2 is too soft: we'd say demos die because nobody owns them after launch. Make it about ownership.\nStance 1: add that we are the only platform that does this.",
+  "focus_topics": [
+    "AI agent governance"
+  ],
+  "max_stances": 6,
+  "now": "2026-11-25T16:00:00Z"
+}

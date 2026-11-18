@@ -1,0 +1,13 @@
+{
+  "company": "Acme",
+  "own_domains": [
+    "acme.example.com"
+  ],
+  "notes": "Founder call, 12 Nov.\nWe keep seeing the same thing with customers: most agent demos never survive their first week in a real team.\nThe ones that last have a person who owns them after launch.",
+  "focus_topics": [
+    "AI agent governance",
+    "agent pricing"
+  ],
+  "max_stances": 6,
+  "now": "2026-11-18T16:00:00Z"
+}
