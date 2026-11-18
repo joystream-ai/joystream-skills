@@ -1,0 +1,266 @@
+{
+  "reason": "First run: 2 stances found in our pages and founder notes, both with two sources. Our writing takes no side on agent pricing, so that is a question.",
+  "proposals": [
+    {
+      "pov_id": "pov-001",
+      "kind": "new",
+      "revises": null,
+      "stance": "Agents earn autonomy by running under review first; autonomy is not a setting you switch on.",
+      "why_we_believe_it": "Our platform sends every agent change through review before production, and our approvals post argues that trust comes from a record of reviewed runs. We have seen teams widen an agent's scope only after that record exists.",
+      "evidence": [
+        {
+          "quote": "Autonomy is something an agent earns after it has run under review, not a setting you switch on.",
+          "source_id": "S1"
+        },
+        {
+          "quote": "Every agent change goes through review before it reaches production.",
+          "source_id": "S2"
+        }
+      ],
+      "strength": "strong",
+      "applies_when": "A vendor or large company announces fully autonomous agents, agent guardrails or an agent governance framework.",
+      "counter_position": "Ship autonomy now and add guardrails as problems appear. We concede it for throwaway internal prototypes with no customer data.",
+      "never_say": "That agents should never act without a person: we argue for earned autonomy, not permanent approval.",
+      "answers_note": ""
+    },
+    {
+      "pov_id": "pov-002",
+      "kind": "new",
+      "revises": null,
+      "stance": "Most agent demos never reach production; the real test is whether it still works on day thirty.",
+      "why_we_believe_it": "Our post on why demos die and the founders' customer calls both describe agents that impress once and are dropped within a week. We build for the day-thirty run, not the demo.",
+      "evidence": [
+        {
+          "quote": "A demo that works once is not an agent; an agent is the thing that still works on day thirty.",
+          "source_id": "S3"
+        },
+        {
+          "quote": "most agent demos never survive their first week in a real team.",
+          "source_id": "S4"
+        }
+      ],
+      "strength": "strong",
+      "applies_when": "A company shows an impressive agent demo, launch video or benchmark result without production use.",
+      "counter_position": "Demos are how new categories start and buyers learn what is possible. True, but a demo is a promise, not a product.",
+      "never_say": "A failure rate or number we have not measured.",
+      "answers_note": ""
+    }
+  ],
+  "questions": [
+    {
+      "topic": "agent pricing",
+      "question": "Our writing does not say how agents should be priced: per run, per seat or per outcome. Which do we believe?"
+    }
+  ],
+  "flags": [],
+  "library_counts": {
+    "approved": 0,
+    "proposed": 0,
+    "rejected": 0,
+    "retired": 0
+  },
+  "skipped": {
+    "not_ours": 1,
+    "not_a_side": 2,
+    "no_quote": 0,
+    "generic": 1,
+    "duplicate": 0,
+    "rejected_before": 0,
+    "over_budget": 0
+  },
+  "sheet_values": [
+    [
+      "pov_id",
+      "stance",
+      "why_we_believe_it",
+      "evidence_quote",
+      "sources",
+      "strength",
+      "applies_when",
+      "counter_position",
+      "never_say",
+      "status",
+      "reviewer_notes",
+      "updated_at"
+    ],
+    [
+      "pov-001",
+      "Agents earn autonomy by running under review first; autonomy is not a setting you switch on.",
+      "Our platform sends every agent change through review before production, and our approvals post argues that trust comes from a record of reviewed runs. We have seen teams widen an agent's scope only after that record exists.",
+      "\"Autonomy is something an agent earns after it has run under review, not a setting you switch on.\" / \"Every agent change goes through review before it reaches production.\"",
+      "https://acme.example.com/blog/approvals-before-autonomy , https://acme.example.com/platform",
+      "strong",
+      "A vendor or large company announces fully autonomous agents, agent guardrails or an agent governance framework.",
+      "Ship autonomy now and add guardrails as problems appear. We concede it for throwaway internal prototypes with no customer data.",
+      "That agents should never act without a person: we argue for earned autonomy, not permanent approval.",
+      "proposed",
+      "",
+      "2026-11-18T16:00:00Z"
+    ],
+    [
+      "pov-002",
+      "Most agent demos never reach production; the real test is whether it still works on day thirty.",
+      "Our post on why demos die and the founders' customer calls both describe agents that impress once and are dropped within a week. We build for the day-thirty run, not the demo.",
+      "\"A demo that works once is not an agent; an agent is the thing that still works on day thirty.\" / \"most agent demos never survive their first week in a real team.\"",
+      "https://acme.example.com/blog/why-demos-die , input:notes",
+      "strong",
+      "A company shows an impressive agent demo, launch video or benchmark result without production use.",
+      "Demos are how new categories start and buyers learn what is possible. True, but a demo is a promise, not a product.",
+      "A failure rate or number we have not measured.",
+      "proposed",
+      "",
+      "2026-11-18T16:00:00Z"
+    ]
+  ],
+  "report": {
+    "title": "POV library: 2026-11-18",
+    "summary": "First run: 2 stances found in our pages and founder notes, both with two sources. Our writing takes no side on agent pricing, so that is a question.",
+    "severity": "info",
+    "sections": [
+      {
+        "heading": "Proposed stances",
+        "items": [
+          {
+            "text": "pov-001: Agents earn autonomy by running under review first; autonomy is not a setting you switch on.",
+            "citations": [
+              "S1",
+              "S2"
+            ]
+          },
+          {
+            "text": "pov-002: Most agent demos never reach production; the real test is whether it still works on day thirty.",
+            "citations": [
+              "S3",
+              "S4"
+            ]
+          }
+        ]
+      },
+      {
+        "heading": "Questions for the founders",
+        "items": [
+          {
+            "text": "Our writing does not say how agents should be priced: per run, per seat or per outcome. Which do we believe?",
+            "citations": [],
+            "label": "agent pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Dropped",
+        "items": [
+          {
+            "text": "1 page not on our domains.",
+            "citations": []
+          },
+          {
+            "text": "2 statements that take no side.",
+            "citations": []
+          },
+          {
+            "text": "1 generic industry opinion.",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://acme.example.com/blog/approvals-before-autonomy",
+        "title": "Approvals before autonomy",
+        "provider": "tavily"
+      },
+      {
+        "id": "S2",
+        "url": "https://acme.example.com/platform",
+        "title": "Platform",
+        "provider": "tavily"
+      },
+      {
+        "id": "S3",
+        "url": "https://acme.example.com/blog/why-demos-die",
+        "title": "Why demos die",
+        "provider": "tavily"
+      },
+      {
+        "id": "S4",
+        "url": "input:notes",
+        "title": "notes",
+        "provider": "input"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "content-pov-library",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-11-18T16:00:00Z"
+    }
+  },
+  "slack": {
+    "text": "POV Review · 18 Nov: 2 stances to review, 1 question",
+    "blocks": [
+      {
+        "type": "header",
+        "text": {
+          "type": "plain_text",
+          "text": "POV Review · Wednesday, 18 Nov 2026",
+          "emoji": true
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "2 new · 0 revised from your notes · 1 question · library: 0 approved, 0 waiting for review"
+        }
+      },
+      {
+        "type": "section",
+        "text": {
+          "type": "mrkdwn",
+          "text": "*How this works*\n• Every stance quotes our own site, blog or notes\n• Approve, edit or reject each one in the <https://docs.example.com/sheets/acme-pov-library|POV library> (status column)\n• Write a note in reviewer_notes and the next run revises it\n• Only approved stances reach the news and video agents\n• Card colors: blue New · purple Revised · yellow Questions · red Needs a look"
+        }
+      }
+    ],
+    "attachments": [
+      {
+        "color": "#1D9BD1",
+        "fallback": "pov-001 · Agents earn autonomy by running under review first; autonomy is not a setting you switch on.",
+        "title": "pov-001 · Agents earn autonomy by running under review first; autonomy is not a setting you switch on.",
+        "title_link": "https://docs.example.com/sheets/acme-pov-library",
+        "mrkdwn_in": [
+          "text"
+        ],
+        "text": "_Strong · 2 sources_\n\n*Why we believe it*\nOur platform sends every agent change through review before production, and our approvals post argues that trust comes from a record of reviewed runs. We have seen teams widen an agent's scope only after that record exists.\n\n*Evidence*\n> \"Autonomy is something an agent earns after it has run under review, not a setting you switch on.\" <https://acme.example.com/blog/approvals-before-autonomy|Approvals before autonomy>\n> \"Every agent change goes through review before it reaches production.\" <https://acme.example.com/platform|Platform>\n\n*Use it when*\nA vendor or large company announces fully autonomous agents, agent guardrails or an agent governance framework.\n\n*The other side*\nShip autonomy now and add guardrails as problems appear. We concede it for throwaway internal prototypes with no customer data."
+      },
+      {
+        "color": "#1D9BD1",
+        "fallback": "pov-002 · Most agent demos never reach production; the real test is whether it still works on day thirty.",
+        "title": "pov-002 · Most agent demos never reach production; the real test is whether it still works on day thirty.",
+        "title_link": "https://docs.example.com/sheets/acme-pov-library",
+        "mrkdwn_in": [
+          "text"
+        ],
+        "text": "_Strong · 2 sources_\n\n*Why we believe it*\nOur post on why demos die and the founders' customer calls both describe agents that impress once and are dropped within a week. We build for the day-thirty run, not the demo.\n\n*Evidence*\n> \"A demo that works once is not an agent; an agent is the thing that still works on day thirty.\" <https://acme.example.com/blog/why-demos-die|Why demos die>\n> \"most agent demos never survive their first week in a real team.\" — founder notes\n\n*Use it when*\nA company shows an impressive agent demo, launch video or benchmark result without production use.\n\n*The other side*\nDemos are how new categories start and buyers learn what is possible. True, but a demo is a promise, not a product."
+      },
+      {
+        "color": "#ECB22E",
+        "fallback": "Questions for you",
+        "mrkdwn_in": [
+          "text"
+        ],
+        "text": "*Questions for you*\n• *agent pricing:* Our writing does not say how agents should be priced: per run, per seat or per outcome. Which do we believe?"
+      },
+      {
+        "color": "#DDDDDD",
+        "fallback": "Run details",
+        "mrkdwn_in": [
+          "text"
+        ],
+        "text": "4 pages read · 4 candidate stances dropped (1 not ours, 2 not a side, 1 generic)",
+        "footer": "Next review Monday 8:00 AM PT"
+      }
+    ]
+  }
+}

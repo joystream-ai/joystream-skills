@@ -53,10 +53,11 @@
     },
     {
       "name": "content-operations",
-      "description": "Around the drafts: pick timely news where the author has a point of view, plan next week's content from performance, market and customer input, record what an approved post published, and review what worked over time. Judgments only; nothing is posted.",
+      "description": "Around the drafts: keep a reviewed library of the company's point of view, pick timely news where the author has a point of view, plan next week's content from performance, market and customer input, record what an approved post published, and review what worked over time. Judgments only; nothing is posted.",
       "source": "./",
       "skills": [
         "./skills/content-news-angles",
+        "./skills/content-pov-library",
         "./skills/content-editorial-plan",
         "./skills/content-publish-receipt",
         "./skills/content-performance-review"

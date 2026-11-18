@@ -1,0 +1,11 @@
+{
+  "company": "Acme",
+  "own_domains": [
+    "acme.example.com"
+  ],
+  "focus_topics": [
+    "AI agent governance"
+  ],
+  "max_new": 6,
+  "now": "2026-11-25T16:00:00Z"
+}

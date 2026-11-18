@@ -1,0 +1,16 @@
+{
+  "company": "Acme",
+  "own_domains": [
+    "acme.example.com"
+  ],
+  "notes": "Founder call, 12 Nov.\nWe keep seeing the same thing with customers: most agent demos never survive their first week in a real team.\nOn governance, our line is simple. Review comes first and autonomy comes later.",
+  "focus_topics": [
+    "AI agent governance",
+    "agent pricing"
+  ],
+  "max_new": 6,
+  "now": "2026-11-18T16:00:00Z",
+  "slack_brief": true,
+  "library_link": "https://docs.example.com/sheets/acme-pov-library",
+  "brief_footer": "Next review Monday 8:00 AM PT"
+}

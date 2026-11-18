@@ -1,0 +1,625 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "reason",
+    "proposals",
+    "questions",
+    "flags",
+    "library_counts",
+    "skipped",
+    "sheet_values",
+    "report",
+    "slack"
+  ],
+  "properties": {
+    "reason": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 300
+    },
+    "proposals": {
+      "type": "array",
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pov_id",
+          "kind",
+          "revises",
+          "stance",
+          "why_we_believe_it",
+          "evidence",
+          "strength",
+          "applies_when",
+          "counter_position",
+          "never_say",
+          "answers_note"
+        ],
+        "properties": {
+          "pov_id": {
+            "type": "string",
+            "pattern": "^pov-[0-9]{3}(-r[0-9]+)?$"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "new",
+              "revision"
+            ]
+          },
+          "revises": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^pov-[0-9]{3}(-r[0-9]+)?$"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "description": "The pov_id this revision revises; null for a new stance."
+          },
+          "stance": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 160
+          },
+          "why_we_believe_it": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 400
+          },
+          "evidence": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "quote",
+                "source_id"
+              ],
+              "properties": {
+                "quote": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300,
+                  "description": "Copied character for character from the company's own page or the notes."
+                },
+                "source_id": {
+                  "type": "string",
+                  "pattern": "^S[0-9]+$"
+                }
+              }
+            }
+          },
+          "strength": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "emerging"
+            ]
+          },
+          "applies_when": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "counter_position": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 250
+          },
+          "never_say": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 200
+          },
+          "answers_note": {
+            "type": "string",
+            "minLength": 0,
+            "maxLength": 1000,
+            "description": "The reviewer note a revision answers, copied; empty for a new stance."
+          }
+        }
+      },
+      "description": "Stances for a person to review, ranked; revisions first."
+    },
+    "questions": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "topic",
+          "question"
+        ],
+        "properties": {
+          "topic": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          },
+          "question": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200
+          }
+        }
+      },
+      "description": "Questions for the founders where the writing holds no stance. Never answered by the skill."
+    },
+    "flags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "pov_id",
+          "issue",
+          "url"
+        ],
+        "properties": {
+          "pov_id": {
+            "type": "string",
+            "pattern": "^pov-[0-9]{3}(-r[0-9]+)?$"
+          },
+          "issue": {
+            "type": "string",
+            "enum": [
+              "quote_not_found",
+              "source_unread"
+            ]
+          },
+          "url": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "description": "Approved stances whose quote could not be found on its page this run."
+    },
+    "library_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "approved",
+        "proposed",
+        "rejected",
+        "retired"
+      ],
+      "properties": {
+        "approved": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "proposed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "retired": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "skipped": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "not_ours",
+        "not_a_side",
+        "no_quote",
+        "generic",
+        "duplicate",
+        "rejected_before",
+        "over_budget"
+      ],
+      "properties": {
+        "not_ours": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "not_a_side": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "no_quote": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "generic": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "duplicate": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "rejected_before": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "over_budget": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "sheet_values": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "minItems": 1,
+      "maxItems": 9,
+      "items": {
+        "type": "array",
+        "minItems": 12,
+        "maxItems": 12,
+        "items": {
+          "type": "string"
+        }
+      },
+      "description": "Rows to append to the library, 12 columns each; a header row first when the library was empty. null when there is nothing to append."
+    },
+    "report": {
+      "title": "Channel-neutral report",
+      "description": "What every task skill returns for a human to read. channel-message-render turns it into a Slack, Teams, Discord, email or markdown payload. Every citation id must resolve to an entry in sources, and every source url must appear verbatim in the evidence the skill was given.",
+      "type": "object",
+      "required": [
+        "title",
+        "summary",
+        "severity",
+        "sections",
+        "sources",
+        "unknowns"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "title": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 150,
+          "description": "Plain text headline, no markup."
+        },
+        "summary": {
+          "type": "string",
+          "maxLength": 600,
+          "description": "One-paragraph TL;DR in plain text. Empty only when there is nothing to report."
+        },
+        "severity": {
+          "type": "string",
+          "enum": [
+            "info",
+            "attention",
+            "action_needed"
+          ],
+          "description": "Drives color and emphasis in rendering. action_needed only when the reader must do something."
+        },
+        "sections": {
+          "type": "array",
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "heading",
+              "items"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "heading": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 80
+              },
+              "body_md": {
+                "type": "string",
+                "maxLength": 2500,
+                "description": "Optional prose under the heading. Basic markdown only: bold, italic, links, bullet lists."
+              },
+              "items": {
+                "type": "array",
+                "maxItems": 25,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "text",
+                    "citations"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 400
+                    },
+                    "citations": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "description": "Ids from sources. Empty only for items that make no factual claim (e.g. a recommendation)."
+                    },
+                    "confidence": {
+                      "type": "string",
+                      "enum": [
+                        "high",
+                        "medium",
+                        "low"
+                      ]
+                    },
+                    "label": {
+                      "type": "string",
+                      "maxLength": 40,
+                      "description": "Short tag such as a verdict or category, e.g. Pursue, funding."
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "sources": {
+          "type": "array",
+          "maxItems": 60,
+          "items": {
+            "type": "object",
+            "required": [
+              "id"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "id": {
+                "type": "string",
+                "pattern": "^S[0-9]+$"
+              },
+              "url": {
+                "type": "string",
+                "minLength": 1,
+                "description": "The web address exactly as it appears in the evidence. For pasted text, input:<field>."
+              },
+              "record_ref": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+:[^\\s]+$",
+                "maxLength": 200,
+                "description": "For an API record with no web address (enrichment, CRM, transcript): <provider>:<kind>/<id>, e.g. apollo:person/5f2a. The id must appear in the evidence exactly as given."
+              },
+              "title": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "published_at": {
+                "type": "string",
+                "description": "ISO 8601 date or datetime when the source states one; omit when unknown, never guess."
+              },
+              "provider": {
+                "type": "string",
+                "description": "Which tool returned it, when known (tavily, exa, brave, firecrawl, serpapi, perplexity, github, apollo, peopledatalabs, crustdata, fireflies, gong, granola, input)."
+              }
+            },
+            "anyOf": [
+              {
+                "required": [
+                  "url"
+                ]
+              },
+              {
+                "required": [
+                  "record_ref"
+                ]
+              }
+            ]
+          },
+          "description": "Every cited source. Each has a url, a record_ref, or both."
+        },
+        "unknowns": {
+          "type": "array",
+          "maxItems": 20,
+          "items": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "description": "What could not be established, and why. A first-class result, not a failure."
+        },
+        "footer": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "E.g. 'Draft — not sent'."
+        },
+        "meta": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "skill",
+            "skill_version",
+            "generated_at"
+          ],
+          "description": "Who produced this report and when, so another agent that reads it later knows what it is reading.",
+          "properties": {
+            "skill": {
+              "type": "string",
+              "maxLength": 64,
+              "description": "The producing skill's name."
+            },
+            "skill_version": {
+              "type": "string",
+              "maxLength": 32,
+              "description": "Its metadata.version."
+            },
+            "generated_at": {
+              "type": "string",
+              "description": "The run's `now` input (ISO 8601). Never invent a time."
+            }
+          }
+        }
+      }
+    },
+    "slack": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "description": "The Slack review brief, present when slack_brief is true, else null. Bind text, blocks and attachments to the post step.",
+      "required": [
+        "text",
+        "blocks",
+        "attachments"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 3000,
+          "description": "Notification fallback, Slack mrkdwn (escaped)."
+        },
+        "blocks": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 50,
+          "items": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "header",
+                  "section",
+                  "context",
+                  "divider"
+                ]
+              },
+              "text": {
+                "type": "object",
+                "required": [
+                  "type",
+                  "text"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "plain_text",
+                      "mrkdwn"
+                    ]
+                  },
+                  "text": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 3000
+                  },
+                  "emoji": {
+                    "type": "boolean"
+                  }
+                }
+              },
+              "elements": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 10,
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "text"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "enum": [
+                        "plain_text",
+                        "mrkdwn"
+                      ]
+                    },
+                    "text": {
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 3000
+                    },
+                    "emoji": {
+                      "type": "boolean"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "attachments": {
+          "type": "array",
+          "maxItems": 11,
+          "description": "One card per proposal, then a questions card, a needs-a-look card and a closing card, each when it applies.",
+          "items": {
+            "type": "object",
+            "required": [
+              "fallback",
+              "color",
+              "text",
+              "mrkdwn_in"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "color": {
+                "type": "string",
+                "pattern": "^#[0-9A-Fa-f]{6}$"
+              },
+              "fallback": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 300
+              },
+              "title": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 250
+              },
+              "title_link": {
+                "type": "string",
+                "pattern": "^https?://"
+              },
+              "text": {
+                "type": "string",
+                "maxLength": 3000
+              },
+              "thumb_url": {
+                "type": "string",
+                "pattern": "^https://"
+              },
+              "footer": {
+                "type": "string",
+                "maxLength": 300
+              },
+              "mrkdwn_in": {
+                "type": "array",
+                "minItems": 1,
+                "maxItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "text"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
