@@ -3,87 +3,114 @@
   "type": "object",
   "additionalProperties": false,
   "required": [
-    "reason",
-    "proposals",
+    "markdown",
+    "worldview",
+    "stances",
     "questions",
-    "flags",
-    "library_counts",
+    "feedback_applied",
     "skipped",
-    "sheet_values",
-    "report",
-    "slack"
+    "report"
   ],
   "properties": {
-    "reason": {
+    "markdown": {
       "type": "string",
       "minLength": 1,
-      "maxLength": 300
+      "maxLength": 30000,
+      "description": "The point-of-view document, GitHub-flavored Markdown: the run's readable result."
     },
-    "proposals": {
+    "worldview": {
+      "type": "string",
+      "minLength": 0,
+      "maxLength": 700,
+      "description": "The paragraph the stances add up to; empty when there are no stances."
+    },
+    "stances": {
       "type": "array",
-      "maxItems": 8,
+      "minItems": 0,
+      "maxItems": 10,
       "items": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "pov_id",
-          "kind",
-          "revises",
+          "n",
+          "headline",
           "stance",
-          "why_we_believe_it",
-          "evidence",
+          "pillar",
           "strength",
-          "applies_when",
-          "counter_position",
+          "argument",
+          "common_belief",
+          "we_believe",
+          "reasons",
+          "proof",
+          "concede",
+          "so_what",
+          "use_when",
+          "angles",
+          "say",
           "never_say",
-          "answers_note"
+          "gaps"
         ],
         "properties": {
-          "pov_id": {
-            "type": "string",
-            "pattern": "^pov-[0-9]{3}(-r[0-9]+)?$"
+          "n": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 10
           },
-          "kind": {
+          "headline": {
             "type": "string",
-            "enum": [
-              "new",
-              "revision"
-            ]
-          },
-          "revises": {
-            "anyOf": [
-              {
-                "type": "string",
-                "pattern": "^pov-[0-9]{3}(-r[0-9]+)?$"
-              },
-              {
-                "type": "null"
-              }
-            ],
-            "description": "The pov_id this revision revises; null for a new stance."
+            "minLength": 1,
+            "maxLength": 80
           },
           "stance": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 160
+            "maxLength": 300
           },
-          "why_we_believe_it": {
+          "pillar": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 400
+            "maxLength": 30
           },
-          "evidence": {
+          "strength": {
+            "type": "string",
+            "enum": [
+              "strong",
+              "emerging"
+            ]
+          },
+          "argument": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 900
+          },
+          "common_belief": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "we_believe": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 300
+          },
+          "reasons": {
             "type": "array",
-            "minItems": 1,
-            "maxItems": 3,
+            "minItems": 2,
+            "maxItems": 4,
             "items": {
               "type": "object",
               "additionalProperties": false,
               "required": [
+                "point",
                 "quote",
                 "source_id"
               ],
               "properties": {
+                "point": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 140
+                },
                 "quote": {
                   "type": "string",
                   "minLength": 1,
@@ -97,40 +124,110 @@
               }
             }
           },
-          "strength": {
-            "type": "string",
-            "enum": [
-              "strong",
-              "emerging"
-            ]
+          "proof": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 3,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "point",
+                "quote",
+                "source_id"
+              ],
+              "properties": {
+                "point": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 140
+                },
+                "quote": {
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 300,
+                  "description": "Copied character for character from the company's own page or the notes."
+                },
+                "source_id": {
+                  "type": "string",
+                  "pattern": "^S[0-9]+$"
+                }
+              }
+            }
           },
-          "applies_when": {
+          "concede": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 200
+            "maxLength": 400
           },
-          "counter_position": {
+          "so_what": {
             "type": "string",
             "minLength": 1,
-            "maxLength": 250
+            "maxLength": 400
+          },
+          "use_when": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 4,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
+          },
+          "angles": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 3,
+            "items": {
+              "type": "string",
+              "enum": [
+                "contrarian",
+                "myth_vs_reality",
+                "prediction",
+                "agree_and_extend",
+                "lesson_from_building",
+                "unpopular_opinion"
+              ]
+            }
+          },
+          "say": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 5,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 80
+            }
           },
           "never_say": {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 200
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 5,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 160
+            }
           },
-          "answers_note": {
-            "type": "string",
-            "minLength": 0,
-            "maxLength": 1000,
-            "description": "The reviewer note a revision answers, copied; empty for a new stance."
+          "gaps": {
+            "type": "array",
+            "minItems": 0,
+            "maxItems": 3,
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 200
+            }
           }
         }
       },
-      "description": "Stances for a person to review, ranked; revisions first."
+      "description": "The stances, ranked, for agents that use them."
     },
     "questions": {
       "type": "array",
+      "minItems": 0,
       "maxItems": 5,
       "items": {
         "type": "object",
@@ -152,65 +249,36 @@
           }
         }
       },
-      "description": "Questions for the founders where the writing holds no stance. Never answered by the skill."
+      "description": "Questions for the founders where the writing takes no side. Never answered by the skill."
     },
-    "flags": {
+    "feedback_applied": {
       "type": "array",
+      "minItems": 0,
+      "maxItems": 20,
       "items": {
         "type": "object",
         "additionalProperties": false,
         "required": [
-          "pov_id",
-          "issue",
-          "url"
+          "request",
+          "outcome"
         ],
         "properties": {
-          "pov_id": {
+          "request": {
             "type": "string",
-            "pattern": "^pov-[0-9]{3}(-r[0-9]+)?$"
+            "minLength": 1,
+            "maxLength": 300
           },
-          "issue": {
+          "outcome": {
             "type": "string",
             "enum": [
-              "quote_not_found",
-              "source_unread"
+              "applied",
+              "dropped",
+              "not_supported"
             ]
-          },
-          "url": {
-            "type": "string",
-            "minLength": 1
           }
         }
       },
-      "description": "Approved stances whose quote could not be found on its page this run."
-    },
-    "library_counts": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "approved",
-        "proposed",
-        "rejected",
-        "retired"
-      ],
-      "properties": {
-        "approved": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "proposed": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "rejected": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "retired": {
-          "type": "integer",
-          "minimum": 0
-        }
-      }
+      "description": "What happened to each feedback request; empty without feedback."
     },
     "skipped": {
       "type": "object",
@@ -221,7 +289,6 @@
         "no_quote",
         "generic",
         "duplicate",
-        "rejected_before",
         "over_budget"
       ],
       "properties": {
@@ -245,32 +312,11 @@
           "type": "integer",
           "minimum": 0
         },
-        "rejected_before": {
-          "type": "integer",
-          "minimum": 0
-        },
         "over_budget": {
           "type": "integer",
           "minimum": 0
         }
       }
-    },
-    "sheet_values": {
-      "type": [
-        "array",
-        "null"
-      ],
-      "minItems": 1,
-      "maxItems": 9,
-      "items": {
-        "type": "array",
-        "minItems": 12,
-        "maxItems": 12,
-        "items": {
-          "type": "string"
-        }
-      },
-      "description": "Rows to append to the library, 12 columns each; a header row first when the library was empty. null when there is nothing to append."
     },
     "report": {
       "title": "Channel-neutral report",
@@ -459,163 +505,6 @@
             "generated_at": {
               "type": "string",
               "description": "The run's `now` input (ISO 8601). Never invent a time."
-            }
-          }
-        }
-      }
-    },
-    "slack": {
-      "type": [
-        "object",
-        "null"
-      ],
-      "description": "The Slack review brief, present when slack_brief is true, else null. Bind text, blocks and attachments to the post step.",
-      "required": [
-        "text",
-        "blocks",
-        "attachments"
-      ],
-      "additionalProperties": false,
-      "properties": {
-        "text": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 3000,
-          "description": "Notification fallback, Slack mrkdwn (escaped)."
-        },
-        "blocks": {
-          "type": "array",
-          "minItems": 1,
-          "maxItems": 50,
-          "items": {
-            "type": "object",
-            "required": [
-              "type"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "type": {
-                "type": "string",
-                "enum": [
-                  "header",
-                  "section",
-                  "context",
-                  "divider"
-                ]
-              },
-              "text": {
-                "type": "object",
-                "required": [
-                  "type",
-                  "text"
-                ],
-                "additionalProperties": false,
-                "properties": {
-                  "type": {
-                    "type": "string",
-                    "enum": [
-                      "plain_text",
-                      "mrkdwn"
-                    ]
-                  },
-                  "text": {
-                    "type": "string",
-                    "minLength": 1,
-                    "maxLength": 3000
-                  },
-                  "emoji": {
-                    "type": "boolean"
-                  }
-                }
-              },
-              "elements": {
-                "type": "array",
-                "minItems": 1,
-                "maxItems": 10,
-                "items": {
-                  "type": "object",
-                  "required": [
-                    "type",
-                    "text"
-                  ],
-                  "additionalProperties": false,
-                  "properties": {
-                    "type": {
-                      "type": "string",
-                      "enum": [
-                        "plain_text",
-                        "mrkdwn"
-                      ]
-                    },
-                    "text": {
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 3000
-                    },
-                    "emoji": {
-                      "type": "boolean"
-                    }
-                  }
-                }
-              }
-            }
-          }
-        },
-        "attachments": {
-          "type": "array",
-          "maxItems": 11,
-          "description": "One card per proposal, then a questions card, a needs-a-look card and a closing card, each when it applies.",
-          "items": {
-            "type": "object",
-            "required": [
-              "fallback",
-              "color",
-              "text",
-              "mrkdwn_in"
-            ],
-            "additionalProperties": false,
-            "properties": {
-              "color": {
-                "type": "string",
-                "pattern": "^#[0-9A-Fa-f]{6}$"
-              },
-              "fallback": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 300
-              },
-              "title": {
-                "type": "string",
-                "minLength": 1,
-                "maxLength": 250
-              },
-              "title_link": {
-                "type": "string",
-                "pattern": "^https?://"
-              },
-              "text": {
-                "type": "string",
-                "maxLength": 3000
-              },
-              "thumb_url": {
-                "type": "string",
-                "pattern": "^https://"
-              },
-              "footer": {
-                "type": "string",
-                "maxLength": 300
-              },
-              "mrkdwn_in": {
-                "type": "array",
-                "minItems": 1,
-                "maxItems": 1,
-                "items": {
-                  "type": "string",
-                  "enum": [
-                    "text"
-                  ]
-                }
-              }
             }
           }
         }

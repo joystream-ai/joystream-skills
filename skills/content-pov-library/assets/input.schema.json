@@ -21,12 +21,17 @@
         "type": "string",
         "pattern": "^[a-z0-9.-]+\\.[a-z]{2,}$"
       },
-      "description": "The company's own domains. A page read by an earlier step counts as the company's writing only on one of these domains or a subdomain."
+      "description": "The company's own domains. A page counts as the company's writing only on one of these domains or a subdomain."
     },
     "notes": {
       "type": "string",
       "maxLength": 20000,
-      "description": "Optional pasted founder notes or a conversation transcript: the founders' own words, cited as input:notes."
+      "description": "Optional pasted founder notes or a conversation transcript, cited as input:notes."
+    },
+    "feedback": {
+      "type": "string",
+      "maxLength": 6000,
+      "description": "Optional founders' feedback on an earlier run: which stances to change, sharpen or drop."
     },
     "focus_topics": {
       "type": "array",
@@ -36,40 +41,18 @@
         "minLength": 1,
         "maxLength": 200
       },
-      "description": "Topics the company wants a stance on; used only to find gaps, which become questions."
+      "description": "Topics the company wants a stance on; they order the stances, and a topic with no stance becomes a question."
     },
-    "max_new": {
+    "max_stances": {
       "type": "integer",
       "minimum": 1,
-      "maximum": 8,
+      "maximum": 10,
       "default": 6,
-      "description": "The most new and revised stances to propose in one run."
-    },
-    "max_library": {
-      "type": "integer",
-      "minimum": 5,
-      "maximum": 25,
-      "default": 15,
-      "description": "The most active stances (approved plus waiting) the library should hold."
+      "description": "The most stances in the document."
     },
     "now": {
       "type": "string",
-      "description": "Current time, ISO 8601, written to updated_at. Optional: on JoyStream bind it to the run start time. Never guessed."
-    },
-    "slack_brief": {
-      "type": "boolean",
-      "default": false,
-      "description": "When true, also return `slack`: the review brief as one Slack message with a card per stance."
-    },
-    "library_link": {
-      "type": "string",
-      "pattern": "^https://",
-      "description": "Optional address of the library sheet, linked from the Slack brief."
-    },
-    "brief_footer": {
-      "type": "string",
-      "maxLength": 150,
-      "description": "Optional closing line for the Slack brief."
+      "description": "Current time, ISO 8601, for the date line. Optional: on JoyStream bind it to the run start time. Never guessed."
     }
   }
 }
