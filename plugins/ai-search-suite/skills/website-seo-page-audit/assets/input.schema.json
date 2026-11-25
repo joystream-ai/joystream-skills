@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["site_url"],
+  "additionalProperties": true,
+  "properties": {
+    "site_url": {"type": "string", "minLength": 3, "description": "The website to audit, e.g. https://www.example.com. A bare host gets https://."},
+    "max_pages": {"type": "integer", "minimum": 1, "maximum": 30, "description": "How many pages to audit, homepage included. Default 15."},
+    "pages": {"type": "array", "items": {"type": "string"}, "description": "URLs on the same site to audit first, e.g. the pages a Search Console step found opportunities on."},
+    "focus_keywords": {"description": "Up to 10 phrases the site should rank for, one per line or comma-separated. Each is checked against every audited page's title and H1.", "oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]},
+    "max_link_checks": {"type": "integer", "minimum": 0, "maximum": 100, "description": "How many internal links the audited pages point at (but the audit did not read) to check for errors and redirects, most linked first. Default 40; 0 turns the check off."},
+    "previous": {"type": "object", "description": "An earlier output of this skill for the same site (or a step output wrapping it). Adds `changes`: the score delta and which findings are new or fixed."},
+    "now": {"type": "string", "description": "The run's start time, ISO 8601."}
+  }
+}

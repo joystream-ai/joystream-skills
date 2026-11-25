@@ -1,0 +1,6 @@
+{
+  "site_url": "https://www.example.com",
+  "pages": ["https://www.example.com/blocked"],
+  "field_data": false,
+  "now": "2026-11-23T09:00:00Z"
+}

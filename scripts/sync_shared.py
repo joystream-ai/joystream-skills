@@ -27,7 +27,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-SKILL_ROOTS = (ROOT / "skills", ROOT / "templates")
+SKILL_ROOTS = (ROOT / "skills", ROOT / "templates", *sorted(ROOT.glob("plugins/*/skills")))
 # Output-schema property -> the shared schema copied into it.
 SHARED_PROPERTIES = {
     "report": ROOT / "schemas" / "report.schema.json",

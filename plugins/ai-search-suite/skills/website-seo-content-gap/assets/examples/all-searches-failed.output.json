@@ -1,0 +1,41 @@
+{
+    "outcome": "error",
+    "site": "https://www.example.com",
+    "keywords": [
+        {
+            "keyword": "invoice software",
+            "source": null,
+            "our_rank": null,
+            "our_page": null,
+            "our_words": null,
+            "competitor_median_words": null,
+            "competitors": [],
+            "missing_topics": [],
+            "missing_schema": []
+        },
+        {
+            "keyword": "time tracking",
+            "source": "tavily",
+            "our_rank": null,
+            "our_page": null,
+            "our_words": null,
+            "competitor_median_words": null,
+            "competitors": [],
+            "missing_topics": [],
+            "missing_schema": []
+        }
+    ],
+    "findings": [],
+    "counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 0,
+        "low": 0
+    },
+    "target_urls": [],
+    "sentence": "",
+    "unknowns": [
+        "The search for \"invoice software\" returned 401 Unauthorized: check the search connection's API key, so it was not compared.",
+        "The search for \"time tracking\" returned no results, so it was not compared."
+    ]
+}

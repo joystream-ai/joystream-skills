@@ -41,6 +41,11 @@
       ]
     },
     {
+      "source": "./plugins/ai-search-suite",
+      "name": "ai-search-suite",
+      "description": "The SEO Optimizer for any website: start with website-seo-optimizer. It audits the site's real HTML (indexability, titles, content, schema, broken links, redirects, hreflang), measures Core Web Vitals, finds content gaps against the pages that rank, adds Search Console click estimates when connected, writes copy-ready titles, meta descriptions, sections and links, and renders it all as a PDF report with charts. Modules whose data is missing are skipped and named."
+    },
+    {
       "name": "content-studio",
       "description": "Social content from real work: decide whether recent GitHub activity is worth a post, then draft LinkedIn and X posts in the author's voice (a voice profile built once), and check drafts for AI slop. Drafts only; nothing is posted.",
       "source": "./",

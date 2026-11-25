@@ -1,0 +1,9 @@
+{
+  "site_url": "https://www.example.com",
+  "serps": [
+    {"step": {"ok": false, "error": "401 Unauthorized: check the search connection's API key"}},
+    {"keyword": "time tracking", "results": {"query": "time tracking", "results": []}}
+  ],
+  "focus_keywords": ["invoice software", "time tracking"],
+  "now": "2026-11-25T09:00:00Z"
+}

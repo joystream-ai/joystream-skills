@@ -1,0 +1,175 @@
+{
+  "outcome": "partial",
+  "site": "https://www.example.com",
+  "strategy": "mobile",
+  "pages": [
+    {
+      "url": "https://www.example.com/",
+      "status": "ok",
+      "error": null,
+      "performance_score": 42,
+      "seo_score": 92,
+      "accessibility_score": 88,
+      "best_practices_score": 96,
+      "lcp_ms": 4600,
+      "cls": 0.05,
+      "tbt_ms": 350,
+      "fcp_ms": 2300,
+      "speed_index_ms": 3680,
+      "ratings": {
+        "lcp": "poor",
+        "cls": "good",
+        "tbt": "needs_improvement"
+      },
+      "opportunities": [
+        {
+          "id": "render-blocking-resources",
+          "title": "Eliminate render-blocking resources",
+          "savings_ms": 780,
+          "savings_bytes": 0
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "savings_ms": 620,
+          "savings_bytes": 180000
+        },
+        {
+          "id": "uses-optimized-images",
+          "title": "Uses optimized images",
+          "savings_ms": 300,
+          "savings_bytes": 150000
+        },
+        {
+          "id": "modern-image-formats",
+          "title": "Modern image formats",
+          "savings_ms": 250,
+          "savings_bytes": 120000
+        }
+      ]
+    },
+    {
+      "url": "https://www.example.com/blocked",
+      "status": "error",
+      "error": "ERRORED_DOCUMENT_REQUEST: Lighthouse was unable to reliably load the page (Status code: 403)",
+      "performance_score": null,
+      "seo_score": null,
+      "accessibility_score": null,
+      "best_practices_score": null,
+      "lcp_ms": null,
+      "cls": null,
+      "tbt_ms": null,
+      "fcp_ms": null,
+      "speed_index_ms": null,
+      "ratings": {
+        "lcp": null,
+        "cls": null,
+        "tbt": null
+      },
+      "opportunities": []
+    }
+  ],
+  "field": null,
+  "findings": [
+    {
+      "id": "lcp-slow",
+      "category": "performance",
+      "severity": "high",
+      "title": "The main content loads slowly (Largest Contentful Paint)",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 4.6 s (poor)",
+      "fix": "Make the largest element (usually the hero image or headline) load first: preload it, compress it, and cut render-blocking CSS and JavaScript.",
+      "effort": "project"
+    },
+    {
+      "id": "perf-score-low",
+      "category": "performance",
+      "severity": "high",
+      "title": "Lighthouse performance score is under 50",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 42/100",
+      "fix": "Work through the slow-loading findings above, starting with the largest savings.",
+      "effort": "project"
+    },
+    {
+      "id": "images-heavy",
+      "category": "performance",
+      "severity": "medium",
+      "title": "Images are larger than they need to be",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: about 0.6 s, 263 KB to save",
+      "fix": "Serve images as WebP or AVIF at the size they are shown, and lazy-load those below the fold.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "render-blocking",
+      "category": "performance",
+      "severity": "medium",
+      "title": "CSS and JavaScript delay the first paint",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: about 0.8 s to save",
+      "fix": "Inline the critical CSS, and load the rest of the CSS and scripts with defer or async.",
+      "effort": "project"
+    },
+    {
+      "id": "slow-server",
+      "category": "performance",
+      "severity": "medium",
+      "title": "The server takes over 600 ms to send the page",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 720 ms",
+      "fix": "Cache the HTML at a CDN, or speed up the server work behind these pages.",
+      "effort": "project"
+    },
+    {
+      "id": "tbt-blocking",
+      "category": "performance",
+      "severity": "medium",
+      "title": "JavaScript blocks the page from responding (Total Blocking Time)",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 350 ms (needs improvement)",
+      "fix": "Split, defer or remove JavaScript that runs on load, third-party scripts first.",
+      "effort": "project"
+    },
+    {
+      "id": "unused-js",
+      "category": "performance",
+      "severity": "medium",
+      "title": "Pages load JavaScript they do not use",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: about 0.6 s, 175 KB to save",
+      "fix": "Remove unused libraries and split the bundle so each page loads only its own code.",
+      "effort": "project"
+    }
+  ],
+  "score": 42,
+  "counts": {
+    "critical": 0,
+    "high": 2,
+    "medium": 5,
+    "low": 0
+  },
+  "target_urls": [
+    "https://www.example.com/"
+  ],
+  "sentence": "Mobile performance 42/100 across 1 page: LCP 4.6 s on /. 1 page(s) could not be measured.",
+  "unknowns": [
+    "Lab data is one simulated Lighthouse run per page on a throttled mid-range phone on a slow 4G connection; scores can move 5-10 points between runs.",
+    "No real-user data: field data was not requested, so this is lab data only.",
+    "Interaction to Next Paint needs real users; in the lab, Total Blocking Time stands in for it."
+  ]
+}

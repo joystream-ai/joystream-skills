@@ -6,7 +6,7 @@
 """Generate the README skills table from each skill's frontmatter, or check that it is current.
 
 The table between the skills-table markers in README.md is rebuilt from every
-skills/*/SKILL.md (frontmatter `name`, `description`, `metadata.version`,
+skills/*/SKILL.md and plugins/*/skills/*/SKILL.md (frontmatter `name`, `description`, `metadata.version`,
 `metadata.category`) and the .claude-plugin/marketplace.json entry that lists the skill,
 one row per skill, sorted by name. Everything outside the markers is left alone.
 
@@ -64,8 +64,10 @@ def plugin_owners(root: Path) -> dict[Path, list[str]]:
     owners: dict[Path, list[str]] = {}
     for entry in json.loads(manifest.read_text(encoding="utf-8")).get("plugins", []):
         source = root / entry.get("source", "./")
-        for rel in entry.get("skills", []):
-            owners.setdefault((source / rel).resolve(), []).append(entry.get("name", "?"))
+        listed = entry.get("skills")
+        paths = [source / rel for rel in listed] if listed else (sorted(p for p in (source / "skills").glob("*") if p.is_dir()) if source.resolve() != root.resolve() else [])
+        for path in paths:
+            owners.setdefault(path.resolve(), []).append(entry.get("name", "?"))
     return owners
 
 
@@ -77,18 +79,16 @@ def cell(value: object) -> str:
 
 
 def rows(root: Path) -> list[str]:
-    skills_dir = root / "skills"
-    skill_mds = sorted(skills_dir.glob("*/SKILL.md")) if skills_dir.is_dir() else []
+    skill_mds = sorted(root.glob("skills/*/SKILL.md")) + sorted(root.glob("plugins/*/skills/*/SKILL.md"))
     owners = plugin_owners(root)
     entries = []
     for skill_md in skill_mds:
         data = frontmatter(skill_md)
         metadata = data.get("metadata") if isinstance(data.get("metadata"), dict) else {}
-        folder = skill_md.parent.name
-        name = str(data.get("name") or folder)
+        name = str(data.get("name") or skill_md.parent.name)
         plugins = owners.get(skill_md.parent.resolve(), [])
         entries.append((name, (
-            f"[`{name}`](./skills/{folder}/SKILL.md)",
+            f"[`{name}`](./{skill_md.parent.relative_to(root).as_posix()}/SKILL.md)",
             cell(data.get("description")),
             cell(metadata.get("version")),
             cell(metadata.get("category")),

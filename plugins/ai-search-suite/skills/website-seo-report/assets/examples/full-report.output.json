@@ -1,0 +1,12 @@
+{
+  "outcome": "ok",
+  "site": "https://www.example.com",
+  "score": 50,
+  "files": [
+    {"path": "/workspace/out/seo-report.pdf", "kind": "pdf", "bytes": 233137},
+    {"path": "/workspace/out/seo-report.html", "kind": "html", "bytes": 23047}
+  ],
+  "sections": ["summary", "changes", "scorecard", "speed", "fixes", "findings", "unknowns"],
+  "sentence": "Report for www.example.com: 50/100, 3 changes, 7 sections, saved as seo-report.pdf and seo-report.html.",
+  "unknowns": []
+}

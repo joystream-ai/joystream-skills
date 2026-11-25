@@ -1,0 +1,7 @@
+{
+  "site_url": "https://www.example.com",
+  "pages": ["https://www.example.com/pricing", "https://www.example.com/blog/post"],
+  "max_pages": 3,
+  "strategy": "mobile",
+  "now": "2026-11-23T09:00:00Z"
+}

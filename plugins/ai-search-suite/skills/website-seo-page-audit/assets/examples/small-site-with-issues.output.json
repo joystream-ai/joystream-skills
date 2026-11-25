@@ -1,0 +1,591 @@
+{
+  "outcome": "partial",
+  "site": "https://www.example.com",
+  "robots": {
+    "status": 200,
+    "sitemaps": [
+      "https://www.example.com/sitemap.xml"
+    ],
+    "blocks_all": false
+  },
+  "sitemap": {
+    "url": "https://www.example.com/sitemap.xml",
+    "status": 200,
+    "url_count": 7
+  },
+  "pages": [
+    {
+      "url": "https://www.example.com/",
+      "final_url": "https://www.example.com/",
+      "status": 200,
+      "error": null,
+      "response_ms": 120,
+      "redirected": false,
+      "redirect_hops": 0,
+      "title": "Example Invoicing: invoice software for agencies, freelancers and studios worldwide",
+      "title_length": 83,
+      "meta_description": null,
+      "meta_description_length": 0,
+      "canonical": "https://www.example.com/",
+      "canonical_state": "self",
+      "noindex": false,
+      "robots_meta": null,
+      "h1": [
+        "Invoices that get paid"
+      ],
+      "h1_count": 1,
+      "h2": [],
+      "word_count": 484,
+      "json_ld_types": [
+        "Organization"
+      ],
+      "json_ld_invalid": 0,
+      "open_graph": {
+        "title": true,
+        "description": false,
+        "image": true
+      },
+      "lang": "en",
+      "images": 1,
+      "images_missing_alt": 1,
+      "mixed_content": 0,
+      "hreflang": [],
+      "internal_links_out": 3,
+      "external_links_out": 0,
+      "inbound_internal_links": 0,
+      "in_sitemap": true,
+      "blocked_by_robots": false,
+      "excerpt": "Invoices that get paid Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bi"
+    },
+    {
+      "url": "https://www.example.com/about",
+      "final_url": "https://www.example.com/about",
+      "status": 200,
+      "error": null,
+      "response_ms": 120,
+      "redirected": false,
+      "redirect_hops": 0,
+      "title": "About Example Invoicing",
+      "title_length": 23,
+      "meta_description": null,
+      "meta_description_length": 0,
+      "canonical": "https://www.example.com/about",
+      "canonical_state": "self",
+      "noindex": false,
+      "robots_meta": null,
+      "h1": [
+        "About us"
+      ],
+      "h1_count": 1,
+      "h2": [],
+      "word_count": 6,
+      "json_ld_types": [],
+      "json_ld_invalid": 1,
+      "open_graph": {
+        "title": false,
+        "description": false,
+        "image": false
+      },
+      "lang": "en",
+      "images": 0,
+      "images_missing_alt": 0,
+      "mixed_content": 0,
+      "hreflang": [],
+      "internal_links_out": 3,
+      "external_links_out": 0,
+      "inbound_internal_links": 3,
+      "in_sitemap": true,
+      "blocked_by_robots": false,
+      "excerpt": "About us We started in 2019."
+    },
+    {
+      "url": "https://www.example.com/pricing",
+      "final_url": "https://www.example.com/pricing",
+      "status": 200,
+      "error": null,
+      "response_ms": 120,
+      "redirected": false,
+      "redirect_hops": 0,
+      "title": "Pricing",
+      "title_length": 7,
+      "meta_description": "Plans for agencies of every size, from one person to fifty, billed monthly or yearly.",
+      "meta_description_length": 85,
+      "canonical": "https://www.example.com/pricing",
+      "canonical_state": "self",
+      "noindex": true,
+      "robots_meta": "noindex",
+      "h1": [
+        "Pricing"
+      ],
+      "h1_count": 1,
+      "h2": [],
+      "word_count": 481,
+      "json_ld_types": [],
+      "json_ld_invalid": 0,
+      "open_graph": {
+        "title": false,
+        "description": false,
+        "image": false
+      },
+      "lang": "en",
+      "images": 0,
+      "images_missing_alt": 0,
+      "mixed_content": 0,
+      "hreflang": [],
+      "internal_links_out": 3,
+      "external_links_out": 0,
+      "inbound_internal_links": 3,
+      "in_sitemap": true,
+      "blocked_by_robots": false,
+      "excerpt": "Pricing Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour "
+    },
+    {
+      "url": "https://www.example.com/blog/post",
+      "final_url": "https://www.example.com/blog/post",
+      "status": 200,
+      "error": null,
+      "response_ms": 120,
+      "redirected": false,
+      "redirect_hops": 0,
+      "title": "About Example Invoicing",
+      "title_length": 23,
+      "meta_description": null,
+      "meta_description_length": 0,
+      "canonical": "https://www.example.com/blog/post",
+      "canonical_state": "self",
+      "noindex": false,
+      "robots_meta": null,
+      "h1": [
+        "How to invoice",
+        "Second H1"
+      ],
+      "h1_count": 2,
+      "h2": [],
+      "word_count": 485,
+      "json_ld_types": [],
+      "json_ld_invalid": 0,
+      "open_graph": {
+        "title": false,
+        "description": false,
+        "image": false
+      },
+      "lang": "en",
+      "images": 2,
+      "images_missing_alt": 1,
+      "mixed_content": 0,
+      "hreflang": [],
+      "internal_links_out": 3,
+      "external_links_out": 0,
+      "inbound_internal_links": 3,
+      "in_sitemap": true,
+      "blocked_by_robots": false,
+      "excerpt": "How to invoice Second H1 Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that "
+    },
+    {
+      "url": "https://www.example.com/app",
+      "final_url": "https://www.example.com/app",
+      "status": 200,
+      "error": null,
+      "response_ms": 120,
+      "redirected": false,
+      "redirect_hops": 0,
+      "title": "Example App",
+      "title_length": 11,
+      "meta_description": null,
+      "meta_description_length": 0,
+      "canonical": "https://www.example.com/app",
+      "canonical_state": "self",
+      "noindex": false,
+      "robots_meta": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2": [],
+      "word_count": 0,
+      "json_ld_types": [],
+      "json_ld_invalid": 0,
+      "open_graph": {
+        "title": false,
+        "description": false,
+        "image": false
+      },
+      "lang": "en",
+      "images": 0,
+      "images_missing_alt": 0,
+      "mixed_content": 0,
+      "hreflang": [],
+      "internal_links_out": 0,
+      "external_links_out": 0,
+      "inbound_internal_links": 0,
+      "in_sitemap": true,
+      "blocked_by_robots": false,
+      "excerpt": ""
+    },
+    {
+      "url": "https://www.example.com/gone",
+      "final_url": "https://www.example.com/gone",
+      "status": 404,
+      "error": null,
+      "response_ms": 120,
+      "redirected": false,
+      "redirect_hops": 0,
+      "title": null,
+      "title_length": 0,
+      "meta_description": null,
+      "meta_description_length": 0,
+      "canonical": null,
+      "canonical_state": "missing",
+      "noindex": false,
+      "robots_meta": null,
+      "h1": [],
+      "h1_count": 0,
+      "h2": [],
+      "word_count": 0,
+      "json_ld_types": [],
+      "json_ld_invalid": 0,
+      "open_graph": {
+        "title": false,
+        "description": false,
+        "image": false
+      },
+      "lang": null,
+      "images": 0,
+      "images_missing_alt": 0,
+      "mixed_content": 0,
+      "hreflang": [],
+      "internal_links_out": 0,
+      "external_links_out": 0,
+      "inbound_internal_links": 0,
+      "in_sitemap": true,
+      "blocked_by_robots": false,
+      "excerpt": ""
+    },
+    {
+      "url": "https://www.example.com/private/report",
+      "final_url": "https://www.example.com/private/report",
+      "status": 200,
+      "error": null,
+      "response_ms": 120,
+      "redirected": false,
+      "redirect_hops": 0,
+      "title": "Private report page",
+      "title_length": 19,
+      "meta_description": null,
+      "meta_description_length": 0,
+      "canonical": null,
+      "canonical_state": "missing",
+      "noindex": false,
+      "robots_meta": null,
+      "h1": [
+        "Private"
+      ],
+      "h1_count": 1,
+      "h2": [],
+      "word_count": 481,
+      "json_ld_types": [],
+      "json_ld_invalid": 0,
+      "open_graph": {
+        "title": false,
+        "description": false,
+        "image": false
+      },
+      "lang": "en",
+      "images": 0,
+      "images_missing_alt": 0,
+      "mixed_content": 0,
+      "hreflang": [],
+      "internal_links_out": 0,
+      "external_links_out": 0,
+      "inbound_internal_links": 0,
+      "in_sitemap": true,
+      "blocked_by_robots": true,
+      "excerpt": "Private Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour and by the project. Invoices for agencies that bill by the hour "
+    }
+  ],
+  "findings": [
+    {
+      "id": "no-html-text",
+      "category": "headings_content",
+      "severity": "critical",
+      "title": "Pages show no text without JavaScript",
+      "pages": [
+        "https://www.example.com/app"
+      ],
+      "evidence": "/app",
+      "fix": "Server-render or pre-render the main content so crawlers that do not run JavaScript can read it.",
+      "effort": "project"
+    },
+    {
+      "id": "noindex",
+      "category": "indexability",
+      "severity": "critical",
+      "title": "Pages tell search engines not to index them",
+      "pages": [
+        "https://www.example.com/pricing"
+      ],
+      "evidence": "/pricing: \"noindex\"",
+      "fix": "Remove noindex from pages that should rank, or drop them from the sitemap if it is intended.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "description-missing",
+      "category": "titles_metas",
+      "severity": "high",
+      "title": "Pages have no meta description",
+      "pages": [
+        "https://www.example.com/",
+        "https://www.example.com/about",
+        "https://www.example.com/blog/post",
+        "https://www.example.com/app",
+        "https://www.example.com/private/report"
+      ],
+      "evidence": "5 of 6 pages: /, /about, /blog/post, /app, /private/report",
+      "fix": "Write a 120-155 character description per page that answers what it offers and who it is for.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "title-duplicate",
+      "category": "titles_metas",
+      "severity": "high",
+      "title": "Several pages share the same title",
+      "pages": [
+        "https://www.example.com/about",
+        "https://www.example.com/blog/post"
+      ],
+      "evidence": "\"About Example Invoicing\" on 2 pages",
+      "fix": "Write a distinct title for each page.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "broken-pages",
+      "category": "indexability",
+      "severity": "high",
+      "title": "Pages return an error",
+      "pages": [
+        "https://www.example.com/gone"
+      ],
+      "evidence": "/gone: 404",
+      "fix": "Fix or redirect these URLs, and remove dead ones from the sitemap.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "h1-missing",
+      "category": "headings_content",
+      "severity": "high",
+      "title": "Pages have no H1 heading",
+      "pages": [
+        "https://www.example.com/app"
+      ],
+      "evidence": "/app",
+      "fix": "Add one H1 per page that states the page's topic in plain words.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "schema-invalid",
+      "category": "structured_social",
+      "severity": "high",
+      "title": "JSON-LD blocks are not valid JSON",
+      "pages": [
+        "https://www.example.com/about"
+      ],
+      "evidence": "/about",
+      "fix": "Fix the JSON syntax; search engines ignore a block they cannot parse.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "sitemap-blocked",
+      "category": "indexability",
+      "severity": "high",
+      "title": "Sitemap lists pages that robots.txt blocks",
+      "pages": [
+        "https://www.example.com/private/report"
+      ],
+      "evidence": "/private/report",
+      "fix": "Unblock them in robots.txt or remove them from the sitemap.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "keyword-untargeted:time tracking",
+      "category": "titles_metas",
+      "severity": "high",
+      "title": "No page targets \"time tracking\" in its title or H1",
+      "pages": [],
+      "evidence": "None of the 6 audited pages has \"time tracking\" in its title or H1.",
+      "fix": "Pick the page that best answers \"time tracking\" and put the phrase in its title and H1.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "no-https-redirect",
+      "category": "technical",
+      "severity": "high",
+      "title": "http:// does not redirect to https://",
+      "pages": [],
+      "evidence": "https://www.example.com/ answered without redirecting to https.",
+      "fix": "Redirect all http traffic to https with a 301.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "title-short",
+      "category": "titles_metas",
+      "severity": "medium",
+      "title": "Titles are too short to say what the page is about",
+      "pages": [
+        "https://www.example.com/pricing",
+        "https://www.example.com/app",
+        "https://www.example.com/private/report"
+      ],
+      "evidence": "/pricing: \"Pricing\"; /app: \"Example App\"; /private/report: \"Private report page\"",
+      "fix": "Expand to 30-60 characters with the page's topic and the brand.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "weak-internal-links",
+      "category": "internal_links",
+      "severity": "medium",
+      "title": "Pages no other audited page links to",
+      "pages": [
+        "https://www.example.com/app",
+        "https://www.example.com/private/report"
+      ],
+      "evidence": "/app, /private/report",
+      "fix": "Link to them from related pages with descriptive anchor text.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "thin-content",
+      "category": "headings_content",
+      "severity": "medium",
+      "title": "Pages have under 300 words of content",
+      "pages": [
+        "https://www.example.com/about"
+      ],
+      "evidence": "/about: 6 words",
+      "fix": "Add the specifics a searcher needs (what it is, who it is for, how it works, proof, FAQ).",
+      "effort": "project"
+    },
+    {
+      "id": "title-long",
+      "category": "titles_metas",
+      "severity": "medium",
+      "title": "Titles are cut off in search results (over 60 characters)",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 83 chars",
+      "fix": "Shorten to 60 characters or fewer, keeping the main topic first.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "open-graph-missing",
+      "category": "structured_social",
+      "severity": "low",
+      "title": "Pages lack Open Graph title or image",
+      "pages": [
+        "https://www.example.com/about",
+        "https://www.example.com/pricing",
+        "https://www.example.com/blog/post",
+        "https://www.example.com/app",
+        "https://www.example.com/private/report"
+      ],
+      "evidence": "5 of 6 pages.",
+      "fix": "Add og:title, og:description and og:image so shared links show a proper card.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "images-no-alt",
+      "category": "internal_links",
+      "severity": "low",
+      "title": "Images have no alt text",
+      "pages": [
+        "https://www.example.com/",
+        "https://www.example.com/blog/post"
+      ],
+      "evidence": "2 images across 2 pages.",
+      "fix": "Describe each meaningful image in its alt attribute.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "canonical-missing",
+      "category": "indexability",
+      "severity": "low",
+      "title": "Pages have no canonical tag",
+      "pages": [
+        "https://www.example.com/private/report"
+      ],
+      "evidence": "1 of 6 pages.",
+      "fix": "Add a self-referencing canonical link to each page template.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "h1-multiple",
+      "category": "headings_content",
+      "severity": "low",
+      "title": "Pages have more than one H1",
+      "pages": [
+        "https://www.example.com/blog/post"
+      ],
+      "evidence": "/blog/post: 2",
+      "fix": "Keep one H1 and turn the others into H2s.",
+      "effort": "quick fix"
+    }
+  ],
+  "categories": [
+    {
+      "id": "indexability",
+      "name": "Indexability",
+      "score": 2
+    },
+    {
+      "id": "titles_metas",
+      "name": "Titles & meta descriptions",
+      "score": 2
+    },
+    {
+      "id": "headings_content",
+      "name": "Headings & content",
+      "score": 2
+    },
+    {
+      "id": "structured_social",
+      "name": "Structured data & social",
+      "score": 8
+    },
+    {
+      "id": "internal_links",
+      "name": "Internal links & images",
+      "score": 8
+    },
+    {
+      "id": "technical",
+      "name": "Technical",
+      "score": 8
+    }
+  ],
+  "overall_score": 50,
+  "counts": {
+    "critical": 2,
+    "high": 8,
+    "medium": 4,
+    "low": 4
+  },
+  "target_urls": [
+    "https://www.example.com/app",
+    "https://www.example.com/pricing",
+    "https://www.example.com/",
+    "https://www.example.com/about",
+    "https://www.example.com/blog/post",
+    "https://www.example.com/private/report",
+    "https://www.example.com/gone"
+  ],
+  "link_check": {
+    "checked": 0,
+    "unchecked": 0,
+    "broken": [],
+    "redirected": []
+  },
+  "changes": null,
+  "sentence": "On-page SEO 50/100 across 7 pages: 2 critical, 8 high, 4 medium, 4 low.",
+  "unknowns": [
+    "Pages were read as raw HTML without running JavaScript, as most crawlers other than Google see them.",
+    "Rankings, clicks and search volume are not part of this audit: they need Search Console or an SEO data provider."
+  ]
+}

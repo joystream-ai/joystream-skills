@@ -1,0 +1,28 @@
+{
+  "outcome": "error",
+  "site": "sc-domain:example.com",
+  "rows": {
+    "current": null,
+    "previous": null,
+    "year_ago": null
+  },
+  "totals": {
+    "clicks": null,
+    "impressions": null,
+    "ctr": null,
+    "position": null,
+    "previous_clicks": null,
+    "clicks_change_pct": null
+  },
+  "ctr_curve": [],
+  "opportunities": [],
+  "demand_decay": [],
+  "target_urls": [],
+  "target_queries": [],
+  "extra_clicks_total": 0,
+  "complete": false,
+  "sentence": "",
+  "unknowns": [
+    "The Search Console rows for the current period could not be read, so nothing was scored."
+  ]
+}

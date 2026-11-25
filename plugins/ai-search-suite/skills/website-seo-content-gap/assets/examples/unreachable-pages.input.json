@@ -1,0 +1,16 @@
+{
+  "site_url": "http://127.0.0.1:9",
+  "serps": [
+    {"step": {"ok": true, "data": {"query": "invoice software", "results": [
+      {"url": "http://localhost:9/compare", "title": "Best invoice software compared", "content": "...", "score": 0.91},
+      {"url": "http://127.0.0.1:9/pricing", "title": "Pricing", "content": "...", "score": 0.84},
+      {"url": "https://www.youtube.com/watch?v=abc", "title": "Invoice software review", "content": "...", "score": 0.8},
+      {"url": "http://localhost:9/guide", "title": "Invoice software guide", "content": "...", "score": 0.77}
+    ]}}},
+    {"ok": true, "data": {"query": {"original": "invoice template"}, "web": {"results": [
+      {"url": "http://localhost:9/templates", "title": "Free invoice templates"}
+    ]}}}
+  ],
+  "focus_keywords": "invoice software, invoice template",
+  "now": "2026-11-25T09:00:00Z"
+}

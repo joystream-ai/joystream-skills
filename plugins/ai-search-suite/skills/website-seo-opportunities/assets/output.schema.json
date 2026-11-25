@@ -1,0 +1,159 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "outcome",
+    "site",
+    "rows",
+    "totals",
+    "ctr_curve",
+    "opportunities",
+    "demand_decay",
+    "target_urls",
+    "target_queries",
+    "extra_clicks_total",
+    "complete",
+    "sentence",
+    "unknowns"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "count": {"type": ["integer", "null"], "minimum": 0},
+    "rate": {"type": ["number", "null"], "minimum": 0},
+    "position": {"type": ["number", "null"], "minimum": 0}
+  },
+  "properties": {
+    "outcome": {"type": "string", "enum": ["ok", "partial", "error"]},
+    "site": {"type": "string"},
+    "rows": {
+      "type": "object",
+      "required": ["current", "previous", "year_ago"],
+      "additionalProperties": false,
+      "properties": {
+        "current": {"$ref": "#/$defs/count"},
+        "previous": {"$ref": "#/$defs/count"},
+        "year_ago": {"$ref": "#/$defs/count"}
+      }
+    },
+    "totals": {
+      "type": "object",
+      "required": ["clicks", "impressions", "ctr", "position", "previous_clicks", "clicks_change_pct"],
+      "additionalProperties": false,
+      "properties": {
+        "clicks": {"$ref": "#/$defs/count"},
+        "impressions": {"$ref": "#/$defs/count"},
+        "ctr": {"$ref": "#/$defs/rate"},
+        "position": {"$ref": "#/$defs/position"},
+        "previous_clicks": {"$ref": "#/$defs/count"},
+        "clicks_change_pct": {"type": ["number", "null"]}
+      }
+    },
+    "ctr_curve": {
+      "type": "array",
+      "description": "Expected CTR by position, measured from the site's own unbranded rows where it has enough impressions.",
+      "items": {
+        "type": "object",
+        "required": ["position", "expected_ctr", "source", "impressions"],
+        "additionalProperties": false,
+        "properties": {
+          "position": {"type": "string"},
+          "expected_ctr": {"type": "number", "minimum": 0},
+          "source": {"type": "string", "enum": ["site", "default"]},
+          "impressions": {"type": "integer", "minimum": 0}
+        }
+      }
+    },
+    "opportunities": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "required": [
+          "rank",
+          "type",
+          "query",
+          "page",
+          "clicks",
+          "impressions",
+          "ctr",
+          "position",
+          "expected_ctr",
+          "target_position",
+          "target_ctr",
+          "extra_clicks",
+          "effort",
+          "priority",
+          "ai_overview_risk",
+          "competing_pages",
+          "previous_clicks",
+          "previous_position",
+          "why",
+          "page_top_queries"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "rank": {"type": "integer", "minimum": 1},
+          "type": {"type": "string", "enum": ["ctr_gap", "striking_distance", "content_decay", "cannibalization"]},
+          "query": {"type": "string"},
+          "page": {"type": "string"},
+          "clicks": {"type": "integer", "minimum": 0},
+          "impressions": {"type": "integer", "minimum": 0},
+          "ctr": {"type": "number", "minimum": 0},
+          "position": {"type": "number", "minimum": 0},
+          "expected_ctr": {"$ref": "#/$defs/rate"},
+          "target_position": {"type": "integer", "minimum": 1},
+          "target_ctr": {"$ref": "#/$defs/rate"},
+          "extra_clicks": {"type": "integer", "minimum": 0, "description": "Estimated extra clicks per 28 days."},
+          "effort": {"type": "string", "enum": ["quick fix", "project"]},
+          "priority": {"type": "number", "minimum": 0, "description": "extra_clicks divided by effort points (quick fix 1, project 3)."},
+          "ai_overview_risk": {"type": "boolean", "description": "An informational query, where an AI answer may take clicks whatever the title says."},
+          "competing_pages": {"type": "array", "items": {"type": "string"}},
+          "previous_clicks": {"$ref": "#/$defs/count"},
+          "previous_position": {"$ref": "#/$defs/position"},
+          "why": {"type": "string"},
+          "page_top_queries": {
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "required": ["query", "clicks", "impressions", "position"],
+              "additionalProperties": false,
+              "properties": {
+                "query": {"type": "string"},
+                "clicks": {"type": "integer", "minimum": 0},
+                "impressions": {"type": "integer", "minimum": 0},
+                "position": {"type": "number", "minimum": 0}
+              }
+            }
+          }
+        }
+      }
+    },
+    "demand_decay": {
+      "type": "array",
+      "maxItems": 5,
+      "description": "Pages whose clicks fell while their position held: fewer searches, not a page problem.",
+      "items": {
+        "type": "object",
+        "required": ["page", "clicks", "previous_clicks", "year_ago_clicks", "position", "previous_position", "top_query", "why"],
+        "additionalProperties": false,
+        "properties": {
+          "page": {"type": "string"},
+          "clicks": {"type": "integer", "minimum": 0},
+          "previous_clicks": {"type": "integer", "minimum": 0},
+          "year_ago_clicks": {"$ref": "#/$defs/count"},
+          "position": {"$ref": "#/$defs/position"},
+          "previous_position": {"$ref": "#/$defs/position"},
+          "top_query": {"type": "string"},
+          "why": {"type": "string"}
+        }
+      }
+    },
+    "target_urls": {"type": "array", "items": {"type": "string"}, "description": "The pages of the opportunities, in rank order: bind a page-extraction step's URLs to this."},
+    "target_queries": {"type": "array", "maxItems": 10, "items": {"type": "string"}},
+    "extra_clicks_total": {"type": "integer", "minimum": 0},
+    "complete": {"type": "boolean"},
+    "sentence": {"type": "string"},
+    "unknowns": {"type": "array", "items": {"type": "string"}}
+  }
+}

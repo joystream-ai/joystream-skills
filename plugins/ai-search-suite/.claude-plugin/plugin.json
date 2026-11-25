@@ -1,0 +1,23 @@
+{
+  "name": "ai-search-suite",
+  "version": "1.2.0",
+  "description": "The SEO Optimizer for any website: start with website-seo-optimizer. It audits the site's real HTML (indexability, titles, content, schema, broken links, redirects, hreflang), measures Core Web Vitals, finds content gaps against the pages that rank, adds Search Console click estimates when connected, writes copy-ready titles, meta descriptions, sections and links, and renders it all as a PDF report with charts. Modules whose data is missing are skipped and named.",
+  "author": {
+    "name": "JoyStream",
+    "url": "https://joystream.ai"
+  },
+  "homepage": "https://github.com/joystream-ai/joystream-skills/tree/main/plugins/ai-search-suite",
+  "repository": "https://github.com/joystream-ai/joystream-skills",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "search-console",
+    "site-audit",
+    "on-page-seo",
+    "core-web-vitals",
+    "content-gap",
+    "pdf-report",
+    "content",
+    "marketing"
+  ]
+}

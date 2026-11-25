@@ -1,0 +1,147 @@
+{
+  "mode": "on_page",
+  "site": "https://www.example.com",
+  "score": 50,
+  "actions": [
+    {
+      "rank": 1,
+      "page": "https://www.example.com/app",
+      "change": "Server-render the app page so crawlers can read it",
+      "why": "The page has 0 words in its raw HTML; most crawlers other than Google see it empty.",
+      "issue_ids": [
+        "no-html-text",
+        "h1-missing",
+        "title-short"
+      ],
+      "impact": "high",
+      "extra_clicks": null,
+      "effort": "project",
+      "owner": "Eng",
+      "current": {
+        "title": "Example App",
+        "meta_description": null,
+        "h1": null
+      },
+      "proposed": {
+        "title": null,
+        "meta_description": null,
+        "h1": null,
+        "section_outline": [],
+        "internal_link": null,
+        "json_ld": null
+      }
+    },
+    {
+      "rank": 2,
+      "page": "https://www.example.com/pricing",
+      "change": "Remove noindex and write a descriptive title",
+      "why": "The page is in the sitemap but says \"noindex\", and its 7-character title \"Pricing\" does not say what is priced.",
+      "issue_ids": [
+        "noindex",
+        "title-short"
+      ],
+      "impact": "high",
+      "extra_clicks": null,
+      "effort": "quick fix",
+      "owner": "Web",
+      "current": {
+        "title": "Pricing",
+        "meta_description": "Plans for agencies of every size, from one person to fifty, billed monthly or yearly.",
+        "h1": "Pricing"
+      },
+      "proposed": {
+        "title": "Invoice Software Pricing for Agencies — Example Invoicing",
+        "meta_description": "Plans for agencies of every size, from one person to fifty, billed monthly or yearly. See what each plan includes and pick yours.",
+        "h1": null,
+        "section_outline": [],
+        "internal_link": null,
+        "json_ld": null
+      }
+    },
+    {
+      "rank": 3,
+      "page": "https://www.example.com/",
+      "change": "Shorten the title and add a meta description",
+      "why": "The homepage title is 83 characters, so search results cut it off, and the page has no meta description.",
+      "issue_ids": [
+        "title-long",
+        "description-missing",
+        "no-https-redirect"
+      ],
+      "impact": "high",
+      "extra_clicks": null,
+      "effort": "quick fix",
+      "owner": "Web",
+      "current": {
+        "title": "Example Invoicing: invoice software for agencies, freelancers and studios worldwide",
+        "meta_description": null,
+        "h1": "Invoices that get paid"
+      },
+      "proposed": {
+        "title": "Invoice Software for Agencies — Example Invoicing",
+        "meta_description": "Invoices for agencies that bill by the hour and by the project. Send them, track them and get paid faster with Example Invoicing.",
+        "h1": null,
+        "section_outline": [],
+        "internal_link": null,
+        "json_ld": null
+      }
+    }
+  ],
+  "report_markdown": "# 🔍 SEO Optimizer · www.example.com\n**50/100** 🟠 · Crawlable homepage, but the pricing page is hidden from search and one page is empty without JavaScript.\n\n## ⚡ This week's changes\n| # | Page | Change | Impact | Effort | Owner |\n|---|---|---|---|---|---|\n| 1 | /app | Server-render the app page so crawlers can read it | 🔴 high | project | Eng |\n| 2 | /pricing | Remove noindex and write a descriptive title | 🔴 high | quick fix | Web |\n| 3 | / | Shorten the title and add a meta description | 🔴 high | quick fix | Web |\n\n## 📊 Scorecard\nIndexability | ░░░░░░░░░░ 0/10\nTitles & meta descriptions | ██░░░░░░░░ 2/10\nHeadings & content | ██░░░░░░░░ 2/10\nStructured data & social | ███████░░░ 7/10\nInternal links & images | ████████░░ 8/10\nTechnical | ████████░░ 8/10\n\n## 🧰 Copy-ready fixes\n### 1. /app — Server-render the app page so crawlers can read it\nThe page has 0 words in its raw HTML; most crawlers other than Google see it empty.\n\n### 2. /pricing — Remove noindex and write a descriptive title\nThe page is in the sitemap but says \"noindex\", and its 7-character title \"Pricing\" does not say what is priced.\n```\nrobots meta: noindex → remove\ntitle (7 → 57): Invoice Software Pricing for Agencies — Example Invoicing\ndescription (85 → 129): Plans for agencies of every size, from one person to fifty, billed monthly or yearly. See what each plan includes and pick yours.\n```\n\n### 3. / — Shorten the title and add a meta description\nThe homepage title is 83 characters, so search results cut it off, and the page has no meta description.\n```\ntitle (83 → 49): Invoice Software for Agencies — Example Invoicing\ndescription (0 → 129): Invoices for agencies that bill by the hour and by the project. Send them, track them and get paid faster with Example Invoicing.\n```\n\n## ❔ What this brief could not check\n- Pages were read as raw HTML without running JavaScript.\n- Rankings, clicks and search volume need Search Console or an SEO data provider.\n\nEvery change is a draft: check the facts before you publish.\n",
+  "report": {
+    "title": "SEO Optimizer · www.example.com — 50/100 🟠",
+    "summary": "The pricing page is hidden from search and one page is empty without JavaScript.",
+    "severity": "action_needed",
+    "sections": [
+      {
+        "heading": "Top changes this week",
+        "items": [
+          {
+            "text": "🔴 Server-render the app page so crawlers can read it (/app) · Eng · project",
+            "citations": []
+          },
+          {
+            "text": "🔴 Remove noindex and write a descriptive title (/pricing) · Web · quick fix",
+            "citations": []
+          },
+          {
+            "text": "🔴 Shorten the title and add a meta description (/) · Web · quick fix",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Scores",
+        "items": [
+          {
+            "text": "Indexability 0 · Titles 2 · Content 2 · Schema 7 · Links 8 · Technical 8",
+            "citations": []
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S1",
+        "url": "https://www.example.com/"
+      },
+      {
+        "id": "S2",
+        "url": "https://www.example.com/pricing"
+      },
+      {
+        "id": "S3",
+        "url": "https://www.example.com/app"
+      }
+    ],
+    "unknowns": [
+      "Pages were read as raw HTML without running JavaScript.",
+      "Rankings, clicks and search volume need Search Console or an SEO data provider."
+    ],
+    "meta": {
+      "skill": "website-seo-brief",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-11-25T08:00:00Z"
+    }
+  }
+}

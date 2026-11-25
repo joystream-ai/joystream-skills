@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["site_url"],
+  "additionalProperties": true,
+  "properties": {
+    "site_url": {"type": "string", "minLength": 3, "description": "The website the brief is for, e.g. https://www.example.com."},
+    "brand_name": {"type": "string", "description": "The name to end titles with. Empty: taken from the homepage title."},
+    "audience": {"type": "string", "description": "Who the site is for, in a sentence. Grounds the wording of titles and descriptions."},
+    "focus_keywords": {
+      "description": "Phrases the site should rank for, one per line or comma-separated.",
+      "oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]
+    },
+    "top_n": {"type": "integer", "minimum": 1, "maximum": 15, "description": "How many actions to write. Default 10."},
+    "now": {"type": "string", "description": "The run's start time, ISO 8601."},
+    "report_file": {"type": "string", "description": "The PDF a report step (website-seo-report) makes from this brief, e.g. seo-report.pdf. When set, the card's last section points to it."}
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["outcome", "site", "robots", "sitemap", "pages", "findings", "categories", "overall_score", "counts", "target_urls", "link_check", "changes", "sentence", "unknowns"],
+  "additionalProperties": false,
+  "$defs": {"severity": {"type": "string", "enum": ["critical", "high", "medium", "low"]}},
+  "properties": {
+    "outcome": {"type": "string", "enum": ["ok", "partial", "error"]},
+    "site": {"type": "string"},
+    "robots": {
+      "type": "object",
+      "required": ["status", "sitemaps", "blocks_all"],
+      "additionalProperties": false,
+      "properties": {"status": {"type": ["integer", "null"]}, "sitemaps": {"type": "array", "items": {"type": "string"}}, "blocks_all": {"type": "boolean"}}
+    },
+    "sitemap": {
+      "type": "object",
+      "required": ["url", "status", "url_count"],
+      "additionalProperties": false,
+      "properties": {"url": {"type": ["string", "null"]}, "status": {"type": ["integer", "null"]}, "url_count": {"type": "integer", "minimum": 0}}
+    },
+    "pages": {
+      "type": "array",
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": ["url", "final_url", "status", "error", "response_ms", "redirected", "redirect_hops", "title", "title_length", "meta_description", "meta_description_length", "canonical", "canonical_state", "noindex", "robots_meta", "h1", "h1_count", "h2", "word_count", "json_ld_types", "json_ld_invalid", "open_graph", "lang", "images", "images_missing_alt", "mixed_content", "hreflang", "internal_links_out", "external_links_out", "inbound_internal_links", "in_sitemap", "blocked_by_robots", "excerpt"],
+        "additionalProperties": false,
+        "properties": {
+          "url": {"type": "string"},
+          "final_url": {"type": "string"},
+          "status": {"type": "integer", "minimum": 0, "description": "HTTP status; 0 when the page could not be reached."},
+          "error": {"type": ["string", "null"]},
+          "response_ms": {"type": "integer", "minimum": 0},
+          "redirected": {"type": "boolean"},
+          "redirect_hops": {"type": "integer", "minimum": 0, "description": "Redirects followed before the page loaded."},
+          "title": {"type": ["string", "null"]},
+          "title_length": {"type": "integer", "minimum": 0},
+          "meta_description": {"type": ["string", "null"]},
+          "meta_description_length": {"type": "integer", "minimum": 0},
+          "canonical": {"type": ["string", "null"]},
+          "canonical_state": {"type": "string", "enum": ["self", "other", "missing"]},
+          "noindex": {"type": "boolean"},
+          "robots_meta": {"type": ["string", "null"]},
+          "h1": {"type": "array", "maxItems": 3, "items": {"type": "string"}},
+          "h1_count": {"type": "integer", "minimum": 0},
+          "h2": {"type": "array", "maxItems": 8, "items": {"type": "string"}},
+          "word_count": {"type": "integer", "minimum": 0},
+          "json_ld_types": {"type": "array", "items": {"type": "string"}},
+          "json_ld_invalid": {"type": "integer", "minimum": 0},
+          "open_graph": {
+            "type": "object",
+            "required": ["title", "description", "image"],
+            "additionalProperties": false,
+            "properties": {"title": {"type": "boolean"}, "description": {"type": "boolean"}, "image": {"type": "boolean"}}
+          },
+          "lang": {"type": ["string", "null"]},
+          "images": {"type": "integer", "minimum": 0},
+          "images_missing_alt": {"type": "integer", "minimum": 0},
+          "mixed_content": {"type": "integer", "minimum": 0, "description": "http:// images, scripts, frames and stylesheets on an https page."},
+          "hreflang": {
+            "type": "array",
+            "maxItems": 30,
+            "items": {
+              "type": "object",
+              "required": ["lang", "href"],
+              "additionalProperties": false,
+              "properties": {"lang": {"type": "string"}, "href": {"type": "string"}}
+            }
+          },
+          "internal_links_out": {"type": "integer", "minimum": 0},
+          "external_links_out": {"type": "integer", "minimum": 0},
+          "inbound_internal_links": {"type": "integer", "minimum": 0, "description": "Links to this page from the other audited pages."},
+          "in_sitemap": {"type": "boolean"},
+          "blocked_by_robots": {"type": "boolean"},
+          "excerpt": {"type": "string", "maxLength": 500, "description": "The start of the page's main text (no nav, header or footer), for a writing step."}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "severity", "title", "pages", "evidence", "fix", "effort"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "category": {"type": "string", "enum": ["indexability", "titles_metas", "headings_content", "structured_social", "internal_links", "technical"]},
+          "severity": {"$ref": "#/$defs/severity"},
+          "title": {"type": "string"},
+          "pages": {"type": "array", "items": {"type": "string"}},
+          "evidence": {"type": "string"},
+          "fix": {"type": "string"},
+          "effort": {"type": "string", "enum": ["quick fix", "project"]}
+        }
+      }
+    },
+    "categories": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["id", "name", "score"],
+        "additionalProperties": false,
+        "properties": {"id": {"type": "string"}, "name": {"type": "string"}, "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 10}}
+      }
+    },
+    "overall_score": {"type": ["integer", "null"], "minimum": 0, "maximum": 100},
+    "counts": {
+      "type": "object",
+      "required": ["critical", "high", "medium", "low"],
+      "additionalProperties": false,
+      "properties": {"critical": {"type": "integer", "minimum": 0}, "high": {"type": "integer", "minimum": 0}, "medium": {"type": "integer", "minimum": 0}, "low": {"type": "integer", "minimum": 0}}
+    },
+    "target_urls": {"type": "array", "maxItems": 15, "items": {"type": "string"}},
+    "link_check": {
+      "type": "object",
+      "required": ["checked", "unchecked", "broken", "redirected"],
+      "additionalProperties": false,
+      "description": "Internal links the audited pages point at that the audit did not read itself.",
+      "properties": {
+        "checked": {"type": "integer", "minimum": 0},
+        "unchecked": {"type": "integer", "minimum": 0},
+        "broken": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "status", "linked_from"],
+            "additionalProperties": false,
+            "properties": {"url": {"type": "string"}, "status": {"type": "integer", "minimum": 0}, "linked_from": {"type": "array", "maxItems": 5, "items": {"type": "string"}}}
+          }
+        },
+        "redirected": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["url", "final_url", "hops", "linked_from"],
+            "additionalProperties": false,
+            "properties": {"url": {"type": "string"}, "final_url": {"type": "string"}, "hops": {"type": "integer", "minimum": 0}, "linked_from": {"type": "array", "maxItems": 5, "items": {"type": "string"}}}
+          }
+        }
+      }
+    },
+    "changes": {
+      "type": ["object", "null"],
+      "description": "Null without a `previous` input.",
+      "required": ["previous_score", "score_delta", "new", "fixed", "still_open"],
+      "additionalProperties": false,
+      "properties": {
+        "previous_score": {"type": ["integer", "null"]},
+        "score_delta": {"type": ["integer", "null"]},
+        "new": {"type": "array", "items": {"type": "string"}, "description": "Finding ids not in the previous audit."},
+        "fixed": {"type": "array", "items": {"type": "string"}, "description": "Finding ids in the previous audit that are gone."},
+        "still_open": {"type": "integer", "minimum": 0}
+      }
+    },
+    "sentence": {"type": "string"},
+    "unknowns": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,94 @@
+{
+    "outcome": "partial",
+    "site": "http://127.0.0.1:9",
+    "keywords": [
+        {
+            "keyword": "invoice software",
+            "source": "tavily",
+            "our_rank": 2,
+            "our_page": "http://127.0.0.1:9/pricing",
+            "our_words": null,
+            "competitor_median_words": null,
+            "competitors": [
+                {
+                    "url": "http://localhost:9/compare",
+                    "position": 1,
+                    "title": "Best invoice software compared",
+                    "words": null,
+                    "headings": null,
+                    "schema_types": [],
+                    "has_faq": false,
+                    "error": "URLError"
+                },
+                {
+                    "url": "http://localhost:9/guide",
+                    "position": 4,
+                    "title": "Invoice software guide",
+                    "words": null,
+                    "headings": null,
+                    "schema_types": [],
+                    "has_faq": false,
+                    "error": "URLError"
+                }
+            ],
+            "missing_topics": [],
+            "missing_schema": []
+        },
+        {
+            "keyword": "invoice template",
+            "source": "brave",
+            "our_rank": null,
+            "our_page": "http://127.0.0.1:9/",
+            "our_words": null,
+            "competitor_median_words": null,
+            "competitors": [
+                {
+                    "url": "http://localhost:9/templates",
+                    "position": 1,
+                    "title": "Free invoice templates",
+                    "words": null,
+                    "headings": null,
+                    "schema_types": [],
+                    "has_faq": false,
+                    "error": "URLError"
+                }
+            ],
+            "missing_topics": [],
+            "missing_schema": []
+        }
+    ],
+    "findings": [
+        {
+            "id": "not-ranking:invoice template",
+            "category": "content_gap",
+            "severity": "medium",
+            "title": "The site is not in the top results for \"invoice template\"",
+            "pages": [
+                "http://127.0.0.1:9/"
+            ],
+            "evidence": "The only result from Brave Search is not on this site (this is Brave Search's result order, not Google's rank).",
+            "fix": "Make / the page for \"invoice template\": the phrase in its title and H1, and the subtopics the top results cover.",
+            "effort": "project"
+        }
+    ],
+    "counts": {
+        "critical": 0,
+        "high": 0,
+        "medium": 1,
+        "low": 0
+    },
+    "target_urls": [
+        "http://127.0.0.1:9/"
+    ],
+    "sentence": "No subtopic gaps on 2 keywords; other findings: 1 medium (depth, structured data or ranking).",
+    "unknowns": [
+        "http://localhost:9/compare could not be read (URLError), so it is left out of the comparison for \"invoice software\".",
+        "http://localhost:9/guide could not be read (URLError), so it is left out of the comparison for \"invoice software\".",
+        "Our page http://127.0.0.1:9/pricing could not be read (URLError), so \"invoice software\" was not compared.",
+        "http://localhost:9/templates could not be read (URLError), so it is left out of the comparison for \"invoice template\".",
+        "Our page http://127.0.0.1:9/ could not be read (URLError), so \"invoice template\" was not compared.",
+        "Positions for \"invoice software\" come from Tavily's result order, not a live Google ranking.",
+        "Positions for \"invoice template\" come from Brave Search's result order, not a live Google ranking.",
+        "Pages were read as raw HTML without running JavaScript; a result that renders its content in the browser looks thinner than it is."
+    ]
+}
