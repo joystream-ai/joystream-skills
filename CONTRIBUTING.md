@@ -22,7 +22,7 @@ AGENT              which accounts, which channel, what schedule   ← the agent'
   extraction, GitHub reads and delivery are the agent's connector steps, before and after
   the skill. This is also what makes a skill provider-neutral: it never names a provider's
   tool.
-- **One exception: a sandbox collector.** A `sandbox` skill whose script collects public
+- **One exception: a sandbox collector.** A skill with `scripts/` whose script collects public
   data (e.g. `community-buyer-signals`) may fetch from a free, keyless public API. It
   never needs, reads or asks for a credential, and never posts, replies or sends. Its
   body says what it fetches in place of "performs no external operations". Every other
@@ -44,7 +44,7 @@ skills/<name>/
 └── references/               # optional extra depth, loaded on demand
 ```
 
-- **No `scripts/`** unless the skill really runs code (`joystream-skill-kind: sandbox`).
+- **No `scripts/`** unless the skill really runs code (`joystream-skill-kind: task`; JoyStream gives the step its sandbox because of the `scripts/` folder).
   On JoyStream, any file under `scripts/` sends the step to a sandbox and the agent then
   needs code execution.
 - **Everything the model must follow goes in the SKILL.md body.** JoyStream's Simulate
@@ -94,7 +94,7 @@ metadata:
 | `author` | yes | `joystream` for skills from this team |
 | `version` | yes | semver. Bump the major version when you remove or rename a schema field |
 | `category` | recommended | catalog category (`sales`, `marketing`, `engineering`, `developer-tools`, …) |
-| `joystream-skill-kind` | yes | `instruction` (pure model call), `task` (may call tools), `tool`, `sandbox` (runs `scripts/`) |
+| `joystream-skill-kind` | yes | `instruction` (pure model call), `task` (may call tools; every skill with `scripts/` is a task, run in the sandbox), `tool`. JoyStream accepts only these three |
 | `joystream-input-schema` | with a contract | path to the input schema, normally `assets/input.schema.json` |
 | `joystream-output-schema` | with a contract | path to the output schema, normally `assets/output.schema.json` |
 
