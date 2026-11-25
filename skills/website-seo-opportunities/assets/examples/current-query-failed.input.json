@@ -1,0 +1,9 @@
+{
+  "site_url": "sc-domain:example.com",
+  "current": {
+    "gsc": {
+      "ok": false,
+      "error": "403: User does not have sufficient permission for site."
+    }
+  }
+}

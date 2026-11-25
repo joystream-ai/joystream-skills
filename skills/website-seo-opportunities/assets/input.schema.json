@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["site_url", "current"],
+  "additionalProperties": true,
+  "properties": {
+    "site_url": {
+      "type": "string",
+      "minLength": 3,
+      "description": "The Search Console property, as Search Console stores it, e.g. https://www.example.com/ or sc-domain:example.com."
+    },
+    "current": {
+      "type": "object",
+      "description": "The raw output of the Search Analytics query for the last 28 days, with dimensions query and page."
+    },
+    "previous": {
+      "type": "object",
+      "description": "The raw output of the same query for the 28 days before that. Without it, content decay is not checked."
+    },
+    "year_ago": {
+      "type": "object",
+      "description": "The raw output of the same query for the same 28 days a year earlier, for year-over-year context."
+    },
+    "brand_terms": {
+      "description": "Words that mark a branded query, one per line or comma-separated. Empty: the first label of the site's host.",
+      "oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]
+    },
+    "top_n": {"type": "integer", "minimum": 1, "maximum": 25, "description": "How many opportunities to return. Default 10."},
+    "min_impressions": {"type": "integer", "minimum": 1, "description": "The fewest impressions a query needs to count. Default 50."},
+    "now": {"type": "string", "description": "The run's start time, ISO 8601."}
+  }
+}

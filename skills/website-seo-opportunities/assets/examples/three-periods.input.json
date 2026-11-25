@@ -1,0 +1,255 @@
+{
+  "site_url": "https://www.example.com/",
+  "now": "2026-11-23T08:00:00Z",
+  "brand_terms": "example invoicing",
+  "current": {
+    "gsc": {
+      "ok": true,
+      "data": {
+        "rows": [
+          {
+            "keys": [
+              "example invoicing",
+              "https://www.example.com/"
+            ],
+            "clicks": 900,
+            "impressions": 2400,
+            "ctr": 0.375,
+            "position": 1.2
+          },
+          {
+            "keys": [
+              "invoice software for agencies",
+              "https://www.example.com/agencies"
+            ],
+            "clicks": 120,
+            "impressions": 1500,
+            "ctr": 0.08,
+            "position": 2.1
+          },
+          {
+            "keys": [
+              "invoice template",
+              "https://www.example.com/templates/invoice"
+            ],
+            "clicks": 40,
+            "impressions": 2600,
+            "ctr": 0.0154,
+            "position": 4.3
+          },
+          {
+            "keys": [
+              "how to write an invoice",
+              "https://www.example.com/blog/write-an-invoice"
+            ],
+            "clicks": 30,
+            "impressions": 3100,
+            "ctr": 0.0097,
+            "position": 3.8
+          },
+          {
+            "keys": [
+              "recurring invoices",
+              "https://www.example.com/features/recurring"
+            ],
+            "clicks": 12,
+            "impressions": 900,
+            "ctr": 0.0133,
+            "position": 13.6
+          },
+          {
+            "keys": [
+              "late payment reminder",
+              "https://www.example.com/features/reminders"
+            ],
+            "clicks": 25,
+            "impressions": 800,
+            "ctr": 0.0312,
+            "position": 7.2
+          },
+          {
+            "keys": [
+              "invoice software",
+              "https://www.example.com/pricing"
+            ],
+            "clicks": 30,
+            "impressions": 1200,
+            "ctr": 0.025,
+            "position": 9.1
+          },
+          {
+            "keys": [
+              "invoice software",
+              "https://www.example.com/features"
+            ],
+            "clicks": 22,
+            "impressions": 1100,
+            "ctr": 0.02,
+            "position": 10.4
+          },
+          {
+            "keys": [
+              "time tracking invoices",
+              "https://www.example.com/features/time"
+            ],
+            "clicks": 8,
+            "impressions": 400,
+            "ctr": 0.02,
+            "position": 6.2
+          }
+        ],
+        "responseAggregationType": "byPage"
+      }
+    }
+  },
+  "previous": {
+    "gsc": {
+      "ok": true,
+      "data": {
+        "rows": [
+          {
+            "keys": [
+              "example invoicing",
+              "https://www.example.com/"
+            ],
+            "clicks": 880,
+            "impressions": 2300,
+            "ctr": 0.3826,
+            "position": 1.2
+          },
+          {
+            "keys": [
+              "invoice software for agencies",
+              "https://www.example.com/agencies"
+            ],
+            "clicks": 118,
+            "impressions": 1450,
+            "ctr": 0.0814,
+            "position": 2.2
+          },
+          {
+            "keys": [
+              "invoice template",
+              "https://www.example.com/templates/invoice"
+            ],
+            "clicks": 44,
+            "impressions": 2500,
+            "ctr": 0.0176,
+            "position": 4.1
+          },
+          {
+            "keys": [
+              "how to write an invoice",
+              "https://www.example.com/blog/write-an-invoice"
+            ],
+            "clicks": 35,
+            "impressions": 3000,
+            "ctr": 0.0117,
+            "position": 3.7
+          },
+          {
+            "keys": [
+              "recurring invoices",
+              "https://www.example.com/features/recurring"
+            ],
+            "clicks": 80,
+            "impressions": 1000,
+            "ctr": 0.08,
+            "position": 4.2
+          },
+          {
+            "keys": [
+              "late payment reminder",
+              "https://www.example.com/features/reminders"
+            ],
+            "clicks": 24,
+            "impressions": 780,
+            "ctr": 0.0308,
+            "position": 7.0
+          },
+          {
+            "keys": [
+              "invoice software",
+              "https://www.example.com/pricing"
+            ],
+            "clicks": 31,
+            "impressions": 1150,
+            "ctr": 0.027,
+            "position": 9.0
+          },
+          {
+            "keys": [
+              "invoice software",
+              "https://www.example.com/features"
+            ],
+            "clicks": 20,
+            "impressions": 1000,
+            "ctr": 0.02,
+            "position": 10.5
+          },
+          {
+            "keys": [
+              "time tracking invoices",
+              "https://www.example.com/features/time"
+            ],
+            "clicks": 40,
+            "impressions": 1900,
+            "ctr": 0.0211,
+            "position": 6.0
+          }
+        ],
+        "responseAggregationType": "byPage"
+      }
+    }
+  },
+  "year_ago": {
+    "gsc": {
+      "ok": true,
+      "data": {
+        "rows": [
+          {
+            "keys": [
+              "example invoicing",
+              "https://www.example.com/"
+            ],
+            "clicks": 880,
+            "impressions": 2300,
+            "ctr": 0.3826,
+            "position": 1.2
+          },
+          {
+            "keys": [
+              "invoice software for agencies",
+              "https://www.example.com/agencies"
+            ],
+            "clicks": 118,
+            "impressions": 1450,
+            "ctr": 0.0814,
+            "position": 2.2
+          },
+          {
+            "keys": [
+              "invoice template",
+              "https://www.example.com/templates/invoice"
+            ],
+            "clicks": 44,
+            "impressions": 2500,
+            "ctr": 0.0176,
+            "position": 4.1
+          },
+          {
+            "keys": [
+              "how to write an invoice",
+              "https://www.example.com/blog/write-an-invoice"
+            ],
+            "clicks": 35,
+            "impressions": 3000,
+            "ctr": 0.0117,
+            "position": 3.7
+          }
+        ],
+        "responseAggregationType": "byPage"
+      }
+    }
+  }
+}

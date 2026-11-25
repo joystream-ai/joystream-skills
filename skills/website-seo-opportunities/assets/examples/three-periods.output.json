@@ -1,0 +1,330 @@
+{
+  "outcome": "ok",
+  "site": "https://www.example.com/",
+  "rows": {
+    "current": 9,
+    "previous": 9,
+    "year_ago": 4
+  },
+  "totals": {
+    "clicks": 1187,
+    "impressions": 14000,
+    "ctr": 0.0848,
+    "position": 5.1,
+    "previous_clicks": 1272,
+    "clicks_change_pct": -6.7
+  },
+  "ctr_curve": [
+    {
+      "position": "1",
+      "expected_ctr": 0.22,
+      "source": "default",
+      "impressions": 0
+    },
+    {
+      "position": "2",
+      "expected_ctr": 0.13,
+      "source": "default",
+      "impressions": 1500
+    },
+    {
+      "position": "3",
+      "expected_ctr": 0.09,
+      "source": "default",
+      "impressions": 0
+    },
+    {
+      "position": "4",
+      "expected_ctr": 0.06,
+      "source": "default",
+      "impressions": 5700
+    },
+    {
+      "position": "5",
+      "expected_ctr": 0.045,
+      "source": "default",
+      "impressions": 0
+    },
+    {
+      "position": "6",
+      "expected_ctr": 0.035,
+      "source": "default",
+      "impressions": 400
+    },
+    {
+      "position": "7",
+      "expected_ctr": 0.028,
+      "source": "default",
+      "impressions": 800
+    },
+    {
+      "position": "8",
+      "expected_ctr": 0.022,
+      "source": "default",
+      "impressions": 0
+    },
+    {
+      "position": "9",
+      "expected_ctr": 0.018,
+      "source": "default",
+      "impressions": 1200
+    },
+    {
+      "position": "10",
+      "expected_ctr": 0.015,
+      "source": "default",
+      "impressions": 1100
+    },
+    {
+      "position": "11-20",
+      "expected_ctr": 0.008,
+      "source": "default",
+      "impressions": 900
+    }
+  ],
+  "opportunities": [
+    {
+      "query": "how to write an invoice",
+      "page": "https://www.example.com/blog/write-an-invoice",
+      "clicks": 30,
+      "impressions": 3100,
+      "ctr": 0.0097,
+      "position": 3.8,
+      "expected_ctr": 0.06,
+      "ai_overview_risk": true,
+      "competing_pages": [],
+      "previous_clicks": null,
+      "previous_position": null,
+      "type": "ctr_gap",
+      "target_position": 4,
+      "target_ctr": 0.06,
+      "extra_clicks": 156,
+      "effort": "quick fix",
+      "why": "Ranks 3.8 for \"how to write an invoice\" with 3,100 impressions but a 1.0% CTR; the benchmark CTR at that position is 6.0%. Informational query: an AI answer on the results page may take some of these clicks.",
+      "priority": 156.0,
+      "rank": 1,
+      "page_top_queries": [
+        {
+          "query": "how to write an invoice",
+          "clicks": 30,
+          "impressions": 3100,
+          "position": 3.8
+        }
+      ]
+    },
+    {
+      "query": "invoice template",
+      "page": "https://www.example.com/templates/invoice",
+      "clicks": 40,
+      "impressions": 2600,
+      "ctr": 0.0154,
+      "position": 4.3,
+      "expected_ctr": 0.06,
+      "ai_overview_risk": false,
+      "competing_pages": [],
+      "previous_clicks": null,
+      "previous_position": null,
+      "type": "ctr_gap",
+      "target_position": 4,
+      "target_ctr": 0.06,
+      "extra_clicks": 116,
+      "effort": "quick fix",
+      "why": "Ranks 4.3 for \"invoice template\" with 2,600 impressions but a 1.5% CTR; the benchmark CTR at that position is 6.0%.",
+      "priority": 116.0,
+      "rank": 2,
+      "page_top_queries": [
+        {
+          "query": "invoice template",
+          "clicks": 40,
+          "impressions": 2600,
+          "position": 4.3
+        }
+      ]
+    },
+    {
+      "query": "invoice software for agencies",
+      "page": "https://www.example.com/agencies",
+      "clicks": 120,
+      "impressions": 1500,
+      "ctr": 0.08,
+      "position": 2.1,
+      "expected_ctr": 0.13,
+      "ai_overview_risk": false,
+      "competing_pages": [],
+      "previous_clicks": null,
+      "previous_position": null,
+      "type": "ctr_gap",
+      "target_position": 2,
+      "target_ctr": 0.13,
+      "extra_clicks": 75,
+      "effort": "quick fix",
+      "why": "Ranks 2.1 for \"invoice software for agencies\" with 1,500 impressions but a 8.0% CTR; the benchmark CTR at that position is 13.0%.",
+      "priority": 75.0,
+      "rank": 3,
+      "page_top_queries": [
+        {
+          "query": "invoice software for agencies",
+          "clicks": 120,
+          "impressions": 1500,
+          "position": 2.1
+        }
+      ]
+    },
+    {
+      "type": "content_decay",
+      "query": "recurring invoices",
+      "page": "https://www.example.com/features/recurring",
+      "clicks": 12,
+      "impressions": 900,
+      "ctr": 0.0133,
+      "position": 13.6,
+      "expected_ctr": null,
+      "target_position": 4,
+      "target_ctr": null,
+      "extra_clicks": 68,
+      "effort": "project",
+      "ai_overview_risk": false,
+      "competing_pages": [],
+      "previous_clicks": 80,
+      "previous_position": 4.2,
+      "why": "Clicks fell from 80 to 12 in 28 days while average position slipped from 4.2 to 13.6.",
+      "priority": 22.67,
+      "rank": 4,
+      "page_top_queries": [
+        {
+          "query": "recurring invoices",
+          "clicks": 12,
+          "impressions": 900,
+          "position": 13.6
+        }
+      ]
+    },
+    {
+      "query": "late payment reminder",
+      "page": "https://www.example.com/features/reminders",
+      "clicks": 25,
+      "impressions": 800,
+      "ctr": 0.0312,
+      "position": 7.2,
+      "expected_ctr": 0.028,
+      "ai_overview_risk": false,
+      "competing_pages": [],
+      "previous_clicks": null,
+      "previous_position": null,
+      "type": "striking_distance",
+      "target_position": 3,
+      "target_ctr": 0.09,
+      "extra_clicks": 47,
+      "effort": "project",
+      "why": "Ranks 7.2 for \"late payment reminder\" (800 impressions); reaching position 3 at the benchmark CTR there (9.0%) adds about 47 clicks.",
+      "priority": 15.67,
+      "rank": 5,
+      "page_top_queries": [
+        {
+          "query": "late payment reminder",
+          "clicks": 25,
+          "impressions": 800,
+          "position": 7.2
+        }
+      ]
+    },
+    {
+      "type": "cannibalization",
+      "query": "invoice software",
+      "page": "https://www.example.com/pricing",
+      "clicks": 52,
+      "impressions": 2300,
+      "ctr": 0.0226,
+      "position": 9.1,
+      "expected_ctr": 0.018,
+      "target_position": 6,
+      "target_ctr": 0.035,
+      "extra_clicks": 29,
+      "effort": "project",
+      "ai_overview_risk": false,
+      "competing_pages": [
+        "https://www.example.com/features"
+      ],
+      "previous_clicks": null,
+      "previous_position": null,
+      "why": "2 pages split clicks for \"invoice software\": /pricing (position 9.1), /features (position 10.4). Consolidating on /pricing and reaching position 6 adds about 29 clicks.",
+      "priority": 9.67,
+      "rank": 6,
+      "page_top_queries": [
+        {
+          "query": "invoice software",
+          "clicks": 30,
+          "impressions": 1200,
+          "position": 9.1
+        }
+      ]
+    },
+    {
+      "query": "time tracking invoices",
+      "page": "https://www.example.com/features/time",
+      "clicks": 8,
+      "impressions": 400,
+      "ctr": 0.02,
+      "position": 6.2,
+      "expected_ctr": 0.035,
+      "ai_overview_risk": false,
+      "competing_pages": [],
+      "previous_clicks": null,
+      "previous_position": null,
+      "type": "ctr_gap",
+      "target_position": 6,
+      "target_ctr": 0.035,
+      "extra_clicks": 6,
+      "effort": "quick fix",
+      "why": "Ranks 6.2 for \"time tracking invoices\" with 400 impressions but a 2.0% CTR; the benchmark CTR at that position is 3.5%.",
+      "priority": 6.0,
+      "rank": 7,
+      "page_top_queries": [
+        {
+          "query": "time tracking invoices",
+          "clicks": 8,
+          "impressions": 400,
+          "position": 6.2
+        }
+      ]
+    }
+  ],
+  "demand_decay": [
+    {
+      "page": "https://www.example.com/features/time",
+      "clicks": 8,
+      "previous_clicks": 40,
+      "year_ago_clicks": 0,
+      "position": 6.2,
+      "previous_position": 6.0,
+      "top_query": "time tracking invoices",
+      "why": "Clicks fell from 40 to 8 but position held (6.0 → 6.2): fewer people searched, so a rewrite will not bring them back."
+    }
+  ],
+  "target_urls": [
+    "https://www.example.com/blog/write-an-invoice",
+    "https://www.example.com/templates/invoice",
+    "https://www.example.com/agencies",
+    "https://www.example.com/features/recurring",
+    "https://www.example.com/features/reminders",
+    "https://www.example.com/pricing",
+    "https://www.example.com/features/time"
+  ],
+  "target_queries": [
+    "how to write an invoice",
+    "invoice template",
+    "invoice software for agencies",
+    "recurring invoices",
+    "late payment reminder",
+    "invoice software",
+    "time tracking invoices"
+  ],
+  "extra_clicks_total": 497,
+  "complete": true,
+  "sentence": "7 opportunities worth about 497 extra clicks per 28 days, from 1,187 clicks today.",
+  "unknowns": [
+    "Search Console hides rare (anonymized) queries, so these totals are lower than the property's own totals.",
+    "Index coverage was not checked: these rows only include pages that already appear in search.",
+    "Too few impressions to measure this site's own CTR at position 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11-20 (under 500 each); a conservative default curve was used there."
+  ]
+}

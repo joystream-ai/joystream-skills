@@ -1,0 +1,60 @@
+{
+  "outcome": "error",
+  "site": "https://unreachable.example.com",
+  "robots": {
+    "status": null,
+    "sitemaps": [],
+    "blocks_all": false
+  },
+  "sitemap": {
+    "url": null,
+    "status": null,
+    "url_count": 0
+  },
+  "pages": [],
+  "findings": [],
+  "categories": [
+    {
+      "id": "indexability",
+      "name": "Indexability",
+      "score": null
+    },
+    {
+      "id": "titles_metas",
+      "name": "Titles & meta descriptions",
+      "score": null
+    },
+    {
+      "id": "headings_content",
+      "name": "Headings & content",
+      "score": null
+    },
+    {
+      "id": "structured_social",
+      "name": "Structured data & social",
+      "score": null
+    },
+    {
+      "id": "internal_links",
+      "name": "Internal links & images",
+      "score": null
+    },
+    {
+      "id": "technical",
+      "name": "Technical",
+      "score": null
+    }
+  ],
+  "overall_score": null,
+  "counts": {
+    "critical": 0,
+    "high": 0,
+    "medium": 0,
+    "low": 0
+  },
+  "target_urls": [],
+  "sentence": "",
+  "unknowns": [
+    "The homepage could not be reached (URLError), so nothing was audited."
+  ]
+}
