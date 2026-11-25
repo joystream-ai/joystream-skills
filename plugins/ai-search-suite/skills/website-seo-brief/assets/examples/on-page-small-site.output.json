@@ -89,23 +89,23 @@
   ],
   "report_markdown": "# 🔍 SEO Optimizer · www.example.com\n**50/100** 🟠 · Crawlable homepage, but the pricing page is hidden from search and one page is empty without JavaScript.\n\n## ⚡ This week's changes\n| # | Page | Change | Impact | Effort | Owner |\n|---|---|---|---|---|---|\n| 1 | /app | Server-render the app page so crawlers can read it | 🔴 high | project | Eng |\n| 2 | /pricing | Remove noindex and write a descriptive title | 🔴 high | quick fix | Web |\n| 3 | / | Shorten the title and add a meta description | 🔴 high | quick fix | Web |\n\n## 📊 Scorecard\nIndexability | ░░░░░░░░░░ 0/10\nTitles & meta descriptions | ██░░░░░░░░ 2/10\nHeadings & content | ██░░░░░░░░ 2/10\nStructured data & social | ███████░░░ 7/10\nInternal links & images | ████████░░ 8/10\nTechnical | ████████░░ 8/10\n\n## 🧰 Copy-ready fixes\n### 1. /app — Server-render the app page so crawlers can read it\nThe page has 0 words in its raw HTML; most crawlers other than Google see it empty.\n\n### 2. /pricing — Remove noindex and write a descriptive title\nThe page is in the sitemap but says \"noindex\", and its 7-character title \"Pricing\" does not say what is priced.\n```\nrobots meta: noindex → remove\ntitle (7 → 57): Invoice Software Pricing for Agencies — Example Invoicing\ndescription (85 → 129): Plans for agencies of every size, from one person to fifty, billed monthly or yearly. See what each plan includes and pick yours.\n```\n\n### 3. / — Shorten the title and add a meta description\nThe homepage title is 83 characters, so search results cut it off, and the page has no meta description.\n```\ntitle (83 → 49): Invoice Software for Agencies — Example Invoicing\ndescription (0 → 129): Invoices for agencies that bill by the hour and by the project. Send them, track them and get paid faster with Example Invoicing.\n```\n\n## ❔ What this brief could not check\n- Pages were read as raw HTML without running JavaScript.\n- Rankings, clicks and search volume need Search Console or an SEO data provider.\n\nEvery change is a draft: check the facts before you publish.\n",
   "report": {
-    "title": "SEO Optimizer · www.example.com — 50/100",
+    "title": "SEO Optimizer · www.example.com — 50/100 🟠",
     "summary": "The pricing page is hidden from search and one page is empty without JavaScript.",
     "severity": "action_needed",
     "sections": [
       {
-        "heading": "This week's changes",
+        "heading": "Top changes this week",
         "items": [
           {
-            "text": "Server-render the app page so crawlers can read it (/app) · Eng · project",
+            "text": "🔴 Server-render the app page so crawlers can read it (/app) · Eng · project",
             "citations": []
           },
           {
-            "text": "Remove noindex and write a descriptive title (/pricing) · Web · quick fix",
+            "text": "🔴 Remove noindex and write a descriptive title (/pricing) · Web · quick fix",
             "citations": []
           },
           {
-            "text": "Shorten the title and add a meta description (/) · Web · quick fix",
+            "text": "🔴 Shorten the title and add a meta description (/) · Web · quick fix",
             "citations": []
           }
         ]
@@ -114,27 +114,7 @@
         "heading": "Scores",
         "items": [
           {
-            "text": "Indexability 0/10",
-            "citations": []
-          },
-          {
-            "text": "Titles & meta descriptions 2/10",
-            "citations": []
-          },
-          {
-            "text": "Headings & content 2/10",
-            "citations": []
-          },
-          {
-            "text": "Structured data & social 7/10",
-            "citations": []
-          },
-          {
-            "text": "Internal links & images 8/10",
-            "citations": []
-          },
-          {
-            "text": "Technical 8/10",
+            "text": "Indexability 0 · Titles 2 · Content 2 · Schema 7 · Links 8 · Technical 8",
             "citations": []
           }
         ]

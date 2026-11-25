@@ -434,7 +434,7 @@ def findings_for(entry: dict[str, Any]) -> list[dict[str, Any]]:
         severity = ("high" if rank is None or rank > 5 else "medium") if len(topics) >= 3 else "low"
         listed = ", ".join(f'"{t["term"]}" ({t["competitors"]} of {n})' for t in topics[:5])
         names = ", ".join(t["term"] for t in topics[:4])
-        found.append(finding(f"content-gap:{key}", severity, f'Top results for "{k}" cover subtopics {short(page)} does not', pages, f"Headings in the top results: {listed}; none of these appear on {short(page)}.", f"Add sections to {short(page)} on {names}, answered with your own facts, where they fit what the page offers.", "project"))
+        found.append(finding(f"content-gap:{key}", severity, f'{short(page)} misses subtopics the top results for "{k}" cover', pages, f"Headings in the top results: {listed}; none of these appear on {short(page)}.", f"Add sections to {short(page)} on {names}, answered with your own facts, where they fit what the page offers.", "project"))
     ours, median = entry["our_words"], entry["competitor_median_words"]
     if ours is not None and median and ours < 0.5 * median:
         found.append(finding(f"content-depth:{key}", "medium", f'{short(page)} is much shorter than the top results for "{k}"', pages, f"{short(page)} has {ours} words; the readable top results have a median of {median}.", "Expand the page with what a searcher for this phrase needs: specifics, examples, proof and answers to common questions.", "project"))

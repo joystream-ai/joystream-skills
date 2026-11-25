@@ -17,7 +17,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.2.0"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -45,6 +45,9 @@ that the site's page does not. Every rewrite is a draft for a person to approve.
 - **focus_keywords** (string or array, optional): phrases the site should rank for.
 - **top_n** (integer, optional, default 10, at most 15): how many actions to write.
 - **now** (string, ISO 8601, optional): the run's start time.
+- **report_file** (string, optional): the name of the PDF a report step
+  (website-seo-report) makes from this brief, e.g. `seo-report.pdf`. Set it when the agent
+  has that step, so the card can point to the file.
 
 # What this skill needs
 
@@ -53,8 +56,9 @@ Console is connected, a Search Console scoring step (website-seo-opportunities) 
 `target_urls` the audit read first. Optional: a speed step (website-seo-performance) and
 a content-gap step (website-seo-content-gap). On JoyStream every one that runs is this
 step's dependency, with prior outputs set to its dependencies; a missing one is skipped,
-never guessed. After it: a step that saves `report_markdown` as a
-file and a delivery step that posts a short card.
+never guessed. After it: a report step (website-seo-report) that renders this output and
+the modules' outputs as a PDF with charts, or a step that saves `report_markdown` as a
+file, and then a delivery step that posts the card from `report`.
 
 # Reading the evidence
 
@@ -155,13 +159,28 @@ rank or say something is ignored and named in `report.unknowns`.
   8. `## ❔ What this brief could not check`: every step's `unknowns`, one line each,
      plus one line per module that did not run (e.g. "Speed: not measured this run").
   9. Last line: `Every change is a draft: check the facts before you publish.`
-- `report`: the shared channel-neutral report. `title`: `SEO Optimizer · <host> —
-  <score>/100`. `summary`: the verdict, plus the extra clicks in search_console mode.
-  `severity`: `action_needed` when any audit finding is critical, else `attention` when
-  any is high, else `info`. Sections `This week's changes` (one item per action, text
-  `<change> (<page path>) · <owner> · <effort>`) and `Scores` (one item per category,
-  plus `Speed <score>/100` when measured).
-  `sources`: the audited pages. `unknowns`: as in the Markdown.
+- `report`: the shared channel-neutral report, which becomes the Slack (or Teams, or
+  email) card. It is a summary to read in ten seconds; the detail lives in the PDF.
+  - `title`: `SEO Optimizer · <host> — <score>/100 <colour>`, plus ` (▲ +<n>)` or
+    ` (▼ −<n>)` when the audit has `changes`.
+  - `summary`: the one-sentence verdict, then `Since the last audit: <n> fixed · <n> new.`
+    when known, then `About <n> extra clicks per 28 days if you ship these.` in
+    search_console mode.
+  - `severity`: `action_needed` when any audit finding is critical, else `attention` when
+    any is high, else `info`.
+  - Sections, in this order, each only when it has items:
+    1. `Top changes this week`: the first three actions, each
+       `<impact emoji> <change> (<page path>) · <owner> · <effort>`, plus ` · +<n> clicks`
+       in search_console mode.
+    2. `Scores`: one item, the categories on one line, e.g. `Indexability 10 ·
+       Titles 8 · Content 8 · Schema 10 · Links 8 · Technical 10`.
+    3. `Speed`: one item, `Mobile <score>/100 · LCP <s> s on <slowest page path>
+       (<rating>)`, plus ` · real users <FAST|AVERAGE|SLOW>` with field data.
+    4. `Content gaps`: one item per keyword (at most three), `"<keyword>": rank <n> (or
+       not in the top results) · missing <up to three topics>`.
+    5. `Full report`: when `report_file` is set, one item: `<report_file> in this run's
+       files: charts, every finding and copy-ready fixes (<n> more changes).`
+  - `sources`: the audited pages. `unknowns`: as in the Markdown.
 
 # Constraints
 

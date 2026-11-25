@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "anyOf": [{"required": ["brief"]}, {"required": ["audit"]}],
+  "properties": {
+    "brief": {"type": ["object", "string", "null"], "description": "website-seo-brief's output (score, actions, report), or its step envelope."},
+    "audit": {"type": ["object", "string", "null"], "description": "website-seo-page-audit's output: counts, categories, findings, changes."},
+    "speed": {"type": ["object", "string", "null"], "description": "website-seo-performance's output, when the speed step ran."},
+    "gaps": {"type": ["object", "string", "null"], "description": "website-seo-content-gap's output, when the content-gap step ran."},
+    "opportunities": {"type": ["object", "string", "null"], "description": "website-seo-opportunities' output, when Search Console was connected."},
+    "now": {"type": "string", "description": "The run's start time, ISO 8601, printed as the report date."}
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["outcome", "site", "score", "files", "sections", "sentence", "unknowns"],
+  "additionalProperties": false,
+  "properties": {
+    "outcome": {"type": "string", "enum": ["ok", "partial", "error"], "description": "partial when the HTML was written but the PDF could not be printed."},
+    "site": {"type": "string"},
+    "score": {"type": ["integer", "null"], "minimum": 0, "maximum": 100, "description": "The brief's score, else the audit's overall_score."},
+    "files": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["path", "kind", "bytes"],
+        "additionalProperties": false,
+        "properties": {"path": {"type": "string"}, "kind": {"type": "string", "enum": ["pdf", "html"]}, "bytes": {"type": "integer", "minimum": 0}}
+      }
+    },
+    "sections": {
+      "type": "array",
+      "items": {"type": "string", "enum": ["summary", "changes", "scorecard", "speed", "content_gaps", "opportunities", "fixes", "findings", "unknowns"]}
+    },
+    "sentence": {"type": "string"},
+    "unknowns": {"type": "array", "items": {"type": "string"}}
+  }
+}

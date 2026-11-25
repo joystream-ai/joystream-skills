@@ -12,6 +12,7 @@
       "oneOf": [{"type": "string"}, {"type": "array", "items": {"type": "string"}}]
     },
     "top_n": {"type": "integer", "minimum": 1, "maximum": 15, "description": "How many actions to write. Default 10."},
-    "now": {"type": "string", "description": "The run's start time, ISO 8601."}
+    "now": {"type": "string", "description": "The run's start time, ISO 8601."},
+    "report_file": {"type": "string", "description": "The PDF a report step (website-seo-report) makes from this brief, e.g. seo-report.pdf. When set, the card's last section points to it."}
   }
 }
