@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["site_url"],
+  "additionalProperties": true,
+  "properties": {
+    "site_url": {"type": "string", "minLength": 3, "description": "The website to measure, e.g. https://www.example.com. A bare host gets https://. Its homepage is always measured first."},
+    "pages": {"type": "array", "items": {"type": "string"}, "description": "Other URLs on the same site to measure after the homepage, e.g. the page audit's target_urls or the pages with the most search traffic."},
+    "max_pages": {"type": "integer", "minimum": 1, "maximum": 5, "description": "How many pages to measure, homepage included. Default 3."},
+    "strategy": {"type": "string", "enum": ["mobile", "desktop"], "description": "Lighthouse device and network profile. Default mobile, the one Google ranks on."},
+    "field_data": {"type": "boolean", "description": "Ask the PageSpeed Insights API for real-user Chrome UX Report data. Default true."},
+    "now": {"type": "string", "description": "The run's start time, ISO 8601."}
+  }
+}

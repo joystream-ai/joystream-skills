@@ -1,0 +1,246 @@
+{
+  "outcome": "ok",
+  "site": "https://www.example.com",
+  "strategy": "mobile",
+  "pages": [
+    {
+      "url": "https://www.example.com/",
+      "status": "ok",
+      "error": null,
+      "performance_score": 42,
+      "seo_score": 92,
+      "accessibility_score": 88,
+      "best_practices_score": 96,
+      "lcp_ms": 4600,
+      "cls": 0.05,
+      "tbt_ms": 350,
+      "fcp_ms": 2300,
+      "speed_index_ms": 3680,
+      "ratings": {
+        "lcp": "poor",
+        "cls": "good",
+        "tbt": "needs_improvement"
+      },
+      "opportunities": [
+        {
+          "id": "render-blocking-resources",
+          "title": "Eliminate render-blocking resources",
+          "savings_ms": 780,
+          "savings_bytes": 0
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "savings_ms": 620,
+          "savings_bytes": 180000
+        },
+        {
+          "id": "uses-optimized-images",
+          "title": "Uses optimized images",
+          "savings_ms": 300,
+          "savings_bytes": 150000
+        },
+        {
+          "id": "modern-image-formats",
+          "title": "Modern image formats",
+          "savings_ms": 250,
+          "savings_bytes": 120000
+        }
+      ]
+    },
+    {
+      "url": "https://www.example.com/pricing",
+      "status": "ok",
+      "error": null,
+      "performance_score": 71,
+      "seo_score": 92,
+      "accessibility_score": 88,
+      "best_practices_score": 96,
+      "lcp_ms": 3100,
+      "cls": 0.18,
+      "tbt_ms": 120,
+      "fcp_ms": 1550,
+      "speed_index_ms": 2480,
+      "ratings": {
+        "lcp": "needs_improvement",
+        "cls": "needs_improvement",
+        "tbt": "good"
+      },
+      "opportunities": [
+        {
+          "id": "render-blocking-resources",
+          "title": "Eliminate render-blocking resources",
+          "savings_ms": 300,
+          "savings_bytes": 0
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "savings_ms": 100,
+          "savings_bytes": 20000
+        }
+      ]
+    },
+    {
+      "url": "https://www.example.com/blog/post",
+      "status": "ok",
+      "error": null,
+      "performance_score": 93,
+      "seo_score": 92,
+      "accessibility_score": 88,
+      "best_practices_score": 96,
+      "lcp_ms": 1900,
+      "cls": 0.31,
+      "tbt_ms": 80,
+      "fcp_ms": 950,
+      "speed_index_ms": 1520,
+      "ratings": {
+        "lcp": "good",
+        "cls": "poor",
+        "tbt": "good"
+      },
+      "opportunities": []
+    }
+  ],
+  "field": {
+    "source": "crux_origin",
+    "lcp_ms": 4300,
+    "inp_ms": 240,
+    "cls": 0.08,
+    "overall": "SLOW",
+    "ratings": {
+      "lcp": "poor",
+      "inp": "needs_improvement",
+      "cls": "good"
+    }
+  },
+  "findings": [
+    {
+      "id": "field-cwv-failing",
+      "category": "performance",
+      "severity": "critical",
+      "title": "Real visitors get a slow experience (Chrome UX Report)",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "Chrome users on the whole site, last 28 days, 75th percentile: LCP 4.3 s (poor), INP 240 ms (needs improvement), CLS 0.08 (good); overall SLOW.",
+      "fix": "Fix the lab findings for the pages with the most traffic first; field data catches up over 28 days.",
+      "effort": "project"
+    },
+    {
+      "id": "cls-unstable",
+      "category": "performance",
+      "severity": "high",
+      "title": "The layout shifts while the page loads (Cumulative Layout Shift)",
+      "pages": [
+        "https://www.example.com/blog/post",
+        "https://www.example.com/pricing"
+      ],
+      "evidence": "/blog/post: 0.31 (poor); /pricing: 0.18 (needs improvement)",
+      "fix": "Reserve space for images, embeds and banners (width and height, or aspect-ratio) and never insert content above what is already shown.",
+      "effort": "project"
+    },
+    {
+      "id": "lcp-slow",
+      "category": "performance",
+      "severity": "high",
+      "title": "The main content loads slowly (Largest Contentful Paint)",
+      "pages": [
+        "https://www.example.com/",
+        "https://www.example.com/pricing"
+      ],
+      "evidence": "/: 4.6 s (poor); /pricing: 3.1 s (needs improvement)",
+      "fix": "Make the largest element (usually the hero image or headline) load first: preload it, compress it, and cut render-blocking CSS and JavaScript.",
+      "effort": "project"
+    },
+    {
+      "id": "perf-score-low",
+      "category": "performance",
+      "severity": "high",
+      "title": "Lighthouse performance score is under 50",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 42/100",
+      "fix": "Work through the slow-loading findings above, starting with the largest savings.",
+      "effort": "project"
+    },
+    {
+      "id": "images-heavy",
+      "category": "performance",
+      "severity": "medium",
+      "title": "Images are larger than they need to be",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: about 0.6 s, 263 KB to save",
+      "fix": "Serve images as WebP or AVIF at the size they are shown, and lazy-load those below the fold.",
+      "effort": "quick fix"
+    },
+    {
+      "id": "render-blocking",
+      "category": "performance",
+      "severity": "medium",
+      "title": "CSS and JavaScript delay the first paint",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: about 0.8 s to save",
+      "fix": "Inline the critical CSS, and load the rest of the CSS and scripts with defer or async.",
+      "effort": "project"
+    },
+    {
+      "id": "slow-server",
+      "category": "performance",
+      "severity": "medium",
+      "title": "The server takes over 600 ms to send the page",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 720 ms",
+      "fix": "Cache the HTML at a CDN, or speed up the server work behind these pages.",
+      "effort": "project"
+    },
+    {
+      "id": "tbt-blocking",
+      "category": "performance",
+      "severity": "medium",
+      "title": "JavaScript blocks the page from responding (Total Blocking Time)",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: 350 ms (needs improvement)",
+      "fix": "Split, defer or remove JavaScript that runs on load, third-party scripts first.",
+      "effort": "project"
+    },
+    {
+      "id": "unused-js",
+      "category": "performance",
+      "severity": "medium",
+      "title": "Pages load JavaScript they do not use",
+      "pages": [
+        "https://www.example.com/"
+      ],
+      "evidence": "/: about 0.6 s, 175 KB to save",
+      "fix": "Remove unused libraries and split the bundle so each page loads only its own code.",
+      "effort": "project"
+    }
+  ],
+  "score": 69,
+  "counts": {
+    "critical": 1,
+    "high": 3,
+    "medium": 5,
+    "low": 0
+  },
+  "target_urls": [
+    "https://www.example.com/",
+    "https://www.example.com/blog/post",
+    "https://www.example.com/pricing"
+  ],
+  "sentence": "Mobile performance 69/100 across 3 pages: LCP 4.6 s on /. Real users: slow.",
+  "unknowns": [
+    "Lab data is one simulated Lighthouse run per page on a throttled mid-range phone on a slow 4G connection; scores can move 5-10 points between runs.",
+    "Interaction to Next Paint needs real users; in the lab, Total Blocking Time stands in for it."
+  ]
+}

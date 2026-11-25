@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import importlib.util
 import json
 import subprocess
 import sys
@@ -29,7 +30,8 @@ def _site(origin: str) -> dict[str, tuple[int, str, str]]:
         "/": (200, "text/html", _page(
             "Example Invoicing: invoice software for agencies, freelancers and studios worldwide",
             f"{nav}<h1>Invoices that get paid</h1><p>{WORDS}</p><img src=a.png>",
-            canonical("/") + org + '<meta property="og:title" content="Example"><meta property="og:image" content="/og.png">',
+            canonical("/") + org + '<meta property="og:title" content="Example"><meta property="og:image" content="/og.png">'
+            + '<link rel="alternate" hreflang="en" href="/"><link rel="alternate" hreflang="english" href="/pricing">',
         )),
         "/pricing": (200, "text/html", _page(
             "Pricing",
@@ -43,10 +45,13 @@ def _site(origin: str) -> dict[str, tuple[int, str, str]]:
         )),
         "/blog/post": (200, "text/html", _page(
             "About Example Invoicing",
-            f"{nav}<h1>How to invoice</h1><h1>Second H1</h1><p>{WORDS}</p><img src=b.png><img src=c.png alt=Chart>",
+            f"{nav}<h1>How to invoice</h1><h1>Second H1</h1><p>{WORDS}</p><img src=b.png><img src=c.png alt=Chart>"
+            '<a href="/missing">Old guide</a><a href="/old">Older guide</a>',
             canonical("/blog/post"),
         )),
         "/app": (200, "text/html", _page("Example App", '<div id="root"></div><script src="/app.js"></script>', canonical("/app"))),
+        "/old": (301, "text/html", "/older"),
+        "/older": (301, "text/html", "/about"),
         "/private/report": (200, "text/html", _page("Private report page", f"<h1>Private</h1><p>{WORDS}</p>")),
         "/robots.txt": (200, "text/plain", f"User-agent: *\nDisallow: /private\n\nSitemap: {origin}/sitemap.xml\n"),
         "/sitemap.xml": (200, "application/xml", (
@@ -64,6 +69,12 @@ def origin() -> Iterator[str]:
     class Handler(BaseHTTPRequestHandler):
         def do_GET(self) -> None:  # noqa: N802
             status, kind, body = pages.get(self.path, (404, "text/html", _page("Not found", "<h1>404</h1>")))
+            if status in (301, 302):
+                self.send_response(status)
+                self.send_header("Location", body)
+                self.send_header("Content-Length", "0")
+                self.end_headers()
+                return
             data = body.encode("utf-8")
             self.send_response(status)
             self.send_header("Content-Type", f"{kind}; charset=utf-8")
@@ -163,6 +174,47 @@ def test_page_text_cannot_change_the_findings(origin: str, tmp_path: Path, audit
     again, _ = _run(tmp_path, {"site_url": origin, "focus_keywords": "invoice software, time tracking"})
     strip = lambda out: [(f["id"], f["severity"], f["pages"]) for f in out["findings"]]  # noqa: E731
     assert strip(again) == strip(audit)
+
+
+def test_internal_links_to_errors_and_redirect_chains(audit: dict, origin: str) -> None:
+    broken = _finding(audit, "broken-links")
+    assert broken["severity"] == "high"
+    assert broken["pages"] == [f"{origin}/blog/post"]
+    assert "/missing → 404" in broken["evidence"]
+    [hop] = audit["link_check"]["redirected"]
+    assert (hop["url"], hop["final_url"], hop["hops"]) == (f"{origin}/old", f"{origin}/about", 2)
+    assert _finding(audit, "internal-redirects")["pages"] == [f"{origin}/blog/post"]
+    assert _finding(audit, "redirect-chain")["pages"] == [f"{origin}/old"]
+
+
+def test_hreflang_codes_and_return_links(audit: dict, origin: str) -> None:
+    assert _finding(audit, "hreflang-invalid")["pages"] == [f"{origin}/"]
+    assert '"english"' in _finding(audit, "hreflang-invalid")["evidence"]
+    assert _finding(audit, "hreflang-no-return")["pages"] == [f"{origin}/"]
+
+
+def test_http_resources_on_an_https_page_are_mixed_content() -> None:
+    spec = importlib.util.spec_from_file_location("seo_audit", SKILL / "scripts" / "audit.py")
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    html = _page("Secure", '<h1>Hi</h1><img src="http://cdn.example.com/a.png" alt=a><script src="http://cdn.example.com/a.js"></script><img src="https://cdn.example.com/b.png" alt=b>', '<link rel="stylesheet" href="http://cdn.example.com/a.css">')
+    result = {"url": "https://example.com/", "final_url": "https://example.com/", "status": 200, "headers": {"content-type": "text/html"}, "text": html, "ms": 5, "error": None, "hops": 0}
+    assert module.audit_page(result, "example.com", set(), [], [])["mixed_content"] == 3
+    insecure_page = dict(result, url="http://example.com/", final_url="http://example.com/")
+    assert module.audit_page(insecure_page, "example.com", set(), [], [])["mixed_content"] == 0
+
+
+def test_a_previous_audit_gives_what_changed(origin: str, tmp_path: Path, audit: dict) -> None:
+    previous = {"step": {"ok": True, "data": {"overall_score": 40, "findings": [{"id": "noindex"}, {"id": "lang-missing"}]}}}
+    again, _ = _run(tmp_path, {"site_url": origin, "focus_keywords": "invoice software, time tracking", "previous": previous})
+    changes = again["changes"]
+    assert changes["previous_score"] == 40
+    assert changes["score_delta"] == again["overall_score"] - 40
+    assert changes["fixed"] == ["lang-missing"]
+    assert "noindex" not in changes["new"] and "broken-links" in changes["new"]
+    assert changes["still_open"] == 1
+    assert "Since the last audit" in again["sentence"]
+    assert audit["changes"] is None
 
 
 def test_an_unreachable_site_is_an_error(tmp_path: Path) -> None:

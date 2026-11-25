@@ -1,0 +1,412 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "outcome",
+    "site",
+    "strategy",
+    "pages",
+    "field",
+    "findings",
+    "score",
+    "counts",
+    "target_urls",
+    "sentence",
+    "unknowns"
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "severity": {
+      "type": "string",
+      "enum": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ]
+    },
+    "rating": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "good",
+        "needs_improvement",
+        "poor",
+        null
+      ]
+    }
+  },
+  "properties": {
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "partial",
+        "error"
+      ],
+      "description": "partial: a page could not be measured or was skipped for time; error: no page could be measured, or the input was bad."
+    },
+    "site": {
+      "type": "string"
+    },
+    "strategy": {
+      "type": "string",
+      "enum": [
+        "mobile",
+        "desktop"
+      ]
+    },
+    "pages": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "url",
+          "status",
+          "error",
+          "performance_score",
+          "seo_score",
+          "accessibility_score",
+          "best_practices_score",
+          "lcp_ms",
+          "cls",
+          "tbt_ms",
+          "fcp_ms",
+          "speed_index_ms",
+          "ratings",
+          "opportunities"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "url": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "ok",
+              "error"
+            ]
+          },
+          "error": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "performance_score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "seo_score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "accessibility_score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "best_practices_score": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "maximum": 100
+          },
+          "lcp_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Largest Contentful Paint, lab."
+          },
+          "cls": {
+            "type": [
+              "number",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Cumulative Layout Shift, lab."
+          },
+          "tbt_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0,
+            "description": "Total Blocking Time, lab: the stand-in for Interaction to Next Paint."
+          },
+          "fcp_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "speed_index_ms": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 0
+          },
+          "ratings": {
+            "type": "object",
+            "required": [
+              "lcp",
+              "cls",
+              "tbt"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "lcp": {
+                "$ref": "#/$defs/rating"
+              },
+              "cls": {
+                "$ref": "#/$defs/rating"
+              },
+              "tbt": {
+                "$ref": "#/$defs/rating"
+              }
+            }
+          },
+          "opportunities": {
+            "type": "array",
+            "maxItems": 5,
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "title",
+                "savings_ms",
+                "savings_bytes"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "savings_ms": {
+                  "type": "integer",
+                  "minimum": 0
+                },
+                "savings_bytes": {
+                  "type": "integer",
+                  "minimum": 0
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "field": {
+      "oneOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "required": [
+            "source",
+            "lcp_ms",
+            "inp_ms",
+            "cls",
+            "overall",
+            "ratings"
+          ],
+          "additionalProperties": false,
+          "description": "Real-user Chrome UX Report data, 75th percentile over 28 days.",
+          "properties": {
+            "source": {
+              "type": "string",
+              "enum": [
+                "crux_origin",
+                "crux_url"
+              ]
+            },
+            "lcp_ms": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "inp_ms": {
+              "type": [
+                "integer",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "cls": {
+              "type": [
+                "number",
+                "null"
+              ],
+              "minimum": 0
+            },
+            "overall": {
+              "type": [
+                "string",
+                "null"
+              ],
+              "enum": [
+                "FAST",
+                "AVERAGE",
+                "SLOW",
+                null
+              ]
+            },
+            "ratings": {
+              "type": "object",
+              "required": [
+                "lcp",
+                "inp",
+                "cls"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "lcp": {
+                  "$ref": "#/$defs/rating"
+                },
+                "inp": {
+                  "$ref": "#/$defs/rating"
+                },
+                "cls": {
+                  "$ref": "#/$defs/rating"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "category",
+          "severity",
+          "title",
+          "pages",
+          "evidence",
+          "fix",
+          "effort"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "category": {
+            "type": "string",
+            "enum": [
+              "performance"
+            ]
+          },
+          "severity": {
+            "$ref": "#/$defs/severity"
+          },
+          "title": {
+            "type": "string"
+          },
+          "pages": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "evidence": {
+            "type": "string"
+          },
+          "fix": {
+            "type": "string"
+          },
+          "effort": {
+            "type": "string",
+            "enum": [
+              "quick fix",
+              "project"
+            ]
+          }
+        }
+      }
+    },
+    "score": {
+      "type": [
+        "integer",
+        "null"
+      ],
+      "minimum": 0,
+      "maximum": 100,
+      "description": "Mean Lighthouse performance score of the measured pages."
+    },
+    "counts": {
+      "type": "object",
+      "required": [
+        "critical",
+        "high",
+        "medium",
+        "low"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "critical": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "high": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "medium": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "low": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "target_urls": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "string"
+      }
+    },
+    "sentence": {
+      "type": "string"
+    },
+    "unknowns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

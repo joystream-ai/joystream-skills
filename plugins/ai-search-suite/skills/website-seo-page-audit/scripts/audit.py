@@ -37,6 +37,8 @@ PAUSE = 0.2
 SKIP_EXT = re.compile(r"\.(png|jpe?g|gif|webp|svg|ico|pdf|zip|gz|mp4|mp3|webm|css|js|json|xml|txt|woff2?)$", re.IGNORECASE)
 KEY_PATHS = re.compile(r"(pricing|price|product|platform|feature|solution|about|company|faq|docs|blog|customer|case|use-case|integration)", re.IGNORECASE)
 LOW_VALUE = re.compile(r"(terms|privacy|cookie|legal|imprint|gdpr|login|log-in|signin|sign-in|signup|sign-up|careers?|jobs)", re.IGNORECASE)
+HREFLANG_CODE = re.compile(r"^(x-default|[a-z]{2,3}(-[a-z]{4})?(-([a-z]{2}|\d{3}))?)$", re.IGNORECASE)
+MAX_LINK_CHECKS = 40
 SEVERITY_ORDER = {"critical": 0, "high": 1, "medium": 2, "low": 3}
 SEVERITY_POINTS = {"critical": 4.0, "high": 2.0, "medium": 1.0, "low": 0.5}
 CATEGORIES = [
@@ -57,9 +59,20 @@ class _NoRedirect(urllib.request.HTTPRedirectHandler):
         return None
 
 
+class _CountRedirects(urllib.request.HTTPRedirectHandler):
+    def __init__(self) -> None:
+        super().__init__()
+        self.hops = 0
+
+    def redirect_request(self, *args: Any, **kwargs: Any) -> Any:
+        self.hops += 1
+        return super().redirect_request(*args, **kwargs)
+
+
 def fetch(url: str, follow: bool = True) -> dict[str, Any]:
     """GET one URL. Never raises: a failure is a result with status 0 and an error."""
-    opener = urllib.request.build_opener() if follow else urllib.request.build_opener(_NoRedirect)
+    counter = _CountRedirects()
+    opener = urllib.request.build_opener(counter) if follow else urllib.request.build_opener(_NoRedirect)
     request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/xhtml+xml,*/*;q=0.8"})
     started = time.monotonic()
     try:
@@ -68,9 +81,9 @@ def fetch(url: str, follow: bool = True) -> dict[str, Any]:
             status, final, headers = response.status, response.geturl(), dict(response.headers.items())
     except urllib.error.HTTPError as exc:
         body = exc.read(MAX_BYTES) if exc.fp else b""
-        status, final, headers = exc.code, url, dict(exc.headers.items()) if exc.headers else {}
+        status, final, headers = exc.code, exc.geturl() or url, dict(exc.headers.items()) if exc.headers else {}
     except (urllib.error.URLError, TimeoutError, OSError, ValueError) as exc:
-        return {"url": url, "final_url": url, "status": 0, "headers": {}, "text": "", "ms": int((time.monotonic() - started) * 1000), "error": type(exc).__name__}
+        return {"url": url, "final_url": url, "status": 0, "headers": {}, "text": "", "ms": int((time.monotonic() - started) * 1000), "error": type(exc).__name__, "hops": counter.hops}
     charset = "utf-8"
     match = re.search(r"charset=([\w-]+)", headers.get("Content-Type", "") or headers.get("content-type", ""))
     if match:
@@ -79,7 +92,7 @@ def fetch(url: str, follow: bool = True) -> dict[str, Any]:
         text = body.decode(charset, errors="replace")
     except LookupError:
         text = body.decode("utf-8", errors="replace")
-    return {"url": url, "final_url": final, "status": status, "headers": {k.lower(): v for k, v in headers.items()}, "text": text, "ms": int((time.monotonic() - started) * 1000), "error": None}
+    return {"url": url, "final_url": final, "status": status, "headers": {k.lower(): v for k, v in headers.items()}, "text": text, "ms": int((time.monotonic() - started) * 1000), "error": None, "hops": counter.hops}
 
 
 def normalize(url: str) -> str:
@@ -118,6 +131,8 @@ class PageParser(HTMLParser):
         self.lang: str | None = None
         self.images = 0
         self.images_missing_alt = 0
+        self.hreflang: list[tuple[str, str]] = []
+        self.insecure: list[str] = []
         self._skip_depth = 0
         self.text: list[str] = []
 
@@ -133,10 +148,12 @@ class PageParser(HTMLParser):
             if key and key not in self.metas:
                 self.metas[key] = a.get("content", "").strip()
         elif tag == "link":
-            self.links.append((a.get("rel", "").lower(), a.get("href", "").strip()))
-            if "alternate" in a.get("rel", "").lower() and a.get("hreflang"):
-                self.metas.setdefault("hreflang_count", "0")
-                self.metas["hreflang_count"] = str(int(self.metas["hreflang_count"]) + 1)
+            rel, href = a.get("rel", "").lower(), a.get("href", "").strip()
+            self.links.append((rel, href))
+            if "alternate" in rel.split() and a.get("hreflang") and href:
+                self.hreflang.append((a["hreflang"].strip(), href))
+            if {"stylesheet", "icon", "preload"} & set(rel.split()) and href.lower().startswith("http://"):
+                self.insecure.append(href)
         elif tag == "a" and a.get("href"):
             self.anchors.append(a["href"].strip())
         elif tag in ("h1", "h2"):
@@ -147,6 +164,8 @@ class PageParser(HTMLParser):
                 self.images_missing_alt += 1
         elif tag == "script" and a.get("type", "").lower() == "application/ld+json":
             self._in_json_ld, self._json_ld_text = True, []
+        if tag in ("img", "script", "iframe", "source", "video", "audio", "embed") and a.get("src", "").strip().lower().startswith("http://"):
+            self.insecure.append(a["src"].strip())
         if tag in ("head", "script", "style", "noscript", "nav", "footer", "header", "svg", "template"):
             self._skip_depth += 1
 
@@ -310,6 +329,7 @@ def audit_page(result: dict[str, Any], host: str, sitemap: set[str], disallow: l
         "error": result["error"],
         "response_ms": result["ms"],
         "redirected": normalize(final) != normalize(result["url"]),
+        "redirect_hops": result.get("hops", 0),
         "title": title,
         "title_length": len(title) if title else 0,
         "meta_description": description,
@@ -328,6 +348,8 @@ def audit_page(result: dict[str, Any], host: str, sitemap: set[str], disallow: l
         "lang": parser.lang,
         "images": parser.images,
         "images_missing_alt": parser.images_missing_alt,
+        "mixed_content": len(parser.insecure) if final.lower().startswith("https://") else 0,
+        "hreflang": [{"lang": lang, "href": urljoin(final, href)} for lang, href in parser.hreflang[:30]],
         "internal_links_out": sorted(internal)[:200],
         "external_links_out": len(external),
         "inbound_internal_links": 0,
@@ -345,7 +367,7 @@ def finding(fid: str, category: str, severity: str, title: str, pages: list[str]
     return {"id": fid, "category": category, "severity": severity, "title": title, "pages": pages, "evidence": evidence, "fix": fix, "effort": effort}
 
 
-def findings_for(pages: list[dict[str, Any]], home: dict[str, Any] | None, site: dict[str, Any], keywords: list[str]) -> list[dict[str, Any]]:
+def findings_for(pages: list[dict[str, Any]], home: dict[str, Any] | None, site: dict[str, Any], keywords: list[str], links: dict[str, Any]) -> list[dict[str, Any]]:
     found: list[dict[str, Any]] = []
     ok = [p for p in pages if p["status"] == 200]
     home_url = home["final_url"] if home else None
@@ -447,10 +469,35 @@ def findings_for(pages: list[dict[str, Any]], home: dict[str, Any] | None, site:
     if alt:
         total = sum(p["images_missing_alt"] for p in alt)
         found.append(finding("images-no-alt", "internal_links", "low", "Images have no alt text", where(alt), f"{total} images across {len(alt)} pages.", "Describe each meaningful image in its alt attribute.", "quick fix"))
+    if links["broken"]:
+        linking = list(dict.fromkeys(src for item in links["broken"] for src in item["linked_from"]))
+        found.append(finding("broken-links", "internal_links", "high", "Internal links lead to error pages", linking, "; ".join(f'{short(item["url"])} → {item["status"] or "unreachable"} (from {", ".join(short(s) for s in item["linked_from"][:3])})' for item in links["broken"][:5]), "Point each link at a live page, or redirect the dead URL to its closest replacement.", "quick fix"))
+    if links["redirected"]:
+        linking = list(dict.fromkeys(src for item in links["redirected"] for src in item["linked_from"]))
+        found.append(finding("internal-redirects", "internal_links", "low", "Internal links point at URLs that redirect", linking, "; ".join(f'{short(item["url"])} → {short(item["final_url"])}' for item in links["redirected"][:5]), "Link straight to the final URL so crawlers and visitors skip the redirect.", "quick fix"))
 
     # Technical
     if not site["https_redirect"]:
         found.append(finding("no-https-redirect", "technical", "high", "http:// does not redirect to https://", [], f'http://{site["host"]}/ answered without redirecting to https.', "Redirect all http traffic to https with a 301.", "quick fix"))
+    chains = [(p["url"], p["redirect_hops"]) for p in pages if p["redirect_hops"] > 1]
+    chains += [(item["url"], item["hops"]) for item in links["redirected"] if item["hops"] > 1]
+    if chains:
+        found.append(finding("redirect-chain", "technical", "medium", "URLs redirect more than once before the page loads", [url for url, _ in chains], "; ".join(f"{short(url)}: {hops} hops" for url, hops in chains[:5]), "Redirect each old URL straight to its final page in one hop.", "quick fix"))
+    mixed = [p for p in ok if p["mixed_content"]]
+    if mixed:
+        found.append(finding("mixed-content", "technical", "high", "https pages load resources over http", where(mixed), "; ".join(f'{short(p["final_url"])}: {p["mixed_content"]} http:// resources' for p in mixed[:5]), "Serve every image, script and stylesheet over https; browsers block or flag http ones.", "quick fix"))
+    bad_codes = [p for p in ok if any(not HREFLANG_CODE.match(h["lang"]) for h in p["hreflang"])]
+    if bad_codes:
+        found.append(finding("hreflang-invalid", "technical", "medium", "hreflang tags use invalid language codes", where(bad_codes), "; ".join(f'{short(p["final_url"])}: ' + ", ".join(f'"{h["lang"]}"' for h in p["hreflang"] if not HREFLANG_CODE.match(h["lang"])) for p in bad_codes[:5]), 'Use ISO 639-1 language codes, optionally with an ISO 3166-1 region (e.g. "en", "en-GB", "x-default").', "quick fix"))
+    by_url = {normalize(p["final_url"]): p for p in ok}
+    no_return: list[tuple[dict[str, Any], dict[str, Any]]] = []
+    for p in ok:
+        for h in p["hreflang"]:
+            other = by_url.get(normalize(h["href"]))
+            if other is not None and other is not p and not any(normalize(back["href"]) == normalize(p["final_url"]) for back in other["hreflang"]):
+                no_return.append((p, other))
+    if no_return:
+        found.append(finding("hreflang-no-return", "technical", "medium", "hreflang alternates do not link back", list(dict.fromkeys(p["final_url"] for p, _ in no_return)), "; ".join(f'{short(p["final_url"])} lists {short(o["final_url"])}, which does not list it back' for p, o in no_return[:5]), "Give every language version the same full set of hreflang links, itself included.", "quick fix"))
     slow = [p for p in ok if p["response_ms"] > 2000]
     if slow:
         found.append(finding("slow-response", "technical", "low", "Pages take over 2 seconds to respond", where(slow), "; ".join(f'{short(p["final_url"])}: {p["response_ms"]} ms' for p in slow[:5]), "Cache or speed up the server response for these pages.", "project"))
@@ -480,6 +527,54 @@ def spread(urls: list[str], keep_first: int) -> list[str]:
     return fixed + ordered + low
 
 
+def check_links(pages: list[dict[str, Any]], audited: dict[str, dict[str, Any]], disallow: list[str], allow: list[str], limit: int) -> dict[str, Any]:
+    """GET the internal links the audited pages point at but the audit did not read, most
+    linked first, and report the ones that fail or redirect."""
+    sources: dict[str, list[str]] = {}
+    for page in pages:
+        if page["status"] != 200:
+            continue
+        for link in page["internal_links_out"]:
+            path = urlsplit(link).path or "/"
+            if link in audited or SKIP_EXT.search(path) or blocked(path, disallow, allow):
+                continue
+            sources.setdefault(link, []).append(page["final_url"])
+    targets = sorted(sources, key=lambda u: (-len(sources[u]), u))
+    broken: list[dict[str, Any]] = []
+    redirected: list[dict[str, Any]] = []
+    for url in targets[:limit]:
+        time.sleep(PAUSE / 2)
+        result = fetch(url)
+        if result["status"] == 0 or result["status"] >= 400:
+            broken.append({"url": url, "status": result["status"], "linked_from": sources[url][:5]})
+        elif normalize(result["final_url"]) != normalize(url):
+            redirected.append({"url": url, "final_url": result["final_url"], "hops": result["hops"], "linked_from": sources[url][:5]})
+    return {"checked": min(limit, len(targets)), "unchecked": max(0, len(targets) - limit), "broken": broken, "redirected": redirected}
+
+
+def compare(previous: Any, found: list[dict[str, Any]], overall: int) -> dict[str, Any] | None:
+    """What changed since an earlier audit of the same site, or None without one."""
+    while isinstance(previous, dict) and "findings" not in previous:  # unwrap {"step": {"ok", "data"}}
+        inner = previous.get("step") if isinstance(previous.get("step"), dict) else previous.get("data")
+        if not isinstance(inner, dict):
+            break
+        previous = inner
+    if not isinstance(previous, dict) or not isinstance(previous.get("findings"), list):
+        return None
+    before = {f.get("id") if isinstance(f, dict) else f for f in previous["findings"]}
+    before.discard(None)
+    now = [f["id"] for f in found]
+    score = previous.get("overall_score")
+    score = score if isinstance(score, int) and not isinstance(score, bool) else None
+    return {
+        "previous_score": score,
+        "score_delta": overall - score if score is not None else None,
+        "new": [fid for fid in now if fid not in before],
+        "fixed": sorted(str(fid) for fid in before - set(now)),
+        "still_open": sum(1 for fid in now if fid in before),
+    }
+
+
 def error_output(site_url: str, message: str) -> dict[str, Any]:
     return {
         "outcome": "error",
@@ -492,6 +587,8 @@ def error_output(site_url: str, message: str) -> dict[str, Any]:
         "overall_score": None,
         "counts": {"critical": 0, "high": 0, "medium": 0, "low": 0},
         "target_urls": [],
+        "link_check": {"checked": 0, "unchecked": 0, "broken": [], "redirected": []},
+        "changes": None,
         "sentence": "",
         "unknowns": [message],
     }
@@ -513,6 +610,8 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
     keywords_raw = inputs.get("focus_keywords")
     keywords = [k.strip() for k in (re.split(r"[\n,]+", keywords_raw) if isinstance(keywords_raw, str) else keywords_raw or []) if isinstance(k, str) and k.strip()][:10]
     extra = [u for u in (inputs.get("pages") or []) if isinstance(u, str) and same_site(u, host)]
+    link_limit = inputs.get("max_link_checks") if isinstance(inputs.get("max_link_checks"), int) else MAX_LINK_CHECKS
+    link_limit = max(0, min(link_limit, 100))
 
     unknowns: list[str] = ["Pages were read as raw HTML without running JavaScript, as most crawlers other than Google see them."]
 
@@ -559,6 +658,7 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
             if target is not None and target is not page:
                 target["inbound_internal_links"] += 1
     home = pages[0]
+    links = check_links(pages, audited, disallow, allow, link_limit)
 
     site = {
         "host": urlsplit(origin).netloc,
@@ -568,7 +668,7 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
         "sitemap_declared": bool(declared),
         "https_redirect": https_redirect,
     }
-    found = findings_for(pages, home, site, keywords)
+    found = findings_for(pages, home, site, keywords, links)
 
     categories = []
     for cid, name in CATEGORIES:
@@ -579,6 +679,8 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
 
     if sitemap_info["url_count"] > len(pages):
         unknowns.append(f"{len(pages)} of {sitemap_info['url_count']} sitemap URLs were audited; issues on other pages are not shown.")
+    if links["unchecked"]:
+        unknowns.append(f"{links['checked']} internal links were checked for errors and redirects; {links['unchecked']} more were not.")
     if not keywords:
         unknowns.append("No focus keywords were given, so keyword targeting was not checked.")
     unknowns.append("Rankings, clicks and search volume are not part of this audit: they need Search Console or an SEO data provider.")
@@ -586,8 +688,11 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
     for page in pages:
         page["internal_links_out"] = len(page["internal_links_out"])
 
+    changes = compare(inputs.get("previous"), found, overall)
     tally = ", ".join(f"{counts[level]} {level}" for level in SEVERITY_ORDER if counts[level])
     sentence = f"On-page SEO {overall}/100 across {len(pages)} pages: {tally or 'no issues found'}."
+    if changes and changes["score_delta"] is not None:
+        sentence += f" Since the last audit: {changes['score_delta']:+d}, {len(changes['fixed'])} fixed, {len(changes['new'])} new."
     target_urls = list(dict.fromkeys(url for f in found for url in f["pages"]))[:15]
     output = {
         "outcome": "ok" if all(p["status"] == 200 for p in pages) else "partial",
@@ -600,6 +705,8 @@ def build(inputs: dict[str, Any]) -> tuple[dict[str, Any], int]:
         "overall_score": overall,
         "counts": counts,
         "target_urls": target_urls,
+        "link_check": links,
+        "changes": changes,
         "sentence": sentence,
         "unknowns": unknowns,
     }

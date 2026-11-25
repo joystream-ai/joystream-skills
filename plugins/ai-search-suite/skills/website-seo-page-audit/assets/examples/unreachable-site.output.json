@@ -53,6 +53,13 @@
     "low": 0
   },
   "target_urls": [],
+  "link_check": {
+    "checked": 0,
+    "unchecked": 0,
+    "broken": [],
+    "redirected": []
+  },
+  "changes": null,
   "sentence": "",
   "unknowns": [
     "The homepage could not be reached (URLError), so nothing was audited."

@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": ["outcome", "site", "keywords", "findings", "counts", "target_urls", "sentence", "unknowns"],
+  "additionalProperties": false,
+  "$defs": {
+    "severity": {"type": "string", "enum": ["critical", "high", "medium", "low"]},
+    "source": {"type": ["string", "null"], "enum": ["tavily", "brave", "serpapi", "exa", "list", null]}
+  },
+  "properties": {
+    "outcome": {"type": "string", "enum": ["ok", "partial", "error"], "description": "partial: a search failed, or a result or our page could not be read. error: no search could be compared, or the input was bad."},
+    "site": {"type": "string"},
+    "keywords": {
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["keyword", "source", "our_rank", "our_page", "our_words", "competitor_median_words", "competitors", "missing_topics", "missing_schema"],
+        "additionalProperties": false,
+        "properties": {
+          "keyword": {"type": "string"},
+          "source": {"$ref": "#/$defs/source"},
+          "our_rank": {"type": ["integer", "null"], "minimum": 1, "description": "Position of the first result on our site in the search's own order; null when absent."},
+          "our_page": {"type": ["string", "null"], "description": "The page compared: our ranking URL, else the audited page that best matches the keyword, else the homepage."},
+          "our_words": {"type": ["integer", "null"], "minimum": 0},
+          "competitor_median_words": {"type": ["integer", "null"], "minimum": 0},
+          "competitors": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "required": ["url", "position", "title", "words", "headings", "schema_types", "has_faq", "error"],
+              "additionalProperties": false,
+              "properties": {
+                "url": {"type": "string"},
+                "position": {"type": "integer", "minimum": 1},
+                "title": {"type": ["string", "null"]},
+                "words": {"type": ["integer", "null"], "minimum": 0},
+                "headings": {"type": ["integer", "null"], "minimum": 0, "description": "H2 and H3 headings on the page."},
+                "schema_types": {"type": "array", "items": {"type": "string"}},
+                "has_faq": {"type": "boolean"},
+                "error": {"type": ["string", "null"]}
+              }
+            }
+          },
+          "missing_topics": {
+            "type": "array",
+            "maxItems": 8,
+            "items": {
+              "type": "object",
+              "required": ["term", "competitors", "example_headings"],
+              "additionalProperties": false,
+              "properties": {
+                "term": {"type": "string"},
+                "competitors": {"type": "integer", "minimum": 2, "description": "Readable top results whose H2/H3 headings use the term."},
+                "example_headings": {"type": "array", "maxItems": 2, "items": {"type": "string"}}
+              }
+            }
+          },
+          "missing_schema": {"type": "array", "items": {"type": "string"}}
+        }
+      }
+    },
+    "findings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "category", "severity", "title", "pages", "evidence", "fix", "effort"],
+        "additionalProperties": false,
+        "properties": {
+          "id": {"type": "string"},
+          "category": {"type": "string", "enum": ["content_gap"]},
+          "severity": {"$ref": "#/$defs/severity"},
+          "title": {"type": "string"},
+          "pages": {"type": "array", "items": {"type": "string"}},
+          "evidence": {"type": "string"},
+          "fix": {"type": "string"},
+          "effort": {"type": "string", "enum": ["quick fix", "project"]}
+        }
+      }
+    },
+    "counts": {
+      "type": "object",
+      "required": ["critical", "high", "medium", "low"],
+      "additionalProperties": false,
+      "properties": {
+        "critical": {"type": "integer", "minimum": 0},
+        "high": {"type": "integer", "minimum": 0},
+        "medium": {"type": "integer", "minimum": 0},
+        "low": {"type": "integer", "minimum": 0}
+      }
+    },
+    "target_urls": {"type": "array", "maxItems": 15, "items": {"type": "string"}},
+    "sentence": {"type": "string"},
+    "unknowns": {"type": "array", "items": {"type": "string"}}
+  }
+}

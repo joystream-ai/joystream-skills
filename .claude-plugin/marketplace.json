@@ -43,7 +43,7 @@
     {
       "source": "./plugins/ai-search-suite",
       "name": "ai-search-suite",
-      "description": "SEO for any website, plus Search Console click estimates when it is connected: audit a site's real HTML, find the opportunities worth the most clicks, and write copy-ready titles, meta descriptions, sections and links. Steps whose data is missing are skipped and named."
+      "description": "The SEO Optimizer for any website: start with website-seo-optimizer. It audits the site's real HTML (indexability, titles, content, schema, broken links, redirects, hreflang), measures Core Web Vitals, finds content gaps against the pages that rank, adds Search Console click estimates when connected, and writes copy-ready titles, meta descriptions, sections and links. Modules whose data is missing are skipped and named."
     },
     {
       "name": "content-studio",
