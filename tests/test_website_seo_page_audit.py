@@ -13,7 +13,7 @@ from pathlib import Path
 import jsonschema
 import pytest
 
-SKILL = Path(__file__).resolve().parent.parent / "skills" / "website-seo-page-audit"
+SKILL = Path(__file__).resolve().parent.parent / "plugins" / "ai-search-suite" / "skills" / "website-seo-page-audit"
 WORDS = " ".join(["Invoices for agencies that bill by the hour and by the project."] * 40)
 
 

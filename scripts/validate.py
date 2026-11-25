@@ -83,6 +83,7 @@ RULES: dict[str, tuple[str, str, bool]] = {
     "CATALOG_EXAMPLE_UNPAIRED": ("catalog", "Give each example both an .input.json and an .output.json.", False),
     "CATALOG_EXAMPLE_MISNAMED": ("catalog", "Name examples <case>.input.json and <case>.output.json.", True),
     "CATALOG_NAME_DUPLICATE": ("catalog", "Give each skill a unique name; JoyStream resolves skills by bare name.", False),
+    "CATALOG_PLUGIN_MANIFEST": ("catalog", "Give the plugin folder a .claude-plugin/plugin.json whose name equals the folder name.", False),
     "CATALOG_MARKETPLACE_MISSING": ("catalog", "Add .claude-plugin/marketplace.json.", False),
     "CATALOG_MARKETPLACE_DANGLING": ("catalog", "Remove the entry, or add the skill it points to.", False),
     "CATALOG_MARKETPLACE_UNREGISTERED": ("catalog", "Add the skill to exactly one marketplace entry.", False),
@@ -352,6 +353,12 @@ def validate_skill(skill_dir: Path) -> SkillResult:
     return result
 
 
+def skill_dirs(root: Path) -> list[Path]:
+    """Every skill directory: skills/<skill>/ and plugins/<plugin>/skills/<skill>/."""
+    top = sorted(p for p in (root / "skills").iterdir() if p.is_dir()) if (root / "skills").is_dir() else []
+    return top + sorted(p for p in root.glob("plugins/*/skills/*") if p.is_dir())
+
+
 def check_repo(root: Path, results: list[SkillResult]) -> list[Finding]:
     findings: list[Finding] = []
     seen: dict[str, str] = {}
@@ -369,8 +376,15 @@ def check_repo(root: Path, results: list[SkillResult]) -> list[Finding]:
     registered: dict[Path, list[str]] = {}
     for entry in entries:
         source = root / entry.get("source", "./")
-        for rel in entry.get("skills", []):
-            path = (source / rel).resolve()
+        if source.resolve() != root.resolve():
+            plugin_json = source / ".claude-plugin" / "plugin.json"
+            declared = json.loads(plugin_json.read_text()).get("name") if plugin_json.is_file() else None
+            if declared != source.name:
+                findings.append(Finding("CATALOG_PLUGIN_MANIFEST", f"{entry.get('name')}: {plugin_json.relative_to(root)} is missing or names {declared!r}"))
+        listed = entry.get("skills")
+        rels = listed if listed else [str(p.relative_to(root)) for p in sorted((source / "skills").glob("*")) if p.is_dir()] if source.resolve() != root.resolve() else []
+        for rel in rels:
+            path = (root / rel).resolve() if not listed else (source / rel).resolve()
             if not (path / "SKILL.md").is_file():
                 findings.append(Finding("CATALOG_MARKETPLACE_DANGLING", f"{entry.get('name')}: '{rel}' has no SKILL.md"))
             registered.setdefault(path, []).append(entry.get("name", "?"))
@@ -402,14 +416,14 @@ def apply_baseline(results: list[SkillResult], baseline: dict[str, list[str]]) -
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("paths", nargs="*", help="skill directories (default: every directory under skills/)")
+    parser.add_argument("paths", nargs="*", help="skill directories (default: every skill under skills/ and plugins/*/skills/)")
     parser.add_argument("--root", default=str(Path(__file__).resolve().parent.parent), help="repo root")
     parser.add_argument("--baseline", help="baseline file (default: <root>/validate-baseline.json)")
     parser.add_argument("--json", action="store_true", help="machine-readable output")
     args = parser.parse_args()
 
     root = Path(args.root)
-    all_dirs = sorted(p for p in (root / "skills").iterdir() if p.is_dir()) if (root / "skills").is_dir() else []
+    all_dirs = skill_dirs(root)
     dirs = [Path(p) for p in args.paths] if args.paths else all_dirs
     results = [validate_skill(d) for d in dirs]
     # Repo-level checks always see every skill, so a partial run still catches duplicates.

@@ -9,7 +9,7 @@ from pathlib import Path
 
 import jsonschema
 
-SKILL = Path(__file__).resolve().parent.parent / "skills" / "website-seo-opportunities"
+SKILL = Path(__file__).resolve().parent.parent / "plugins" / "ai-search-suite" / "skills" / "website-seo-opportunities"
 SITE = "https://www.example.com"
 
 

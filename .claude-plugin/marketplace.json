@@ -41,14 +41,9 @@
       ]
     },
     {
-      "source": "./",
+      "source": "./plugins/ai-search-suite",
       "name": "ai-search-suite",
-      "description": "SEO for any website, plus Search Console click estimates when it is connected: audit a site's real HTML, find the opportunities worth the most clicks, and write copy-ready titles, meta descriptions, sections and links. Steps whose data is missing are skipped and named.",
-      "skills": [
-        "./skills/website-seo-page-audit",
-        "./skills/website-seo-opportunities",
-        "./skills/website-seo-brief"
-      ]
+      "description": "SEO for any website, plus Search Console click estimates when it is connected: audit a site's real HTML, find the opportunities worth the most clicks, and write copy-ready titles, meta descriptions, sections and links. Steps whose data is missing are skipped and named."
     },
     {
       "name": "content-studio",
