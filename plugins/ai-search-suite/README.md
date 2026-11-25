@@ -28,12 +28,12 @@ website-seo-report          (PDF + HTML: score, charts, fixes, every finding)
 | Skill | Kind | Needs |
 |---|---|---|
 | [`website-seo-optimizer`](./skills/website-seo-optimizer/SKILL.md) | task | Nothing itself: sequences the skills below |
-| [`website-seo-page-audit`](./skills/website-seo-page-audit/SKILL.md) | sandbox | Outbound internet. Works on any public site, yours or a competitor's |
-| [`website-seo-performance`](./skills/website-seo-performance/SKILL.md) | sandbox | Lighthouse and Chrome (both in the JoyStream sandbox); the free PageSpeed API for real-user data |
-| [`website-seo-content-gap`](./skills/website-seo-content-gap/SKILL.md) | sandbox | Focus keywords and a web-search step per keyword (SerpApi, Tavily, Brave or Exa) |
-| [`website-seo-opportunities`](./skills/website-seo-opportunities/SKILL.md) | sandbox | Google Search Console query × page rows for the last 28 days (and the 28 before) |
+| [`website-seo-page-audit`](./skills/website-seo-page-audit/SKILL.md) | task (sandbox) | Outbound internet. Works on any public site, yours or a competitor's |
+| [`website-seo-performance`](./skills/website-seo-performance/SKILL.md) | task (sandbox) | Lighthouse and Chrome (both in the JoyStream sandbox); the free PageSpeed API for real-user data |
+| [`website-seo-content-gap`](./skills/website-seo-content-gap/SKILL.md) | task (sandbox) | Focus keywords and a web-search step per keyword (SerpApi, Tavily, Brave or Exa) |
+| [`website-seo-opportunities`](./skills/website-seo-opportunities/SKILL.md) | task (sandbox) | Google Search Console query × page rows for the last 28 days (and the 28 before) |
 | [`website-seo-brief`](./skills/website-seo-brief/SKILL.md) | instruction | The audit, and the other outputs when there are any |
-| [`website-seo-report`](./skills/website-seo-report/SKILL.md) | sandbox | The brief and the module outputs; Chromium (in the JoyStream sandbox) for the PDF |
+| [`website-seo-report`](./skills/website-seo-report/SKILL.md) | task (sandbox) | The brief and the module outputs; Chromium (in the JoyStream sandbox) for the PDF |
 
 ## What the review covers
 

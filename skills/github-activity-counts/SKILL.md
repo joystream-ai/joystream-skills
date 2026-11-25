@@ -10,9 +10,9 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.0.2"
   category: developer-tools
-  joystream-skill-kind: sandbox
+  joystream-skill-kind: task
   joystream-input-schema: assets/input.schema.json
   joystream-output-schema: assets/output.schema.json
 ---

@@ -15,9 +15,9 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: marketing
-  joystream-skill-kind: sandbox
+  joystream-skill-kind: task
   joystream-input-schema: assets/input.schema.json
   joystream-output-schema: assets/output.schema.json
 ---

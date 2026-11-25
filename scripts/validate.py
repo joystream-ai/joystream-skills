@@ -31,7 +31,9 @@ from jsonschema import Draft202012Validator
 from jsonschema.exceptions import SchemaError
 
 STANDARD_KEYS = frozenset({"name", "description", "license", "compatibility", "metadata", "allowed-tools"})
-SKILL_KINDS = frozenset({"instruction", "task", "tool", "sandbox"})
+# The kinds JoyStream's importer accepts (backend/skills/parser.py SKILL_KINDS). A skill that
+# runs scripts/ is a task: the model drives the sandbox, which JoyStream adds from the scripts.
+SKILL_KINDS = frozenset({"instruction", "task", "tool"})
 REQUIRED_METADATA = ("author", "version")
 NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 SEMVER_RE = re.compile(r"^\d+\.\d+\.\d+(-[0-9A-Za-z.-]+)?$")
@@ -62,7 +64,7 @@ RULES: dict[str, tuple[str, str, bool]] = {
     "SCHEMA_SKILL_DESCRIPTION_REQUIRED": ("blocks", "Write a description of up to 1024 characters: what it does and when to use it.", False),
     "SCHEMA_SKILL_SCHEMA_FILE_INVALID": ("blocks", "Point metadata.joystream-*-schema at a JSON Schema 2020-12 file inside the skill, normally assets/*.schema.json.", False),
     "SCHEMA_SKILL_OUTPUT_SCHEMA_NOT_OBJECT": ("blocks", "Make the output schema type: object with properties; they become the fields of the model's answer.", False),
-    "SCHEMA_SKILL_KIND_INVALID": ("blocks", "Set metadata.joystream-skill-kind to instruction, task, tool or sandbox.", False),
+    "SCHEMA_SKILL_KIND_INVALID": ("blocks", "Set metadata.joystream-skill-kind to instruction, task or tool.", False),
     "SCHEMA_SKILL_DANGLING_REFERENCE": ("degrades", "Add the referenced file, or remove the reference from the body.", False),
     "SCHEMA_SKILL_EXTERNAL_OPS_UNSTATED": ("degrades", "Say in the body that the skill 'performs no external operations;' and name the earlier steps that supply its evidence.", False),
     "SCHEMA_SKILL_BODY_TOO_LONG": ("degrades", "Keep SKILL.md under 500 lines; move optional depth to references/.", False),
@@ -77,7 +79,7 @@ RULES: dict[str, tuple[str, str, bool]] = {
     "CATALOG_METADATA_REQUIRED": ("catalog", "Add metadata.author and metadata.version.", False),
     "CATALOG_VERSION_NOT_SEMVER": ("catalog", "Use a quoted semver version, e.g. \"1.0.0\".", True),
     "CATALOG_SCHEMA_POINTER_NONDEFAULT": ("catalog", "Keep schemas at assets/input.schema.json and assets/output.schema.json.", True),
-    "CATALOG_SCRIPTS_NEED_SANDBOX_KIND": ("catalog", "Remove scripts/, or mark the skill joystream-skill-kind: sandbox.", False),
+    "CATALOG_SCRIPTS_NEED_TASK_KIND": ("catalog", "Remove scripts/, or mark the skill joystream-skill-kind: task.", False),
     "CATALOG_EXAMPLES_MISSING": ("catalog", "Add at least one assets/examples/<case>.input.json and .output.json pair.", False),
     "CATALOG_EXAMPLE_INVALID": ("catalog", "Make the example match its schema.", False),
     "CATALOG_EXAMPLE_UNPAIRED": ("catalog", "Give each example both an .input.json and an .output.json.", False),
@@ -235,7 +237,7 @@ def check_frontmatter(result: SkillResult, skill_dir: Path, raw: str) -> dict | 
         result.error("CATALOG_VERSION_NOT_SEMVER", f"metadata.version '{version}' must be semver, e.g. \"1.0.0\"")
     kind = metadata.get("joystream-skill-kind")
     if kind is None:
-        result.error("CATALOG_SKILL_KIND_MISSING", "metadata.joystream-skill-kind is required (instruction | task | tool | sandbox)")
+        result.error("CATALOG_SKILL_KIND_MISSING", "metadata.joystream-skill-kind is required (instruction | task | tool)")
     elif kind not in SKILL_KINDS:
         result.error("SCHEMA_SKILL_KIND_INVALID", f"metadata.joystream-skill-kind '{kind}' not in {sorted(SKILL_KINDS)}")
     return data
@@ -326,10 +328,10 @@ def check_body(result: SkillResult, skill_dir: Path, body: str, metadata: dict) 
 
 
 def check_files(result: SkillResult, skill_dir: Path, metadata: dict) -> None:
-    if (skill_dir / "scripts").exists() and metadata.get("joystream-skill-kind") != "sandbox":
+    if (skill_dir / "scripts").exists() and metadata.get("joystream-skill-kind") != "task":
         result.error(
-            "CATALOG_SCRIPTS_NEED_SANDBOX_KIND",
-            "any file under scripts/ sends the step to JoyStream's sandbox; only joystream-skill-kind: sandbox may ship scripts",
+            "CATALOG_SCRIPTS_NEED_TASK_KIND",
+            "any file under scripts/ sends the step to JoyStream's sandbox, where the model runs it; only joystream-skill-kind: task may ship scripts",
         )
 
 

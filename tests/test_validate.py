@@ -109,13 +109,18 @@ def test_body_too_long(repo: Path) -> None:
     assert "SCHEMA_SKILL_BODY_TOO_LONG" in codes(repo)
 
 
-def test_scripts_need_sandbox_kind(repo: Path) -> None:
+def test_scripts_need_task_kind(repo: Path) -> None:
     scripts = repo / "skills" / "skill-template" / "scripts"
     scripts.mkdir()
     (scripts / "run.py").write_text("print('hi')\n")
-    assert "CATALOG_SCRIPTS_NEED_SANDBOX_KIND" in codes(repo)
+    assert "CATALOG_SCRIPTS_NEED_TASK_KIND" in codes(repo)
+    edit(skill_md(repo), "joystream-skill-kind: instruction", "joystream-skill-kind: task")
+    assert "CATALOG_SCRIPTS_NEED_TASK_KIND" not in codes(repo)
+
+
+def test_sandbox_is_not_a_kind_joystream_accepts(repo: Path) -> None:
     edit(skill_md(repo), "joystream-skill-kind: instruction", "joystream-skill-kind: sandbox")
-    assert "CATALOG_SCRIPTS_NEED_SANDBOX_KIND" not in codes(repo)
+    assert "SCHEMA_SKILL_KIND_INVALID" in codes(repo)
 
 
 def test_output_schema_must_be_object(repo: Path) -> None:
