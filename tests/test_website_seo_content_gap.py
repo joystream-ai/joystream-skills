@@ -70,7 +70,7 @@ def _run(tmp_path: Path, inputs: dict) -> tuple[dict, int]:
     path = tmp_path / "inputs.json"
     path.write_text(json.dumps(inputs), encoding="utf-8")
     done = subprocess.run(
-        [sys.executable, str(SKILL / "scripts" / "gap.py"), "--input", str(path), "--out", str(tmp_path / "o.json")],
+        [sys.executable, str(SKILL / "scripts" / "gap.py"), "--input", str(path), "--out", str(tmp_path / "o.json"), "--steps-dir", str(tmp_path / "steps")],
         capture_output=True,
         text=True,
         check=False,
@@ -201,3 +201,12 @@ def test_every_example_is_what_the_script_prints(tmp_path: Path) -> None:
         expected = json.loads(case.with_name(case.name.replace(".input.", ".output.")).read_text(encoding="utf-8"))
         output, _ = _run(tmp_path, json.loads(case.read_text(encoding="utf-8")))
         assert output == expected, case.name
+
+
+def test_our_pages_default_to_the_audits_saved_pages(hosts: tuple[str, str], tmp_path: Path, gap: dict) -> None:
+    inputs = _inputs(*hosts)
+    steps = tmp_path / "steps"
+    steps.mkdir()
+    (steps / "website-seo-page-audit.json").write_text(json.dumps({"site": inputs["site_url"], "pages": inputs.pop("pages")}), encoding="utf-8")
+    again, _ = _run(tmp_path, inputs)
+    assert again == gap

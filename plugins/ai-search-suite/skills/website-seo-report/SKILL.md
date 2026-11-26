@@ -17,7 +17,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.1.0"
   category: marketing
   joystream-skill-kind: task
   joystream-input-schema: assets/input.schema.json
@@ -59,21 +59,25 @@ channel-message-render) and names the PDF, which is in the run's files.
 
 # Reasoning Flow
 
-1. **Run the script, once.** The inputs are already in the sandbox (`INPUT_JSON`, or the
-   file at `INPUT_JSON_PATH` when they are over 64 KiB). Do not read or search the script,
-   list files, or write the inputs to a file yourself. Your first and only `sandbox_run`
-   is:
+1. **Write the inputs to a file.** A command you run in the sandbox gets none of this
+   step's inputs, so they reach the script through a file. With one `sandbox_write_file`,
+   write `brief` (website-seo-brief's output) and `now` as one JSON object to
+   `/tmp/website-seo-report.input.json`. Copy each value exactly as you were given it.
+   Leave out `audit`, `speed`, `gaps` and `opportunities`: the script reads each from the
+   output that step saved in this sandbox, which is the same data without retyping it. Do
+   not read or search the script, list files, or write anything under `/workspace/out`.
+2. **Run the script, once.** Your only `sandbox_run` is:
 
    ```
-   python3 /workspace/skill/website-seo-report/scripts/render.py
+   python3 /workspace/skill/website-seo-report/scripts/render.py --input /tmp/website-seo-report.input.json
    ```
 
    It takes a few seconds. It writes `seo-report.pdf` and `seo-report.html` to
    `/workspace/out/`, which become the run's files.
-2. **Return its JSON unchanged.** The script prints one JSON object on stdout (also saved
+3. **Return its JSON unchanged.** The script prints one JSON object on stdout (also saved
    at `/tmp/website-seo-report.json`) that matches `assets/output.schema.json`. Return
    exactly those fields.
-3. **If the script exits non-zero**, it still prints a valid output object saying what
+4. **If the script exits non-zero**, it still prints a valid output object saying what
    went wrong (nothing to render). Return that object. Never write a report by hand.
 
 # What the report holds

@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.0.1"
+  version: "1.1.0"
   category: marketing
   joystream-skill-kind: task
   joystream-input-schema: assets/input.schema.json
@@ -64,21 +64,30 @@ capability**. The skill folder is at `/workspace/skill/website-seo-content-gap`,
 
 # Reasoning Flow
 
-1. **Run the script, once.** The inputs are already in the sandbox (`INPUT_JSON`, or the
-   file at `INPUT_JSON_PATH` when they are over 64 KiB). Do not read or search the script,
-   list files, or write the inputs to a file yourself, and write nothing under
-   `/workspace/out`. Your first and only `sandbox_run` is:
+1. **Write the inputs to a file.** A command you run in the sandbox gets none of this
+   step's inputs, so they reach the script through a file. With one `sandbox_write_file`,
+   write `site_url`, `serps`, plus `focus_keywords`, `max_competitors` and `now` when you
+   were given them as one JSON object to `/tmp/website-seo-content-gap.input.json`. Copy
+   each value exactly as you were given it, except the searches, which you write
+   compactly: for SerpApi, `{"keyword": <its query>, "results": {"organic_results":
+   [{"position", "link", "title"}, …]}}` with only those three fields of its first ten
+   organic results; for another search tool, `{"keyword": <its query>, "results": [{"url",
+   "title"}, …]}` in its order. A search that failed is `{"keyword": <its query>,
+   "results": {"ok": false, "error": <its error>}}`. Leave out `pages`: the script reads
+   the page audit's pages from the output that step saved in this sandbox. Do not read or
+   search the script, list files, or write anything under `/workspace/out`.
+2. **Run the script, once.** Your only `sandbox_run` is:
 
    ```
-   python3 /workspace/skill/website-seo-content-gap/scripts/gap.py
+   python3 /workspace/skill/website-seo-content-gap/scripts/gap.py --input /tmp/website-seo-content-gap.input.json
    ```
 
    It takes 10-60 seconds for 3 keywords.
-2. **Return its JSON unchanged.** The script prints one JSON object on stdout (also saved
+3. **Return its JSON unchanged.** The script prints one JSON object on stdout (also saved
    at `/tmp/website-seo-content-gap.json`) that matches `assets/output.schema.json`.
    Return exactly those fields, even when a finding looks wrong. Do not rescore, reorder,
    reword, rerun or add to them.
-3. **If the script exits non-zero**, it still prints a valid output object that says what
+4. **If the script exits non-zero**, it still prints a valid output object that says what
    went wrong (for example, every search failed). Return that object. Never compare
    pages by hand.
 

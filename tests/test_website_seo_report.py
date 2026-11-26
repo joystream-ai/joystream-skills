@@ -35,7 +35,7 @@ def _run(tmp_path: Path, inputs: dict, chrome: str | None = "fake") -> tuple[dic
     out_dir = tmp_path / "out"
     env = dict(os.environ, CHROME_PATH=_chrome(tmp_path) if chrome == "fake" else (chrome or str(tmp_path / "no-chrome")))
     done = subprocess.run(
-        [sys.executable, str(SKILL / "scripts" / "render.py"), "--input", str(source), "--out", str(tmp_path / "o.json"), "--out-dir", str(out_dir)],
+        [sys.executable, str(SKILL / "scripts" / "render.py"), "--input", str(source), "--out", str(tmp_path / "o.json"), "--out-dir", str(out_dir), "--steps-dir", str(tmp_path / "steps")],
         capture_output=True,
         text=True,
         check=False,
@@ -151,3 +151,30 @@ def test_every_example_is_what_the_script_prints(tmp_path: Path) -> None:
         for item in (*output["files"], *expected["files"]):
             item["path"], item["bytes"] = Path(item["path"]).name, 0
         assert output == expected, case.name
+
+
+def _save_steps(tmp_path: Path, inputs: dict, **overrides: dict) -> None:
+    steps = tmp_path / "steps"
+    steps.mkdir()
+    for name, skill in (("audit", "website-seo-page-audit"), ("speed", "website-seo-performance")):
+        (steps / f"{skill}.json").write_text(json.dumps({**inputs[name], **overrides}), encoding="utf-8")
+
+
+def test_the_modules_are_read_from_the_earlier_steps(tmp_path: Path, full: tuple[dict, str]) -> None:
+    inputs = _example("full-report")
+    _save_steps(tmp_path, inputs)
+    output, code, _ = _run(tmp_path, {"brief": inputs["brief"], "now": inputs["now"]})
+    assert code == 0
+    assert output["sections"] == full[0]["sections"]
+
+
+def test_another_sites_or_an_older_runs_files_are_not_used(tmp_path: Path) -> None:
+    inputs = _example("full-report")
+    _save_steps(tmp_path, inputs, site="https://other.example.net")
+    output, _, _ = _run(tmp_path, {"brief": inputs["brief"], "now": inputs["now"]})
+    assert "scorecard" not in output["sections"] and "speed" not in output["sections"]
+    later = tmp_path / "later"
+    later.mkdir()
+    _save_steps(later, inputs)
+    output, _, _ = _run(later, {"brief": inputs["brief"], "now": "2099-01-01T00:00:00Z"})
+    assert "scorecard" not in output["sections"] and "speed" not in output["sections"]

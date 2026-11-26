@@ -111,7 +111,7 @@ def _run(tmp_path: Path, inputs: dict, env: dict[str, str]) -> tuple[dict, int]:
     path = tmp_path / "inputs.json"
     path.write_text(json.dumps(inputs), encoding="utf-8")
     done = subprocess.run(
-        [sys.executable, str(SKILL / "scripts" / "measure.py"), "--input", str(path), "--out", str(tmp_path / "o.json")],
+        [sys.executable, str(SKILL / "scripts" / "measure.py"), "--input", str(path), "--out", str(tmp_path / "o.json"), "--steps-dir", str(tmp_path / "steps")],
         capture_output=True,
         text=True,
         check=False,
@@ -238,3 +238,20 @@ def test_every_example_is_what_the_script_prints(tmp_path: Path, lighthouse: dic
         expected = json.loads(case.with_name(case.name.replace(".input.", ".output.")).read_text(encoding="utf-8"))
         output, _ = _run(tmp_path, json.loads(case.read_text(encoding="utf-8")), {**lighthouse, "PSI_ENDPOINT": f"{psi}/psi-slow"})
         assert output == expected, case.name
+
+
+def test_pages_default_to_the_audits_saved_target_urls(tmp_path: Path, lighthouse: dict) -> None:
+    steps = tmp_path / "steps"
+    steps.mkdir()
+    (steps / "website-seo-page-audit.json").write_text(json.dumps({"site": f"{SITE}/", "target_urls": [f"{SITE}/pricing"]}), encoding="utf-8")
+    output, code = _run(tmp_path, {"site_url": SITE, "field_data": False}, lighthouse)
+    assert code == 0
+    assert [p["url"] for p in output["pages"]] == [f"{SITE}/", f"{SITE}/pricing"]
+
+
+def test_another_sites_saved_audit_is_ignored(tmp_path: Path, lighthouse: dict) -> None:
+    steps = tmp_path / "steps"
+    steps.mkdir()
+    (steps / "website-seo-page-audit.json").write_text(json.dumps({"site": "https://other.example.net/", "target_urls": [f"{SITE}/pricing"]}), encoding="utf-8")
+    output, _ = _run(tmp_path, {"site_url": SITE, "field_data": False}, lighthouse)
+    assert [p["url"] for p in output["pages"]] == [f"{SITE}/"]

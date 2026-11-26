@@ -15,7 +15,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.1"
+  version: "1.1.2"
   category: marketing
   joystream-skill-kind: task
   joystream-input-schema: assets/input.schema.json
@@ -65,21 +65,24 @@ capability**. The skill folder is at `/workspace/skill/website-seo-page-audit`, 
 
 # Reasoning Flow
 
-1. **Run the script, once.** The inputs are already in the sandbox (`INPUT_JSON`, or the
-   file at `INPUT_JSON_PATH` when they are over 64 KiB). Do not read or search the script,
-   list files, or write the inputs to a file yourself, and write nothing under
-   `/workspace/out`. Your first and only `sandbox_run` is:
+1. **Write the inputs to a file.** A command you run in the sandbox gets none of this
+   step's inputs, so they reach the script through a file. With one `sandbox_write_file`,
+   write `site_url`, plus `focus_keywords`, `pages`, `max_pages`, `max_link_checks`,
+   `previous` and `now` when you were given them as one JSON object to
+   `/tmp/website-seo-page-audit.input.json`. Copy each value exactly as you were given it.
+   Do not read or search the script, list files, or write anything under `/workspace/out`.
+2. **Run the script, once.** Your only `sandbox_run` is:
 
    ```
-   python3 /workspace/skill/website-seo-page-audit/scripts/audit.py
+   python3 /workspace/skill/website-seo-page-audit/scripts/audit.py --input /tmp/website-seo-page-audit.input.json
    ```
 
    It takes 20-60 seconds for 15 pages.
-2. **Return its JSON unchanged.** The script prints one JSON object on stdout (also saved
+3. **Return its JSON unchanged.** The script prints one JSON object on stdout (also saved
    at `/tmp/website-seo-page-audit.json`) that matches `assets/output.schema.json`.
    Return exactly those fields, even when a finding looks wrong. Do not rescore, reorder,
    reword, rerun or add to them.
-3. **If the script exits non-zero**, it still prints a valid output object that says what
+4. **If the script exits non-zero**, it still prints a valid output object that says what
    went wrong (for example, the homepage could not be reached). Return that object. Never
    audit by hand.
 
