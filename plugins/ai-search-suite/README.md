@@ -34,6 +34,7 @@ website-seo-report          (PDF + HTML: score, charts, fixes, every finding)
 | [`website-seo-opportunities`](./skills/website-seo-opportunities/SKILL.md) | task (sandbox) | Google Search Console query × page rows for the last 28 days (and the 28 before) |
 | [`website-seo-brief`](./skills/website-seo-brief/SKILL.md) | instruction | The audit, and the other outputs when there are any |
 | [`website-seo-report`](./skills/website-seo-report/SKILL.md) | task (sandbox) | The brief and the module outputs; Chromium (in the JoyStream sandbox) for the PDF |
+| [`website-seo-changes`](./skills/website-seo-changes/SKILL.md) | task (sandbox) | The audit (speed and content gap when they ran) and the last check's snapshot, read from a Google Sheet or any store. For an SEO watch on a schedule |
 
 ## What the review covers
 
@@ -71,6 +72,10 @@ website-seo-report          (PDF + HTML: score, charts, fixes, every finding)
   report into the run's files and posts a summary card. Only the delivery channel needs a
   connection. `website-seo-optimizer` describes that agent's shape; it is not a step
   itself.
+- **SEO Watch** (on a schedule, e.g. every 3 days): the same modules, then
+  `website-seo-changes` compares them with the last check's snapshot. The card shows only
+  what is new, fixed, still open and overdue, rank moves and Core Web Vitals that crossed
+  a line, and links the full PDF. A Google Sheet keeps the snapshot between runs.
 
 ## Settings you can change without code
 

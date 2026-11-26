@@ -13,6 +13,7 @@
     },
     "top_n": {"type": "integer", "minimum": 1, "maximum": 15, "description": "How many actions to write. Default 10."},
     "now": {"type": "string", "description": "The run's start time, ISO 8601."},
-    "report_file": {"type": "string", "description": "The PDF a report step (website-seo-report) makes from this brief, e.g. seo-report.pdf. When set, the card's last section points to it."}
+    "report_file": {"type": "string", "description": "The PDF a report step (website-seo-report) makes from this brief, e.g. seo-report.pdf. When set, the card's last section points to it."},
+    "report_url": {"type": "string", "pattern": "^https://", "description": "A link where a person opens this run's files, such as the agent's page in JoyStream. When set, the card's Full report item links to it."}
   }
 }

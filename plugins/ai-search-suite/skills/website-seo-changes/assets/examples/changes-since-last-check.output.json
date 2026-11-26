@@ -1,0 +1,225 @@
+{
+  "outcome": "ok",
+  "site": "https://example.com",
+  "taken_at": "2026-11-05T09:17:00Z",
+  "previous_at": "2026-11-02T09:17:00Z",
+  "score": 70,
+  "quiet": false,
+  "changes": {
+    "score": {
+      "before": 62,
+      "after": 70,
+      "delta": 8
+    },
+    "new": [
+      {
+        "id": "broken-links",
+        "severity": "high",
+        "title": "3 internal links return 404",
+        "pages": 1
+      }
+    ],
+    "fixed": [
+      {
+        "id": "noindex",
+        "severity": "critical",
+        "title": "/pricing is set to noindex"
+      }
+    ],
+    "still_open": [
+      {
+        "id": "keyword-untargeted:invoice software",
+        "severity": "high",
+        "title": "No page targets \"invoice software\" in its title or H1",
+        "pages": 0,
+        "since": "2026-11-02",
+        "age_days": 3,
+        "checks": 2,
+        "escalated": true
+      },
+      {
+        "id": "title-short",
+        "severity": "medium",
+        "title": "Titles are too short to say what the page is about",
+        "pages": 2,
+        "since": "2026-11-02",
+        "age_days": 3,
+        "checks": 2,
+        "escalated": false
+      }
+    ],
+    "ranks": [
+      {
+        "keyword": "invoice software",
+        "before": null,
+        "after": 8,
+        "direction": "entered"
+      }
+    ],
+    "new_competitors": [
+      {
+        "keyword": "invoice software",
+        "host": "wave.com"
+      }
+    ],
+    "speed": [
+      {
+        "url": "https://www.example.com/",
+        "metric": "LCP",
+        "before": "needs_improvement",
+        "after": "good",
+        "direction": "better"
+      }
+    ]
+  },
+  "snapshot": {
+    "kind": "seo-watch-snapshot",
+    "v": 1,
+    "site": "https://example.com",
+    "taken_at": "2026-11-05T09:17:00Z",
+    "score": 70,
+    "findings": {
+      "keyword-untargeted:invoice software": {
+        "s": "high",
+        "t": "No page targets \"invoice software\" in its title or H1",
+        "since": "2026-11-02",
+        "seen": 2
+      },
+      "title-short": {
+        "s": "medium",
+        "t": "Titles are too short to say what the page is about",
+        "since": "2026-11-02",
+        "seen": 2
+      },
+      "broken-links": {
+        "s": "high",
+        "t": "3 internal links return 404",
+        "since": "2026-11-05",
+        "seen": 1
+      }
+    },
+    "ranks": {
+      "invoice software": {
+        "rank": 8,
+        "top": [
+          "wave.com",
+          "freshbooks.com",
+          "quickbooks.intuit.com",
+          "zoho.com"
+        ]
+      }
+    },
+    "speed": {
+      "https://www.example.com/": {
+        "lcp": "good",
+        "cls": "good",
+        "tbt": "good"
+      }
+    }
+  },
+  "sheet_values": [
+    [
+      "taken_at",
+      "site",
+      "score",
+      "snapshot"
+    ],
+    [
+      "2026-11-05T09:17:00Z",
+      "https://example.com",
+      70,
+      "{\"kind\":\"seo-watch-snapshot\",\"v\":1,\"site\":\"https://example.com\",\"taken_at\":\"2026-11-05T09:17:00Z\",\"score\":70,\"findings\":{\"keyword-untargeted:invoice software\":{\"s\":\"high\",\"t\":\"No page targets \\\"invoice software\\\" in its title or H1\",\"since\":\"2026-11-02\",\"seen\":2},\"title-short\":{\"s\":\"medium\",\"t\":\"Titles are too short to say what the page is about\",\"since\":\"2026-11-02\",\"seen\":2},\"broken-links\":{\"s\":\"high\",\"t\":\"3 internal links return 404\",\"since\":\"2026-11-05\",\"seen\":1}},\"ranks\":{\"invoice software\":{\"rank\":8,\"top\":[\"wave.com\",\"freshbooks.com\",\"quickbooks.intuit.com\",\"zoho.com\"]}},\"speed\":{\"https://www.example.com/\":{\"lcp\":\"good\",\"cls\":\"good\",\"tbt\":\"good\"}}}"
+    ]
+  ],
+  "report": {
+    "title": "SEO Watch · example.com — 70/100 (▲ +8)",
+    "summary": "Since 2026-11-02: 1 new, 1 fixed, 2 still open (1 high-priority, open since an earlier check). Rankings: 1 up, 0 down.",
+    "severity": "action_needed",
+    "sections": [
+      {
+        "heading": "New since 2026-11-02",
+        "items": [
+          {
+            "text": "High: 3 internal links return 404 (1 page)",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Act now: still open",
+        "items": [
+          {
+            "text": "High, open 3 days (2nd check): No page targets \"invoice software\" in its title or H1",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Fixed",
+        "items": [
+          {
+            "text": "/pricing is set to noindex",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Rankings",
+        "items": [
+          {
+            "text": "\"invoice software\": not in the top results → #8",
+            "citations": []
+          },
+          {
+            "text": "New in the top 5 for \"invoice software\": wave.com",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Speed",
+        "items": [
+          {
+            "text": "/ LCP: needs improvement → good",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Still open",
+        "items": [
+          {
+            "text": "1 more open issue (1 medium); see the report.",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Full report",
+        "items": [
+          {
+            "text": "seo-report.pdf in this run's files: every finding and copy-ready fix. [Open the report](https://app.joystream.ai/agents/fqn/acme/marketing/seo-watch)",
+            "citations": [
+              "S0"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S0",
+        "title": "Full report and run details",
+        "url": "https://app.joystream.ai/agents/fqn/acme/marketing/seo-watch"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "website-seo-changes",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-11-05T09:17:00Z"
+    }
+  },
+  "sentence": "SEO Watch for example.com: 1 new, 1 fixed, 2 still open.",
+  "unknowns": []
+}

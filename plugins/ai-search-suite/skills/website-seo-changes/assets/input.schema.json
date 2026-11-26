@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "website-seo-changes input",
+  "type": "object",
+  "required": ["site_url"],
+  "properties": {
+    "site_url": {"type": "string", "description": "The site, e.g. https://www.example.com."},
+    "previous": {"description": "The previous run's snapshot: the snapshot object, its JSON text, or the Google Sheets value range it was saved in (the read step's output). Empty on the first run."},
+    "audit": {"type": ["object", "string", "null"], "description": "website-seo-page-audit's output. Left out on JoyStream: read from the output that step saved in this sandbox."},
+    "speed": {"type": ["object", "string", "null"], "description": "website-seo-performance's output. Left out on JoyStream, as audit."},
+    "gaps": {"type": ["object", "string", "null"], "description": "website-seo-content-gap's output. Left out on JoyStream, as audit."},
+    "escalate_after_checks": {"type": "integer", "minimum": 1, "maximum": 10, "description": "A critical or high issue still open on this many checks is flagged to act on now. Default 2: flagged the first time it is seen again."},
+    "report_url": {"type": "string", "pattern": "^https://", "description": "A link where a person opens this run's files, such as the agent's page in JoyStream."},
+    "report_file": {"type": "string", "description": "The PDF a report step makes this run, e.g. seo-report.pdf."},
+    "now": {"type": "string", "description": "The run's start time, ISO 8601."}
+  }
+}

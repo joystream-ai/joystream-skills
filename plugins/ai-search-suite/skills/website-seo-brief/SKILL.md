@@ -17,7 +17,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.2.0"
+  version: "1.3.0"
   category: marketing
   joystream-skill-kind: instruction
   joystream-input-schema: assets/input.schema.json
@@ -48,6 +48,8 @@ that the site's page does not. Every rewrite is a draft for a person to approve.
 - **report_file** (string, optional): the name of the PDF a report step
   (website-seo-report) makes from this brief, e.g. `seo-report.pdf`. Set it when the agent
   has that step, so the card can point to the file.
+- **report_url** (string, optional): an `https://` link where a person opens this run's
+  files, such as the agent's page in JoyStream. Set it so the card links to the report.
 
 # What this skill needs
 
@@ -179,8 +181,13 @@ rank or say something is ignored and named in `report.unknowns`.
     4. `Content gaps`: one item per keyword (at most three), `"<keyword>": rank <n> (or
        not in the top results) · missing <up to three topics>`.
     5. `Full report`: when `report_file` is set, one item: `<report_file> in this run's
-       files: charts, every finding and copy-ready fixes (<n> more changes).`
-  - `sources`: the audited pages. `unknowns`: as in the Markdown.
+       files: charts, every finding and copy-ready fixes (<n> more changes).` When
+       `report_url` is set, the item ends with ` [Open the report](<report_url>)` and cites
+       `S0`, so the card links to it; with `report_url` and no `report_file`, the item is
+       `Every finding and copy-ready fix: [open the run](<report_url>)`, citing `S0`.
+  - `sources`: when `report_url` is set, first `{"id": "S0", "title": "Full report and run
+    details", "url": <report_url>}`, with the url copied exactly; then the audited pages.
+    `unknowns`: as in the Markdown.
 
 # Constraints
 

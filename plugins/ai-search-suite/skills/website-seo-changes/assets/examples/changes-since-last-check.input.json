@@ -1,0 +1,87 @@
+{
+  "site_url": "https://www.example.com",
+  "previous": {
+    "range": "Sheet1!A2:D2",
+    "majorDimension": "ROWS",
+    "values": [
+      [
+        "2026-11-02T09:17:00Z",
+        "https://example.com",
+        62,
+        "{\"kind\":\"seo-watch-snapshot\",\"v\":1,\"site\":\"https://example.com\",\"taken_at\":\"2026-11-02T09:17:00Z\",\"score\":62,\"findings\":{\"noindex\":{\"s\":\"critical\",\"t\":\"/pricing is set to noindex\",\"since\":\"2026-11-02\",\"seen\":1},\"keyword-untargeted:invoice software\":{\"s\":\"high\",\"t\":\"No page targets \\\"invoice software\\\" in its title or H1\",\"since\":\"2026-11-02\",\"seen\":1},\"title-short\":{\"s\":\"medium\",\"t\":\"Titles are too short to say what the page is about\",\"since\":\"2026-11-02\",\"seen\":1}},\"ranks\":{\"invoice software\":{\"rank\":null,\"top\":[\"freshbooks.com\",\"quickbooks.intuit.com\",\"zoho.com\"]}},\"speed\":{\"https://www.example.com/\":{\"lcp\":\"needs_improvement\",\"cls\":\"good\",\"tbt\":\"good\"}}}"
+      ]
+    ]
+  },
+  "audit": {
+    "site": "https://www.example.com",
+    "outcome": "ok",
+    "overall_score": 70,
+    "findings": [
+      {
+        "id": "keyword-untargeted:invoice software",
+        "severity": "high",
+        "title": "No page targets \"invoice software\" in its title or H1",
+        "pages": []
+      },
+      {
+        "id": "title-short",
+        "severity": "medium",
+        "title": "Titles are too short to say what the page is about",
+        "pages": [
+          "https://www.example.com/blog",
+          "https://www.example.com/about"
+        ]
+      },
+      {
+        "id": "broken-links",
+        "severity": "high",
+        "title": "3 internal links return 404",
+        "pages": [
+          "https://www.example.com/blog"
+        ]
+      }
+    ]
+  },
+  "speed": {
+    "site": "https://www.example.com",
+    "outcome": "ok",
+    "pages": [
+      {
+        "url": "https://www.example.com/",
+        "status": "ok",
+        "ratings": {
+          "lcp": "good",
+          "cls": "good",
+          "tbt": "good"
+        }
+      }
+    ]
+  },
+  "gaps": {
+    "site": "https://www.example.com",
+    "outcome": "ok",
+    "keywords": [
+      {
+        "keyword": "invoice software",
+        "our_rank": 8,
+        "competitors": [
+          {
+            "url": "https://www.wave.com/invoicing"
+          },
+          {
+            "url": "https://www.freshbooks.com/invoice"
+          },
+          {
+            "url": "https://quickbooks.intuit.com/invoicing/"
+          },
+          {
+            "url": "https://www.zoho.com/invoice/"
+          }
+        ]
+      }
+    ]
+  },
+  "report_url": "https://app.joystream.ai/agents/fqn/acme/marketing/seo-watch",
+  "report_file": "seo-report.pdf",
+  "now": "2026-11-05T09:17:00Z"
+}

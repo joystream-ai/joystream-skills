@@ -1,0 +1,122 @@
+{
+  "outcome": "first_run",
+  "site": "https://example.com",
+  "taken_at": "2026-11-02T09:17:00Z",
+  "previous_at": null,
+  "score": 62,
+  "quiet": false,
+  "changes": null,
+  "snapshot": {
+    "kind": "seo-watch-snapshot",
+    "v": 1,
+    "site": "https://example.com",
+    "taken_at": "2026-11-02T09:17:00Z",
+    "score": 62,
+    "findings": {
+      "noindex": {
+        "s": "critical",
+        "t": "/pricing is set to noindex",
+        "since": "2026-11-02",
+        "seen": 1
+      },
+      "keyword-untargeted:invoice software": {
+        "s": "high",
+        "t": "No page targets \"invoice software\" in its title or H1",
+        "since": "2026-11-02",
+        "seen": 1
+      },
+      "title-short": {
+        "s": "medium",
+        "t": "Titles are too short to say what the page is about",
+        "since": "2026-11-02",
+        "seen": 1
+      }
+    },
+    "ranks": {
+      "invoice software": {
+        "rank": null,
+        "top": [
+          "freshbooks.com",
+          "quickbooks.intuit.com",
+          "zoho.com"
+        ]
+      }
+    },
+    "speed": {
+      "https://www.example.com/": {
+        "lcp": "needs_improvement",
+        "cls": "good",
+        "tbt": "good"
+      }
+    }
+  },
+  "sheet_values": [
+    [
+      "taken_at",
+      "site",
+      "score",
+      "snapshot"
+    ],
+    [
+      "2026-11-02T09:17:00Z",
+      "https://example.com",
+      62,
+      "{\"kind\":\"seo-watch-snapshot\",\"v\":1,\"site\":\"https://example.com\",\"taken_at\":\"2026-11-02T09:17:00Z\",\"score\":62,\"findings\":{\"noindex\":{\"s\":\"critical\",\"t\":\"/pricing is set to noindex\",\"since\":\"2026-11-02\",\"seen\":1},\"keyword-untargeted:invoice software\":{\"s\":\"high\",\"t\":\"No page targets \\\"invoice software\\\" in its title or H1\",\"since\":\"2026-11-02\",\"seen\":1},\"title-short\":{\"s\":\"medium\",\"t\":\"Titles are too short to say what the page is about\",\"since\":\"2026-11-02\",\"seen\":1}},\"ranks\":{\"invoice software\":{\"rank\":null,\"top\":[\"freshbooks.com\",\"quickbooks.intuit.com\",\"zoho.com\"]}},\"speed\":{\"https://www.example.com/\":{\"lcp\":\"needs_improvement\",\"cls\":\"good\",\"tbt\":\"good\"}}}"
+    ]
+  ],
+  "report": {
+    "title": "SEO Watch · example.com — 62/100 (first check)",
+    "summary": "First check: saved as the baseline, so the next run reports only what changed. 2 high-priority issues open, 3 in all.",
+    "severity": "attention",
+    "sections": [
+      {
+        "heading": "Fix these first",
+        "items": [
+          {
+            "text": "Critical: /pricing is set to noindex (1 page)",
+            "citations": []
+          },
+          {
+            "text": "High: No page targets \"invoice software\" in its title or H1",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Rankings now",
+        "items": [
+          {
+            "text": "\"invoice software\": not in the top results",
+            "citations": []
+          }
+        ]
+      },
+      {
+        "heading": "Full report",
+        "items": [
+          {
+            "text": "seo-report.pdf in this run's files: every finding and copy-ready fix. [Open the report](https://app.joystream.ai/agents/fqn/acme/marketing/seo-watch)",
+            "citations": [
+              "S0"
+            ]
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "id": "S0",
+        "title": "Full report and run details",
+        "url": "https://app.joystream.ai/agents/fqn/acme/marketing/seo-watch"
+      }
+    ],
+    "unknowns": [],
+    "meta": {
+      "skill": "website-seo-changes",
+      "skill_version": "1.0.0",
+      "generated_at": "2026-11-02T09:17:00Z"
+    }
+  },
+  "sentence": "First SEO Watch check of example.com: 62/100, 3 open issues saved as the baseline.",
+  "unknowns": []
+}
