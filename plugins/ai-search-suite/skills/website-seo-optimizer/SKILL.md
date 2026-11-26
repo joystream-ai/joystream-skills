@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.0"
+  version: "1.1.1"
   category: marketing
   joystream-skill-kind: task
 ---
@@ -109,6 +109,12 @@ themselves, with the `code_execution` capability:
 
 Only the delivery channel needs a connection. Search Console and a search tool make the
 report richer, and are skipped when they are not connected.
+
+Offer the settings a team is likely to tune as agent inputs, bound to the steps that
+read them: pages to audit (`audit.max_pages`), phone or desktop speed
+(`speed.strategy`) and competitors per keyword (`gaps.max_competitors`). Leave each
+optional: an empty one falls back to the module's default. The plugin README lists every
+setting.
 
 A step that fails or is skipped leaves the brief running on the rest. The brief names
 what is missing.

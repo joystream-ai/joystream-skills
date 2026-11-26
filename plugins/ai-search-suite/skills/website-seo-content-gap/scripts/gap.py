@@ -28,6 +28,7 @@ import sys
 import time
 import urllib.error
 import urllib.request
+from datetime import datetime, timezone
 from html.parser import HTMLParser
 from typing import Any
 from urllib.parse import urlsplit, urlunsplit
@@ -561,13 +562,77 @@ def read_inputs(path: str | None) -> dict[str, Any]:
     return json.loads(os.environ.get("INPUT_JSON") or "{}")
 
 
+# Every step of a JoyStream run shares one sandbox, and each module saves its output at
+# <steps dir>/<skill>.json, so an input the model leaves out is read from there instead of
+# being retyped. CLOCK_SLACK_S allows for the sandbox clock differing from the run's.
+STEPS_DIR = "/tmp"
+CLOCK_SLACK_S = 600
+# (input, earlier module, key in its output): our pages are the audit's.
+EARLIER_STEPS = (("pages", "website-seo-page-audit", "pages"),)
+
+
+def from_earlier_steps(inputs: dict[str, Any], steps_dir: str, site: Any) -> dict[str, Any]:
+    """Fill each input left out from the output an earlier module saved in this sandbox.
+
+    A saved output counts only for the same site, and only when it was written after the
+    run started (the `now` input, when given): an older file belongs to another run.
+    """
+    started = epoch_of(inputs.get("now"))
+    for field, skill, key in EARLIER_STEPS:
+        if inputs.get(field) not in (None, "", [], {}):
+            continue
+        path = os.path.join(steps_dir, f"{skill}.json")
+        try:
+            if started is not None and os.path.getmtime(path) < started - CLOCK_SLACK_S:
+                continue
+            with open(path, encoding="utf-8") as handle:
+                saved = json.load(handle)
+        except (OSError, ValueError):
+            continue
+        if not isinstance(saved, dict) or not same_site(saved.get("site"), site):
+            continue
+        value = saved if key is None else saved.get(key)
+        if value not in (None, "", [], {}):
+            inputs[field] = value
+    return inputs
+
+
+def epoch_of(value: Any) -> float | None:
+    if not isinstance(value, str) or not value.strip():
+        return None
+    try:
+        moment = datetime.fromisoformat(value.strip().replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    if moment.tzinfo is None:
+        moment = moment.replace(tzinfo=timezone.utc)
+    return moment.timestamp()
+
+
+def same_site(saved: Any, site: Any) -> bool:
+    """The same host, ignoring the scheme and www. With no site of our own, any matches."""
+
+    def host(url: Any) -> str:
+        if not isinstance(url, str) or not url.strip():
+            return ""
+        text = url.strip()
+        netloc = urlsplit(text if "//" in text else f"https://{text}").netloc.lower()
+        return netloc[4:] if netloc.startswith("www.") else netloc
+
+    ours = host(site)
+    return not ours or host(saved) == ours
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input")
     parser.add_argument("--out", default=DEFAULT_OUT)
+    parser.add_argument("--steps-dir", default=STEPS_DIR)
     args = parser.parse_args()
     try:
         inputs = read_inputs(args.input)
+        if isinstance(inputs, dict):
+            inputs = from_earlier_steps(inputs, args.steps_dir, inputs.get("site_url"))
         output, code = build(inputs if isinstance(inputs, dict) else {})
     except (OSError, ValueError) as exc:
         print(f"could not read the inputs: {type(exc).__name__}", file=sys.stderr)

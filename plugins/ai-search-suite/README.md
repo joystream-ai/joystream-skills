@@ -71,3 +71,50 @@ website-seo-report          (PDF + HTML: score, charts, fixes, every finding)
   report into the run's files and posts a summary card. Only the delivery channel needs a
   connection. `website-seo-optimizer` describes that agent's shape; it is not a step
   itself.
+
+## Settings you can change without code
+
+Each module reads these from its inputs, and a missing or empty one falls back to the
+default, so a team can tune a run without touching a script. On JoyStream, add the
+setting to the agent's `input_schema` and bind the step's input to it, for example
+`"max_pages": "input.max_pages"` on the `audit` step. The SEO Optimizer agent offers the
+first, fourth and sixth.
+
+| Setting | Module and input | Default | Range |
+|---|---|---|---|
+| Pages to audit | page audit `max_pages` | 15 | 1 to 30 |
+| Internal links checked | page audit `max_link_checks` | 40 | up to 100 |
+| Pages measured for speed | performance `max_pages` | 3 | 1 to 5 |
+| Phone or desktop speed | performance `strategy` | `mobile` | `mobile`, `desktop` |
+| Real-user data (Chrome UX Report) | performance `field_data` | `true` | `true`, `false` |
+| Competitors compared per keyword | content gap `max_competitors` | 5 | 1 to 8 |
+| Opportunities returned | opportunities `top_n` | 10 | up to 25 |
+| Fewest impressions for a query | opportunities `min_impressions` | 50 | any |
+| Words that mark a branded query | opportunities `brand_terms` | the host's first label (`example`) | a list |
+
+## Changing what a module does
+
+A new check, a different score or another chart is a change to the module's script, and
+JoyStream takes skills from GitHub only: there is no file upload. To change one:
+
+1. **Copy the module.** Fork this repository, or copy the module's folder (for example
+   `skills/website-seo-page-audit`) into a repository of your own. From JoyStream,
+   `jstm skill pull website-seo-page-audit --out ./my-copy` downloads the same folder.
+2. **Rename it and edit.** Give the copy its own `name` (say `acme-seo-page-audit`) in
+   its `SKILL.md`, and change the script path in its Reasoning Flow to match the new
+   folder (`/workspace/skill/acme-seo-page-audit/scripts/audit.py`). Edit the script, and
+   the output schema in `assets/` if the output changes: the later modules read the
+   fields that are already there, so add new fields rather than renaming old ones. The
+   scripts use Python's standard library only.
+3. **Check it.** In this repository, run
+   `uv run --with pytest --with pyyaml --with jsonschema pytest tests` and
+   `uv run scripts/validate.py`, or run the script on its own with `--input` and an
+   example from `assets/examples/`.
+4. **Add it to JoyStream.** Under **Add skill repository**, add your repository and sync
+   it (or `jstm skill repo add` then `jstm skill repo sync`).
+5. **Point the agent at it.** In your copy of the SEO Optimizer, change the step's skill
+   to `acme-seo-page-audit` and build the agent again.
+
+The output file each script saves in the sandbox (`/tmp/website-seo-page-audit.json`,
+which the content gap and report modules read) is named in the script, not by the skill,
+so a renamed copy still hands its pages to the later steps.
