@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.2"
+  version: "1.2.0"
   category: marketing
   joystream-skill-kind: task
 ---
@@ -110,6 +110,12 @@ themselves, with the `code_execution` capability:
 
 Only the delivery channel needs a connection. Search Console and a search tool make the
 report richer, and are skipped when they are not connected.
+
+For a watch that runs on a schedule, add a `read-state` step (the saved snapshot, e.g.
+`googlesheets.values_get`), then `changes`: website-seo-changes after `read-state`,
+`audit`, `speed` and `gaps`, and render the card from its `report` instead of the brief's.
+A `save-state` step writes its `sheet_values` back. The brief and the PDF still run, so
+the card links a full report.
 
 Offer the settings a team is likely to tune as agent inputs, bound to the steps that
 read them: pages to audit (`audit.max_pages`), phone or desktop speed

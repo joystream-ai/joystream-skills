@@ -1,0 +1,72 @@
+{
+  "site_url": "https://www.example.com",
+  "audit": {
+    "site": "https://www.example.com",
+    "outcome": "ok",
+    "overall_score": 62,
+    "findings": [
+      {
+        "id": "noindex",
+        "severity": "critical",
+        "title": "/pricing is set to noindex",
+        "pages": [
+          "https://www.example.com/pricing"
+        ]
+      },
+      {
+        "id": "keyword-untargeted:invoice software",
+        "severity": "high",
+        "title": "No page targets \"invoice software\" in its title or H1",
+        "pages": []
+      },
+      {
+        "id": "title-short",
+        "severity": "medium",
+        "title": "Titles are too short to say what the page is about",
+        "pages": [
+          "https://www.example.com/blog",
+          "https://www.example.com/about"
+        ]
+      }
+    ]
+  },
+  "speed": {
+    "site": "https://www.example.com",
+    "outcome": "ok",
+    "pages": [
+      {
+        "url": "https://www.example.com/",
+        "status": "ok",
+        "ratings": {
+          "lcp": "needs_improvement",
+          "cls": "good",
+          "tbt": "good"
+        }
+      }
+    ]
+  },
+  "gaps": {
+    "site": "https://www.example.com",
+    "outcome": "ok",
+    "keywords": [
+      {
+        "keyword": "invoice software",
+        "our_rank": null,
+        "competitors": [
+          {
+            "url": "https://www.freshbooks.com/invoice"
+          },
+          {
+            "url": "https://quickbooks.intuit.com/invoicing/"
+          },
+          {
+            "url": "https://www.zoho.com/invoice/"
+          }
+        ]
+      }
+    ]
+  },
+  "report_url": "https://app.joystream.ai/agents/fqn/acme/marketing/seo-watch",
+  "report_file": "seo-report.pdf",
+  "now": "2026-11-02T09:17:00Z"
+}
