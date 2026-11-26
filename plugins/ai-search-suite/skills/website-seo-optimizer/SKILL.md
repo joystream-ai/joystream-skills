@@ -14,7 +14,7 @@ description: >-
 license: MIT
 metadata:
   author: joystream
-  version: "1.1.1"
+  version: "1.1.2"
   category: marketing
   joystream-skill-kind: task
 ---
@@ -101,7 +101,8 @@ themselves, with the `code_execution` capability:
   SerpApi (Google's own order) or Tavily or Brave. Then `gaps`: website-seo-content-gap,
   after the searches and `audit`.
 - `brief`: website-seo-brief, after every module above, with `report_file` bound to
-  `seo-report.pdf`.
+  `seo-report.pdf` and `report_url` to the agent's page in JoyStream, so the card links
+  to the run's files.
 - `report`: website-seo-report, after `brief`, with each input bound to its step's
   output. It writes `seo-report.pdf` and `seo-report.html` to the run's files.
 - `deliver`: channel-message-render then the channel's post action (a Slack card, a Teams
